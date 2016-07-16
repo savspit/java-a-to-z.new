@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+      <entry name="!?*.aj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="chapter03" />
+        <module name="chapter08" />
+        <module name="chapter09" />
+        <module name="chapter10" />
+        <module name="chapter11" />
+        <module name="chapter12" />
+        <module name="chapter13" />
+        <module name="chapter14" />
+        <module name="Chess" />
+        <module name="lesson01.01.01" />
+        <module name="lesson01.01.02" />
+        <module name="lesson01.01.03" />
+        <module name="lesson01.01.04" />
+        <module name="lesson01.01.05" />
+        <module name="lesson01.01.06" />
+        <module name="lesson01.02.01" />
+        <module name="lesson01.02.03" />
+        <module name="lesson01.02.04" />
+        <module name="lesson01.02.05" />
+        <module name="lesson01.02.06" />
+        <module name="lesson01.04.01" />
+        <module name="lesson01.04.02" />
+        <module name="lesson01.04.03" />
+        <module name="lesson01.04.04" />
+        <module name="lesson01.04.05" />
+        <module name="lesson01.04.06" />
+        <module name="lesson01.05.01" />
+        <module name="lesson01.05.02" />
+        <module name="lesson01.05.03" />
+        <module name="lesson01.05.04" />
+        <module name="lesson01.05.05" />
+        <module name="lesson01.05.06" />
+        <module name="lesson01.06.01" />
+        <module name="lesson01.06.02" />
+        <module name="lesson01.06.03" />
+        <module name="lesson01.06.04" />
+        <module name="lesson01.06.05" />
+        <module name="lesson01.07.01" />
+        <module name="lesson01.07.02" />
+        <module name="lesson01.07.03" />
+        <module name="lesson01.07.04" />
+        <module name="lesson01.07.05" />
+        <module name="lesson01.07.06" />
+        <module name="OrderBook" />
+        <module name="part02" />
+        <module name="part03" />
+        <module name="TicTacToe" />
+        <module name="Tracker" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="chapter01" target="1.5" />
+      <module name="chapter02" target="1.5" />
+      <module name="chapter03" target="1.5" />
+      <module name="chapter04" target="1.5" />
+      <module name="chapter05" target="1.5" />
+      <module name="chapter06" target="1.5" />
+      <module name="chapter07" target="1.5" />
+      <module name="chapter08" target="1.5" />
+      <module name="chapter09" target="1.5" />
+      <module name="chapter10" target="1.5" />
+      <module name="chapter11" target="1.5" />
+      <module name="chapter12" target="1.5" />
+      <module name="chapter13" target="1.5" />
+      <module name="chapter14" target="1.5" />
+      <module name="Chess" target="1.5" />
+      <module name="java-a-to-z" target="1.5" />
+      <module name="lesson01" target="1.5" />
+      <module name="lesson01.01.01" target="1.5" />
+      <module name="lesson01.01.02" target="1.5" />
+      <module name="lesson01.01.03" target="1.5" />
+      <module name="lesson01.01.04" target="1.5" />
+      <module name="lesson01.01.05" target="1.5" />
+      <module name="lesson01.01.06" target="1.5" />
+      <module name="lesson01.02.01" target="1.5" />
+      <module name="lesson01.02.02" target="1.5" />
+      <module name="lesson01.02.03" target="1.5" />
+      <module name="lesson01.02.04" target="1.5" />
+      <module name="lesson01.02.05" target="1.5" />
+      <module name="lesson01.02.06" target="1.5" />
+      <module name="lesson01.02.07" target="1.5" />
+      <module name="lesson01.04.01" target="1.5" />
+      <module name="lesson01.04.02" target="1.5" />
+      <module name="lesson01.04.03" target="1.5" />
+      <module name="lesson01.04.04" target="1.5" />
+      <module name="lesson01.04.05" target="1.5" />
+      <module name="lesson01.04.06" target="1.5" />
+      <module name="lesson01.04.07" target="1.5" />
+      <module name="lesson01.05.01" target="1.5" />
+      <module name="lesson01.05.02" target="1.5" />
+      <module name="lesson01.05.03" target="1.5" />
+      <module name="lesson01.05.04" target="1.5" />
+      <module name="lesson01.05.05" target="1.5" />
+      <module name="lesson01.05.06" target="1.5" />
+      <module name="lesson01.05.07" target="1.5" />
+      <module name="lesson01.06.01" target="1.5" />
+      <module name="lesson01.06.02" target="1.5" />
+      <module name="lesson01.06.03" target="1.5" />
+      <module name="lesson01.06.04" target="1.5" />
+      <module name="lesson01.06.05" target="1.5" />
+      <module name="lesson01.07.01" target="1.5" />
+      <module name="lesson01.07.02" target="1.5" />
+      <module name="lesson01.07.03" target="1.5" />
+      <module name="lesson01.07.04" target="1.5" />
+      <module name="lesson01.07.05" target="1.5" />
+      <module name="lesson01.07.06" target="1.5" />
+      <module name="lesson02" target="1.5" />
+      <module name="lesson03" target="1.5" />
+      <module name="lesson04" target="1.5" />
+      <module name="lesson05" target="1.5" />
+      <module name="lesson06" target="1.5" />
+      <module name="lesson07" target="1.5" />
+      <module name="OrderBook" target="1.7" />
+      <module name="part01" target="1.5" />
+      <module name="part02" target="1.5" />
+      <module name="part03" target="1.5" />
+      <module name="TicTacToe" target="1.5" />
+      <module name="Tracker" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

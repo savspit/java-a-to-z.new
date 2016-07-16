@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>part01</artifactId>
+        <groupId>java-a-to-z</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>part01</groupId>
+    <artifactId>chapter05</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>lesson01.05.01</module>
+        <module>lesson01.05.02</module>
+        <module>lesson01.05.03</module>
+        <module>lesson01.05.04</module>
+        <module>lesson01.05.05</module>
+        <module>lesson01.05.06</module>
+        <module>lesson01.05.07</module>
+    </modules>
+
+
+</project>

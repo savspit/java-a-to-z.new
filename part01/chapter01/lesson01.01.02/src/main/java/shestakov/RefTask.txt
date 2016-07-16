@@ -1,0 +1,25 @@
+1. Ошибка "<identifier> expected publib static void change"...
+2. Ошибка "reached end of file while parsing"...
+3. Ошибка "Could not find or load main class"...
+4. После исправления ошибок, вывод на экран - "1"
+
+Исправленный код:
+
+package Chapter1_2;
+
+public class RefTask {
+
+ public static void main(String[] args) {
+
+  Integer value = 1;
+
+  RefTask.change(value);
+
+  System.out.println(value);
+
+ }
+
+ public static void change(Integer value) {
+  value++;
+ }
+}
