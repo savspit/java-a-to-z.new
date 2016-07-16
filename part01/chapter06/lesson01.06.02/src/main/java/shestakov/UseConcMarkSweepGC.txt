@@ -1,0 +1,13 @@
+Java HotSpot(TM) 64-Bit Server VM (24.80-b11) for windows-amd64 JRE (1.7.0_80-b15), built on Apr 10 2015 11:26:34 by "java_re" with unknown MS VC++:1600
+Memory: 4k page, physical 4193844k(1374276k free), swap 6017060k(1136560k free)
+CommandLine flags: -XX:InitialHeapSize=8388608 -XX:MaxHeapSize=25165824 -XX:MaxNewSize=8388608 -XX:MaxTenuringThreshold=6 -XX:OldPLABSize=16 -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseCompressedOops -XX:+UseConcMarkSweepGC -XX:-UseLargePagesIndividualAllocation -XX:+UseParNewGC 
+0.294: [GC0.294: [ParNew: 2176K->256K(2432K), 0.0054658 secs] 2176K->537K(7936K), 0.0058838 secs] [Times: user=0.03 sys=0.00, real=0.01 secs] 
+0.437: [GC0.437: [ParNew: 2432K->256K(2432K), 0.0042409 secs] 2713K->1021K(7936K), 0.0043226 secs] [Times: user=0.03 sys=0.00, real=0.00 secs] 
+0.508: [Full GC0.508: [CMS: 765K->707K(5504K), 0.0164620 secs] 1722K->707K(7936K), [CMS Perm : 4724K->4722K(21248K)], 0.0165866 secs] [Times: user=0.02 sys=0.00, real=0.02 secs] 
+Heap
+ par new generation   total 2560K, used 110K [0x00000000f9600000, 0x00000000f98c0000, 0x00000000f9e00000)
+  eden space 2304K,   4% used [0x00000000f9600000, 0x00000000f961bae8, 0x00000000f9840000)
+  from space 256K,   0% used [0x00000000f9840000, 0x00000000f9840000, 0x00000000f9880000)
+  to   space 256K,   0% used [0x00000000f9880000, 0x00000000f9880000, 0x00000000f98c0000)
+ concurrent mark-sweep generation total 5504K, used 707K [0x00000000f9e00000, 0x00000000fa360000, 0x00000000fae00000)
+ concurrent-mark-sweep perm gen total 21248K, used 4729K [0x00000000fae00000, 0x00000000fc2c0000, 0x0000000100000000)

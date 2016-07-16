@@ -1,0 +1,15 @@
+Java HotSpot(TM) 64-Bit Server VM (24.80-b11) for windows-amd64 JRE (1.7.0_80-b15), built on Apr 10 2015 11:26:34 by "java_re" with unknown MS VC++:1600
+Memory: 4k page, physical 4193844k(1372592k free), swap 6017060k(1133740k free)
+CommandLine flags: -XX:InitialHeapSize=8388608 -XX:MaxHeapSize=25165824 -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseCompressedOops -XX:-UseLargePagesIndividualAllocation -XX:+UseParallelGC -XX:+UseParallelOldGC 
+0.350: [GC [PSYoungGen: 3072K->512K(3584K)] 3072K->728K(9216K), 0.0036292 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] 
+0.475: [GC [PSYoungGen: 2548K->480K(3584K)] 2764K->1064K(9216K), 0.0053039 secs] [Times: user=0.00 sys=0.00, real=0.01 secs] 
+0.480: [Full GC [PSYoungGen: 480K->0K(3584K)] [ParOldGen: 584K->801K(5632K)] 1064K->801K(9216K) [PSPermGen: 4722K->4720K(21504K)], 0.0333086 secs] [Times: user=0.03 sys=0.00, real=0.03 secs] 
+Heap
+ PSYoungGen      total 3584K, used 107K [0x00000000ff800000, 0x00000000ffc00000, 0x0000000100000000)
+  eden space 3072K, 3% used [0x00000000ff800000,0x00000000ff81afc0,0x00000000ffb00000)
+  from space 512K, 0% used [0x00000000ffb80000,0x00000000ffb80000,0x00000000ffc00000)
+  to   space 512K, 0% used [0x00000000ffb00000,0x00000000ffb00000,0x00000000ffb80000)
+ ParOldGen       total 5632K, used 801K [0x00000000fe800000, 0x00000000fed80000, 0x00000000ff800000)
+  object space 5632K, 14% used [0x00000000fe800000,0x00000000fe8c8738,0x00000000fed80000)
+ PSPermGen       total 21504K, used 4727K [0x00000000f9600000, 0x00000000fab00000, 0x00000000fe800000)
+  object space 21504K, 21% used [0x00000000f9600000,0x00000000f9a9de38,0x00000000fab00000)
