@@ -22,6 +22,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="CacheApp" />
         <module name="chapter03" />
         <module name="chapter08" />
         <module name="chapter09" />
@@ -57,7 +58,6 @@
         <module name="lesson01.06.01" />
         <module name="lesson01.06.02" />
         <module name="lesson01.06.03" />
-        <module name="lesson01.06.04" />
         <module name="lesson01.06.05" />
         <module name="lesson01.07.01" />
         <module name="lesson01.07.02" />
@@ -73,6 +73,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="CacheApp" target="1.7" />
       <module name="chapter01" target="1.5" />
       <module name="chapter02" target="1.5" />
       <module name="chapter03" target="1.5" />

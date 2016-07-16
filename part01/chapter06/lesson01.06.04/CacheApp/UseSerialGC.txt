@@ -1,0 +1,16 @@
+Java HotSpot(TM) 64-Bit Server VM (24.80-b11) for windows-amd64 JRE (1.7.0_80-b15), built on Apr 10 2015 11:26:34 by "java_re" with unknown MS VC++:1600
+Memory: 4k page, physical 4193844k(1373424k free), swap 6017060k(1131212k free)
+CommandLine flags: -XX:InitialHeapSize=8388608 -XX:MaxHeapSize=25165824 -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseCompressedOops -XX:-UseLargePagesIndividualAllocation -XX:+UseSerialGC 
+0.285: [GC0.285: [DefNew: 2176K->255K(2432K), 0.0048739 secs] 2176K->522K(7936K), 0.0051070 secs] [Times: user=0.02 sys=0.00, real=0.01 secs] 
+0.413: [GC0.413: [DefNew: 2431K->256K(2432K), 0.0059101 secs] 2698K->871K(7936K), 0.0059831 secs] [Times: user=0.02 sys=0.00, real=0.01 secs] 
+0.489: [Full GC0.489: [Tenured: 615K->874K(5504K), 0.0122168 secs] 1581K->874K(7936K), [Perm : 4722K->4722K(21248K)], 0.0123095 secs] [Times: user=0.01 sys=0.00, real=0.01 secs] 
+Heap
+ def new generation   total 2560K, used 86K [0x00000000f9600000, 0x00000000f98c0000, 0x00000000f9e00000)
+  eden space 2304K,   3% used [0x00000000f9600000, 0x00000000f9615bc0, 0x00000000f9840000)
+  from space 256K,   0% used [0x00000000f9840000, 0x00000000f9840000, 0x00000000f9880000)
+  to   space 256K,   0% used [0x00000000f9880000, 0x00000000f9880000, 0x00000000f98c0000)
+ tenured generation   total 5504K, used 874K [0x00000000f9e00000, 0x00000000fa360000, 0x00000000fae00000)
+   the space 5504K,  15% used [0x00000000f9e00000, 0x00000000f9edab68, 0x00000000f9edac00, 0x00000000fa360000)
+ compacting perm gen  total 21248K, used 4728K [0x00000000fae00000, 0x00000000fc2c0000, 0x0000000100000000)
+   the space 21248K,  22% used [0x00000000fae00000, 0x00000000fb29e3a0, 0x00000000fb29e400, 0x00000000fc2c0000)
+No shared spaces configured.
