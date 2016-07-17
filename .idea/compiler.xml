@@ -32,6 +32,7 @@
         <module name="chapter13" />
         <module name="chapter14" />
         <module name="Chess" />
+        <module name="CounterApp" />
         <module name="lesson01.01.01" />
         <module name="lesson01.01.02" />
         <module name="lesson01.01.03" />
@@ -59,7 +60,6 @@
         <module name="lesson01.06.02" />
         <module name="lesson01.06.03" />
         <module name="lesson01.06.05" />
-        <module name="lesson01.07.01" />
         <module name="lesson01.07.02" />
         <module name="lesson01.07.03" />
         <module name="lesson01.07.04" />
@@ -89,6 +89,7 @@
       <module name="chapter13" target="1.5" />
       <module name="chapter14" target="1.5" />
       <module name="Chess" target="1.5" />
+      <module name="CounterApp" target="1.5" />
       <module name="java-a-to-z" target="1.5" />
       <module name="lesson01" target="1.5" />
       <module name="lesson01.01.01" target="1.5" />
