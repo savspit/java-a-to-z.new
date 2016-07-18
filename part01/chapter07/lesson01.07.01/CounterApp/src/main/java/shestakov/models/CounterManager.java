@@ -1,8 +1,5 @@
 package shestakov.models;
 
-import shestakov.services.ConsoleInput;
-import shestakov.services.Input;
-
 public class CounterManager {
     private int timeout;
 
