@@ -2,9 +2,11 @@ package shestakov.models;
 
 public abstract class Counter implements Runnable{
     public final String text;
+    public final int timeOut;
 
-    public Counter(final String text) {
+    public Counter(final String text, final int timeOut) {
         this.text = text;
+        this.timeOut = timeOut;
     }
 
     public void run() {
@@ -18,4 +20,10 @@ public abstract class Counter implements Runnable{
     public int count() {
         return 0;
     }
+
+    public void stopCurrentThread() {
+        Thread.currentThread().interrupt();
+        System.out.println("timeout");
+    }
+
 }

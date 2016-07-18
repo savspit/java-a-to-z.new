@@ -22,7 +22,8 @@ public class StartUI {
     }
 
     public static void main(String[] args) throws IOException {
-        CounterManager cm = new CounterManager();
+        int timeoutInMillis = 1000;
+        CounterManager cm = new CounterManager(timeoutInMillis);
         Input input = new ConsoleInput();
         new StartUI(input).init(cm);
     }
