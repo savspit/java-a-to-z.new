@@ -11,6 +11,11 @@
 
     <groupId>chapter07</groupId>
     <artifactId>lesson01.07.02</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>CollisionsApp</module>
+        <module>CollisionTest</module>
+    </modules>
 
 
 </project>

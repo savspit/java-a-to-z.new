@@ -26,8 +26,8 @@ public class SharedObjectsCollision {
 
         public void run() {
             new Buffer().show("thread2 until", to.value1, to.value2);
-            this.to.value1 = 000;
-            this.to.value2 = 000;
+            this.to.value1 = 0;
+            this.to.value2 = 0;
             new Buffer().show("thread2 after", to.value1, to.value2);
         }
     }
