@@ -21,9 +21,4 @@ public abstract class Counter implements Runnable{
         return 0;
     }
 
-    public void stopCurrentThread() {
-        Thread.currentThread().interrupt();
-        System.out.println("timeout");
-    }
-
 }

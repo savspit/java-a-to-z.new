@@ -15,7 +15,6 @@ public class CounterOfSpaces extends Counter{
                 counter++;
             }
             if (this.timeOut != 0 && timeToDead < System.currentTimeMillis()) {
-                stopCurrentThread();
                 return 0;
             }
         }
