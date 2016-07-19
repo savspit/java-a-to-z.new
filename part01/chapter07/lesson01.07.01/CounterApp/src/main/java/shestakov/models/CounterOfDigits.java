@@ -16,7 +16,7 @@ public class CounterOfDigits extends Counter{
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    System.out.println("counterOfDigits is stopped by interrupt()");
+                    System.out.println("counterOfDigits is stopped by sleep() and interrupt()");
                     return 0;
                 }
             }
