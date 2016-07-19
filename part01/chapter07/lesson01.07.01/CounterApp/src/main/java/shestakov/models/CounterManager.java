@@ -8,6 +8,11 @@ public class CounterManager {
     }
 
     public void count(String text) {
+        // will be stopped by interrupt() and sleep()
+        Thread thNeedToBeStopped = new Thread(new CounterOfDigits(text, 0));
+        thNeedToBeStopped.start();
+        thNeedToBeStopped.interrupt();
+
         Thread th1 = new Thread(new Informer("start"));
         Thread th2 = new Thread(new CounterOfWords(text, this.timeout));
         Thread th3 = new Thread(new CounterOfSpaces(text, this.timeout));
