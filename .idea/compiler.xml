@@ -62,13 +62,13 @@
         <module name="lesson01.06.02" />
         <module name="lesson01.06.03" />
         <module name="lesson01.06.05" />
-        <module name="lesson01.07.03" />
         <module name="lesson01.07.04" />
         <module name="lesson01.07.05" />
         <module name="lesson01.07.06" />
         <module name="OrderBook" />
         <module name="part02" />
         <module name="part03" />
+        <module name="SimplePaymentApp" />
         <module name="TicTacToe" />
         <module name="Tracker" />
       </profile>
@@ -81,7 +81,7 @@
       <module name="chapter04" target="1.8" />
       <module name="chapter05" target="1.8" />
       <module name="chapter06" target="1.8" />
-      <module name="chapter07" target="1.8" />
+      <module name="chapter07" target="1.5" />
       <module name="chapter08" target="1.8" />
       <module name="chapter09" target="1.8" />
       <module name="chapter10" target="1.8" />
@@ -130,7 +130,7 @@
       <module name="lesson01.06.05" target="1.8" />
       <module name="lesson01.07.01" target="1.8" />
       <module name="lesson01.07.02" target="1.5" />
-      <module name="lesson01.07.03" target="1.8" />
+      <module name="lesson01.07.03" target="1.5" />
       <module name="lesson01.07.04" target="1.8" />
       <module name="lesson01.07.05" target="1.8" />
       <module name="lesson01.07.06" target="1.8" />
@@ -145,6 +145,7 @@
       <module name="part02" target="1.8" />
       <module name="part03" target="1.8" />
       <module name="repository" target="1.5" />
+      <module name="SimplePaymentApp" target="1.5" />
       <module name="TicTacToe" target="1.8" />
       <module name="Tracker" target="1.8" />
     </bytecodeTargetLevel>
