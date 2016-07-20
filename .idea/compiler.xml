@@ -34,6 +34,7 @@
         <module name="Chess" />
         <module name="CollisionsApp" />
         <module name="CollisionTest" />
+        <module name="ConcurrentContainers" />
         <module name="CounterApp" />
         <module name="IncrementCountApp" />
         <module name="lesson01.01.01" />
@@ -91,8 +92,9 @@
       <module name="chapter13" target="1.8" />
       <module name="chapter14" target="1.8" />
       <module name="Chess" target="1.8" />
-      <module name="CollisionsApp" target="1.8" />
+      <module name="CollisionsApp" target="1.5" />
       <module name="CollisionTest" target="1.8" />
+      <module name="ConcurrentContainers" target="1.7" />
       <module name="CounterApp" target="1.8" />
       <module name="ext-lib" target="1.5" />
       <module name="IncrementCountApp" target="1.5" />

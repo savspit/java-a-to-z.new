@@ -15,6 +15,7 @@
     <modules>
         <module>CollisionsApp</module>
         <module>CollisionTest</module>
+        <module>ConcurrentContainers</module>
     </modules>
 
 
