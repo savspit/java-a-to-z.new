@@ -35,6 +35,7 @@
         <module name="CollisionsApp" />
         <module name="CollisionTest" />
         <module name="CounterApp" />
+        <module name="IncrementCountApp" />
         <module name="lesson01.01.01" />
         <module name="lesson01.01.02" />
         <module name="lesson01.01.03" />
@@ -94,6 +95,7 @@
       <module name="CollisionTest" target="1.8" />
       <module name="CounterApp" target="1.8" />
       <module name="ext-lib" target="1.5" />
+      <module name="IncrementCountApp" target="1.5" />
       <module name="java-a-to-z" target="1.8" />
       <module name="lesson01" target="1.5" />
       <module name="lesson01.01.01" target="1.8" />
