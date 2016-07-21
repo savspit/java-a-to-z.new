@@ -1,13 +1,19 @@
 package shestakov;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class TestObject {
-    private volatile int counter = 0;
+    private final AtomicInteger counter;
+
+    public TestObject() {
+        this.counter = new AtomicInteger(0);
+    }
 
     public int getCounter() {
-        return counter;
+        return this.counter.get();
     }
 
     public void increment() {
-        this.counter++;
+        this.counter.incrementAndGet();
     }
 }
