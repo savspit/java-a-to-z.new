@@ -50,16 +50,22 @@ public class SimpleConcurrentContainerArrayList<E> {
         elementData[--size] = null;
     }
 
-    public synchronized E get(int index) {
-        return (E) elementData[index];
+    public E get(int index) {
+        synchronized (this) {
+            return (E) elementData[index];
+        }
     }
 
-    public synchronized int size() {
-        return size;
+    public int size() {
+        synchronized (this) {
+            return size;
+        }
     }
 
-    public synchronized Iterator<E> iterator() {
-        return new Itr();
+    public Iterator<E> iterator() {
+        synchronized (this) {
+            return new Itr();
+        }
     }
 
     private class Itr implements Iterator<E> {

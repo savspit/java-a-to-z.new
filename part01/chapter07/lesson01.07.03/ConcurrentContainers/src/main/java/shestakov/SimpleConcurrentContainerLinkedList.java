@@ -42,8 +42,10 @@ public class SimpleConcurrentContainerLinkedList<E> {
         size++;
     }
 
-    public synchronized E get(int index) {
-        return node(index).item;
+    public E get(int index) {
+        synchronized (this) {
+            return node(index).item;
+        }
     }
 
     Node<E> node(int index) {
@@ -61,8 +63,10 @@ public class SimpleConcurrentContainerLinkedList<E> {
         }
     }
 
-    public synchronized int size() {
-        return size;
+    public int size() {
+        synchronized (this) {
+            return size;
+        }
     }
 
     public boolean remove(Object o) {
@@ -103,8 +107,10 @@ public class SimpleConcurrentContainerLinkedList<E> {
         return element;
     }
 
-    public synchronized Iterator<E> iterator(int index) {
-        return new Itr(index);
+    public Iterator<E> iterator(int index) {
+        synchronized (this) {
+            return new Itr(index);
+        }
     }
 
     private class Itr implements Iterator<E> {
