@@ -71,7 +71,6 @@
         <module name="part02" />
         <module name="part03" />
         <module name="SearchApp" />
-        <module name="SearchAppIO" />
         <module name="SimplePaymentApp" />
         <module name="TicTacToe" />
         <module name="Tracker" />
