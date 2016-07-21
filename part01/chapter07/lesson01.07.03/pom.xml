@@ -16,6 +16,8 @@
         <module>SimplePaymentApp</module>
         <module>IncrementCountApp</module>
         <module>ConcurrentContainers</module>
+        <module>SearchApp</module>
+        <module>SearchAppIO</module>
     </modules>
 
 
