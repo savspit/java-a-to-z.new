@@ -11,6 +11,11 @@
 
     <groupId>chapter07</groupId>
     <artifactId>lesson01.07.04</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>OtherApps01.07.04</module>
+        <module>MultiCacheApp</module>
+    </modules>
 
 
 </project>
