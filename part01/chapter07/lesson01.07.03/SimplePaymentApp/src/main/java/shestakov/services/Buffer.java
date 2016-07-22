@@ -1,11 +1,11 @@
 package shestakov.services;
 
-import shestakov.models.User;
+import shestakov.models.Account;
 
 public class Buffer {
 
-    public void show(User user, String value) {
-        System.out.println(String.format("%s: %s", user, value));
+    public void show(Account account, String value) {
+        System.out.println(String.format("%s: %s", account, value));
     }
 
 }
