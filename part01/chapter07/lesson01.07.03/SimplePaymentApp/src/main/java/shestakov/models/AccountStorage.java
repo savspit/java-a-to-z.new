@@ -33,4 +33,9 @@ public class AccountStorage {
         return storage.size();
     }
 
+    public void transfer(Account donor, Account recipient, float sum) {
+        new TransactionThread(donor, recipient, sum).start();
+
+    }
+
 }
