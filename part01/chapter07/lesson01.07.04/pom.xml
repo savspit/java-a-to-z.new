@@ -14,7 +14,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>OtherApps01.07.04</module>
-        <module>MultiCacheApp</module>
     </modules>
 
 

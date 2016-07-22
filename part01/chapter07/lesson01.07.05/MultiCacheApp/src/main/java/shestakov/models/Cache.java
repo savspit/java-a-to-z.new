@@ -1,8 +1,5 @@
 package shestakov.models;
 
-import java.util.List;
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Cache {

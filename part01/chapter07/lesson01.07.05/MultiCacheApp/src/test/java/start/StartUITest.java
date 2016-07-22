@@ -1,4 +1,4 @@
-package shestakov.start;
+package start;
 
 import org.junit.Assert;
 import org.junit.Test;
