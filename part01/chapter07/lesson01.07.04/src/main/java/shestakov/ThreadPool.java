@@ -49,16 +49,6 @@ public class ThreadPool extends Thread{
                     }
                 }
                 System.out.println(String.format("%s usefull work", Thread.currentThread().getId()));
-                for (int i=0; i<this.freeThreads.size() && i<this.DEFAULT_CAPACITY; i++) {
-                    this.workingThreads.add(this.freeThreads.poll());
-                }
-                this.freeThreads.clear();
-            }
-            runThreads();
-        }
-        // get the rest of threads which need to be doing something
-        if (this.blockObj && !this.freeThreads.isEmpty()) {
-            synchronized (this) {
                 while (!this.freeThreads.isEmpty()) {
                     for (int i = 0; i < this.freeThreads.size() && i < this.DEFAULT_CAPACITY; i++) {
                         this.workingThreads.add(this.freeThreads.poll());
