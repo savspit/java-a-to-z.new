@@ -132,7 +132,7 @@
       <module name="lesson01.07.04" target="1.5" />
       <module name="lesson01.07.05" target="1.5" />
       <module name="lesson01.07.06" target="1.5" />
-      <module name="MultiCacheApp" target="1.5" />
+      <module name="MultiCacheApp" target="1.7" />
       <module name="OrderBook" target="1.7" />
       <module name="OtherApps01.07.04" target="1.7" />
       <module name="part01" target="1.5" />

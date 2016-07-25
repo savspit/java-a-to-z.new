@@ -30,12 +30,10 @@ public class StartUITest {
 
         String[] myArgs = new String[] {"-f", "tmp", "-p", this.testFolder.getRoot().toString(), "-r", "io", "-t", "1", null};
 
-        SearchApp sa = new SearchApp();
+
         KeysValidator kv = new KeysValidator();
-        if (kv.parsedSuccessful(myArgs)) {
-            sa.setKeys(kv.getKeys());
-            sa.startSearching();
-        }
+        SearchApp sa = new SearchApp(kv);
+        sa.startSearching();
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -56,12 +54,9 @@ public class StartUITest {
 
         String[] myArgs = new String[] {"-f", "tmp", "-p", this.testFolder.getRoot().toString(), "-r", "io", "-t", "1", "-s"};
 
-        SearchApp sa = new SearchApp();
         KeysValidator kv = new KeysValidator();
-        if (kv.parsedSuccessful(myArgs)) {
-            sa.setKeys(kv.getKeys());
-            sa.startSearching();
-        }
+        SearchApp sa = new SearchApp(kv);
+        sa.startSearching();
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -82,12 +77,9 @@ public class StartUITest {
 
         String[] myArgs = new String[] {"-f", "tmp", "-p", this.testFolder.getRoot().toString(), "-r", "nio", "-t", "1", null};
 
-        SearchApp sa = new SearchApp();
         KeysValidator kv = new KeysValidator();
-        if (kv.parsedSuccessful(myArgs)) {
-            sa.setKeys(kv.getKeys());
-            sa.startSearching();
-        }
+        SearchApp sa = new SearchApp(kv);
+        sa.startSearching();
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
