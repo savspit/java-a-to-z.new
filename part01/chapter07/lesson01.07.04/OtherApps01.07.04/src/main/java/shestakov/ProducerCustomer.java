@@ -1,7 +1,5 @@
 package shestakov;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -27,10 +25,6 @@ public class ProducerCustomer {
                 e.printStackTrace();
             }
         }
-            /*for (String currentData : this.data) {
-                // todo some useful things
-            }
-            this.data.clear();*/
     }
 
     public void addData() {
