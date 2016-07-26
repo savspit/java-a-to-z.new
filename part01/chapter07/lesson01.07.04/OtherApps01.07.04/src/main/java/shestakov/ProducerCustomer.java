@@ -8,21 +8,23 @@ public class ProducerCustomer {
 
     public void doSomething() {
         synchronized (this.data) {
-            while (this.data.isEmpty()) {
+            while (Thread.currentThread().interrupted()) {
+                while (this.data.isEmpty()) {
+                    try {
+                        System.out.println(String.format("%s wait", Thread.currentThread().getId()));
+                        wait();
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
+            }
+            System.out.println(String.format("%s usefull work", Thread.currentThread().getId()));
+            for (int i = 0; i < this.data.size(); i++) {
                 try {
-                    System.out.println(String.format("%s wait", Thread.currentThread().getId()));
-                    wait();
+                    this.data.take();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }
-        }
-        System.out.println(String.format("%s usefull work", Thread.currentThread().getId()));
-        for (int i = 0; i < this.data.size(); i++) {
-            try {
-                this.data.take();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -33,7 +35,6 @@ public class ProducerCustomer {
             // todo add some data
             try {
                 this.data.put("Some data");
-                //Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
