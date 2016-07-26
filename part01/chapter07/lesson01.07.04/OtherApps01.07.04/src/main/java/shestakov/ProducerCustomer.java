@@ -8,7 +8,7 @@ public class ProducerCustomer {
 
     public void doSomething() {
         synchronized (this.data) {
-            if (this.data.isEmpty()) {
+            while (this.data.isEmpty()) {
                 try {
                     System.out.println(String.format("%s wait", Thread.currentThread().getId()));
                     wait();
@@ -33,7 +33,7 @@ public class ProducerCustomer {
             // todo add some data
             try {
                 this.data.put("Some data");
-                Thread.sleep(1000);
+                //Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

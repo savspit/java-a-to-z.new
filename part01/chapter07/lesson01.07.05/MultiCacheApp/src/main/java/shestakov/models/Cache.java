@@ -1,35 +1,32 @@
 package shestakov.models;
 
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Cache {
-    private final CopyOnWriteArrayList<Entity> data = new CopyOnWriteArrayList<>();
+    private final ConcurrentHashMap<Integer,Task> tasks = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<Task,Message> messages = new ConcurrentHashMap<>();
 
-    public void add(Entity e) {
-        synchronized (e) {
-            this.data.add(e);
-        }
+    public void add(int id, Task e) {
+        this.tasks.put(id,e);
     }
 
-    public Entity get(int index) {
-        return this.data.get(index);
+    public Entity get(int id) {
+        return this.tasks.get(id);
     }
 
-    public CopyOnWriteArrayList<Entity> getData() {
-        return this.data;
+    public ConcurrentHashMap<Integer,Task> getData() {
+        return this.tasks;
     }
 
-    public void set(int index, Entity e) {
-        synchronized (e) {
-            this.data.set(index, e);
-        }
+    public void set(int id, Task e) {
+        this.tasks.put(id,e);
     }
 
-    public int entityExists(Entity e) {
+    public int entityExists(Task e) {
         int result = -1;
-        for (int i=0; i<this.data.size(); i++) {
-            if (e.equals(this.data.get(i))) {
-                if (this.data.get(i).getVersion() == e.getVersion()) {
+        for (int i=0; i<this.tasks.size(); i++) {
+            if (e.equals(this.tasks.get(i))) {
+                if (this.tasks.get(i).getVersion() == e.getVersion()) {
                     result = i;
                     break;
                 }
@@ -38,21 +35,23 @@ public class Cache {
         return result;
     }
 
-    public void update(Entity e) {
-        int index = entityExists(e);
-        if(index != -1) {
-            set(index,e);
-        } else {
-            System.out.println("optimistic lock uccured. can`t change data");
+    public void update(Task e) {
+        synchronized (this.tasks) {
+            int index = entityExists(e);
+            if (index != -1) {
+                set(index, e);
+            } else {
+                System.out.println("optimistic lock uccured. can`t change data");
+            }
         }
     }
 
-    public void remove(Entity e) {
-        this.data.remove(e);
+    public void remove(int id) {
+        this.tasks.remove(id);
     }
 
     public int size() {
-        return this.data.size();
+        return this.tasks.size();
     }
 
 }

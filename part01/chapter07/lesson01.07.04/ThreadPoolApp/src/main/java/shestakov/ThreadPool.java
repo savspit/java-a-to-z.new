@@ -31,7 +31,6 @@ public class ThreadPool {
             System.out.println(String.format("%s add & notify", Thread.currentThread().getId()));
             try {
                 this.queue.put(work);
-                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
