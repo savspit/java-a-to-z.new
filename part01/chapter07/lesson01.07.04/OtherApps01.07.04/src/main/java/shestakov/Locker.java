@@ -17,7 +17,7 @@ public class Locker {
         }
     }
 
-    public void doLock(boolean value) {
+    private void doLock(boolean value) {
         this.locked = value;
         notifyAll();
     }
