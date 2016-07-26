@@ -2,9 +2,11 @@ package shestakov;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 public class ProducerCustomer {
-    private final List<String> data = new ArrayList<>();
+    private final BlockingQueue<String> data = new ArrayBlockingQueue<>(5);
 
     public void doSomething() {
         synchronized (this.data) {
@@ -16,20 +18,31 @@ public class ProducerCustomer {
                     e.printStackTrace();
                 }
             }
-            System.out.println(String.format("%s usefull work", Thread.currentThread().getId()));
-            for (String currentData : this.data) {
+        }
+        System.out.println(String.format("%s usefull work", Thread.currentThread().getId()));
+        for (int i = 0; i < this.data.size(); i++) {
+            try {
+                this.data.take();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+            /*for (String currentData : this.data) {
                 // todo some useful things
             }
-            this.data.clear();
-        }
+            this.data.clear();*/
     }
 
-    public void addData(boolean value) {
+    public void addData() {
         synchronized (this.data) {
             System.out.println(String.format("%s enable", Thread.currentThread().getId()));
             // todo add some data
-            this.data.add("Some data");
-            notifyAll();
+            try {
+                this.data.put("Some data");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            this.data.notifyAll();
         }
     }
 
@@ -39,7 +52,7 @@ public class ProducerCustomer {
         Thread producer = new Thread() {
             @Override
             public void run() {
-                blockingWork.addData(false);
+                blockingWork.addData();
             }
         };
         // customer

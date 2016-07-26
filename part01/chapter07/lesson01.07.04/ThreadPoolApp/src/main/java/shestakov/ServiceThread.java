@@ -23,10 +23,8 @@ public class ServiceThread extends Thread {
                 }
             }
             try {
-                System.out.println(String.format("%s take/remove? run", Thread.currentThread().getId()));
-                System.out.println("size before " + queue.remainingCapacity());
+                System.out.println(String.format("%s take/remove run", Thread.currentThread().getId()));
                 task = this.queue.take();
-                System.out.println("size after" + queue.remainingCapacity());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
