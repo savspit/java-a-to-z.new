@@ -17,12 +17,17 @@ public class Locker {
         }
     }
 
+    public void doSomething() {
+        checkKey();
+        System.out.println(String.format("%s do", Thread.currentThread().getId()));
+    }
+
     private void doLock(boolean value) {
         this.locked = value;
         notifyAll();
     }
 
-    public void doSomething() {
+    private void checkKey() {
         synchronized (this) {
             while (this.locked) {
                 try {
@@ -32,7 +37,6 @@ public class Locker {
                     e.printStackTrace();
                 }
             }
-            System.out.println(String.format("%s do", Thread.currentThread().getId()));
         }
     }
 
