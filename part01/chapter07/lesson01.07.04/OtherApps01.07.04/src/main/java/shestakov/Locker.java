@@ -37,7 +37,7 @@ public class Locker {
     }
 
     public static void main(String[] args) {
-        Locker locker = new Locker();
+        final Locker locker = new Locker();
         new Thread() {
             @Override
             public void run() {

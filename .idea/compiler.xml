@@ -66,6 +66,7 @@
         <module name="part02" />
         <module name="part03" />
         <module name="SearchApp" />
+        <module name="ThreadPoolApp" />
         <module name="TicTacToe" />
         <module name="Tracker" />
       </profile>
@@ -141,6 +142,7 @@
       <module name="SearchApp" target="1.7" />
       <module name="SimplePaymentApp" target="1.5" />
       <module name="Test" target="1.5" />
+      <module name="ThreadPoolApp" target="1.7" />
       <module name="TicTacToe" target="1.5" />
       <module name="Tracker" target="1.5" />
     </bytecodeTargetLevel>

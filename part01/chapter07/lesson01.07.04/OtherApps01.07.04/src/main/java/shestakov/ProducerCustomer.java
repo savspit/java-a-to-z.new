@@ -7,8 +7,8 @@ public class ProducerCustomer {
     private final List<String> data = new ArrayList<>();
 
     public void doSomething() {
-        synchronized (this) {
-            if (data.isEmpty()) {
+        synchronized (this.data) {
+            if (this.data.isEmpty()) {
                 try {
                     System.out.println(String.format("%s wait", Thread.currentThread().getId()));
                     wait();
@@ -17,7 +17,7 @@ public class ProducerCustomer {
                 }
             }
             System.out.println(String.format("%s usefull work", Thread.currentThread().getId()));
-            for (String currentData : data) {
+            for (String currentData : this.data) {
                 // todo some useful things
             }
             this.data.clear();
@@ -25,7 +25,7 @@ public class ProducerCustomer {
     }
 
     public void addData(boolean value) {
-        synchronized (this) {
+        synchronized (this.data) {
             System.out.println(String.format("%s enable", Thread.currentThread().getId()));
             // todo add some data
             this.data.add("Some data");
