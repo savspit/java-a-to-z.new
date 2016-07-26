@@ -39,6 +39,7 @@ public class ProducerCustomer {
             // todo add some data
             try {
                 this.data.put("Some data");
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
