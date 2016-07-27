@@ -1,5 +1,7 @@
 package shestakov.models;
 
+import shestakov.services.Console;
+
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
@@ -7,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class AccountStorage {
     private Map<Long,Account> storage = new ConcurrentHashMap<Long,Account>();
     private static final Random RN = new Random();
+    private static final Object extraLock = new Object();
 
     public Account get(long id) {
         return this.storage.get(id);
@@ -33,9 +36,38 @@ public class AccountStorage {
         return storage.size();
     }
 
-    public void transfer(Account donor, Account recipient, float sum) {
-        new TransactionThread(donor, recipient, sum).start();
-
+    public void transfer(final Account donor, final Account recipient, final float sum) {
+        int donorHash = System.identityHashCode(donor);
+        int recipientHash = System.identityHashCode(recipient);
+        if (donorHash < recipientHash) {
+            synchronized (donor) {
+                synchronized (recipient) {
+                    doTransfer(donor, recipient, sum);
+                }
+            }
+        } else if (donorHash > recipientHash) {
+            synchronized (recipient) {
+                synchronized (donor) {
+                    doTransfer(donor, recipient, sum);
+                }
+            }
+        } else {
+            synchronized (extraLock) {
+                synchronized (donor) {
+                    synchronized (recipient) {
+                        doTransfer(donor, recipient, sum);
+                    }
+                }
+            }
+        }
     }
 
+    public void doTransfer(final Account donor, final Account recipient, final float sum) {
+        if(donor.getAmount() >= sum) {
+            donor.setAmount(donor.getAmount() - sum);
+            recipient.setAmount(recipient.getAmount() + sum);
+        } else {
+            new Console().show(donor, "error occured. please try again later");
+        }
+    }
 }
