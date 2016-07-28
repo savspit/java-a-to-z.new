@@ -1,10 +1,7 @@
 package shestakov.start;
 
-import shestakov.readers.FileSystemReaderIO;
-import shestakov.models.Key;
-import shestakov.readers.FileSystemReaderNIO;
+import shestakov.readers.FileSystemReader;
 import shestakov.services.KeysValidator;
-import shestakov.services.ReaderEnum;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -23,12 +20,7 @@ public class SearchApp {
     }
 
     public void startSearching() {
-        if (kv.reader == ReaderEnum.IO) {
-            FileSystemReaderIO reader = new FileSystemReaderIO(kv.pattern, kv.path, kv.numberOfThreads, kv.stopAtFirstResult, foundedFiles);
-            reader.start();
-        } else {
-            FileSystemReaderNIO reader = new FileSystemReaderNIO(kv.pattern, kv.path, kv.numberOfThreads, kv.stopAtFirstResult, foundedFiles);
-            reader.start();
-        }
+        FileSystemReader reader = new FileSystemReader(kv.pattern, kv.path, kv.numberOfThreads, kv.stopAtFirstResult, foundedFiles);
+        reader.start();
     }
 }

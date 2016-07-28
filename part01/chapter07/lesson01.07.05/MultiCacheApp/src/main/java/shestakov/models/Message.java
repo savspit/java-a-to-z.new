@@ -1,8 +1,9 @@
 package shestakov.models;
 
-public class Message extends Entity {
+public class Message {
+    private String name;
 
     public Message(String name) {
-        super(name);
+        this.name = name;
     }
 }

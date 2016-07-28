@@ -1,19 +1,23 @@
 package shestakov.readers;
 
+import shestakov.threads.TaskThreadIO;
 import shestakov.threads.TaskThreadPool;
 
+import java.io.File;
 import java.util.Queue;
 
-public abstract class FileSystemReader extends Thread{
+public class FileSystemReader extends Thread {
     public final TaskThreadPool pool;
     public final String pattern;
     public final int numberOfThreads;
     public final boolean stoppedByFirstResult;
     public final Queue foundedFiles;
+    private final String startPath;
 
-    public FileSystemReader(String name, String pattern, int numberOfThreads, boolean stoppedByFirstResult, Queue foundedFiles) {
-        super(name);
+    public FileSystemReader(String pattern, String startPath, int numberOfThreads, boolean stoppedByFirstResult, Queue foundedFiles) {
+        super("fileSystemReaderIO-thread");
         this.pattern = pattern;
+        this.startPath = startPath;
         this.numberOfThreads = numberOfThreads;
         this.stoppedByFirstResult = stoppedByFirstResult;
         this.foundedFiles = foundedFiles;
@@ -23,6 +27,21 @@ public abstract class FileSystemReader extends Thread{
 
     @Override
     public void run() {
-        super.run();
+        walkin(new File(this.startPath));
+        this.pool.interrupt();
+    }
+
+    public void walkin(File dir) {
+        File[] listFile = dir.listFiles();
+        if (listFile != null) {
+            for (int i=0; i<listFile.length; i++) {
+                if (listFile[i].isDirectory()) {
+                    walkin(listFile[i]);
+                } else {
+                    this.pool.add(new TaskThreadIO(listFile[i].getName(), this.pattern, this.stoppedByFirstResult, this.foundedFiles));
+                }
+            }
+        }
+        this.pool.setNeedToBeStoped();
     }
 }

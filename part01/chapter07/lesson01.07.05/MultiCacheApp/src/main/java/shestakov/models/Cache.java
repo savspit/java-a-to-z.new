@@ -1,33 +1,41 @@
 package shestakov.models;
 
+import java.util.LinkedList;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Cache {
-    private final ConcurrentHashMap<Integer,Task> tasks = new ConcurrentHashMap<>();
-    private final ConcurrentHashMap<Task,Message> messages = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<Long,Task> tasks = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<Long,LinkedList<Message>> messages = new ConcurrentHashMap<>();
 
-    public void add(int id, Task e) {
-        this.tasks.put(id,e);
+    public void addTask(Task task) {
+        this.tasks.put(task.getVersion(), task);
     }
 
-    public Entity get(int id) {
+    public void addMessage(Task task, Message message) {
+        synchronized (this.messages) {
+            LinkedList<Message> mess = getMessages(task);
+            if (mess == null) {
+                mess = new LinkedList<>();
+            }
+            mess.add(message);
+            this.messages.put(task.getVersion(), mess);
+        }
+    }
+
+    public Task getTask(int id) {
         return this.tasks.get(id);
     }
 
-    public ConcurrentHashMap<Integer,Task> getData() {
-        return this.tasks;
+    public LinkedList<Message> getMessages(Task task) {
+        return this.messages.get(task.getVersion());
     }
 
-    public void set(int id, Task e) {
-        this.tasks.put(id,e);
-    }
-
-    public int entityExists(Task e) {
-        int result = -1;
+    public boolean optimisticLockExistsInTasks(Task e) {
+        boolean result = true;
         for (int i=0; i<this.tasks.size(); i++) {
             if (e.equals(this.tasks.get(i))) {
                 if (this.tasks.get(i).getVersion() == e.getVersion()) {
-                    result = i;
+                    result = false;
                     break;
                 }
             }
@@ -35,23 +43,25 @@ public class Cache {
         return result;
     }
 
-    public void update(Task e) {
+    public void updateTask(Task task) {
         synchronized (this.tasks) {
-            int index = entityExists(e);
-            if (index != -1) {
-                set(index, e);
+            if (!optimisticLockExistsInTasks(task)) {
+                this.tasks.replace(task.getVersion(), task);
             } else {
-                System.out.println("optimistic lock uccured. can`t change data");
+                System.out.println("optimistic lock occured. can`t change data");
             }
         }
     }
 
-    public void remove(int id) {
-        this.tasks.remove(id);
+    public void removeTask(long id) {
+        synchronized (this.messages) {
+            this.tasks.remove(id);
+            this.messages.remove(id);
+        }
     }
 
-    public int size() {
-        return this.tasks.size();
+    public void removeMessages(Task task) {
+        this.messages.remove(task.getVersion());
     }
 
 }
