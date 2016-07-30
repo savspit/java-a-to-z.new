@@ -15,7 +15,6 @@ public class KeysValidatorTest {
 
         assertTrue(result);
         assertThat(kv.pattern, is(args[1]));
-        assertThat(kv.path, is(args[3]));
         assertThat(kv.reader.name(), is(args[5].toUpperCase()));
         assertThat(kv.numberOfThreads, is(Integer.parseInt(args[7])));
         assertThat(kv.stopAtFirstResult, is(true));

@@ -1,4 +1,4 @@
-package shestakov.models;
+package shestakov.services;
 
 import java.util.Set;
 

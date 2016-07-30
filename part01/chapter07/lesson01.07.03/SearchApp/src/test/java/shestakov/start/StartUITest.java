@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 public class StartUITest {
 
-    @Rule
+/*    @Rule
     public TemporaryFolder testFolder = new TemporaryFolder();
 
     @Test
@@ -86,6 +86,6 @@ public class StartUITest {
             e.printStackTrace();
         }
         assertThat(sa.getFoundedFiles().size(), is(3));
-    }
+    }*/
 
 }
