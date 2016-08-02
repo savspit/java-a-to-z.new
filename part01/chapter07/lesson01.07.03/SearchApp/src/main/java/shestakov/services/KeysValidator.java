@@ -2,8 +2,6 @@ package shestakov.services;
 
 public class KeysValidator {
     public String pattern;
-    public ReaderEnum reader;
-    public int numberOfThreads;
     public boolean stopAtFirstResult;
 
     public boolean parsedSuccessful(String[] args) {
@@ -13,14 +11,7 @@ public class KeysValidator {
                 try {
                     this.pattern = args[++i];
                 } catch (ArrayIndexOutOfBoundsException aie) {
-                    new Console().show("incorrect value of '-f' argument");
-                    return false;
-                }
-            } else if (arg.equals("-t")) {
-                try {
-                    this.numberOfThreads = Integer.parseInt(args[++i]);
-                } catch (ArrayIndexOutOfBoundsException aie) {
-                    new Console().show("incorrect value of '-t' argument");
+                    System.out.println("incorrect value of '-f' argument");
                     return false;
                 }
             } else if (arg.equals("-s")) {
