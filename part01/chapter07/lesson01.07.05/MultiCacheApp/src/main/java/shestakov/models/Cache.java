@@ -52,16 +52,4 @@ public class Cache {
             }
         }
     }
-
-    public void removeTask(long id) {
-        synchronized (this.messages) {
-            this.tasks.remove(id);
-            this.messages.remove(id);
-        }
-    }
-
-    public void removeMessages(Task task) {
-        this.messages.remove(task.getVersion());
-    }
-
 }
