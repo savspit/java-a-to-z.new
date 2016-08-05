@@ -1,11 +1,16 @@
 package shestakov.models;
 
+import java.util.Random;
+
 public class Task {
+    private String id;
     private long version;
     private String name;
+    private static final Random RN = new Random();
 
     public Task() {
         this.version = setVersion();
+        this.id = setId();
     }
 
     public Task(String name) {
@@ -13,8 +18,8 @@ public class Task {
         this.name = name;
     }
 
-    public long getVersion() {
-        return this.version;
+    public String getIdAndVersion() {
+        return this.id + String.valueOf(this.version);
     }
 
     public String getName() {
@@ -23,6 +28,10 @@ public class Task {
 
     public long setVersion() {
         return System.nanoTime();
+    }
+
+    public String setId() {
+        return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 
     public void setName(String name) {
