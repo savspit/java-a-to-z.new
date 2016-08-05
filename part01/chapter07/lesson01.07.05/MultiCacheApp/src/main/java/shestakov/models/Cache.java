@@ -33,6 +33,7 @@ public class Cache {
                 task.setVersion();
             } else {
                 log.info("optimistic lock occured. can`t change data");
+                log.info("optimistic lock occured. can`t change data");
             }
         }
     }
