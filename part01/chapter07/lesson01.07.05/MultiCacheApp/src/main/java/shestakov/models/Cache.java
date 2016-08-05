@@ -14,13 +14,27 @@ public class Cache {
         this.tasks.put(task.getIdAndVersion(), task);
     }
 
+    public void addMessage(Task task, Message message) {
+        LinkedList<Message> current = this.messages.get(task.getIdAndVersion());
+        if (current == null) {
+            current = new LinkedList<Message>();
+        }
+        current.add(message);
+        this.messages.put(task.getIdAndVersion(), current);
+    }
+
     public Task getTask(int id) {
         return this.tasks.get(id);
     }
 
     public void updateTask(Task task) {
-        if (this.tasks.replace(task.getIdAndVersion(), task) == null) {
-            log.info("optimistic lock occured. can`t change data");
+        synchronized (task) {
+            if (this.tasks.replace(task.getIdAndVersion(), task) != null) {
+                task.setVersion();
+            } else {
+                log.info("optimistic lock occured. can`t change data");
+            }
         }
     }
+
 }

@@ -9,8 +9,8 @@ public class Task {
     private static final Random RN = new Random();
 
     public Task() {
-        this.version = setVersion();
-        this.id = setId();
+        setVersion();
+        setId();
     }
 
     public Task(String name) {
@@ -26,12 +26,12 @@ public class Task {
         return name;
     }
 
-    public long setVersion() {
-        return System.nanoTime();
+    public void setVersion() {
+        this.version = System.nanoTime();
     }
 
-    public String setId() {
-        return String.valueOf(System.currentTimeMillis() + RN.nextInt());
+    public void setId() {
+        this.id = String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 
     public void setName(String name) {
