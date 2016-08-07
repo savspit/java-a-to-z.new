@@ -8,6 +8,9 @@ import java.io.File;
 import java.util.*;
 import java.util.concurrent.*;
 
+/**
+ * The type Search app.
+ */
 public class SearchApp {
     private static final Logger log = Logger.getLogger(SearchApp.class);
     private KeysValidator kv;
@@ -15,15 +18,32 @@ public class SearchApp {
     private List<ScheduledFuture> results = new ArrayList<>();
     private static final int DEFAULT_CAPACITY = Runtime.getRuntime().availableProcessors();
 
+    /**
+     * Instantiates a new Search app.
+     *
+     * @param kv the kv
+     */
     public SearchApp(KeysValidator kv) {
         this.kv = kv;
     }
 
+    /**
+     * Start searching.
+     *
+     * @throws ExecutionException   the execution exception
+     * @throws InterruptedException the interrupted exception
+     */
     public void startSearching() throws ExecutionException, InterruptedException {
         fillFileTree();
         doSomeScheduledSearch();
     }
 
+    /**
+     * Do some scheduled search.
+     *
+     * @throws ExecutionException   the execution exception
+     * @throws InterruptedException the interrupted exception
+     */
     public void doSomeScheduledSearch() throws ExecutionException, InterruptedException {
         ScheduledThreadPoolExecutor ex = new ScheduledThreadPoolExecutor(DEFAULT_CAPACITY);
         for (File currentFileOrDir : this.fileTree) {
@@ -44,6 +64,9 @@ public class SearchApp {
     }
 
 
+    /**
+     * Fill file tree.
+     */
     public void fillFileTree() {
         File[] paths;
         paths = File.listRoots();

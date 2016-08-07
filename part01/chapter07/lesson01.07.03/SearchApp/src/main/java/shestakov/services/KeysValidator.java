@@ -1,9 +1,24 @@
 package shestakov.services;
 
+/**
+ * The type Keys validator.
+ */
 public class KeysValidator {
+    /**
+     * The Pattern.
+     */
     public String pattern;
+    /**
+     * The Stop at first result.
+     */
     public boolean stopAtFirstResult;
 
+    /**
+     * Parsed successful boolean.
+     *
+     * @param args the args
+     * @return the boolean
+     */
     public boolean parsedSuccessful(String[] args) {
         for (int i = 0; i < args.length; ++i) {
             String arg = args[i];
