@@ -43,6 +43,7 @@ public class SearchApp {
         ex.shutdown();
     }
 
+
     public void fillFileTree() {
         File[] paths;
         paths = File.listRoots();
