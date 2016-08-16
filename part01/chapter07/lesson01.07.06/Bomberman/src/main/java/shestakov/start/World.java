@@ -2,7 +2,6 @@ package shestakov.start;
 
 import shestakov.models.Block;
 import shestakov.models.BomberMan;
-import shestakov.threads.Monster;
 import shestakov.services.BlockEnum;
 import shestakov.services.DirectionEnum;
 
