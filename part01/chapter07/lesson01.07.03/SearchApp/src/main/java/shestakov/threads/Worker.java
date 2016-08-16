@@ -7,30 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-/**
- * The type Worker.
- */
 public class Worker implements Callable {
     private static final Logger log = Logger.getLogger(Worker.class);
-    /**
-     * The Current file or dir.
-     */
     File currentFileOrDir;
-    /**
-     * The Pattern.
-     */
     String pattern;
-    /**
-     * The Result.
-     */
     List<String> result = new ArrayList<>();
 
-    /**
-     * Instantiates a new Worker.
-     *
-     * @param currentFileOrDir the current file or dir
-     * @param pattern          the pattern
-     */
     public Worker(File currentFileOrDir, String pattern) {
         this.currentFileOrDir = currentFileOrDir;
         this.pattern = pattern;
@@ -54,12 +36,6 @@ public class Worker implements Callable {
         return result;
     }
 
-    /**
-     * Read directory rec boolean.
-     *
-     * @param currentDir the current dir
-     * @return the boolean
-     */
     public boolean readDirectoryRec(File currentDir) {
         for (File currentFile : currentDir.listFiles()) {
             if (currentFile.isFile()) {

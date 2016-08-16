@@ -19,7 +19,7 @@ public class Cache {
      * @param task the task
      */
     public void addTask(Task task) {
-        this.tasks.put(task.getIdAndVersion(), task);
+        this.tasks.put(task.getId(), task);
     }
 
     /**
@@ -28,14 +28,14 @@ public class Cache {
      * @param task    the task
      * @param message the message
      */
-    public void addMessage(Task task, Message message) {
+    /*public void addMessage(Task task, Message message) {
         LinkedList<Message> current = this.messages.get(task.getIdAndVersion());
         if (current == null) {
             current = new LinkedList<Message>();
         }
         current.add(message);
         this.messages.put(task.getIdAndVersion(), current);
-    }
+    }*/
 
     /**
      * Gets task.
@@ -52,8 +52,8 @@ public class Cache {
      *
      * @param task the task
      */
-    public void updateTask(Task task) {
-        if (this.tasks.replace(task.getIdAndVersion(), task) != null) {
+    public void updateTask(final Task task) {
+        if (this.tasks.replace(task.getId(), task) != null) {
             task.setVersion();
         } else {
             log.info("optimistic lock occured. can`t change data");

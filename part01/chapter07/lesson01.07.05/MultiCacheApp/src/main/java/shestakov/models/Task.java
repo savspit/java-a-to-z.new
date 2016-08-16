@@ -30,12 +30,21 @@ public class Task {
     }
 
     /**
-     * Gets id and version.
+     * Gets id.
      *
-     * @return the id and version
+     * @return the id
      */
-    public String getIdAndVersion() {
-        return this.id + String.valueOf(this.version);
+    public String getId() {
+        return this.id;
+    }
+
+    /**
+     * Gets version.
+     *
+     * @return the version
+     */
+    public long getVersion() {
+        return this.version;
     }
 
     /**
