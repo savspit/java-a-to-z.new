@@ -1,6 +1,7 @@
 package shestakov.models;
 
 import shestakov.services.BlockEnum;
+import shestakov.threads.Monster;
 
 public class Block {
     private BlockEnum status;

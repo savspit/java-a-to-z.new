@@ -1,9 +1,8 @@
 package shestakov.start;
 
-import javafx.concurrent.Worker;
 import shestakov.models.Block;
 import shestakov.models.BomberMan;
-import shestakov.models.Monster;
+import shestakov.threads.Monster;
 import shestakov.services.BlockEnum;
 import shestakov.services.DirectionEnum;
 

@@ -9,12 +9,12 @@ public class StartUI {
 
     public void init(World world) {
 
-        BomberMan bomberMan = world.getHero();
+        /*BomberMan bomberMan = world.getHero();
         bomberMan.go(DirectionEnum.RIGHT);
         bomberMan.go(DirectionEnum.DOWN);
         bomberMan.putBomb();
         bomberMan.go(DirectionEnum.UP);
-        bomberMan.go(DirectionEnum.LEFT);
+        bomberMan.go(DirectionEnum.LEFT);*/
 
     }
 

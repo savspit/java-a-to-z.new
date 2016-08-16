@@ -1,5 +1,6 @@
-package shestakov.models;
+package shestakov.threads;
 
+import shestakov.models.Block;
 import shestakov.services.BlockEnum;
 import shestakov.services.DirectionEnum;
 import shestakov.start.World;
