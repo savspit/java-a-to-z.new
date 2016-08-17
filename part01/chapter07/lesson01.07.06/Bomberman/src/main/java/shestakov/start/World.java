@@ -1,6 +1,7 @@
 package shestakov.start;
 
 import shestakov.models.Cell;
+import shestakov.services.CellEnum;
 import shestakov.services.DirectionEnum;
 
 /**
@@ -47,16 +48,18 @@ public class World {
      * @return the cell
      */
     public Cell go(Cell currentCell, DirectionEnum direction) {
+        Cell newCell = currentCell;
         if (direction == DirectionEnum.DOWN) {
-            return this.board[currentCell.getX()][currentCell.getY()+1];
+            newCell = this.board[currentCell.getX()][currentCell.getY()+1];
         } else if(direction == DirectionEnum.UP) {
-            return this.board[currentCell.getX()][currentCell.getY()-1];
+            newCell = this.board[currentCell.getX()][currentCell.getY()-1];
         } else if(direction == DirectionEnum.LEFT) {
-        return this.board[currentCell.getX()-1][currentCell.getY()];
+            newCell = this.board[currentCell.getX()-1][currentCell.getY()];
         } else if(direction == DirectionEnum.RIGHT) {
-            return this.board[currentCell.getX()+1][currentCell.getY()];
-        } else {
-            return currentCell;
+            newCell = this.board[currentCell.getX()+1][currentCell.getY()];
         }
+        currentCell.setStatus(CellEnum.FREE);
+        newCell.setStatus(CellEnum.USED_BY_BOMBERMAN);
+        return newCell;
     }
 }
