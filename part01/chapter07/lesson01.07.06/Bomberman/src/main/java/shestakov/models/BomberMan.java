@@ -2,25 +2,52 @@ package shestakov.models;
 
 import shestakov.services.CellEnum;
 import shestakov.services.DirectionEnum;
-import shestakov.start.World;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ * The type Bomber man.
+ */
 public class BomberMan extends Thread {
+    /**
+     * The Board.
+     */
     public Cell[][] board;
+    /**
+     * The Steps.
+     */
     public BlockingQueue<DirectionEnum> steps = new LinkedBlockingQueue<DirectionEnum>();
+    /**
+     * The Current cell.
+     */
     public Cell currentCell;
 
+    /**
+     * Instantiates a new Bomber man.
+     *
+     * @param board the board
+     */
     public BomberMan(Cell[][] board) {
         this.board = board;
     }
 
+    /**
+     * Go.
+     *
+     * @param direction the direction
+     * @throws InterruptedException the interrupted exception
+     */
     public void go(DirectionEnum direction) throws InterruptedException {
         this.steps.put(direction);
         this.steps.notifyAll();
     }
 
+    /**
+     * Sets bomb.
+     *
+     * @param direction the direction
+     */
     public void setBomb(DirectionEnum direction) {
         synchronized (this.steps) {
             if (direction == DirectionEnum.DOWN) {
