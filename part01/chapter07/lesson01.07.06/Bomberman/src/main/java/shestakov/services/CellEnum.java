@@ -13,6 +13,10 @@ public enum CellEnum {
      */
     USED_BY_BOMBERMAN,
     /**
+     * Used by bomb cell enum.
+     */
+    USED_BY_BOMB,
+    /**
      * Used by monster cell enum.
      */
     USED_BY_MONSTER,
