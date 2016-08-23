@@ -15,7 +15,7 @@ public class Task {
      * Instantiates a new Task.
      */
     public Task() {
-        setVersion();
+        this.version = System.nanoTime();
         setId();
     }
 
@@ -47,6 +47,10 @@ public class Task {
         return this.version;
     }
 
+    public long getNewVersion() {
+        return System.nanoTime();
+    }
+
     /**
      * Gets name.
      *
@@ -59,8 +63,8 @@ public class Task {
     /**
      * Sets version.
      */
-    public void setVersion() {
-        this.version = System.nanoTime();
+    public void setVersion(long newVersion) {
+        this.version = newVersion;
     }
 
     /**

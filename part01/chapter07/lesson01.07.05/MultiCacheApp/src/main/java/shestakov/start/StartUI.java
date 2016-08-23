@@ -27,7 +27,7 @@ public class StartUI {
      */
     public void init(Cache cache) {
 
-        Task task1 = new Task();
+        /*Task task1 = new Task();
         Task task2 = new Task();
         Task task3 = new Task();
         cache.addTask(task1);
@@ -39,12 +39,12 @@ public class StartUI {
         System.out.println("task3 " + task3.getId() + "  ||  " + task3.getVersion());
         System.out.println("");
 
-        task3.setVersion();
-        cache.updateTask(task3);
+        //cache.updateTask(task3.getId(), task3.getNewVersion());
+        cache.updateTask(task3.getId(), task3.getVersion());
 
         System.out.println("task1 " + task1.getId() + "  ||  " + task1.getVersion());
         System.out.println("task2 " + task2.getId() + "  ||  " + task2.getVersion());
-        System.out.println("task3 " + task3.getId() + "  ||  " + task3.getVersion());
+        System.out.println("task3 " + task3.getId() + "  ||  " + task3.getVersion());*/
 
     }
 }
