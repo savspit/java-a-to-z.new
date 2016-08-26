@@ -44,11 +44,10 @@ public class Cache {
     }
 
     /**
-     * Check version task.
-     *
-     * @param newVersion the new version
-     * @param task       the task
-     * @return the task
+     * Check version. If versions not equals - throws exception
+     * @param newVersion
+     * @param task
+     * @return
      */
     private Task checkVersion(long newVersion, Task task) {
         if (newVersion != task.getVersion()) {
@@ -60,10 +59,22 @@ public class Cache {
         }
     }
 
+    /**
+     * Delete task.
+     *
+     * @param id   the id
+     * @param task the task
+     */
     public void deleteTask(String id, Task task) {
         this.tasks.merge(id, task, (k,v) -> checkVersionForDelete(task.getVersion(), v));
     }
 
+    /**
+     * Check version. If versions equals - return null, because in this case merge() method will remove value
+     * @param version
+     * @param task
+     * @return
+     */
     private Task checkVersionForDelete(long version, Task task) {
         if (version == task.getVersion()) {
             return null;
