@@ -50,13 +50,26 @@ public class Cache {
      * @param task       the task
      * @return the task
      */
-    public Task checkVersion(long newVersion, Task task) {
+    private Task checkVersion(long newVersion, Task task) {
         if (newVersion != task.getVersion()) {
             log.info("optimistic lock occured");
-            return null;
+            throw new RuntimeException("optimistic lock occured");
         } else {
             task.setVersion(newVersion);
             return task;
+        }
+    }
+
+    public void deleteTask(String id, Task task) {
+        this.tasks.merge(id, task, (k,v) -> checkVersionForDelete(task.getVersion(), v));
+    }
+
+    private Task checkVersionForDelete(long version, Task task) {
+        if (version == task.getVersion()) {
+            return null;
+        } else {
+            log.info("optimistic lock occured");
+            throw new RuntimeException("optimistic lock occured");
         }
     }
 
