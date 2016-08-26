@@ -40,16 +40,16 @@ public class Cache {
      * @param newVersion the new version
      */
     public void updateTask(String id, long newVersion) {
-        this.tasks.computeIfPresent(id, (k,v) -> checkVersion(newVersion, v));
+        this.tasks.computeIfPresent(id, (k,v) -> checkVersionForUpdate(newVersion, v));
     }
 
     /**
-     * Check version. If versions not equals - throws exception
+     * Check versions. If versions not equals - throws exception
      * @param newVersion
      * @param task
      * @return
      */
-    private Task checkVersion(long newVersion, Task task) {
+    private Task checkVersionForUpdate(long newVersion, Task task) {
         if (newVersion != task.getVersion()) {
             log.info("optimistic lock occured");
             throw new RuntimeException("optimistic lock occured");
@@ -70,7 +70,7 @@ public class Cache {
     }
 
     /**
-     * Check version. If versions equals - return null, because in this case merge() method will remove value
+     * Check versions. If versions equals - return null, because in this case merge() method will remove value
      * @param version
      * @param task
      * @return
