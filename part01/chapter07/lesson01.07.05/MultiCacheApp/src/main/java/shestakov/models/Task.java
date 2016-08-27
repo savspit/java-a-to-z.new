@@ -47,6 +47,11 @@ public class Task {
         return this.version;
     }
 
+    /**
+     * Gets new version.
+     *
+     * @return the new version
+     */
     public long getNewVersion() {
         return System.nanoTime();
     }
@@ -61,7 +66,7 @@ public class Task {
     }
 
     /**
-     * Sets version.
+     * Sets new version.
      */
     public void setNewVersion() {
         this.version++;
