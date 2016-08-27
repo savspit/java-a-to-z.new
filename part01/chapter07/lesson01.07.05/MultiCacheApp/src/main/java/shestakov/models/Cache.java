@@ -6,77 +6,39 @@ import java.util.LinkedList;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.BiFunction;
 
-/**
- * The type Cache.
- */
 public class Cache {
     private static final Logger log = Logger.getLogger(Cache.class);
     private final ConcurrentHashMap<String,Task> tasks = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String,LinkedList<Message>> messages = new ConcurrentHashMap<>();
 
-    /**
-     * Add task.
-     *
-     * @param task the task
-     */
     public void addTask(Task task) {
         this.tasks.put(task.getId(), task);
     }
 
-    /**
-     * Gets task.
-     *
-     * @param id the id
-     * @return the task
-     */
     public Task getTask(int id) {
         return this.tasks.get(id);
     }
 
-    /**
-     * Update task.
-     *
-     * @param id         the id
-     * @param newVersion the new version
-     */
-    public void updateTask(String id, long newVersion) {
-        this.tasks.computeIfPresent(id, (k,v) -> checkVersionForUpdate(newVersion, v));
+    public void updateTask(Task newTask) {
+        this.tasks.computeIfPresent(newTask.getId(), (k,v) -> checkVersionForUpdate(newTask, v));
     }
 
-    /**
-     * Check versions. If versions not equals - throws exception
-     * @param newVersion
-     * @param task
-     * @return
-     */
-    private Task checkVersionForUpdate(long newVersion, Task task) {
-        if (newVersion != task.getVersion()) {
+    private Task checkVersionForUpdate(Task newTask, Task oldTask) {
+        if (newTask.getVersion() != oldTask.getVersion()) {
             log.info("optimistic lock occured");
             throw new RuntimeException("optimistic lock occured");
         } else {
-            task.setVersion(newVersion);
-            return task;
+            newTask.setNewVersion();
+            return newTask;
         }
     }
 
-    /**
-     * Delete task.
-     *
-     * @param id   the id
-     * @param task the task
-     */
-    public void deleteTask(String id, Task task) {
-        this.tasks.merge(id, task, (k,v) -> checkVersionForDelete(task.getVersion(), v));
+    public void deleteTask(Task taskForDelete) {
+        this.tasks.merge(taskForDelete.getId(), taskForDelete, (k,v) -> checkVersionForDelete(taskForDelete, v));
     }
 
-    /**
-     * Check versions. If versions equals - return null, because in this case merge() method will remove value
-     * @param version
-     * @param task
-     * @return
-     */
-    private Task checkVersionForDelete(long version, Task task) {
-        if (version == task.getVersion()) {
+    private Task checkVersionForDelete(Task taskForDelete, Task taskInMap) {
+        if (taskForDelete.getVersion() == taskInMap.getVersion()) {
             return null;
         } else {
             log.info("optimistic lock occured");

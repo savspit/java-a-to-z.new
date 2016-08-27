@@ -63,8 +63,8 @@ public class Task {
     /**
      * Sets version.
      */
-    public void setVersion(long newVersion) {
-        this.version = newVersion;
+    public void setNewVersion() {
+        this.version++;
     }
 
     /**
