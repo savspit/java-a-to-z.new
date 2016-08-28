@@ -8,6 +8,10 @@ import shestakov.services.CellEnum;
 public class Cell {
     private CellEnum status;
     /**
+     * The Character.
+     */
+    public Character character;
+    /**
      * The X.
      */
     public int x;
@@ -56,11 +60,29 @@ public class Cell {
     }
 
     /**
+     * Gets character.
+     *
+     * @return the character
+     */
+    public Character getCharacter() {
+        return character;
+    }
+
+    /**
      * Sets status.
      *
      * @param status the status
      */
     public void setStatus(CellEnum status) {
         this.status = status;
+    }
+
+    /**
+     * Sets character.
+     *
+     * @param character the character
+     */
+    public void setCharacter(Character character) {
+        this.character = character;
     }
 }
