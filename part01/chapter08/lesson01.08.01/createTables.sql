@@ -31,7 +31,7 @@ CREATE TABLE ordersStatuses (
 -- ordersComments
 CREATE TABLE ordersComments (
 	id serial PRIMARY KEY,
-	text character varying (255)
+	text character varying (2000)
 );
 
 -- ordersCategories
