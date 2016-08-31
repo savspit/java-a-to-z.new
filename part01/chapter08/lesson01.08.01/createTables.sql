@@ -1,4 +1,6 @@
-﻿-- roleRights
+﻿\connect myDatabase
+
+-- roleRights
 CREATE TABLE roleRights (
 	id serial PRIMARY KEY,
 	name character varying (255) NOT NULL

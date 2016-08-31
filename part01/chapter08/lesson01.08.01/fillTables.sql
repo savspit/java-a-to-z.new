@@ -1,4 +1,4 @@
-﻿--\connect myDatabase
+﻿\connect myDatabase
 
 -- roleRights
 INSERT INTO roleRights(name) VALUES ('admin');
