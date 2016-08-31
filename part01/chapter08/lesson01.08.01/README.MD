@@ -1,4 +1,4 @@
-createAll.bat - run all sql-scripts successively
+createAll.bat - run all sql-scripts in required order
 
 createDatabase.sql - sql-script creates database
 
