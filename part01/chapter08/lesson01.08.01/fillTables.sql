@@ -7,38 +7,38 @@ INSERT INTO roleRights(name) VALUES ('write');
 
 -- roles
 INSERT INTO roles(
-            name,
-            roleRightId) VALUES (
-            'admin',
-            (SELECT id FROM roleRights WHERE name='admin')
+			name,
+			roleRightId) VALUES (
+			'admin',
+			(SELECT id FROM roleRights WHERE name='admin')
 );
 INSERT INTO roles(
-            name,
-            roleRightId) VALUES (
-            'user',
-            (SELECT id FROM roleRights WHERE name='read')
+			name,
+			roleRightId) VALUES (
+			'user',
+			(SELECT id FROM roleRights WHERE name='read')
 );
 
 -- users
 INSERT INTO users(
-            login,
-            password,
-            createDate,
-            roleId) VALUES (
-            'admin',
-            'admin',
-            '1999-01-08 04:05:06',
-            (SELECT id FROM roles WHERE name='admin')
+			login,
+			password,
+			createDate,
+			roleId) VALUES (
+			'admin',
+			'admin',
+			'1999-01-08 04:05:06',
+			(SELECT id FROM roles WHERE name='admin')
 );
 INSERT INTO users(
-            login,
-            password,
-            createDate,
-            roleId) VALUES (
-            'user',
-            '123',
-            '1999-01-08 04:05:06',
-            (SELECT id FROM roles WHERE name='user')
+			login,
+			password,
+			createDate,
+			roleId) VALUES (
+			'user',
+			'123',
+			'1999-01-08 04:05:06',
+			(SELECT id FROM roles WHERE name='user')
 );
 
 -- ordersStatuses
@@ -58,7 +58,7 @@ INSERT INTO ordersAttachedFiles(filePath) VALUES ('C:\\desc.doc');
 
 -- orders
 INSERT INTO orders(
-            orderDate,
+			orderDate,
 			orderNumber, 
 			userId, 
 			statusId, 
@@ -74,7 +74,7 @@ INSERT INTO orders(
 			(SELECT id FROM ordersAttachedFiles WHERE filePath LIKE '%image%')
 );
 INSERT INTO orders(
-            orderDate,
+			orderDate,
 			orderNumber, 
 			userId, 
 			statusId, 
