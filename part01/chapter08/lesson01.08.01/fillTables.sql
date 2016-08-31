@@ -1,4 +1,4 @@
-\connect mydatabase
+﻿--\connect mydatabase
 
 -- roleRights
 INSERT INTO roleRights(name) VALUES ('admin');
@@ -17,6 +17,26 @@ INSERT INTO roles(
 			roleRightId) VALUES (
 			'user',
 			(SELECT id FROM roleRights WHERE name='read')
+);
+
+-- rolesAndRights
+INSERT INTO rolesAndRights(
+			roleId, 
+			rightId) VALUES (
+			(SELECT id FROM roles WHERE name='admin'),
+			(SELECT id FROM roleRights WHERE name='admin')
+);
+INSERT INTO rolesAndRights(
+			roleId, 
+			rightId) VALUES (
+			(SELECT id FROM roles WHERE name='user'),
+			(SELECT id FROM roleRights WHERE name='read')
+);
+INSERT INTO rolesAndRights(
+			roleId, 
+			rightId) VALUES (
+			(SELECT id FROM roles WHERE name='user'),
+			(SELECT id FROM roleRights WHERE name='write')
 );
 
 -- users

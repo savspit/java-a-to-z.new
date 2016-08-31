@@ -1,4 +1,4 @@
-\connect mydatabase
+﻿\connect mydatabase
 
 -- roleRights
 CREATE TABLE roleRights (
@@ -11,6 +11,13 @@ CREATE TABLE roles (
 	id serial PRIMARY KEY,
 	name character varying (255) NOT NULL,
 	roleRightId integer references roleRights(id)
+);
+
+-- rolesAndRights 
+CREATE TABLE rolesAndRights (
+	id serial PRIMARY KEY,
+	roleId integer references roles(id),
+	rightId integer references roleRights(id)
 );
 
 -- users

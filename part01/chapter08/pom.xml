@@ -14,6 +14,10 @@
     <packaging>pom</packaging>
     <modules>
         <module>lesson01.08.01</module>
+        <module>lesson01.08.02</module>
+        <module>lesson01.08.03</module>
+        <module>lesson01.08.04</module>
+        <module>lesson01.08.05</module>
     </modules>
 
 
