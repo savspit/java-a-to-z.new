@@ -1,1 +1,1 @@
-﻿CREATE DATABASE myDatabase;
+CREATE DATABASE mydatabase;

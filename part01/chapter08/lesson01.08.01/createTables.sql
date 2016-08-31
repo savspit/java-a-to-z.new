@@ -1,4 +1,4 @@
-﻿\connect myDatabase
+\connect mydatabase
 
 -- roleRights
 CREATE TABLE roleRights (
