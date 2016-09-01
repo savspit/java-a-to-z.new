@@ -1,7 +1,7 @@
 -- show all cars
 SELECT cb.name FROM carBody AS cb
 
--- show all cars and detailes
+-- show all cars and details
 SELECT cb.name, t.name, e.name, g.name FROM carBody AS cb
 LEFT JOIN transmission AS t ON cb.transmissionId = t.id
 LEFT JOIN engine AS e ON cb.engineId = e.id
