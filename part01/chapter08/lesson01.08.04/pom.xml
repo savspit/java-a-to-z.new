@@ -11,6 +11,11 @@
 
     <groupId>chapter08</groupId>
     <artifactId>lesson01.08.04</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>TrackerDB</module>
+        <module>SQLStorage</module>
+    </modules>
 
 
 </project>
