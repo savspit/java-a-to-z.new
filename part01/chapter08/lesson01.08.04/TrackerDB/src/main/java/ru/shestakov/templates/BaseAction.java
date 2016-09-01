@@ -2,6 +2,8 @@ package ru.shestakov.templates;
 
 import ru.shestakov.start.*;
 
+import java.sql.SQLException;
+
 /**
  * Init BaseAction abstract class
  */
@@ -28,7 +30,7 @@ public abstract class BaseAction implements UserAction {
      * @param input
      * @param tracker
      */
-    public abstract void execute(Input input, Tracker tracker);
+    public abstract void execute(Input input, Tracker tracker) throws SQLException;
 
     /**
      * Method returns formatted string of name of action

@@ -1,33 +1,37 @@
 package ru.shestakov.models;
 
 /**
- * Init Item class
+ * The type Item.
  */
 public class Item {
 
-    /** Item`s ID */
     private String id;
-    /** Item`s name */
+    /**
+     * The Name.
+     */
     public String name;
-    /** Item`s description */
+    /**
+     * The Description.
+     */
     public String description;
-    /** Item`s date */
+    /**
+     * The Create.
+     */
     public long create;
-    /** Item`s array of comments */
-    public Comment[] comments = new Comment[10];
 
     /**
-     * Initializes a newly created Item
+     * Instantiates a new Item.
      */
     public Item() {
 
     }
 
     /**
-     * Initializes a newly created Item with params
-     * @param name
-     * @param description
-     * @param create
+     * Instantiates a new Item.
+     *
+     * @param name        the name
+     * @param description the description
+     * @param create      the create
      */
     public Item(String name, String description, long create) {
         this.name = name;
@@ -36,87 +40,90 @@ public class Item {
     }
 
     /**
-     * Gets name of Item
-     * @return
+     * Instantiates a new Item.
+     *
+     * @param id          the id
+     * @param name        the name
+     * @param description the description
+     * @param create      the create
+     */
+    public Item(String id, String name, String description, long create) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.create = create;
+    }
+
+    /**
+     * Gets name.
+     *
+     * @return the name
      */
     public String getName() {
         return this.name;
     }
 
     /**
-     * Gets description of Item
-     * @return
+     * Gets description.
+     *
+     * @return the description
      */
     public String getDescription() {
         return this.description;
     }
 
     /**
-     * Gets date of Item
-     * @return
+     * Gets create.
+     *
+     * @return the create
      */
     public long getCreate() {
         return this.create;
     }
 
     /**
-     * Gets array of comments of Item
-     * @return
-     */
-    public Comment[] getComments() {
-        return this.comments;
-    }
-
-    /**
-     * Gets ID of Item
-     * @return
+     * Gets id.
+     *
+     * @return the id
      */
     public String getId() {
         return this.id;
     }
 
     /**
-     * Set Item`s ID
-     * @param id
+     * Sets id.
+     *
+     * @param id the id
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * Set Item`s name
-     * @param name
+     * Sets name.
+     *
+     * @param name the name
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * Set Item`s date
-     * @param create
+     * Sets create.
+     *
+     * @param create the create
      */
     public void setCreate(long create) {
         this.create = create;
     }
 
     /**
-     * Set Item`s description
-     * @param description
+     * Sets description.
+     *
+     * @param description the description
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
-    /**
-     * Set Item`s comment
-     * @param newComment
-     */
-    public void setComment(Comment newComment) {
-        for (int x=0; x<this.comments.length; x++) {
-            if(this.comments[x] == null) {
-                this.comments[x] = newComment;
-                break;
-            }
-        }
-    }
 }

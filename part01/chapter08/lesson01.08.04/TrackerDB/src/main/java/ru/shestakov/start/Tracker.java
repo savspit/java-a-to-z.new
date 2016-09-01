@@ -1,114 +1,134 @@
 package ru.shestakov.start;
 
 import ru.shestakov.models.*;
+import ru.shestakov.sql.PSQLmanager;
+
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
 
 /**
- * Init Tracker class
+ * The type Tracker.
  */
 public class Tracker {
 
-    /** Items array */
     private Item[] items = new Item[10];
-    /** Position in Items array */
     private int position = 0;
-    /** Random for Items ID */
     private static final Random RN = new Random();
+    private PSQLmanager psql = new PSQLmanager();
 
-    /**\
-     * Add new Item in array
-     * @param item
-     * @return
+    /**
+     * Add item.
+     *
+     * @param item the item
+     * @return the item
+     * @throws SQLException the sql exception
      */
-    public Item add(Item item) {
-        item.setId(this.generateId());
-        this.items[position++] = item;
+    public Item add(Item item) throws SQLException {
+        psql.addTask(item);
         return item;
     }
 
     /**
-     * Add new comment for Item
-     * @param newComment
+     * Add comment.
+     *
+     * @param newComment the new comment
+     * @throws SQLException the sql exception
      */
-    public void addComment(Comment newComment) {
-        Item item = this.findById(newComment.getItemId());
-        if(item != null) {
-            item.setComment(newComment);
-        }
+    public void addComment(Comment newComment) throws SQLException {
+        psql.addComment(newComment);
     }
 
     /**
-     * Change Item in array by ID
-     * @param item
+     * Update.
+     *
+     * @param item the item
+     * @throws SQLException the sql exception
      */
-    public void update(Item item) {
-        for (int index=0; index<this.position; index++) {
-            if (this.items[index] != null && this.items[index].getId().equals(item.getId())) {
-                this.items[index] = item;
-                break;
-            }
-        }
+    public void update(Item item) throws SQLException {
+        psql.updateTask(item);
     }
 
     /**
-     * Delete Item in array
-     * @param itemForDelete
+     * Delete.
+     *
+     * @param itemForDelete the item for delete
+     * @throws SQLException the sql exception
      */
-    public void delete(Item itemForDelete) {
-        for (int index=0; index<this.position; index++) {
-            if (this.items[index].getId().equals(itemForDelete.getId())) {
-                this.items[index] = null;
-                break;
-            }
-        }
+    public void delete(Item itemForDelete) throws SQLException {
+        psql.deleteTask(itemForDelete);
 	}
 
     /**
-     * Find Item in array by ID
-     * @param id
-     * @return
+     * Find by id item.
+     *
+     * @param id the id
+     * @return the item
+     * @throws SQLException the sql exception
      */
-    public Item findById(String id) {
-        Item result = null;
-        for (Item item : items) {
-            if (item != null && item.getId().equals(id)) {
-                result = item;
-                break;
-            }
-        }
-        return result;
+    public Item findById(String id) throws SQLException {
+        return psql.findTaskById(id);
     }
 
     /**
-     * Find Item in array by filter
-     * @param filter
-     * @return
+     * Find by name item [ ].
+     *
+     * @param name the name
+     * @return the item [ ]
+     * @throws SQLException the sql exception
      */
-    public Item[] findBy(Filter filter) {
-        List<Item> result = new ArrayList<Item>();
-        for (Item item : items) {
-            if (filter.check(item)) { result.add(item); }
-        }
-        return result.toArray(new Item[result.size()]);
+    public Item[] findByName(String name) throws SQLException {
+        return psql.findTaskByName(name);
     }
 
     /**
-     * Generates random ID for Item
-     * @return
+     * Find by description item [ ].
+     *
+     * @param description the description
+     * @return the item [ ]
+     * @throws SQLException the sql exception
      */
-    String generateId() {
-        return String.valueOf(System.currentTimeMillis() + RN.nextInt());
+    public Item[] findByDescription(String description) throws SQLException {
+        return psql.findTaskByDescription(description);
     }
 
     /**
-     * Gets array of all Items
-     * @return
+     * Find by date item [ ].
+     *
+     * @param date the date
+     * @return the item [ ]
+     * @throws SQLException the sql exception
      */
-    public Item[] getAll() {
-        Item[] result = new Item[position];
-        for (int index=0; index!=this.position; index++) {
-            result[index] = this.items[index];
-        }
-        return result;
+    public Item[] findByDate(long date) throws SQLException {
+        return psql.findTaskByDate(date);
+    }
+
+    /**
+     * Get all item [ ].
+     *
+     * @return the item [ ]
+     * @throws SQLException the sql exception
+     */
+    public Item[] getAll() throws SQLException {
+        return psql.getAllTasks();
+    }
+
+    /**
+     * Create connection.
+     *
+     * @throws IOException  the io exception
+     * @throws SQLException the sql exception
+     */
+    public void createConnection() throws IOException, SQLException {
+        this.psql.createConnection();
+    }
+
+    /**
+     * Create structure.
+     *
+     * @throws SQLException the sql exception
+     */
+    public void createStructure() throws SQLException {
+        this.psql.createStructure();
     }
 }

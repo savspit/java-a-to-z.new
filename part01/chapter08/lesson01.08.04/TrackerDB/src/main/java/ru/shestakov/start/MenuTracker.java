@@ -3,32 +3,25 @@ package ru.shestakov.start;
 import ru.shestakov.models.*;
 import ru.shestakov.templates.*;
 
+import java.sql.SQLException;
+
 /**
- * Creates new menu action
+ * The type Update item.
  */
 class UpdateItem extends BaseAction {
 
     /**
-     * Initializes a newly created menu action
+     * Instantiates a new Update item.
      */
     UpdateItem() {
         super("Edit the new item.");
     };
 
-    /**
-     * Set action`s key
-     * @return
-     */
     public int key() {
         return 1;
     }
 
-    /**
-     * Executes user`s action
-     * @param input
-     * @param tracker
-     */
-    public void execute(Input input, Tracker tracker) {
+    public void execute(Input input, Tracker tracker) throws SQLException {
         String id = input.ask("Please, enter the task`s id: ");
 
         if(tracker.findById(id) != null) {
@@ -53,23 +46,24 @@ class UpdateItem extends BaseAction {
 }
 
 /**
- * Creates new menu action
+ * The type Menu tracker.
  */
 public class MenuTracker {
 
-    /** User`s input */
     private Input input;
-    /** Tracker */
     private Tracker tracker;
-    /** Action`s array */
+    /**
+     * The Actions.
+     */
     protected UserAction[] actions;
-    /** Position of action`s array */
     private int position = 0;
 
     /**
-     * Initializes a newly created menu action
-     * @param input
-     * @param tracker
+     * Instantiates a new Menu tracker.
+     *
+     * @param input   the input
+     * @param tracker the tracker
+     * @param size    the size
      */
     public MenuTracker(Input input, Tracker tracker, int size) {
         this.input = input;
@@ -78,7 +72,7 @@ public class MenuTracker {
     }
 
     /**
-     * Fills the menu actions
+     * Fill actions.
      */
     public void fillActions() {
         this.actions[position++] = this.new AddItem();
@@ -92,13 +86,19 @@ public class MenuTracker {
     }
 
     /**
-     * Add the new action in menu
-     * @param action
+     * Add action.
+     *
+     * @param action the action
      */
     public void addAction(UserAction action) {
         this.actions[position++] = action;
     }
 
+    /**
+     * Get ranges int [ ].
+     *
+     * @return the int [ ]
+     */
     public int[] getRanges() {
         int[] ranges = new int[this.actions.length];
         for (int index=0; index<this.actions.length; index++) {
@@ -108,15 +108,17 @@ public class MenuTracker {
     }
 
     /**
-     * Execute selected menu
-     * @param key
+     * Select.
+     *
+     * @param key the key
+     * @throws SQLException the sql exception
      */
-    public void select(int key) {
+    public void select(int key) throws SQLException {
         this.actions[key].execute(this.input, this.tracker);
     }
 
     /**
-     * Shows actions info
+     * Show.
      */
     public void show() {
         for (UserAction action : this.actions) {
@@ -124,36 +126,29 @@ public class MenuTracker {
         }
     }
 
+    /**
+     * Show item.
+     *
+     * @param action the action
+     */
     public void showItem(UserAction action) {
         System.out.println(action.info());
     }
 
-    /**
-     * Creates new menu action
-     */
     private class AddItem extends BaseAction {
 
         /**
-         * Initializes a newly created menu action
+         * Instantiates a new Add item.
          */
         AddItem() {
             super("Add the new item.");
         };
 
-        /**
-         * Set action`s key
-         * @return
-         */
         public int key() {
             return 0;
         }
 
-        /**
-         * Executes user`s action
-         * @param input
-         * @param tracker
-         */
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, Tracker tracker) throws SQLException {
             String name = input.ask("Please, enter the task`s name: ");
             String desc = input.ask("Please, enter the task`s desc: ");
             long create = input.ask("Please, enter the task`s date: ", true);
@@ -163,32 +158,20 @@ public class MenuTracker {
 
     }
 
-    /**
-     * Creates new menu action
-     */
     private class DeleteItem extends BaseAction {
 
         /**
-         * Initializes a newly created menu action
+         * Instantiates a new Delete item.
          */
         DeleteItem() {
             super("Delete the item.");
         };
 
-        /**
-         * Set action`s key
-         * @return
-         */
         public int key() {
             return 2;
         }
 
-        /**
-         * Executes user`s action
-         * @param input
-         * @param tracker
-         */
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, Tracker tracker) throws SQLException {
             String id = input.ask("Please, enter the task`s id: ");
 
             if(tracker.findById(id) != null) {
@@ -203,32 +186,20 @@ public class MenuTracker {
 
     }
 
-    /**
-     * Creates new menu action
-     */
     private class AddCommentToItem extends BaseAction {
 
         /**
-         * Initializes a newly created menu action
+         * Instantiates a new Add comment to item.
          */
         AddCommentToItem() {
             super("Add comment to the item.");
         };
 
-        /**
-         * Set action`s key
-         * @return
-         */
         public int key() {
             return 3;
         }
 
-        /**
-         * Executes user`s action
-         * @param input
-         * @param tracker
-         */
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, Tracker tracker) throws SQLException {
             String id = input.ask("Please, enter the task`s id: ");
 
             if (tracker.findById(id) != null) {
@@ -246,37 +217,23 @@ public class MenuTracker {
 
     }
 
-    /**
-     * Creates new menu action
-     */
     private class FindItemByName extends BaseAction {
 
         /**
-         * Initializes a newly created menu action
+         * Instantiates a new Find item by name.
          */
         FindItemByName() {
             super("Find item by name.");
         };
 
-        /**
-         * Set action`s key
-         * @return
-         */
         public int key() {
             return 4;
         }
 
-        /**
-         * Executes user`s action
-         * @param input
-         * @param tracker
-         */
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, Tracker tracker) throws SQLException {
             String name = input.ask("Please, enter the task`s name to find: ");
 
-            Filter filter = new FilterByName(name);
-
-            Item[] result = tracker.findBy(filter);
+            Item[] result = tracker.findByName(name);
 
             if (result.length != 0) {
                 for (Item item : result) {
@@ -289,37 +246,23 @@ public class MenuTracker {
 
     }
 
-    /**
-     * Creates new menu action
-     */
     private class FindItemByDescription extends BaseAction {
 
         /**
-         * Initializes a newly created menu action
+         * Instantiates a new Find item by description.
          */
         FindItemByDescription() {
             super("Find item by description.");
         };
 
-        /**
-         * Set action`s key
-         * @return
-         */
         public int key() {
             return 5;
         }
 
-        /**
-         * Executes user`s action
-         * @param input
-         * @param tracker
-         */
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, Tracker tracker) throws SQLException {
             String desc = input.ask("Please, enter the task`s description to find: ");
 
-            Filter filter = new FilterByDescription(desc);
-
-            Item[] result = tracker.findBy(filter);
+            Item[] result = tracker.findByDescription(desc);
 
             if (result.length != 0) {
                 for (Item item : result) {
@@ -332,37 +275,23 @@ public class MenuTracker {
 
     }
 
-    /**
-     * Creates new menu action
-     */
     private class FindItemByCreate extends BaseAction {
 
         /**
-         * Initializes a newly created menu action
+         * Instantiates a new Find item by create.
          */
         FindItemByCreate() {
             super("Find item by date.");
         };
 
-        /**
-         * Set action`s key
-         * @return
-         */
         public int key() {
             return 6;
         }
 
-        /**
-         * Executes user`s action
-         * @param input
-         * @param tracker
-         */
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, Tracker tracker) throws SQLException {
             long create = input.ask("Please, enter the task`s date to find: ", true);
 
-            Filter filter = new FilterByCreate(create);
-
-            Item[] result = tracker.findBy(filter);
+            Item[] result = tracker.findByDate(create);
 
             if (result.length != 0) {
                 for (Item item : result) {
@@ -377,31 +306,22 @@ public class MenuTracker {
     }
 
     /**
-     * Creates new menu action
+     * The type Show items.
      */
     public static class ShowItems extends BaseAction {
 
         /**
-         * Initializes a newly created menu action
+         * Instantiates a new Show items.
          */
         ShowItems() {
             super("Show all items.");
         };
 
-        /**
-         * Set action`s key
-         * @return
-         */
         public int key() {
             return 7;
         }
 
-        /**
-         * Executes user`s action
-         * @param input
-         * @param tracker
-         */
-        public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, Tracker tracker) throws SQLException {
 
             Item[] result = tracker.getAll();
 
