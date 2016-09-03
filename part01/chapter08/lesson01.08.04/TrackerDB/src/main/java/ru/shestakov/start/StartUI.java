@@ -1,7 +1,5 @@
 package ru.shestakov.start;
 
-import ru.shestakov.sql.PSQLmanager;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -35,7 +33,7 @@ public class StartUI {
             menu.show();
             menu.select(this.input.ask("select:", ranges));
         } while(!"y".equals(this.input.ask("Exit? (y/n)")));
-
+        tracker.closeConnection();
     }
 
     /**

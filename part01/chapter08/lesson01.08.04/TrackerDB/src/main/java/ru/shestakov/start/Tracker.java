@@ -1,7 +1,7 @@
 package ru.shestakov.start;
 
 import ru.shestakov.models.*;
-import ru.shestakov.sql.PSQLmanager;
+import ru.shestakov.sql.DBConnect;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -15,7 +15,7 @@ public class Tracker {
     private Item[] items = new Item[10];
     private int position = 0;
     private static final Random RN = new Random();
-    private PSQLmanager psql = new PSQLmanager();
+    private DBConnect dbConnect = new DBConnect();
 
     /**
      * Add item.
@@ -25,7 +25,7 @@ public class Tracker {
      * @throws SQLException the sql exception
      */
     public Item add(Item item) throws SQLException {
-        psql.addTask(item);
+        dbConnect.addTask(item);
         return item;
     }
 
@@ -36,7 +36,7 @@ public class Tracker {
      * @throws SQLException the sql exception
      */
     public void addComment(Comment newComment) throws SQLException {
-        psql.addComment(newComment);
+        dbConnect.addComment(newComment);
     }
 
     /**
@@ -46,7 +46,7 @@ public class Tracker {
      * @throws SQLException the sql exception
      */
     public void update(Item item) throws SQLException {
-        psql.updateTask(item);
+        dbConnect.updateTask(item);
     }
 
     /**
@@ -56,7 +56,7 @@ public class Tracker {
      * @throws SQLException the sql exception
      */
     public void delete(Item itemForDelete) throws SQLException {
-        psql.deleteTask(itemForDelete);
+        dbConnect.deleteTask(itemForDelete);
 	}
 
     /**
@@ -67,7 +67,7 @@ public class Tracker {
      * @throws SQLException the sql exception
      */
     public Item findById(String id) throws SQLException {
-        return psql.findTaskById(id);
+        return dbConnect.findTaskById(id);
     }
 
     /**
@@ -78,7 +78,7 @@ public class Tracker {
      * @throws SQLException the sql exception
      */
     public Item[] findByName(String name) throws SQLException {
-        return psql.findTaskByName(name);
+        return dbConnect.findTaskByName(name);
     }
 
     /**
@@ -89,7 +89,7 @@ public class Tracker {
      * @throws SQLException the sql exception
      */
     public Item[] findByDescription(String description) throws SQLException {
-        return psql.findTaskByDescription(description);
+        return dbConnect.findTaskByDescription(description);
     }
 
     /**
@@ -100,7 +100,7 @@ public class Tracker {
      * @throws SQLException the sql exception
      */
     public Item[] findByDate(long date) throws SQLException {
-        return psql.findTaskByDate(date);
+        return dbConnect.findTaskByDate(date);
     }
 
     /**
@@ -110,7 +110,7 @@ public class Tracker {
      * @throws SQLException the sql exception
      */
     public Item[] getAll() throws SQLException {
-        return psql.getAllTasks();
+        return dbConnect.getAllTasks();
     }
 
     /**
@@ -120,7 +120,11 @@ public class Tracker {
      * @throws SQLException the sql exception
      */
     public void createConnection() throws IOException, SQLException {
-        this.psql.createConnection();
+        this.dbConnect.createConnection();
+    }
+
+    public void closeConnection() {
+        this.dbConnect.closeConnection();
     }
 
     /**
@@ -129,6 +133,6 @@ public class Tracker {
      * @throws SQLException the sql exception
      */
     public void createStructure() throws SQLException {
-        this.psql.createStructure();
+        this.dbConnect.createStructure();
     }
 }
