@@ -14,7 +14,6 @@ public class Tracker {
 
     private Item[] items = new Item[10];
     private int position = 0;
-    private static final Random RN = new Random();
     private DBConnect dbConnect = new DBConnect();
 
     /**

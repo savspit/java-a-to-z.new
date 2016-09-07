@@ -39,10 +39,8 @@ public class DBConnect {
         String password = prop.getProperty("password").toString();
         //String driver = prop.getProperty("driver").toString();
         //Class.forName(driver);
-        try (
-                Connection connection = DriverManager.getConnection(url, username, password)
-        ) {
-            this.conn = connection;
+        try {
+            this.conn = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
             Log.error(e.getMessage(), e);
         }
@@ -65,14 +63,19 @@ public class DBConnect {
      * @throws SQLException the sql exception
      */
     public void createStructure() {
-        try (
-        Statement st = this.conn.createStatement();
-        ) {
-            st.execute("CREATE TABLE tasks (id serial PRIMARY KEY, name VARCHAR(255), description VARCHAR(2000), createDate TIMESTAMP)");
-            st.execute("CREATE TABLE tasksComments (id serial PRIMARY KEY, name VARCHAR(2000), taskId INTEGER REFERENCES tasks(id))");
-            st.close();
+        Statement st = null;
+        try {
+            st = this.conn.createStatement();
+            st.execute("CREATE TABLE IF NOT EXISTS tasks (id serial PRIMARY KEY, name VARCHAR(255), description VARCHAR(2000), createDate TIMESTAMP)");
+            st.execute("CREATE TABLE IF NOT EXISTS tasksComments (id serial PRIMARY KEY, name VARCHAR(2000), taskId INTEGER REFERENCES tasks(id))");
         } catch (SQLException e) {
             Log.error(e.getMessage(), e);
+        } finally {
+            try {
+                st.close();
+            } catch (SQLException e) {
+                Log.error(e.getMessage(), e);
+            }
         }
     }
 
