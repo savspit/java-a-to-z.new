@@ -3,6 +3,9 @@ package shestakov.quartz;
 import org.quartz.*;
 import shestakov.sql.JobOffersStorage;
 
+/**
+ * The type Scheduled job.
+ */
 public class ScheduledJob implements Job {
 
     @Override

@@ -6,6 +6,9 @@ import shestakov.jsoup.JobOffersParsing;
 
 import java.sql.*;
 
+/**
+ * The type Job offers storage.
+ */
 public class JobOffersStorage {
     private static final Logger Log = LoggerFactory.getLogger(JobOffersStorage.class);
     private Connection conn;
@@ -16,26 +19,54 @@ public class JobOffersStorage {
     private String password;
     private String offersUrl;
 
+    /**
+     * Sets url.
+     *
+     * @param url the url
+     */
     public void setUrl(String url) {
         this.url = url;
     }
 
+    /**
+     * Sets username.
+     *
+     * @param username the username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     * Sets password.
+     *
+     * @param password the password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * Sets offers url.
+     *
+     * @param offersUrl the offers url
+     */
     public void setOffersUrl(String offersUrl) {
         this.offersUrl = offersUrl;
     }
 
+    /**
+     * Gets offers url.
+     *
+     * @return the offers url
+     */
     public String getOffersUrl() {
         return offersUrl;
     }
 
+    /**
+     * Gets job offers.
+     */
     public void getJobOffers() {
         openConnection();
         setLastRunTime();
@@ -45,6 +76,9 @@ public class JobOffersStorage {
         closeConnection();
     }
 
+    /**
+     * Open connection.
+     */
     public void openConnection() {
         try {
             this.conn = DriverManager.getConnection(this.url, this.username, this.password);
@@ -53,10 +87,18 @@ public class JobOffersStorage {
         }
     }
 
+    /**
+     * Is first run boolean.
+     *
+     * @return the boolean
+     */
     public boolean isFirstRun() {
         return this.firstRun;
     }
 
+    /**
+     * Close connection.
+     */
     public void closeConnection() {
         try {
             this.conn.close();
@@ -65,6 +107,9 @@ public class JobOffersStorage {
         }
     }
 
+    /**
+     * Sets current run time.
+     */
     public void setCurrentRunTime() {
         if (firstRun()) {
             insertCurrentRunTime();
@@ -73,11 +118,19 @@ public class JobOffersStorage {
         }
     }
 
+    /**
+     * Gets job offers from offers url.
+     */
     public void getJobOffersFromOffersUrl() {
         JobOffersParsing jobOffersParsing = new JobOffersParsing(this);
         jobOffersParsing.getJobOffers();
     }
 
+    /**
+     * First run boolean.
+     *
+     * @return the boolean
+     */
     public boolean firstRun() {
         try (
                 PreparedStatement st = this.conn.prepareStatement("SELECT p.runTime FROM properties AS p ORDER BY p.id LIMIT 1");
@@ -91,6 +144,9 @@ public class JobOffersStorage {
         return this.firstRun;
     }
 
+    /**
+     * Sets last run time.
+     */
     public void setLastRunTime() {
         try (
                 PreparedStatement st = this.conn.prepareStatement("SELECT p.runTime FROM properties AS p ORDER BY p.id LIMIT 1");
@@ -105,10 +161,18 @@ public class JobOffersStorage {
         }
     }
 
+    /**
+     * Gets last run time.
+     *
+     * @return the last run time
+     */
     public long getLastRunTime() {
         return this.lastRunTime;
     }
 
+    /**
+     * Insert current run time.
+     */
     public void insertCurrentRunTime() {
         try (
                 PreparedStatement st = this.conn.prepareStatement("INSERT INTO properties(runTime) VALUES (?)");
@@ -121,6 +185,9 @@ public class JobOffersStorage {
         }
     }
 
+    /**
+     * Update current run time.
+     */
     public void updateCurrentRunTime() {
         try (
                 PreparedStatement st = this.conn.prepareStatement("UPDATE properties SET runTime=? WHERE id IN(SELECT p.id FROM properties AS p ORDER BY p.id LIMIT 1)");
@@ -133,6 +200,15 @@ public class JobOffersStorage {
         }
     }
 
+    /**
+     * Add data in db.
+     *
+     * @param offerLink  the offer link
+     * @param offerText  the offer text
+     * @param author     the author
+     * @param authorLink the author link
+     * @param offerDate  the offer date
+     */
     public void addDataInDB(String offerLink, String offerText, String author, String authorLink, long offerDate) {
         try (
                 PreparedStatement st1 = this.conn.prepareStatement("INSERT INTO authors(name, link) VALUES(?, ?)");
@@ -154,6 +230,9 @@ public class JobOffersStorage {
         }
     }
 
+    /**
+     * Print new job offers.
+     */
     public void printNewJobOffers() {
         try (
                 PreparedStatement st = this.conn.prepareStatement("SELECT o.text offerText, o.link offerLink, o.createDate offerDate, a.name authorName, a.link authorLink FROM offers AS o JOIN authors AS a ON o.authorId = a.id AND o.createDate > ? ORDER BY o.createDate DESC");
@@ -174,6 +253,9 @@ public class JobOffersStorage {
         }
     }
 
+    /**
+     * Print all job offers.
+     */
     public void printAllJobOffers() {
         try (
                 PreparedStatement st = this.conn.prepareStatement("SELECT o.text offerText, o.link offerLink, o.createDate offerDate, a.name authorName, a.link authorLink FROM offers AS o LEFT JOIN authors AS a ON o.authorId = a.id ORDER BY o.createDate DESC");
@@ -193,6 +275,9 @@ public class JobOffersStorage {
         }
     }
 
+    /**
+     * Clear tables.
+     */
     public void clearTables() {
         try (
                 PreparedStatement st1 = this.conn.prepareStatement("DELETE FROM properties");
@@ -210,6 +295,12 @@ public class JobOffersStorage {
         }
     }
 
+    /**
+     * Gets count of filter by offer text from db.
+     *
+     * @param offerText the offer text
+     * @return the count of filter by offer text from db
+     */
     public int getCountOfFilterByOfferTextFromDB(String offerText) {
         int result = 0;
         try (
@@ -227,6 +318,11 @@ public class JobOffersStorage {
         return result;
     }
 
+    /**
+     * Gets delta of max and min dates in month.
+     *
+     * @return the delta of max and min dates in month
+     */
     public int getDeltaOfMaxAndMinDatesInMonth() {
         int result = 0;
         try (

@@ -13,9 +13,17 @@ import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
 
+/**
+ * The type Cron scheduled trigger.
+ */
 public class CronScheduledTrigger {
     private static final Logger Log = LoggerFactory.getLogger(CronScheduledTrigger.class);
 
+    /**
+     * Schedule.
+     *
+     * @throws SchedulerException the scheduler exception
+     */
     public void schedule() throws SchedulerException {
         SchedulerFactory sf = new StdSchedulerFactory();
         Scheduler scheduler = sf.getScheduler();
@@ -37,6 +45,11 @@ public class CronScheduledTrigger {
         Log.info(String.format("Executed %s jobs.", metaData.getNumberOfJobsExecuted()));
     }
 
+    /**
+     * Sets job properties.
+     *
+     * @param job the job
+     */
     public void setJobProperties(JobDetail job) {
         Properties prop = new Properties();
         try (
@@ -54,6 +67,11 @@ public class CronScheduledTrigger {
         jobDataMap.put("scheduleIntervalMin", prop.getProperty("scheduleIntervalMin").toString());
     }
 
+    /**
+     * Main.
+     *
+     * @param args the args
+     */
     public static void main (String args[]) {
         try {
             CronScheduledTrigger cronTrigger = new CronScheduledTrigger();
