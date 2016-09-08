@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Date;
 import java.util.Properties;
 
 import static org.quartz.CronScheduleBuilder.cronSchedule;
@@ -17,29 +16,28 @@ import static org.quartz.TriggerBuilder.newTrigger;
 public class CronScheduledTrigger {
     private static final Logger Log = LoggerFactory.getLogger(CronScheduledTrigger.class);
 
-    public void runAndSchedule() throws SchedulerException {
+    public void schedule() throws SchedulerException {
         SchedulerFactory sf = new StdSchedulerFactory();
-        Scheduler sched = sf.getScheduler();
-        // job1 will run every "scheduleIntervalInSec" seconds
-        JobDetail job = newJob(ScheduledJob.class).withIdentity("job1", "group1").build();
-        String cronExpression = String.format("0/%s * * * * ?", getscheduleIntervalInMin());
-        CronTrigger trigger = newTrigger().withIdentity("trigger1", "group1").withSchedule(cronSchedule(cronExpression)).build();
-        sched.deleteJob(job.getKey());
-        Date ft = sched.scheduleJob(job, trigger);
-        sched.start();
+        Scheduler scheduler = sf.getScheduler();
+        JobDetail job = newJob(ScheduledJob.class).withIdentity("jobOffers_from_SQLRU_job", "jobOffers_from_SQLRU_group").build();
+        setJobProperties(job);
+        String cronExpression = String.format("0/%s * * * * ?", job.getJobDataMap().get("scheduleIntervalMin"));
+        CronTrigger trigger = newTrigger().withIdentity("jobOffers_from_SQLRU_trigger", "jobOffers_from_SQLRU_group").withSchedule(cronSchedule(cronExpression)).build();
+        scheduler.deleteJob(job.getKey());
+        scheduler.scheduleJob(job, trigger);
+        scheduler.start();
         try {
             // wait five minutes to show jobs
             Thread.sleep(5 * 60 * 1000);
-            // executing...
         } catch (Exception e) {
             Log.error(e.getMessage(), e);
         }
-        sched.shutdown(true);
-        SchedulerMetaData metaData = sched.getMetaData();
-        Log.info("Executed " + metaData.getNumberOfJobsExecuted() + " jobs.");
+        scheduler.shutdown(true);
+        SchedulerMetaData metaData = scheduler.getMetaData();
+        Log.info(String.format("Executed %s jobs.", metaData.getNumberOfJobsExecuted()));
     }
 
-    public int getscheduleIntervalInMin() {
+    public void setJobProperties(JobDetail job) {
         Properties prop = new Properties();
         try (
                 FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/part01/chapter08/lesson01.08.05/JobOffers/jobOffers.cfg");
@@ -48,13 +46,18 @@ public class CronScheduledTrigger {
         } catch (IOException e) {
             Log.error(e.getMessage(), e);
         }
-        return Integer.parseInt(prop.getProperty("scheduleIntervalInMin").toString());
+        JobDataMap jobDataMap = job.getJobDataMap();
+        jobDataMap.put("url", prop.getProperty("url").toString());
+        jobDataMap.put("username", prop.getProperty("username").toString());
+        jobDataMap.put("password", prop.getProperty("password").toString());
+        jobDataMap.put("offersUrl", prop.getProperty("offersUrl").toString());
+        jobDataMap.put("scheduleIntervalMin", prop.getProperty("scheduleIntervalMin").toString());
     }
 
     public static void main (String args[]) {
         try {
             CronScheduledTrigger cronTrigger = new CronScheduledTrigger();
-            cronTrigger.runAndSchedule();
+            cronTrigger.schedule();
         } catch (Exception e) {
             Log.error(e.getMessage(), e);
         }
