@@ -45,6 +45,7 @@ public class JobOffersStorageTest {
         storage.setUsername("postgres");
         storage.setPassword("1");
         storage.setOffersUrl("http://www.sql.ru/forum/job-offers");
+        storage.openConnection();
         Thread.sleep(2000);
         storage.setLastRunTime();
         storage.setCurrentRunTime();
@@ -90,6 +91,7 @@ public class JobOffersStorageTest {
         storage.setUsername("postgres");
         storage.setPassword("1");
         storage.setOffersUrl("http://www.sql.ru/forum/job-offers");
+        storage.openConnection();
         storage.clearTables();
         storage.addDataInDB("test", "test", "test", "test", 0L);
         Thread.sleep(1000);
@@ -110,6 +112,7 @@ public class JobOffersStorageTest {
         storage.setUsername("postgres");
         storage.setPassword("1");
         storage.setOffersUrl("http://www.sql.ru/forum/job-offers");
+        storage.openConnection();
         storage.clearTables();
         storage.addDataInDB("test", "test", "test", "test", 0L);
         storage.addDataInDB("test", "test", "test", "test", 0L);
