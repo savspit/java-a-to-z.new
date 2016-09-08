@@ -50,4 +50,13 @@ public class CronScheduledTrigger {
         }
         return Integer.parseInt(prop.getProperty("scheduleIntervalInMin").toString());
     }
+
+    public static void main (String args[]) {
+        try {
+            CronScheduledTrigger cronTrigger = new CronScheduledTrigger();
+            cronTrigger.runAndSchedule();
+        } catch (Exception e) {
+            Log.error(e.getMessage(), e);
+        }
+    }
 }
