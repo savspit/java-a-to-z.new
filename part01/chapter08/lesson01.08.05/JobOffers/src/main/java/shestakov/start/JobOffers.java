@@ -3,51 +3,33 @@ package shestakov.start;
 import org.quartz.SchedulerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import shestakov.jsoup.JsoupConnect;
-import shestakov.quartz.CronTriggerRunner;
-import shestakov.sql.DBConnect;
+import shestakov.jsoup.JobOffersParsing;
+import shestakov.quartz.CronScheduledTrigger;
+import shestakov.sql.DBWorking;
 
-/**
- * The type Job offers.
- */
 public class JobOffers {
     private static final Logger Log = LoggerFactory.getLogger(JobOffers.class);
-    private DBConnect dbConnect = new DBConnect();
+    private DBWorking dbConnect = new DBWorking();
 
-    /**
-     * Open connection.
-     */
     public void openConnection() {
         this.dbConnect.openConnection();
     }
 
-    /**
-     * Close connection.
-     */
     public void closeConnection() {
         this.dbConnect.closeConnection();
     }
 
-    /**
-     * Sets start time.
-     */
     public void setStartTime() {
         this.dbConnect.setStartTime();
     }
 
-    /**
-     * Gets job offers.
-     */
     public void getJobOffers() {
-        JsoupConnect jsoupConnect = new JsoupConnect(dbConnect);
+        JobOffersParsing jsoupConnect = new JobOffersParsing(dbConnect);
         jsoupConnect.getJobOffers();
     }
 
-    /**
-     * Run and schedule.
-     */
     public void runAndSchedule() {
-        CronTriggerRunner cronRunner = new CronTriggerRunner();
+        CronScheduledTrigger cronRunner = new CronScheduledTrigger();
         try {
             cronRunner.runAndSchedule();
         } catch (SchedulerException e) {
@@ -55,9 +37,6 @@ public class JobOffers {
         }
     }
 
-    /**
-     * Do all work.
-     */
     public void doAllWork() {
         openConnection();
         setStartTime();
@@ -66,9 +45,6 @@ public class JobOffers {
         closeConnection();
     }
 
-    /**
-     * Print all job offers.
-     */
     public void printAllJobOffers() {
         this.dbConnect.printAllJobOffers();
     }

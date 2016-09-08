@@ -14,22 +14,14 @@ import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
 
-/**
- * The type Cron trigger runner.
- */
-public class CronTriggerRunner {
-    private static final Logger Log = LoggerFactory.getLogger(CronTriggerRunner.class);
+public class CronScheduledTrigger {
+    private static final Logger Log = LoggerFactory.getLogger(CronScheduledTrigger.class);
 
-    /**
-     * Run and schedule.
-     *
-     * @throws SchedulerException the scheduler exception
-     */
     public void runAndSchedule() throws SchedulerException {
         SchedulerFactory sf = new StdSchedulerFactory();
         Scheduler sched = sf.getScheduler();
         // job1 will run every "scheduleIntervalInSec" seconds
-        JobDetail job = newJob(QuartzJob.class).withIdentity("job1", "group1").build();
+        JobDetail job = newJob(ScheduledJob.class).withIdentity("job1", "group1").build();
         String cronExpression = String.format("0/%s * * * * ?", getscheduleIntervalInMin());
         CronTrigger trigger = newTrigger().withIdentity("trigger1", "group1").withSchedule(cronSchedule(cronExpression)).build();
         sched.deleteJob(job.getKey());
@@ -47,11 +39,6 @@ public class CronTriggerRunner {
         Log.info("Executed " + metaData.getNumberOfJobsExecuted() + " jobs.");
     }
 
-    /**
-     * Gets interval in min.
-     *
-     * @return the interval in min
-     */
     public int getscheduleIntervalInMin() {
         Properties prop = new Properties();
         try (

@@ -8,36 +8,20 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
-/**
- * The type Db connect.
- */
-public class DBConnect {
-    private static final Logger Log = LoggerFactory.getLogger(DBConnect.class);
+public class DBWorking {
+    private static final Logger Log = LoggerFactory.getLogger(DBWorking.class);
     private Connection conn;
     private String offersUrl;
     private boolean firstRun;
 
-    /**
-     * Is first run boolean.
-     *
-     * @return the boolean
-     */
     public boolean isFirstRun() {
         return firstRun;
     }
 
-    /**
-     * Gets offers url.
-     *
-     * @return the offers url
-     */
     public String getOffersUrl() {
         return offersUrl;
     }
 
-    /**
-     * Open connection.
-     */
     public void openConnection() {
         Properties prop = new Properties();
         try (
@@ -58,9 +42,6 @@ public class DBConnect {
         }
     }
 
-    /**
-     * Close connection.
-     */
     public void closeConnection() {
         try {
             this.conn.close();
@@ -69,9 +50,6 @@ public class DBConnect {
         }
     }
 
-    /**
-     * Sets start time.
-     */
     public void setStartTime() {
         if (firstRun()) {
             setRunTime();
@@ -80,11 +58,6 @@ public class DBConnect {
         }
     }
 
-    /**
-     * First run boolean.
-     *
-     * @return the boolean
-     */
     public boolean firstRun() {
         try (
                 PreparedStatement st = this.conn.prepareStatement("SELECT p.runTime FROM properties AS p ORDER BY p.id LIMIT 1");
@@ -97,11 +70,6 @@ public class DBConnect {
         return this.firstRun;
     }
 
-    /**
-     * Gets run time.
-     *
-     * @return the run time
-     */
     public long getRunTime() {
         long result = 0L;
         try (
@@ -117,9 +85,6 @@ public class DBConnect {
         return result;
     }
 
-    /**
-     * Sets run time.
-     */
     public void setRunTime() {
         try (
                 PreparedStatement st = this.conn.prepareStatement("INSERT INTO properties(runTime) VALUES (?)");
@@ -132,9 +97,6 @@ public class DBConnect {
         }
     }
 
-    /**
-     * Update run time.
-     */
     public void updateRunTime() {
         try (
                 PreparedStatement st = this.conn.prepareStatement("UPDATE properties SET runTime=? WHERE id IN(SELECT p.id FROM properties AS p ORDER BY p.id LIMIT 1)");
@@ -147,15 +109,6 @@ public class DBConnect {
         }
     }
 
-    /**
-     * Add data in db.
-     *
-     * @param offerLink  the offer link
-     * @param offerText  the offer text
-     * @param author     the author
-     * @param authorLink the author link
-     * @param offerDate  the offer date
-     */
     public void addDataInDB(String offerLink, String offerText, String author, String authorLink, long offerDate) {
         try (
                 PreparedStatement st1 = this.conn.prepareStatement("INSERT INTO authors(name, link) VALUES(?, ?)");
@@ -177,9 +130,6 @@ public class DBConnect {
         }
     }
 
-    /**
-     * Print all job offers.
-     */
     public void printAllJobOffers() {
         try (
                 PreparedStatement st = this.conn.prepareStatement("SELECT o.text offerText, o.link offerLink, o.createDate offerDate, a.name authorName, a.link authorLink FROM offers AS o LEFT JOIN authors AS a ON o.authorId = a.id ORDER BY o.createDate DESC");

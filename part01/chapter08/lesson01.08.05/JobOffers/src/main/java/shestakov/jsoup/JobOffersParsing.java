@@ -6,7 +6,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import shestakov.sql.DBConnect;
+import shestakov.sql.DBWorking;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -14,25 +14,14 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * The type Jsoup connect.
- */
-public class JsoupConnect {
-    private static final Logger Log = LoggerFactory.getLogger(JsoupConnect.class);
-    private DBConnect dbConnect = new DBConnect();
+public class JobOffersParsing {
+    private static final Logger Log = LoggerFactory.getLogger(JobOffersParsing.class);
+    private DBWorking dbConnect = new DBWorking();
 
-    /**
-     * Instantiates a new Jsoup connect.
-     *
-     * @param dbConnect the db connect
-     */
-    public JsoupConnect(DBConnect dbConnect) {
+    public JobOffersParsing(DBWorking dbConnect) {
         this.dbConnect = dbConnect;
     }
 
-    /**
-     * Gets job offers.
-     */
     public void getJobOffers() {
         if (dbConnect.isFirstRun()) {
             getJobOffersUntilDate(getCurrentDateMinusYear());
@@ -41,11 +30,6 @@ public class JsoupConnect {
         }
     }
 
-    /**
-     * Gets job offers until date.
-     *
-     * @param endDate the end date
-     */
     public void getJobOffersUntilDate(long endDate) {
         Document document;
         String offersUrl = dbConnect.getOffersUrl();
@@ -99,42 +83,20 @@ public class JsoupConnect {
         }
     }
 
-    /**
-     * Gets run time.
-     *
-     * @return the run time
-     */
     public long getRunTime() {
         return dbConnect.getRunTime();
     }
 
-    /**
-     * Gets current date minus year.
-     *
-     * @return the current date minus year
-     */
     public long getCurrentDateMinusYear() {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.YEAR, -1);
         return calendar.getTime().getTime();
     }
 
-    /**
-     * Convert offer text string.
-     *
-     * @param offerText the offer text
-     * @return the string
-     */
     public String convertOfferText(String offerText) {
         return offerText.replace(" [new]","");
     }
 
-    /**
-     * Convert string to url string.
-     *
-     * @param stringWithUrl the string with url
-     * @return the string
-     */
     public String convertStringToURL(String stringWithUrl) {
         if (stringWithUrl.isEmpty()) {
             return stringWithUrl;
@@ -143,12 +105,6 @@ public class JsoupConnect {
         return multiStr[1];
     }
 
-    /**
-     * Convert date time to timestamp long.
-     *
-     * @param strDateTime the str date time
-     * @return the long
-     */
     public long convertDateTimeToTimestamp(String strDateTime) {
         long result = 0L;
         if (strDateTime.contains("сегодня")) {
