@@ -24,10 +24,10 @@ public class JobOffersParsing {
     /**
      * Instantiates a new Job offers parsing.
      *
-     * @param dbWorking the db working
+     * @param storage the db working
      */
-    public JobOffersParsing(JobOffersStorage dbWorking) {
-        this.storage = dbWorking;
+    public JobOffersParsing(JobOffersStorage storage) {
+        this.storage = storage;
     }
 
     /**
