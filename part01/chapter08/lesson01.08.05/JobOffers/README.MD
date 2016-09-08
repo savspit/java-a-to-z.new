@@ -12,4 +12,4 @@ Steps:
 
 2. Check "jobOffers.cfg" if you need it
 
-3. Run App (StartUI() class)
+3. Run App
