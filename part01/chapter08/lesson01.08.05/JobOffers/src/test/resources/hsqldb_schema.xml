@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <table name="authors">
+        <column>id</column>
+        <column>name</column>
+        <column>link</column>
+    </table>
+    <table name="offers">
+        <column>id</column>
+        <column>text</column>
+        <column>link</column>
+        <column>createDate</column>
+        <column>authorId</column>
+    </table>
+    <table name="properties">
+        <column>id</column>
+        <column>runTime</column>
+    </table>
+</dataset>

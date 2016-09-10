@@ -1,0 +1,1343 @@
+/*C5*/SET SCHEMA PUBLIC
+CREATE TABLE IF NOT EXISTS properties (id IDENTITY,runTime TIMESTAMP)
+CREATE TABLE IF NOT EXISTS authors (id IDENTITY, name VARCHAR(255),link VARCHAR(2000))
+CREATE TABLE IF NOT EXISTS offers (id IDENTITY,text VARCHAR(2000),link VARCHAR(2000),createDate TIMESTAMP,authorId INTEGER REFERENCES authors(id))
+/*C6*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C7*/SET SCHEMA PUBLIC
+INSERT INTO PROPERTIES VALUES(22,'2016-09-10 22:53:00.478000')
+COMMIT
+INSERT INTO AUTHORS VALUES(6002,'antonov_os','http://www.sql.ru/forum/memberinfo.aspx?mid=234311')
+COMMIT
+INSERT INTO OFFERS VALUES(3588,'\u0418\u0449\u0435\u043c \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0430 Java \u0432 \u0410\u041e "\u0421\u0431\u0435\u0440\u0442\u0435\u0445"','http://www.sql.ru/forum/1230194/ishhem-razrabotchika-java-v-ao-sberteh','2016-09-10 22:29:00.000000',6002)
+COMMIT
+INSERT INTO AUTHORS VALUES(6003,'lirikk12','http://www.sql.ru/forum/memberinfo.aspx?mid=229922')
+COMMIT
+INSERT INTO OFFERS VALUES(3589,'\u0422\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044f \u043e\u043f\u044b\u0442\u043d\u044b\u0439 Java \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a (\u0432\u044b\u0441\u043e\u043a\u043e\u043d\u0430\u0433\u0440\u0443\u0436\u0435\u043d\u043d\u0430\u044f RTB \u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u0430, \u043e\u0442800 \u0434\u043e1,500 \u0440./\u0447)','http://www.sql.ru/forum/1230037/trebuetsya-opytnyy-java-razrabotchik-vysokonagruzhennaya-rtb-platforma-ot800-do1-500-r-ch','2016-09-10 20:48:00.000000',6003)
+COMMIT
+INSERT INTO AUTHORS VALUES(6004,'\u0420\u0443\u0441\u0430\u043d\u043e\u0432\u0430 \u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440\u0430 \u0421\u0435\u0440\u0433\u0435\u0435\u0432\u043d\u0430','http://www.sql.ru/forum/memberinfo.aspx?mid=104653')
+COMMIT
+INSERT INTO OFFERS VALUES(3590,'Java \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a \u0433.\u041c\u043e\u0441\u043a\u0432\u0430','http://www.sql.ru/forum/1229378/java-razrabotchik-g-moskva','2016-09-09 17:31:00.000000',6004)
+COMMIT
+INSERT INTO AUTHORS VALUES(6005,'\u0414\u0435\u0434\u0443\u0448\u043a\u0430','http://www.sql.ru/forum/memberinfo.aspx?mid=38915')
+COMMIT
+INSERT INTO OFFERS VALUES(3591,'Java dev, \u0421\u041f\u0431, \u043e\u0442 130 net.','http://www.sql.ru/forum/1229749/java-dev-spb-ot-130-net','2016-09-09 16:15:00.000000',6005)
+COMMIT
+INSERT INTO AUTHORS VALUES(6006,'\u0418\u0440\u0438\u043d\u0430\u0421\u0435\u0440\u0433\u0435\u0435\u0432\u043d\u0430','http://www.sql.ru/forum/memberinfo.aspx?mid=212554')
+COMMIT
+INSERT INTO OFFERS VALUES(3592,'Java \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a (\u0433. \u0421\u0430\u0440\u0430\u0442\u043e\u0432)','http://www.sql.ru/forum/1230065/java-razrabotchik-g-saratov','2016-09-09 16:09:00.000000',6006)
+COMMIT
+INSERT INTO AUTHORS VALUES(6007,'IST_Darya','http://www.sql.ru/forum/memberinfo.aspx?mid=233554')
+COMMIT
+INSERT INTO OFFERS VALUES(3593,'\u041f\u0440\u0438\u0433\u043b\u0430\u0448\u0430\u0435\u043c Middle Java Developer \u043a \u0441\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u0447\u0435\u0441\u0442\u0432\u0443! \u0423\u0434\u0430\u043b\u0435\u043d\u043d\u043e','http://www.sql.ru/forum/1230163/priglashaem-middle-java-developer-k-sotrudnichestvu-udalenno','2016-09-09 15:02:00.000000',6007)
+COMMIT
+INSERT INTO AUTHORS VALUES(6008,'\u041c\u0438\u0445\u0430\u0438\u043b2016','http://www.sql.ru/forum/memberinfo.aspx?mid=229251')
+COMMIT
+INSERT INTO OFFERS VALUES(3594,'\u041f\u0440\u0438\u0433\u043b\u0430\u0448\u0430\u0435\u043c JAVA-\u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442\u0430 (backend), \u041c\u043e\u0441\u043a\u0432\u0430','http://www.sql.ru/forum/1226117/priglashaem-java-programmista-backend-moskva','2016-09-08 17:08:00.000000',6008)
+COMMIT
+INSERT INTO AUTHORS VALUES(6009,'Serj17','http://www.sql.ru/forum/memberinfo.aspx?mid=234068')
+COMMIT
+INSERT INTO OFFERS VALUES(3595,'\u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a Java, 140-230\u0442\u0440 gross (\u0431\u0435\u043b\u0430\u044f) \u041c\u043e\u0441\u043a\u0432\u0430 \u043c.\u041c\u0430\u0440\u044c\u0438\u043d\u0430 \u0440\u043e\u0449\u0430','http://www.sql.ru/forum/1229502/razrabotchik-java-140-230tr-gross-belaya-moskva-m-marina-roshha','2016-09-08 14:34:00.000000',6009)
+COMMIT
+INSERT INTO AUTHORS VALUES(6010,'IST_Darya','http://www.sql.ru/forum/memberinfo.aspx?mid=233554')
+COMMIT
+INSERT INTO AUTHORS VALUES(6011,'\u0412\u0438\u043a\u0442\u043e\u0440\u0438\u044f CVRecruitment','http://www.sql.ru/forum/memberinfo.aspx?mid=233560')
+COMMIT
+INSERT INTO OFFERS VALUES(3596,'(\u041a\u0410) Java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a (\u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a, \u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c, \u0410\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u043e\u0440, \u0410\u043d\u0430\u043b\u0438\u0442\u0438\u043a). \u041c\u041e\u0421\u041a\u0412\u0410. \u0414\u043e 200.','http://www.sql.ru/forum/1229745/ka-java-razrabotchik-razrabotchik-rukovoditel-arhitektor-analitik-moskva-do-200','2016-09-07 16:07:00.000000',6011)
+COMMIT
+INSERT INTO AUTHORS VALUES(6012,'Nchaika','http://www.sql.ru/forum/memberinfo.aspx?mid=224893')
+COMMIT
+INSERT INTO OFFERS VALUES(3597,'\u041a\u043e\u043c\u0430\u043d\u0434\u0430 Java \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u043e\u0432 \u0432 \u0448\u0442\u0430\u0442 \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0438, \u043e\u0442 80K+','http://www.sql.ru/forum/1229216/komanda-java-razrabotchikov-v-shtat-kompanii-ot-80k','2016-09-07 15:55:00.000000',6012)
+COMMIT
+INSERT INTO AUTHORS VALUES(6013,'milaoksana','http://www.sql.ru/forum/memberinfo.aspx?mid=143868')
+COMMIT
+INSERT INTO OFFERS VALUES(3598,'\u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a Java, \u0411\u0440\u044f\u043d\u0441\u043a, \u0434\u043e 80000\u0440.','http://www.sql.ru/forum/1225237/razrabotchik-java-bryansk-do-80000r','2016-09-07 13:52:00.000000',6013)
+COMMIT
+INSERT INTO AUTHORS VALUES(6014,'ElenaN','http://www.sql.ru/forum/memberinfo.aspx?mid=179285')
+COMMIT
+INSERT INTO OFFERS VALUES(3599,'\u041f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442 JAVA \u0432 \u043c\u0435\u0436\u0434\u0443\u043d\u0430\u0440\u043e\u0434\u043d\u0443\u044e \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u044e-\u0440\u0438\u0442\u0435\u0439\u043b\u0435\u0440','http://www.sql.ru/forum/1229784/programmist-java-v-mezhdunarodnuu-kompaniu-riteyler','2016-09-07 11:49:00.000000',6014)
+COMMIT
+INSERT INTO AUTHORS VALUES(6015,'Serj17','http://www.sql.ru/forum/memberinfo.aspx?mid=234068')
+COMMIT
+INSERT INTO AUTHORS VALUES(6016,'annapopovaGMS','http://www.sql.ru/forum/memberinfo.aspx?mid=233703')
+COMMIT
+INSERT INTO OFFERS VALUES(3600,'(\u041a\u0410) Senior Java Developer, gamedev, \u041c\u043e\u0441\u043a\u0432\u0430','http://www.sql.ru/forum/1229602/ka-senior-java-developer-gamedev-moskva','2016-09-05 19:43:00.000000',6016)
+COMMIT
+INSERT INTO AUTHORS VALUES(6017,'annapopovaGMS','http://www.sql.ru/forum/memberinfo.aspx?mid=233703')
+COMMIT
+INSERT INTO AUTHORS VALUES(6018,'softus','http://www.sql.ru/forum/memberinfo.aspx?mid=233892')
+COMMIT
+INSERT INTO OFFERS VALUES(3601,'[\u0418\u0440\u043a\u0443\u0442\u0441\u043a, 80 000-100 000] \u0412\u0435\u0434\u0443\u0449\u0438\u0439 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a JavaEE','http://www.sql.ru/forum/1227499/irkutsk-80-000-100-000-vedushhiy-razrabotchik-javaee','2016-09-04 05:55:00.000000',6018)
+COMMIT
+INSERT INTO AUTHORS VALUES(6019,'Olga_Sedova','http://www.sql.ru/forum/memberinfo.aspx?mid=234120')
+COMMIT
+INSERT INTO OFFERS VALUES(3602,'Senior Java Developer, \u041c\u043e\u0441\u043a\u0432\u0430, \u043e\u0442 160 net','http://www.sql.ru/forum/1229296/senior-java-developer-moskva-ot-160-net','2016-09-02 17:04:00.000000',6019)
+COMMIT
+INSERT INTO AUTHORS VALUES(6020,'Nina Glebova','http://www.sql.ru/forum/memberinfo.aspx?mid=222102')
+COMMIT
+INSERT INTO OFFERS VALUES(3603,'Java EE \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0438 \u041c\u043e\u0441\u043a\u0432\u0430 \u043e\u0442 140\u041a','http://www.sql.ru/forum/1225398/java-ee-razrabotchiki-moskva-ot-140k','2016-09-02 14:01:00.000000',6020)
+COMMIT
+INSERT INTO AUTHORS VALUES(6021,'nopox','http://www.sql.ru/forum/memberinfo.aspx?mid=37666')
+COMMIT
+INSERT INTO OFFERS VALUES(3604,'(\u041a\u0410) Java Developer \u043d\u0430 \u0443\u0434\u0430\u043b\u0435\u043d\u043a\u0443 (English), \u0434\u043e 3\u0442 $','http://www.sql.ru/forum/1228581/ka-java-developer-na-udalenku-english-do-3t','2016-09-02 06:06:00.000000',6021)
+COMMIT
+INSERT INTO AUTHORS VALUES(6022,'annapopovaGMS','http://www.sql.ru/forum/memberinfo.aspx?mid=233703')
+COMMIT
+INSERT INTO AUTHORS VALUES(6023,'Strangebird','http://www.sql.ru/forum/memberinfo.aspx?mid=217482')
+COMMIT
+INSERT INTO OFFERS VALUES(3605,'PHP \u0438 Java \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0438 \u0432 \u0433. \u0424\u0440\u0430\u0439\u0431\u0443\u0440\u0433, \u0413\u0435\u0440\u043c\u0430\u043d\u0438\u044f. 1 2 3 \u0432\u0441\u0435','http://www.sql.ru/forum/1193753/php-i-java-razrabotchiki-v-g-frayburg-germaniya','2016-08-31 23:40:00.000000',6023)
+COMMIT
+INSERT INTO AUTHORS VALUES(6024,'Java_team','http://www.sql.ru/forum/memberinfo.aspx?mid=233875')
+COMMIT
+INSERT INTO OFFERS VALUES(3606,'\u0421\u041f\u0411 Senior java developer/Architect','http://www.sql.ru/forum/1227395/spb-senior-java-developer-architect','2016-08-31 12:12:00.000000',6024)
+COMMIT
+INSERT INTO AUTHORS VALUES(6025,'\u0412\u0438\u043a\u0442\u043e\u0440\u0438\u044f CVRecruitment','http://www.sql.ru/forum/memberinfo.aspx?mid=233560')
+COMMIT
+INSERT INTO AUTHORS VALUES(6026,'nopox','http://www.sql.ru/forum/memberinfo.aspx?mid=37666')
+COMMIT
+INSERT INTO AUTHORS VALUES(6027,'Natalia Sidorenko','http://www.sql.ru/forum/memberinfo.aspx?mid=227204')
+COMMIT
+INSERT INTO OFFERS VALUES(3607,'\u0418\u0449\u0443 Team Lead \u0433\u0440\u0443\u043f\u043f\u044b \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0438 (java \u0438\u043b\u0438 Delphi)','http://www.sql.ru/forum/1228747/ishhu-team-lead-gruppy-razrabotki-java-ili-delphi','2016-08-30 14:27:00.000000',6027)
+COMMIT
+INSERT INTO AUTHORS VALUES(6028,'Natalia Sidorenko','http://www.sql.ru/forum/memberinfo.aspx?mid=227204')
+COMMIT
+INSERT INTO AUTHORS VALUES(6029,'itincorp','http://www.sql.ru/forum/memberinfo.aspx?mid=213553')
+COMMIT
+INSERT INTO OFFERS VALUES(3608,'Senior Java developer, \u041c\u043e\u0441\u043a\u0432\u0430/\u041c\u041e/\u041d\u0438\u0436\u043d\u0438\u0439 \u041d\u043e\u0432\u0433\u043e\u0440\u043e\u0434','http://www.sql.ru/forum/1228648/senior-java-developer-moskva-mo-nizhniy-novgorod','2016-08-29 17:30:00.000000',6029)
+COMMIT
+INSERT INTO AUTHORS VALUES(6030,'smirnoff_911','http://www.sql.ru/forum/memberinfo.aspx?mid=233196')
+COMMIT
+INSERT INTO OFFERS VALUES(3609,'Java Developer (Java,Docker,Clojure) \u0420\u043e\u0441\u0441\u0438\u044f, \u041c\u043e\u0441\u043a\u0432\u0430 \u041f\u043e\u043b\u043d\u044b\u0439 \u0440\u0430\u0431\u043e\u0447\u0438\u0439 \u0434\u0435\u043d\u044c \u041e\u0442 150 000 \u0440\u0443\u0431.','http://www.sql.ru/forum/1228624/java-developer-java-docker-clojure-rossiya-moskva-polnyy-rabochiy-den-ot-150-000-rub','2016-08-29 15:53:00.000000',6030)
+COMMIT
+INSERT INTO AUTHORS VALUES(6031,'New_Tech','http://www.sql.ru/forum/memberinfo.aspx?mid=232831')
+COMMIT
+INSERT INTO OFFERS VALUES(3610,'Java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a. \u041e\u0444\u0438\u0441 \u0415\u043a\u0430\u0442\u0435\u0440\u0438\u043d\u0431\u0443\u0440\u0433. 60-100 \u0442.\u0440.','http://www.sql.ru/forum/1228571/java-razrabotchik-ofis-ekaterinburg-60-100-t-r','2016-08-29 10:51:00.000000',6031)
+COMMIT
+INSERT INTO AUTHORS VALUES(6032,'\u041c\u0438\u0445\u0430\u0438\u043b2016','http://www.sql.ru/forum/memberinfo.aspx?mid=229251')
+COMMIT
+INSERT INTO AUTHORS VALUES(6033,'_B0r1s','http://www.sql.ru/forum/memberinfo.aspx?mid=234032')
+COMMIT
+INSERT INTO OFFERS VALUES(3611,'\u041f\u043e\u0438\u0441\u043a java \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0430','http://www.sql.ru/forum/1228386/poisk-java-razrabotchika','2016-08-26 15:51:00.000000',6033)
+COMMIT
+INSERT INTO AUTHORS VALUES(6034,'\u041c\u0430\u0440\u0442\u0430A','http://www.sql.ru/forum/memberinfo.aspx?mid=233831')
+COMMIT
+INSERT INTO OFFERS VALUES(3612,'\u0418\u0449\u0443 Java \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442\u043e\u0432','http://www.sql.ru/forum/1227104/ishhu-java-programmistov','2016-08-25 09:20:00.000000',6034)
+COMMIT
+INSERT INTO AUTHORS VALUES(6035,'\u0420\u0443\u0441\u0430\u043d\u043e\u0432\u0430 \u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440\u0430 \u0421\u0435\u0440\u0433\u0435\u0435\u0432\u043d\u0430','http://www.sql.ru/forum/memberinfo.aspx?mid=104653')
+COMMIT
+INSERT INTO AUTHORS VALUES(6036,'Jodi88','http://www.sql.ru/forum/memberinfo.aspx?mid=195446')
+COMMIT
+INSERT INTO OFFERS VALUES(3613,'\u0412\u0430\u043a\u0430\u043d\u0441\u0438b Java \u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0443 \u0443\u0440\u043e\u0432\u0435\u043d\u044c \u043e\u0442 Junior \u0434\u043e Architect','http://www.sql.ru/forum/1228099/vakansib-java-razrabotchiku-uroven-ot-junior-do-architect','2016-08-24 20:22:00.000000',6036)
+COMMIT
+INSERT INTO AUTHORS VALUES(6037,'\u0410\u043d\u0430\u0441\u0442\u0430\u0441\u0438\u044f \u0413\u0440\u0438\u0431\u043e\u0432\u0430','http://www.sql.ru/forum/memberinfo.aspx?mid=168948')
+COMMIT
+INSERT INTO OFFERS VALUES(3614,'\u0418\u0449\u0443 Java (Android) \u0443\u0434\u0430\u043b\u0435\u043d\u043d\u043e \u043f\u043e \u0413\u041f\u0425 (\u041c\u043e\u0441\u043a\u0432\u0430)','http://www.sql.ru/forum/1227878/ishhu-java-android-udalenno-po-gph-moskva','2016-08-24 14:45:00.000000',6037)
+COMMIT
+INSERT INTO AUTHORS VALUES(6038,'IST_Darya','http://www.sql.ru/forum/memberinfo.aspx?mid=233554')
+COMMIT
+INSERT INTO AUTHORS VALUES(6039,'KonstantinPS','http://www.sql.ru/forum/memberinfo.aspx?mid=233916')
+COMMIT
+INSERT INTO OFFERS VALUES(3615,'\u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a Java \u0432 \u043e\u0444\u0438\u0441 \u043c\u0435\u0436\u0434\u0443\u043d\u0430\u0440\u043e\u0434\u043d\u043e\u0439 \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u0438 \u0432 \u0414\u0443\u0431\u0430\u0435 (\u041e\u0410\u042d) / \u041b\u043e\u043d\u0434\u043e\u043d (\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f).','http://www.sql.ru/forum/1227635/razrabotchik-java-v-ofis-mezhdunarodnoy-kompanii-v-dubae-oae-london-velikobritaniya','2016-08-24 10:07:00.000000',6039)
+COMMIT
+INSERT INTO AUTHORS VALUES(6040,'\u0415\u0432\u0433\u0435\u043d\u0438\u0439Diasoft','http://www.sql.ru/forum/memberinfo.aspx?mid=233519')
+COMMIT
+INSERT INTO OFFERS VALUES(3616,'JavaEE + SQL \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a','http://www.sql.ru/forum/1227113/javaee-sql-razrabotchik','2016-08-22 19:04:00.000000',6040)
+COMMIT
+INSERT INTO AUTHORS VALUES(6041,'SophiePodushko','http://www.sql.ru/forum/memberinfo.aspx?mid=233676')
+COMMIT
+INSERT INTO OFFERS VALUES(3617,'\u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a Java / PL SQL, \u041c\u043e\u0441\u043a\u0432\u0430 (100-130 \u0442.\u0440.)','http://www.sql.ru/forum/1227747/razrabotchik-java-pl-sql-moskva-100-130-t-r','2016-08-22 15:13:00.000000',6041)
+COMMIT
+INSERT INTO AUTHORS VALUES(6042,'\u041c\u0438\u0445\u0430\u0438\u043b2016','http://www.sql.ru/forum/memberinfo.aspx?mid=229251')
+COMMIT
+INSERT INTO AUTHORS VALUES(6043,'Svetlana150219','http://www.sql.ru/forum/memberinfo.aspx?mid=233911')
+COMMIT
+INSERT INTO OFFERS VALUES(3618,'Java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a (\u0414\u0411\u041e), Java developer (Fraud Monitoring)','http://www.sql.ru/forum/1227606/java-razrabotchik-dbo-java-developer-fraud-monitoring','2016-08-21 13:18:00.000000',6043)
+COMMIT
+INSERT INTO AUTHORS VALUES(6044,'Svetlana150219','http://www.sql.ru/forum/memberinfo.aspx?mid=233911')
+COMMIT
+INSERT INTO AUTHORS VALUES(6045,'SvetlanaSin','http://www.sql.ru/forum/memberinfo.aspx?mid=189328')
+COMMIT
+INSERT INTO OFFERS VALUES(3619,'\u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a C++/.net/java \u0441 \u0440\u0435\u043b\u043e\u043a\u0430\u0446\u0438\u0435\u0439 \u0432 \u0411\u043e\u043b\u0433\u0430\u0440\u0438\u044e 1 2 3 \u0432\u0441\u0435','http://www.sql.ru/forum/1219494/razrabotchik-c-net-java-s-relokaciey-v-bolgariu','2016-08-20 20:39:00.000000',6045)
+COMMIT
+INSERT INTO AUTHORS VALUES(6046,'\u041c\u0430\u0440\u0442\u0430A','http://www.sql.ru/forum/memberinfo.aspx?mid=233831')
+COMMIT
+INSERT INTO AUTHORS VALUES(6047,'Anastasia Malygina','http://www.sql.ru/forum/memberinfo.aspx?mid=221500')
+COMMIT
+INSERT INTO OFFERS VALUES(3620,'\u041a\u0410, Senior Java developer (Moscow-London) 180-250K rur/month','http://www.sql.ru/forum/1210832/ka-senior-java-developer-moscow-london-180-250k-rur-month','2016-08-17 12:42:00.000000',6047)
+COMMIT
+INSERT INTO AUTHORS VALUES(6048,'pm01ris','http://www.sql.ru/forum/memberinfo.aspx?mid=201191')
+COMMIT
+INSERT INTO OFFERS VALUES(3621,'Java \u0438\u043b\u0438 C/C++ \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a, MS Exchange EDB extractor (Vound, \u0443\u0434\u0430\u043b\u0435\u043d\u043d\u043e, \u043a\u043e\u043d\u0442\u0440\u0430\u043a\u0442)','http://www.sql.ru/forum/1035407/java-ili-c-c-razrabotchik-ms-exchange-edb-extractor-vound-udalenno-kontrakt','2016-08-13 13:57:00.000000',6048)
+COMMIT
+INSERT INTO AUTHORS VALUES(6049,'Nchaika','http://www.sql.ru/forum/memberinfo.aspx?mid=224893')
+COMMIT
+INSERT INTO AUTHORS VALUES(6050,'rtbid','http://www.sql.ru/forum/memberinfo.aspx?mid=233736')
+COMMIT
+INSERT INTO OFFERS VALUES(3622,'\u0438\u0449\u0435\u043c java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0430','http://www.sql.ru/forum/1226517/ishhem-java-razrabotchika','2016-08-12 13:11:00.000000',6050)
+COMMIT
+INSERT INTO AUTHORS VALUES(6051,'rus_sun','http://www.sql.ru/forum/memberinfo.aspx?mid=167532')
+COMMIT
+INSERT INTO OFFERS VALUES(3623,'Java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a/developer,\u041c\u0441\u043a,70-140,\u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e \u0443\u0434\u0430\u043b\u0435\u043d\u043d\u043e','http://www.sql.ru/forum/1223805/java-razrabotchik-developer-msk-70-140-vozmozhno-udalenno','2016-08-11 14:11:00.000000',6051)
+COMMIT
+INSERT INTO AUTHORS VALUES(6052,'Kseniia','http://www.sql.ru/forum/memberinfo.aspx?mid=233678')
+COMMIT
+INSERT INTO OFFERS VALUES(3624,'\u0412\u0430\u043a\u0430\u043d\u0441\u0438\u044f Java Developer \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u044f Trading View \u0432 \u0421\u0430\u043d\u043a\u0442-\u041f\u0435\u0442\u0435\u0440\u0431\u0443\u0440\u0433\u0435','http://www.sql.ru/forum/1226297/vakansiya-java-developer-kompaniya-trading-view-v-sankt-peterburge','2016-08-10 19:42:00.000000',6052)
+COMMIT
+INSERT INTO AUTHORS VALUES(6053,'Nchaika','http://www.sql.ru/forum/memberinfo.aspx?mid=224893')
+COMMIT
+INSERT INTO AUTHORS VALUES(6054,'Nchaika','http://www.sql.ru/forum/memberinfo.aspx?mid=224893')
+COMMIT
+INSERT INTO AUTHORS VALUES(6055,'Wikimart','http://www.sql.ru/forum/memberinfo.aspx?mid=233390')
+COMMIT
+INSERT INTO OFFERS VALUES(3625,'Java \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0438','http://www.sql.ru/forum/1225576/java-razrabotchiki','2016-08-10 07:42:00.000000',6055)
+COMMIT
+INSERT INTO AUTHORS VALUES(6056,'Wikimart','http://www.sql.ru/forum/memberinfo.aspx?mid=233390')
+COMMIT
+INSERT INTO AUTHORS VALUES(6057,'Recry44','http://www.sql.ru/forum/memberinfo.aspx?mid=232329')
+COMMIT
+INSERT INTO OFFERS VALUES(3626,'\u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a JAVA (\u0443\u0434\u0430\u043b\u0435\u043d\u043d\u043e)','http://www.sql.ru/forum/1226112/razrabotchik-java-udalenno','2016-08-09 14:23:00.000000',6057)
+COMMIT
+INSERT INTO AUTHORS VALUES(6058,'nopox','http://www.sql.ru/forum/memberinfo.aspx?mid=37666')
+COMMIT
+INSERT INTO AUTHORS VALUES(6059,'Andrew Day','http://www.sql.ru/forum/memberinfo.aspx?mid=140158')
+COMMIT
+INSERT INTO OFFERS VALUES(3627,'Senior Java Developer (\u043e\u0442 170 \u0442\u044b\u0441)','http://www.sql.ru/forum/1225522/senior-java-developer-ot-170-tys','2016-08-04 14:16:00.000000',6059)
+COMMIT
+INSERT INTO AUTHORS VALUES(6060,'\u041c\u0438\u0445\u0430\u0438\u043b2016','http://www.sql.ru/forum/memberinfo.aspx?mid=229251')
+COMMIT
+INSERT INTO AUTHORS VALUES(6061,'DariaDS','http://www.sql.ru/forum/memberinfo.aspx?mid=231974')
+COMMIT
+INSERT INTO OFFERS VALUES(3628,'Java Web Developer \u0441 \u0440\u0435\u043b\u043e\u043a\u0430\u0446\u0438\u0435\u0439 \u0432 \u0411\u043e\u043b\u0433\u0430\u0440\u0438\u044e','http://www.sql.ru/forum/1224691/java-web-developer-s-relokaciey-v-bolgariu','2016-08-01 17:51:00.000000',6061)
+COMMIT
+INSERT INTO AUTHORS VALUES(6062,'kurt09','http://www.sql.ru/forum/memberinfo.aspx?mid=233433')
+COMMIT
+INSERT INTO OFFERS VALUES(3629,'\u0420\u043e\u0441\u0441\u0438\u044f. Java/Oracle \u041d\u0443\u0436\u043d\u044b \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0438 \u0441 \u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u0430\u043c\u0438','http://www.sql.ru/forum/1224701/rossiya-java-oracle-nuzhny-razrabotchiki-s-sertifikatami','2016-08-01 15:58:00.000000',6062)
+COMMIT
+INSERT INTO AUTHORS VALUES(6063,'itincorp','http://www.sql.ru/forum/memberinfo.aspx?mid=213553')
+COMMIT
+INSERT INTO AUTHORS VALUES(6064,'Aleksandrina84','http://www.sql.ru/forum/memberinfo.aspx?mid=232307')
+COMMIT
+INSERT INTO OFFERS VALUES(3630,'(\u041a\u0410) Senior Java/Scala developer (BigData)','http://www.sql.ru/forum/1217383/ka-senior-java-scala-developer-bigdata','2016-07-29 12:21:00.000000',6064)
+COMMIT
+INSERT INTO AUTHORS VALUES(6065,'MariyaSoft','http://www.sql.ru/forum/memberinfo.aspx?mid=184930')
+COMMIT
+INSERT INTO OFFERS VALUES(3631,'\u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a Java (\u0443\u0434\u0430\u043b\u0435\u043d\u043d\u043e)','http://www.sql.ru/forum/1223477/razrabotchik-java-udalenno','2016-07-21 23:23:00.000000',6065)
+COMMIT
+INSERT INTO AUTHORS VALUES(6066,'\u0415\u043b\u0435\u043d\u0430 N','http://www.sql.ru/forum/memberinfo.aspx?mid=223462')
+COMMIT
+INSERT INTO OFFERS VALUES(3632,'\u041c\u043e\u0441\u043a\u0432\u0430, Junior Java \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442 (\u043c\u043e\u0436\u043d\u043e \u0431\u0435\u0437 \u043e\u043f\u044b\u0442\u0430), \u0433\u0438\u0431\u043a\u0438\u0439 \u0433\u0440\u0430\u0444\u0438\u043a, \u043e\u0442 60-80\u041a \u0438 \u0432\u044b\u0448\u0435','http://www.sql.ru/forum/1223584/moskva-junior-java-programmist-mozhno-bez-opyta-gibkiy-grafik-ot-60-80k-i-vyshe','2016-07-21 19:18:00.000000',6066)
+COMMIT
+INSERT INTO AUTHORS VALUES(6067,'Brakadabra','http://www.sql.ru/forum/memberinfo.aspx?mid=233002')
+COMMIT
+INSERT INTO OFFERS VALUES(3633,'(\u041a\u0410) \u0412\u0430\u043a\u0430\u043d\u0441\u0438\u044f: Java back-end \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442 \u0438\u0433\u0440\u043e\u0432\u043e\u0439 \u043b\u043e\u0433\u0438\u043a\u0438, \u041c\u043e\u0441\u043a\u0432\u0430, 150k','http://www.sql.ru/forum/1223546/ka-vakansiya-java-back-end-programmist-igrovoy-logiki-moskva-150k','2016-07-21 15:31:00.000000',6067)
+COMMIT
+INSERT INTO AUTHORS VALUES(6068,'Natalia Sidorenko','http://www.sql.ru/forum/memberinfo.aspx?mid=227204')
+COMMIT
+INSERT INTO AUTHORS VALUES(6069,'Nina Glebova','http://www.sql.ru/forum/memberinfo.aspx?mid=222102')
+COMMIT
+INSERT INTO AUTHORS VALUES(6070,'Zhudim','http://www.sql.ru/forum/memberinfo.aspx?mid=232870')
+COMMIT
+INSERT INTO OFFERS VALUES(3634,'\u041f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442 Java','http://www.sql.ru/forum/1222164/programmist-java','2016-07-18 21:02:00.000000',6070)
+COMMIT
+INSERT INTO AUTHORS VALUES(6071,'elenasizova-gms','http://www.sql.ru/forum/memberinfo.aspx?mid=231866')
+COMMIT
+INSERT INTO OFFERS VALUES(3635,'(\u041a\u0410) Senior Java developer (Games)/ \u0434\u043e 220\u043a/ \u0411\u043e\u043d\u0443\u0441 \u0437\u0430 \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0430\u0446\u0438\u044e 35\u043a','http://www.sql.ru/forum/1215146/ka-senior-java-developer-games-do-220k-bonus-za-rekomendaciu-35k','2016-07-15 11:42:00.000000',6071)
+COMMIT
+INSERT INTO AUTHORS VALUES(6072,'elenasizova-gms','http://www.sql.ru/forum/memberinfo.aspx?mid=231866')
+COMMIT
+INSERT INTO AUTHORS VALUES(6073,'nopox','http://www.sql.ru/forum/memberinfo.aspx?mid=37666')
+COMMIT
+INSERT INTO AUTHORS VALUES(6074,'nopox','http://www.sql.ru/forum/memberinfo.aspx?mid=37666')
+COMMIT
+INSERT INTO AUTHORS VALUES(6075,'Victoria_Po','http://www.sql.ru/forum/memberinfo.aspx?mid=233010')
+COMMIT
+INSERT INTO OFFERS VALUES(3636,'\u041d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c Senior Java/Scala \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a (\u041c\u043e\u0441\u043a\u0432\u0430).','http://www.sql.ru/forum/1222113/neobhodim-senior-java-scala-razrabotchik-moskva','2016-07-11 23:26:00.000000',6075)
+COMMIT
+INSERT INTO AUTHORS VALUES(6076,'\u0420\u0443\u0441\u0430\u043d\u043e\u0432\u0430 \u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440\u0430 \u0421\u0435\u0440\u0433\u0435\u0435\u0432\u043d\u0430','http://www.sql.ru/forum/memberinfo.aspx?mid=104653')
+COMMIT
+INSERT INTO AUTHORS VALUES(6077,'\u041e\u043a\u0442\u044f\u0431\u0440\u0438\u043d\u0430','http://www.sql.ru/forum/memberinfo.aspx?mid=189867')
+COMMIT
+INSERT INTO OFFERS VALUES(3637,'\u041a\u0410. \u0412\u0430\u043a\u0430\u043d\u0441\u0438\u044f Java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a (JavaEE), \u041c\u043e\u0441\u043a\u0432\u0430','http://www.sql.ru/forum/1222066/ka-vakansiya-java-razrabotchik-javaee-moskva','2016-07-11 16:49:00.000000',6077)
+COMMIT
+INSERT INTO AUTHORS VALUES(6078,'andrei.ilin','http://www.sql.ru/forum/memberinfo.aspx?mid=197056')
+COMMIT
+INSERT INTO OFFERS VALUES(3638,'(\u0421\u0442\u0430\u0440\u0448\u0438\u0439) \u0410\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u043e\u0440 \u0410\u0421 - \u0422\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u043e\u0440 (Java), \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u043c. \u0422\u0443\u043b\u044c\u0441\u043a\u0430\u044f,160k+ RUB','http://www.sql.ru/forum/1220600/starshiy-arhitektor-as-tehnicheskiy-arhitektor-java-g-moskva-m-tulskaya-160k-rub','2016-07-11 11:20:00.000000',6078)
+COMMIT
+INSERT INTO AUTHORS VALUES(6079,'rus_sun','http://www.sql.ru/forum/memberinfo.aspx?mid=167532')
+COMMIT
+INSERT INTO AUTHORS VALUES(6080,'\u041e\u043a\u0442\u044f\u0431\u0440\u0438\u043d\u0430','http://www.sql.ru/forum/memberinfo.aspx?mid=189867')
+COMMIT
+INSERT INTO AUTHORS VALUES(6081,'Anna Kamyshova','http://www.sql.ru/forum/memberinfo.aspx?mid=232321')
+COMMIT
+INSERT INTO OFFERS VALUES(3639,'\u0423\u043b\u044c\u044f\u043d\u043e\u0432\u0441\u043a, \u041f\u0435\u0440\u043c\u044c! \u0421\u0442\u0430\u0440\u0448\u0438\u0439 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a Java EE (ESB)','http://www.sql.ru/forum/1219654/ulyanovsk-perm-starshiy-razrabotchik-java-ee-esb','2016-07-07 11:45:00.000000',6081)
+COMMIT
+INSERT INTO AUTHORS VALUES(6082,'Zhudim','http://www.sql.ru/forum/memberinfo.aspx?mid=232870')
+COMMIT
+INSERT INTO AUTHORS VALUES(6083,'maestria','http://www.sql.ru/forum/memberinfo.aspx?mid=232016')
+COMMIT
+INSERT INTO OFFERS VALUES(3640,'\u0412\u0435\u0434\u0443\u0449\u0438\u0439 Java \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a \u041e\u0442\u043a\u0440\u044b\u0442\u0438\u0435 \u0411\u0440\u043e\u043a\u0435\u0440','http://www.sql.ru/forum/1221181/vedushhiy-java-razrabotchik-otkrytie-broker','2016-07-05 15:17:00.000000',6083)
+COMMIT
+INSERT INTO AUTHORS VALUES(6084,'Rostel','http://www.sql.ru/forum/memberinfo.aspx?mid=232838')
+COMMIT
+INSERT INTO OFFERS VALUES(3641,'Java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a','http://www.sql.ru/forum/1221152/java-razrabotchik','2016-07-05 11:43:00.000000',6084)
+COMMIT
+INSERT INTO AUTHORS VALUES(6085,'\u0415\u043b\u0435\u043d\u0430 N','http://www.sql.ru/forum/memberinfo.aspx?mid=223462')
+COMMIT
+INSERT INTO AUTHORS VALUES(6086,'andrei.ilin','http://www.sql.ru/forum/memberinfo.aspx?mid=197056')
+COMMIT
+INSERT INTO AUTHORS VALUES(6087,'IT-recruiter','http://www.sql.ru/forum/memberinfo.aspx?mid=26225')
+COMMIT
+INSERT INTO OFFERS VALUES(3642,'\u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a SAP MDM/EP (Java) \u0418\u0440\u043a\u0443\u0442\u0441\u043a','http://www.sql.ru/forum/1220601/razrabotchik-sap-mdm-ep-java-irkutsk','2016-07-01 17:06:00.000000',6087)
+COMMIT
+INSERT INTO AUTHORS VALUES(6088,'Ellaida','http://www.sql.ru/forum/memberinfo.aspx?mid=232283')
+COMMIT
+INSERT INTO OFFERS VALUES(3643,'\u0418\u0449\u0435\u043c \u043e\u043f\u044b\u0442\u043d\u044b\u0445 Java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u043e\u0432 (\u041c\u043e\u0441\u043a\u0432\u0430)','http://www.sql.ru/forum/1217324/ishhem-opytnyh-java-razrabotchikov-moskva','2016-06-30 17:57:00.000000',6088)
+COMMIT
+INSERT INTO AUTHORS VALUES(6089,'Donzz','http://www.sql.ru/forum/memberinfo.aspx?mid=117959')
+COMMIT
+INSERT INTO OFFERS VALUES(3644,'Java Developers wanted (\u041c\u043e\u0441\u043a\u0432\u0430, \u043c. \u0411\u0435\u043b\u043e\u0440\u0443\u0441\u0441\u043a\u0430\u044f, 150 000\u0440\u0443\u0431. gross,\u0442.\u0435. 130.5 net) 1 2 \u0432\u0441\u0435','http://www.sql.ru/forum/1194609/java-developers-wanted-moskva-m-belorusskaya-150-000rub-gross-t-e-130-5-net','2016-06-27 17:41:00.000000',6089)
+COMMIT
+INSERT INTO AUTHORS VALUES(6090,'v.khrol','http://www.sql.ru/forum/memberinfo.aspx?mid=232709')
+COMMIT
+INSERT INTO OFFERS VALUES(3645,'\u041f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442 Java (\u0415\u043a\u0430\u0442\u0435\u0440\u0438\u043d\u0431\u0443\u0440\u0433) Junior/Middle','http://www.sql.ru/forum/1219989/programmist-java-ekaterinburg-junior-middle','2016-06-27 12:31:00.000000',6090)
+COMMIT
+INSERT INTO AUTHORS VALUES(6091,'lukich83','http://www.sql.ru/forum/memberinfo.aspx?mid=229329')
+COMMIT
+INSERT INTO OFFERS VALUES(3646,'\u0420\u0430\u0437\u044b\u0441\u043a\u0438\u0432\u0430\u0435\u0442\u0441\u044f Java Developer','http://www.sql.ru/forum/1219320/razyskivaetsya-java-developer','2016-06-22 17:28:00.000000',6091)
+COMMIT
+INSERT INTO AUTHORS VALUES(6092,'irastogova','http://www.sql.ru/forum/memberinfo.aspx?mid=232606')
+COMMIT
+INSERT INTO OFFERS VALUES(3647,'\u0412\u0430\u043a\u0430\u043d\u0441\u0438\u044f Java Developer \u0432 \u0413\u0430\u043c\u0431\u0443\u0440\u0433\u0435 (\u0413\u0435\u0440\u043c\u0430\u043d\u0438\u044f) \u0441 \u0440\u0435\u043b\u043e\u043a\u0430\u0446\u0438\u0435\u0439','http://www.sql.ru/forum/1219125/vakansiya-java-developer-v-gamburge-germaniya-s-relokaciey','2016-06-22 16:14:00.000000',6092)
+COMMIT
+INSERT INTO AUTHORS VALUES(6093,'\u041c\u0430\u0440\u043a \u041a\u0430\u043d\u0434\u0430\u0443\u0440\u043e\u0432','http://www.sql.ru/forum/memberinfo.aspx?mid=232159')
+COMMIT
+INSERT INTO OFFERS VALUES(3648,'(\u041a\u0410) Principal Java Developer, \u041c\u043e\u0441\u043a\u0432\u0430, 170-220','http://www.sql.ru/forum/1216628/ka-principal-java-developer-moskva-170-220','2016-06-21 19:07:00.000000',6093)
+COMMIT
+INSERT INTO AUTHORS VALUES(6094,'Alexander Lavrov','http://www.sql.ru/forum/memberinfo.aspx?mid=226639')
+COMMIT
+INSERT INTO OFFERS VALUES(3649,'Senior Java/Scala developer (BigData), \u0434\u043e 200 \u0442.\u0440. (net)','http://www.sql.ru/forum/1217766/senior-java-scala-developer-bigdata-do-200-t-r-net','2016-06-20 12:13:00.000000',6094)
+COMMIT
+INSERT INTO AUTHORS VALUES(6095,'WeMakeSoftware','http://www.sql.ru/forum/memberinfo.aspx?mid=230944')
+COMMIT
+INSERT INTO OFFERS VALUES(3650,'Mid / Senior Java developer, \u0422\u0430\u043b\u043b\u0438\u043d, \u042d\u0441\u0442\u043e\u043d\u0438\u044f, \u043e\u043d-\u0441\u0430\u0439\u0442. 2.5\u041a+ EUR','http://www.sql.ru/forum/1210554/mid-senior-java-developer-tallin-estoniya-on-sayt-2-5k-eur','2016-06-20 11:51:00.000000',6095)
+COMMIT
+INSERT INTO AUTHORS VALUES(6096,'\u0420\u0443\u0441\u0430\u043d\u043e\u0432\u0430 \u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440\u0430 \u0421\u0435\u0440\u0433\u0435\u0435\u0432\u043d\u0430','http://www.sql.ru/forum/memberinfo.aspx?mid=104653')
+COMMIT
+INSERT INTO AUTHORS VALUES(6097,'opportunity','http://www.sql.ru/forum/memberinfo.aspx?mid=232295')
+COMMIT
+INSERT INTO OFFERS VALUES(3651,'java \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442 - \u0421\u0431\u0435\u0440\u0431\u0430\u043d\u043a-\u0422\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0438.','http://www.sql.ru/forum/1217336/java-programmist-sberbank-tehnologii','2016-06-15 15:32:00.000000',6097)
+COMMIT
+INSERT INTO AUTHORS VALUES(6098,'Nina Glebova','http://www.sql.ru/forum/memberinfo.aspx?mid=222102')
+COMMIT
+INSERT INTO AUTHORS VALUES(6099,'rus_sun','http://www.sql.ru/forum/memberinfo.aspx?mid=167532')
+COMMIT
+INSERT INTO AUTHORS VALUES(6100,'RDima1','http://www.sql.ru/forum/memberinfo.aspx?mid=232368')
+COMMIT
+INSERT INTO OFFERS VALUES(3652,'\u0412\u0430\u043a\u0430\u043d\u0441\u0438\u044f \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0430 Java, PL/SQL, MS SQL, C/C#','http://www.sql.ru/forum/1217756/vakansiya-razrabotchika-java-pl-sql-ms-sql-c-c','2016-06-12 13:48:00.000000',6100)
+COMMIT
+INSERT INTO AUTHORS VALUES(6101,'\u0410\u041d\u0422','http://www.sql.ru/forum/memberinfo.aspx?mid=75300')
+COMMIT
+INSERT INTO OFFERS VALUES(3653,'\u0412\u0435\u0434\u0443\u0449\u0438\u0439 Java \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a','http://www.sql.ru/forum/1215817/vedushhiy-java-razrabotchik','2016-06-10 15:44:00.000000',6101)
+COMMIT
+INSERT INTO AUTHORS VALUES(6102,'Alexander Pashintsev','http://www.sql.ru/forum/memberinfo.aspx?mid=232015')
+COMMIT
+INSERT INTO OFFERS VALUES(3654,'(\u041a\u0410) \u0410\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u043e\u0440 Java/170k+/\u0431\u043e\u043d\u0443\u0441 \u0437\u0430 \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0430\u0446\u0438\u044e 55k. \u041c\u043e\u0441\u043a\u0432\u0430','http://www.sql.ru/forum/1215835/ka-arhitektor-java-170k-bonus-za-rekomendaciu-55k-moskva','2016-06-09 15:54:00.000000',6102)
+COMMIT
+INSERT INTO AUTHORS VALUES(6103,'alisagaming','http://www.sql.ru/forum/memberinfo.aspx?mid=230757')
+COMMIT
+INSERT INTO OFFERS VALUES(3655,'Senior back-end Java Developer, \u041c\u043e\u0441\u043a\u0432\u0430, \u043e\u0442 3 000 \u0434\u043e 4 500 USD','http://www.sql.ru/forum/1214119/senior-back-end-java-developer-moskva-ot-3-000-do-4-500-usd','2016-06-09 14:48:00.000000',6103)
+COMMIT
+INSERT INTO AUTHORS VALUES(6104,'tanomelc','http://www.sql.ru/forum/memberinfo.aspx?mid=232320')
+COMMIT
+INSERT INTO OFFERS VALUES(3656,'Java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a ( \u041d\u043e\u0432\u043e\u0441\u0438\u0431\u0438\u0440\u0441\u043a)','http://www.sql.ru/forum/1217484/java-razrabotchik-novosibirsk','2016-06-08 16:55:00.000000',6104)
+COMMIT
+INSERT INTO AUTHORS VALUES(6105,'Nina Glebova','http://www.sql.ru/forum/memberinfo.aspx?mid=222102')
+COMMIT
+INSERT INTO AUTHORS VALUES(6106,'Tanyana_vak','http://www.sql.ru/forum/memberinfo.aspx?mid=232264')
+COMMIT
+INSERT INTO OFFERS VALUES(3657,'\u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a Java EE SE \u0432 \u0431\u0430\u043d\u043a \u0441 \u043e\u043f\u044b\u0442\u043e\u043c \u043d\u0430\u043f\u0438\u0441\u0430\u043d\u0438\u044f \u0442\u0435\u0441\u0442\u043e\u0432','http://www.sql.ru/forum/1217140/razrabotchik-java-ee-se-v-bank-s-opytom-napisaniya-testov','2016-06-06 14:01:00.000000',6106)
+COMMIT
+INSERT INTO AUTHORS VALUES(6107,'rus_sun','http://www.sql.ru/forum/memberinfo.aspx?mid=167532')
+COMMIT
+INSERT INTO AUTHORS VALUES(6108,'rus_sun','http://www.sql.ru/forum/memberinfo.aspx?mid=167532')
+COMMIT
+INSERT INTO AUTHORS VALUES(6109,'rus_sun','http://www.sql.ru/forum/memberinfo.aspx?mid=167532')
+COMMIT
+INSERT INTO AUTHORS VALUES(6110,'asap','http://www.sql.ru/forum/memberinfo.aspx?mid=223930')
+COMMIT
+INSERT INTO OFFERS VALUES(3658,'Java EE \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a (\u0443\u0434\u0430\u043b\u0435\u043d\u043d\u0430\u044f/\u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u0430\u044f) 65-100k net','http://www.sql.ru/forum/1215716/java-ee-razrabotchik-udalennaya-postoyannaya-65-100k-net','2016-06-04 12:23:00.000000',6110)
+COMMIT
+INSERT INTO AUTHORS VALUES(6111,'Exigenservices','http://www.sql.ru/forum/memberinfo.aspx?mid=111774')
+COMMIT
+INSERT INTO OFFERS VALUES(3659,'Senior Java Developer/Spb/ROI/\u043e\u0442 140k/$ \u0437\u0430 \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0430\u0446\u0438\u044e','http://www.sql.ru/forum/1209686/senior-java-developer-spb-roi-ot-140k-za-rekomendaciu','2016-06-02 18:30:00.000000',6111)
+COMMIT
+INSERT INTO AUTHORS VALUES(6112,'Ecol','http://www.sql.ru/forum/memberinfo.aspx?mid=110678')
+COMMIT
+INSERT INTO OFFERS VALUES(3660,'Senior Java Developer (\u043e\u0442 120 000 \u0440\u0443\u0431.)','http://www.sql.ru/forum/1216663/senior-java-developer-ot-120-000-rub','2016-06-02 17:55:00.000000',6112)
+COMMIT
+INSERT INTO AUTHORS VALUES(6113,'KasperskyLab','http://www.sql.ru/forum/memberinfo.aspx?mid=231503')
+COMMIT
+INSERT INTO OFFERS VALUES(3661,'Kaspersky Lab, \u041c\u043e\u0441\u043a\u0432\u0430: Senior Testing Engineer (C# \u0438\u043b\u0438 Java)','http://www.sql.ru/forum/1216435/kaspersky-lab-moskva-senior-testing-engineer-c-ili-java','2016-06-01 12:13:00.000000',6113)
+COMMIT
+INSERT INTO AUTHORS VALUES(6114,'decide','http://www.sql.ru/forum/memberinfo.aspx?mid=231749')
+COMMIT
+INSERT INTO OFFERS VALUES(3662,'\u041f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442 java, \u0421\u0430\u043d\u043a\u0442-\u041f\u0435\u0442\u0435\u0440\u0431\u0443\u0440\u0433 \u043e\u0442 80\u0442.\u0440. +','http://www.sql.ru/forum/1215169/programmist-java-sankt-peterburg-ot-80t-r','2016-05-30 11:49:00.000000',6114)
+COMMIT
+INSERT INTO AUTHORS VALUES(6115,'OktaSolutions','http://www.sql.ru/forum/memberinfo.aspx?mid=231589')
+COMMIT
+INSERT INTO OFFERS VALUES(3663,'\u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a Java (\u041c\u043e\u0441\u043a\u0432\u0430) 100-160 \u0442.\u0440. gross','http://www.sql.ru/forum/1215192/razrabotchik-java-moskva-100-160-t-r-gross','2016-05-27 12:51:00.000000',6115)
+COMMIT
+INSERT INTO AUTHORS VALUES(6116,'IT Pro','http://www.sql.ru/forum/memberinfo.aspx?mid=147893')
+COMMIT
+INSERT INTO OFFERS VALUES(3664,'(\u041a\u0410) \u041c\u043e\u0441\u043a\u0432\u0430: \u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a-\u0441\u0430\u043f\u043f\u043e\u0440\u0442\u0435\u0440 \u0431\u0438\u0437\u043d\u0435\u0441-\u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0439 (java \u0438/\u0438\u043b\u0438 .NET), \u0434\u043e 130\u041a \u043d\u0435\u0442\u0442\u043e','http://www.sql.ru/forum/1215807/ka-moskva-razrabotchik-sapporter-biznes-prilozheniy-java-i-ili-net-do-130k-netto','2016-05-27 12:51:00.000000',6116)
+COMMIT
+INSERT INTO AUTHORS VALUES(6117,'nopox','http://www.sql.ru/forum/memberinfo.aspx?mid=37666')
+COMMIT
+INSERT INTO AUTHORS VALUES(6118,'sumac','http://www.sql.ru/forum/memberinfo.aspx?mid=231892')
+COMMIT
+INSERT INTO OFFERS VALUES(3665,'Java Software Developer - remote','http://www.sql.ru/forum/1215255/java-software-developer-remote','2016-05-25 08:41:00.000000',6118)
+COMMIT
+INSERT INTO AUTHORS VALUES(6119,'renata_INP','http://www.sql.ru/forum/memberinfo.aspx?mid=225192')
+COMMIT
+INSERT INTO OFFERS VALUES(3666,'\u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a Java \u041c\u043e\u0441\u043a\u0432\u0430 80 000 - 130 000','http://www.sql.ru/forum/1213573/razrabotchik-java-moskva-80-000-130-000','2016-05-23 15:38:00.000000',6119)
+COMMIT
+INSERT INTO AUTHORS VALUES(6120,'Belnati','http://www.sql.ru/forum/memberinfo.aspx?mid=231501')
+COMMIT
+INSERT INTO OFFERS VALUES(3667,'Senior Java developer.','http://www.sql.ru/forum/1213411/senior-java-developer','2016-05-23 14:11:00.000000',6120)
+COMMIT
+INSERT INTO AUTHORS VALUES(6121,'Belnati','http://www.sql.ru/forum/memberinfo.aspx?mid=231501')
+COMMIT
+INSERT INTO AUTHORS VALUES(6122,'Nekki','http://www.sql.ru/forum/memberinfo.aspx?mid=231782')
+COMMIT
+INSERT INTO OFFERS VALUES(3668,'\u041f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442 \u0441\u0435\u0440\u0432\u0435\u0440\u043d\u043e\u0439 \u0447\u0430\u0441\u0442\u0438 / Java Server-Side Developer (\u0438\u0433\u0440\u043e\u0432\u044b\u0435 \u043f\u0440\u043e\u0435\u043a\u0442\u044b)','http://www.sql.ru/forum/1214865/programmist-servernoy-chasti-java-server-side-developer-igrovye-proekty','2016-05-23 13:55:00.000000',6122)
+COMMIT
+INSERT INTO AUTHORS VALUES(6123,'Nekki','http://www.sql.ru/forum/memberinfo.aspx?mid=231782')
+COMMIT
+INSERT INTO AUTHORS VALUES(6124,'BNS74','http://www.sql.ru/forum/memberinfo.aspx?mid=229719')
+COMMIT
+INSERT INTO OFFERS VALUES(3669,'Senior Java Developer','http://www.sql.ru/forum/1203431/senior-java-developer','2016-05-17 08:41:00.000000',6124)
+COMMIT
+INSERT INTO AUTHORS VALUES(6125,'eva359','http://www.sql.ru/forum/memberinfo.aspx?mid=230922')
+COMMIT
+INSERT INTO OFFERS VALUES(3670,'Backend Java Developer, \u043e\u0444\u0438\u0446 \u0417\u041f 100-150 \u0442\u044b\u0441., \u0443\u0434\u0430\u043b\u0435\u043d\u043d\u0430\u044f \u0440\u0430\u0431\u043e\u0442\u0430, \u043f\u043e\u043b\u043d\u044b\u0439 \u0434\u0435\u043d\u044c','http://www.sql.ru/forum/1214187/backend-java-developer-ofic-zp-100-150-tys-udalennaya-rabota-polnyy-den','2016-05-16 22:10:00.000000',6125)
+COMMIT
+INSERT INTO AUTHORS VALUES(6126,'\u041a\u043e\u0437\u043b\u044f\u043a\u043e\u0432\u0441\u043a\u0430\u044f \u041d\u0430\u0442\u0430\u043b\u044c\u044f','http://www.sql.ru/forum/memberinfo.aspx?mid=135638')
+COMMIT
+INSERT INTO OFFERS VALUES(3671,'\u0412\u0430\u043a\u0430\u043d\u0441\u0438\u044f Java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a','http://www.sql.ru/forum/1214143/vakansiya-java-razrabotchik','2016-05-16 15:55:00.000000',6126)
+COMMIT
+INSERT INTO AUTHORS VALUES(6127,'TSconsulting','http://www.sql.ru/forum/memberinfo.aspx?mid=231659')
+COMMIT
+INSERT INTO OFFERS VALUES(3672,'\u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a Java, \u041c\u043e\u0441\u043a\u0432\u0430, 175 \u0442\u044b\u0441.\u0440\u0443\u0431., \u0422\u0435\u0445\u043d\u043e\u0441\u0435\u0440\u0432 \u041a\u043e\u043d\u0441\u0430\u043b\u0442\u0438\u043d\u0433','http://www.sql.ru/forum/1214136/razrabotchik-java-moskva-175-tys-rub-tehnoserv-konsalting','2016-05-16 15:28:00.000000',6127)
+COMMIT
+INSERT INTO AUTHORS VALUES(6128,'milaoksana','http://www.sql.ru/forum/memberinfo.aspx?mid=143868')
+COMMIT
+INSERT INTO AUTHORS VALUES(6129,'shiyinjian','http://www.sql.ru/forum/memberinfo.aspx?mid=230285')
+COMMIT
+INSERT INTO OFFERS VALUES(3673,'\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u044b\u0439 \u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u043e\u0440 (Java), \u0428\u0430\u043d\u0445\u0430\u0439 2000-3000 USD 1 2 3 \u0432\u0441\u0435','http://www.sql.ru/forum/1206860/sistemnyy-arhitektor-java-shanhay-2000-3000-usd','2016-05-12 10:57:00.000000',6129)
+COMMIT
+INSERT INTO AUTHORS VALUES(6130,'\u0415\u043b\u0435\u043d\u0430 N','http://www.sql.ru/forum/memberinfo.aspx?mid=223462')
+COMMIT
+INSERT INTO AUTHORS VALUES(6131,'Belnati','http://www.sql.ru/forum/memberinfo.aspx?mid=231501')
+COMMIT
+INSERT INTO AUTHORS VALUES(6132,'Nina Glebova','http://www.sql.ru/forum/memberinfo.aspx?mid=222102')
+COMMIT
+INSERT INTO AUTHORS VALUES(6133,'kdima71','http://www.sql.ru/forum/memberinfo.aspx?mid=29146')
+COMMIT
+INSERT INTO OFFERS VALUES(3674,'\u0423\u0437\u0431\u0435\u043a\u0438\u0441\u0442\u0430\u043d: \u0422\u0440\u0435\u0431\u0443\u044e\u0442\u0441\u044f Oracle \u0438 Java \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442\u044b 1 2 3 4 \u0432\u0441\u0435','http://www.sql.ru/forum/1212544/uzbekistan-trebuutsya-oracle-i-java-programmisty','2016-05-10 20:36:00.000000',6133)
+COMMIT
+INSERT INTO AUTHORS VALUES(6134,'Alexander Lavrov','http://www.sql.ru/forum/memberinfo.aspx?mid=226639')
+COMMIT
+INSERT INTO AUTHORS VALUES(6135,'DokNat','http://www.sql.ru/forum/memberinfo.aspx?mid=213400')
+COMMIT
+INSERT INTO OFFERS VALUES(3675,'Java Team Lead, \u041a\u0430\u0437\u0430\u043d\u044c, 150 000 \u0440\u0443\u0431.','http://www.sql.ru/forum/1212611/java-team-lead-kazan-150-000-rub','2016-05-06 09:39:00.000000',6135)
+COMMIT
+INSERT INTO AUTHORS VALUES(6136,'DokNat','http://www.sql.ru/forum/memberinfo.aspx?mid=213400')
+COMMIT
+INSERT INTO AUTHORS VALUES(6137,'BogdaN-HH','http://www.sql.ru/forum/memberinfo.aspx?mid=213458')
+COMMIT
+INSERT INTO OFFERS VALUES(3676,'(\u041a\u0410) Java developer, \u043e\u0442 180 net, \u041c\u043e\u0441\u043a\u0432\u0430','http://www.sql.ru/forum/1208880/ka-java-developer-ot-180-net-moskva','2016-05-04 13:51:00.000000',6137)
+COMMIT
+INSERT INTO AUTHORS VALUES(6138,'glebuz','http://www.sql.ru/forum/memberinfo.aspx?mid=231177')
+COMMIT
+INSERT INTO OFFERS VALUES(3677,'Java(backend)','http://www.sql.ru/forum/1211835/java-backend','2016-04-27 15:08:00.000000',6138)
+COMMIT
+INSERT INTO AUTHORS VALUES(6139,'SvetlanaSin','http://www.sql.ru/forum/memberinfo.aspx?mid=189328')
+COMMIT
+INSERT INTO AUTHORS VALUES(6140,'Bessonova','http://www.sql.ru/forum/memberinfo.aspx?mid=230952')
+COMMIT
+INSERT INTO OFFERS VALUES(3678,'\u0412\u0430\u043a\u0430\u043d\u0441\u0438\u0438 \u0434\u043b\u044f Java EE Developers \u0432 \u0427\u0435\u0445\u0438\u0438 (\u041f\u0440\u0430\u0433\u0430)','http://www.sql.ru/forum/1210593/vakansii-dlya-java-ee-developers-v-chehii-praga','2016-04-23 09:20:00.000000',6140)
+COMMIT
+INSERT INTO AUTHORS VALUES(6141,'julia.rezvykh','http://www.sql.ru/forum/memberinfo.aspx?mid=230125')
+COMMIT
+INSERT INTO OFFERS VALUES(3679,'(\u041a\u0410)Java \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a, \u0421\u0430\u043d\u043a\u0442-\u041f\u0435\u0442\u0435\u0440\u0431\u0443\u0440\u0433','http://www.sql.ru/forum/1206706/ka-java-razrabotchik-sankt-peterburg','2016-04-20 10:46:00.000000',6141)
+COMMIT
+INSERT INTO AUTHORS VALUES(6142,'SASdev','http://www.sql.ru/forum/memberinfo.aspx?mid=230397')
+COMMIT
+INSERT INTO OFFERS VALUES(3680,'PL/SQL, SAS, Java. \u043e\u0442 100\u0442','http://www.sql.ru/forum/1207494/pl-sql-sas-java-ot-100t','2016-04-19 12:01:00.000000',6142)
+COMMIT
+INSERT INTO AUTHORS VALUES(6143,'julia.rezvykh','http://www.sql.ru/forum/memberinfo.aspx?mid=230125')
+COMMIT
+INSERT INTO AUTHORS VALUES(6144,'RinaSpice','http://www.sql.ru/forum/memberinfo.aspx?mid=188362')
+COMMIT
+INSERT INTO OFFERS VALUES(3681,'Oracle/Java \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a','http://www.sql.ru/forum/1203301/oracle-java-razrabotchik','2016-04-18 14:36:00.000000',6144)
+COMMIT
+INSERT INTO AUTHORS VALUES(6145,'\u042e\u043b\u0438\u044f_IBS','http://www.sql.ru/forum/memberinfo.aspx?mid=225164')
+COMMIT
+INSERT INTO OFFERS VALUES(3682,'\u0423\u043b\u044c\u044f\u043d\u043e\u0432\u0441\u043a! \u0421\u0442\u0430\u0440\u0448\u0438\u0439 Java \u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a (UI)','http://www.sql.ru/forum/1210161/ulyanovsk-starshiy-java-razrabotchik-ui','2016-04-15 22:33:00.000000',6145)
+COMMIT
+INSERT INTO AUTHORS VALUES(6146,'\u042e\u043b\u0438\u044f_IBS','http://www.sql.ru/forum/memberinfo.aspx?mid=225164')
+COMMIT
+INSERT INTO AUTHORS VALUES(6147,'Tatyana_rt','http://www.sql.ru/forum/memberinfo.aspx?mid=230123')
+COMMIT
+INSERT INTO OFFERS VALUES(3683,'Java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a (\u0421\u0430\u043c\u0430\u0440\u0430, \u0415\u043a\u0430\u0442\u0435\u0440\u0438\u043d\u0431\u0443\u0440\u0433, \u042f\u0440\u043e\u0441\u043b\u0430\u0432\u043b\u044c) \u043e\u0442 50.','http://www.sql.ru/forum/1207777/java-razrabotchik-samara-ekaterinburg-yaroslavl-ot-50','2016-04-15 08:40:00.000000',6147)
+COMMIT
+INSERT INTO AUTHORS VALUES(6148,'Alexander_wmpo','http://www.sql.ru/forum/memberinfo.aspx?mid=229690')
+COMMIT
+INSERT INTO OFFERS VALUES(3684,'\u0412\u0435\u0434\u0443\u0449\u0438\u0439 Java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a (\u0412\u043e\u0440\u043e\u043d\u0435\u0436) 70-100 \u0442.\u0440., \u043a\u043e\u043c\u043f. Cinimex','http://www.sql.ru/forum/1209430/vedushhiy-java-razrabotchik-voronezh-70-100-t-r-komp-cinimex','2016-04-12 12:28:00.000000',6148)
+COMMIT
+INSERT INTO AUTHORS VALUES(6149,'Alexander_wmpo','http://www.sql.ru/forum/memberinfo.aspx?mid=229690')
+COMMIT
+INSERT INTO AUTHORS VALUES(6150,'Styusha08','http://www.sql.ru/forum/memberinfo.aspx?mid=228386')
+COMMIT
+INSERT INTO OFFERS VALUES(3685,'JAVA \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a','http://www.sql.ru/forum/1209422/java-razrabotchik','2016-04-11 16:59:00.000000',6150)
+COMMIT
+INSERT INTO AUTHORS VALUES(6151,'itincorp','http://www.sql.ru/forum/memberinfo.aspx?mid=213553')
+COMMIT
+INSERT INTO AUTHORS VALUES(6152,'Wolf Larsen','http://www.sql.ru/forum/memberinfo.aspx?mid=10484')
+COMMIT
+INSERT INTO OFFERS VALUES(3686,'Java full-stack middle/senior 100-200 \u0442\u044b\u0440, \u0443\u0434\u0430\u043b\u0451\u043d\u043a\u0430','http://www.sql.ru/forum/1208788/java-full-stack-middle-senior-100-200-tyr-udalyonka','2016-04-07 11:10:00.000000',6152)
+COMMIT
+INSERT INTO AUTHORS VALUES(6153,'\u0415\u043b\u0435\u043d\u0430 N','http://www.sql.ru/forum/memberinfo.aspx?mid=223462')
+COMMIT
+INSERT INTO AUTHORS VALUES(6154,'\u0414\u0436\u0430\u0432\u043e\u0447\u043a\u0430','http://www.sql.ru/forum/memberinfo.aspx?mid=230474')
+COMMIT
+INSERT INTO OFFERS VALUES(3687,'JAVA \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a, \u0442\u044b \u043d\u0430\u043c \u043d\u0443\u0436\u0435\u043d!','http://www.sql.ru/forum/1208032/java-razrabotchik-ty-nam-nuzhen','2016-04-02 19:22:00.000000',6154)
+COMMIT
+INSERT INTO AUTHORS VALUES(6155,'Velgusheva_Lan','http://www.sql.ru/forum/memberinfo.aspx?mid=230419')
+COMMIT
+INSERT INTO OFFERS VALUES(3688,'\u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a Java (\u0438\u043d\u0442\u0435\u0433\u0440\u0430\u0446\u0438\u044f) \u0433. \u041c\u043e\u0441\u043a\u0432\u0430, \u043c. \u0420\u0438\u0436\u0441\u043a\u0430\u044f, \u043e\u0442 80 000 \u0440\u0443\u0431.','http://www.sql.ru/forum/1208004/razrabotchik-java-integraciya-g-moskva-m-rizhskaya-ot-80-000-rub','2016-04-01 14:51:00.000000',6155)
+COMMIT
+INSERT INTO AUTHORS VALUES(6156,'Alexander_wmpo','http://www.sql.ru/forum/memberinfo.aspx?mid=229690')
+COMMIT
+INSERT INTO AUTHORS VALUES(6157,'Kefired','http://www.sql.ru/forum/memberinfo.aspx?mid=230435')
+COMMIT
+INSERT INTO OFFERS VALUES(3689,'\u0421\u043f\u0431 Java/Scala \u0431\u0435\u043a\u044d\u043d\u0434 \u0438\u0449\u0435\u043c','http://www.sql.ru/forum/1207716/spb-java-scala-bekend-ishhem','2016-03-31 01:40:00.000000',6157)
+COMMIT
+INSERT INTO AUTHORS VALUES(6158,'inocenter','http://www.sql.ru/forum/memberinfo.aspx?mid=230112')
+COMMIT
+INSERT INTO OFFERS VALUES(3690,'\u0414\u043d\u0435\u043f\u0440\u043e\u043f\u0435\u0442\u0440\u043e\u0432\u0441\u043a - Unix, SQL, Java, C++','http://www.sql.ru/forum/1205838/dnepropetrovsk-unix-sql-java-c','2016-03-27 09:31:00.000000',6158)
+COMMIT
+INSERT INTO AUTHORS VALUES(6159,'Nina Glebova','http://www.sql.ru/forum/memberinfo.aspx?mid=222102')
+COMMIT
+INSERT INTO AUTHORS VALUES(6160,'asap','http://www.sql.ru/forum/memberinfo.aspx?mid=223930')
+COMMIT
+INSERT INTO AUTHORS VALUES(6161,'Bruder O Run','http://www.sql.ru/forum/memberinfo.aspx?mid=229552')
+COMMIT
+INSERT INTO OFFERS VALUES(3691,'\u0421\u0442\u0430\u0440\u0448\u0438\u0439 Java \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a \u0432 \u043f\u0440\u0435\u043a\u0442 EvoCADo, \u0421\u0430\u043d\u043a\u0442-\u041f\u0435\u0442\u0435\u0440\u0431\u0443\u0440\u0433, 100-150 \u0442.\u0440.','http://www.sql.ru/forum/1202571/starshiy-java-razrabotchik-v-prekt-evocado-sankt-peterburg-100-150-t-r','2016-03-18 17:37:00.000000',6161)
+COMMIT
+INSERT INTO AUTHORS VALUES(6162,'Nina Glebova','http://www.sql.ru/forum/memberinfo.aspx?mid=222102')
+COMMIT
+INSERT INTO AUTHORS VALUES(6163,'K2 Partnering','http://www.sql.ru/forum/memberinfo.aspx?mid=229915')
+COMMIT
+INSERT INTO OFFERS VALUES(3692,'\u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442 Java \u043d\u0430 \u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u0443\u044e \u0440\u0430\u0431\u043e\u0442\u0443 \u0432 \u0427\u0435\u0445\u0438\u0438','http://www.sql.ru/forum/1204774/programmist-java-na-postoyannuu-rabotu-v-chehii','2016-03-14 09:15:00.000000',6163)
+COMMIT
+INSERT INTO AUTHORS VALUES(6164,'K2 Partnering','http://www.sql.ru/forum/memberinfo.aspx?mid=229915')
+COMMIT
+INSERT INTO AUTHORS VALUES(6165,'HR_SBERBANK','http://www.sql.ru/forum/memberinfo.aspx?mid=227930')
+COMMIT
+INSERT INTO OFFERS VALUES(3693,'TEAM LEAD Java Developer (\u0421\u0430\u043d\u043a\u0442-\u041f\u0435\u0442\u0435\u0440\u0431\u0443\u0440\u0433 \u0434\u043e 200\u043a)','http://www.sql.ru/forum/1204422/team-lead-java-developer-sankt-peterburg-do-200k','2016-03-09 16:59:00.000000',6165)
+COMMIT
+INSERT INTO AUTHORS VALUES(6166,'rus_sun','http://www.sql.ru/forum/memberinfo.aspx?mid=167532')
+COMMIT
+INSERT INTO AUTHORS VALUES(6167,'asap','http://www.sql.ru/forum/memberinfo.aspx?mid=223930')
+COMMIT
+INSERT INTO AUTHORS VALUES(6168,'asap','http://www.sql.ru/forum/memberinfo.aspx?mid=223930')
+COMMIT
+INSERT INTO AUTHORS VALUES(6169,'Checkit','http://www.sql.ru/forum/memberinfo.aspx?mid=145274')
+COMMIT
+INSERT INTO OFFERS VALUES(3694,'Java Developer, Moscow','http://www.sql.ru/forum/1203084/java-developer-moscow','2016-03-01 14:21:00.000000',6169)
+COMMIT
+INSERT INTO AUTHORS VALUES(6170,'Nina Glebova','http://www.sql.ru/forum/memberinfo.aspx?mid=222102')
+COMMIT
+INSERT INTO AUTHORS VALUES(6171,'Alexander Lavrov','http://www.sql.ru/forum/memberinfo.aspx?mid=226639')
+COMMIT
+INSERT INTO AUTHORS VALUES(6172,'Antonina_ETHR','http://www.sql.ru/forum/memberinfo.aspx?mid=229169')
+COMMIT
+INSERT INTO OFFERS VALUES(3695,'(\u041a\u0410) java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a, \u041a\u0440\u0430\u0441\u043d\u043e\u0434\u0430\u0440 (\u043e\u0444\u0438\u0441, \u0443\u0434\u0430\u043b\u0435\u043d\u043a\u0430, \u0440\u0435\u043b\u043e\u043a\u0430\u0446\u0438\u044f) \u0434\u043e 150000 \u0440\u0443\u0431.','http://www.sql.ru/forum/1202433/ka-java-razrabotchik-krasnodar-ofis-udalenka-relokaciya-do-150000-rub','2016-02-25 17:32:00.000000',6172)
+COMMIT
+INSERT INTO AUTHORS VALUES(6173,'DariaMik','http://www.sql.ru/forum/memberinfo.aspx?mid=224610')
+COMMIT
+INSERT INTO OFFERS VALUES(3696,'(\u041a\u0410) Senior-Java (back-end) \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a, \u0421\u0430\u043d\u043a\u0442-\u041f\u0435\u0442\u0435\u0440\u0431\u0443\u0440\u0433, \u0434\u043e 170\u041a','http://www.sql.ru/forum/1201635/ka-senior-java-back-end-razrabotchik-sankt-peterburg-do-170k','2016-02-20 14:54:00.000000',6173)
+COMMIT
+INSERT INTO AUTHORS VALUES(6174,'Antera','http://www.sql.ru/forum/memberinfo.aspx?mid=228455')
+COMMIT
+INSERT INTO OFFERS VALUES(3697,'Senior java developer. \u0433.\u0412\u041e\u0420\u041e\u041d\u0415\u0416.','http://www.sql.ru/forum/1201082/senior-java-developer-g-voronezh','2016-02-19 14:16:00.000000',6174)
+COMMIT
+INSERT INTO AUTHORS VALUES(6175,'StrangeRunner','http://www.sql.ru/forum/memberinfo.aspx?mid=229411')
+COMMIT
+INSERT INTO OFFERS VALUES(3698,'\u041d\u0443\u0436\u0435\u043d \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442 Java (\u0433.\u041c\u043e\u0441\u043a\u0432\u0430). T&M \u0424\u0443\u043b\u0442\u0430\u0439\u043c. \u0423\u0434\u0430\u043b\u0451\u043d\u043d\u0430\u044f \u0440\u0430\u0431\u043e\u0442\u0430 \u0438\u043b\u0438 \u043e\u0444\u0438\u0441 - \u043a\u0430\u043a \u0443\u0434\u043e\u0431\u043d\u0435\u0435.','http://www.sql.ru/forum/1201359/nuzhen-programmist-java-g-moskva-t-m-fultaym-udalyonnaya-rabota-ili-ofis-kak-udobnee','2016-02-19 00:51:00.000000',6175)
+COMMIT
+INSERT INTO AUTHORS VALUES(6176,'AndT','http://www.sql.ru/forum/memberinfo.aspx?mid=8975')
+COMMIT
+INSERT INTO OFFERS VALUES(3699,'Freiberufler (Java, JSF (2.0), Hibernate etc.), Einsatzort D&#252;sseldorf, langfristig','http://www.sql.ru/forum/1201303/freiberufler-java-jsf-2-0-hibernate-etc-einsatzort-d-252-sseldorf-langfristig','2016-02-18 19:10:00.000000',6176)
+COMMIT
+INSERT INTO AUTHORS VALUES(6177,'\u042e\u0421\u0425','http://www.sql.ru/forum/memberinfo.aspx?mid=227050')
+COMMIT
+INSERT INTO OFFERS VALUES(3700,'Java \u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u043e\u0440 (\u0440\u0435\u0433\u0443\u043b\u044f\u0442\u043e\u0440\u043d\u0430\u044f \u043e\u0442\u0447\u0435\u0442\u043d\u043e\u0441\u0442\u044c \u0426\u0411). \u041c\u043e\u0441\u043a\u0432\u0430','http://www.sql.ru/forum/1200633/java-arhitektor-regulyatornaya-otchetnost-cb-moskva','2016-02-15 23:02:00.000000',6177)
+COMMIT
+INSERT INTO AUTHORS VALUES(6178,'polina-hr','http://www.sql.ru/forum/memberinfo.aspx?mid=223851')
+COMMIT
+INSERT INTO OFFERS VALUES(3701,'\u041f\u0440\u0438\u0433\u043b\u0430\u0448\u0430\u0435\u043c \u043a\u043e\u043c\u0430\u043d\u0434\u0443 Java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u043e\u0432','http://www.sql.ru/forum/1200716/priglashaem-komandu-java-razrabotchikov','2016-02-15 19:34:00.000000',6178)
+COMMIT
+INSERT INTO AUTHORS VALUES(6179,'Alexander Lavrov','http://www.sql.ru/forum/memberinfo.aspx?mid=226639')
+COMMIT
+INSERT INTO AUTHORS VALUES(6180,'Nina Glebova','http://www.sql.ru/forum/memberinfo.aspx?mid=222102')
+COMMIT
+INSERT INTO AUTHORS VALUES(6181,'berlinIT','http://www.sql.ru/forum/memberinfo.aspx?mid=229151')
+COMMIT
+INSERT INTO OFFERS VALUES(3702,'Senjor +Junior Java developer. Berlin.38-55000euro','http://www.sql.ru/forum/1199876/senjor-junior-java-developer-berlin-38-55000euro','2016-02-13 19:57:00.000000',6181)
+COMMIT
+INSERT INTO AUTHORS VALUES(6182,'Wolf Larsen','http://www.sql.ru/forum/memberinfo.aspx?mid=10484')
+COMMIT
+INSERT INTO AUTHORS VALUES(6183,'yoursoftwares','http://www.sql.ru/forum/memberinfo.aspx?mid=228932')
+COMMIT
+INSERT INTO OFFERS VALUES(3703,'\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u0437\u0430\u0440\u0430\u0431\u043e\u0442\u043e\u043a - Java','http://www.sql.ru/forum/1198454/dopolnitelnyy-zarabotok-java','2016-02-10 15:16:00.000000',6183)
+COMMIT
+INSERT INTO AUTHORS VALUES(6184,'Zhanna Makarova','http://www.sql.ru/forum/memberinfo.aspx?mid=223680')
+COMMIT
+INSERT INTO OFFERS VALUES(3704,'\u0418\u0449\u0443 Java \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u043e\u0432 \u0432 \u041c\u043e\u0441\u043a\u0432\u0435 \u0438 \u041d\u043e\u0432\u043e\u0441\u0438\u0431\u0438\u0440\u0441\u043a\u0435','http://www.sql.ru/forum/1199535/ishhu-java-razrabotchikov-v-moskve-i-novosibirske','2016-02-09 18:27:00.000000',6184)
+COMMIT
+INSERT INTO AUTHORS VALUES(6185,'Recrut911','http://www.sql.ru/forum/memberinfo.aspx?mid=152571')
+COMMIT
+INSERT INTO OFFERS VALUES(3705,'\u041a\u0410. \u041f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442 Java EE (6/7), \u0433.\u041c\u043e\u0441\u043a\u0432\u0430','http://www.sql.ru/forum/1194808/ka-programmist-java-ee-6-7-g-moskva','2016-02-09 17:41:00.000000',6185)
+COMMIT
+INSERT INTO AUTHORS VALUES(6186,'HR_SBERBANK','http://www.sql.ru/forum/memberinfo.aspx?mid=227930')
+COMMIT
+INSERT INTO AUTHORS VALUES(6187,'sab_cv','http://www.sql.ru/forum/memberinfo.aspx?mid=225644')
+COMMIT
+INSERT INTO OFFERS VALUES(3706,'(\u041a\u0410) Java \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a. \u0420\u0430\u0431\u043e\u0442\u0430 \u0432 \u043e\u0444\u0438\u0441\u0435. \u041c\u043e\u0441\u043a\u0432\u0430.','http://www.sql.ru/forum/1188240/ka-java-razrabotchik-rabota-v-ofise-moskva','2016-02-04 10:00:00.000000',6187)
+COMMIT
+INSERT INTO AUTHORS VALUES(6188,'integration','http://www.sql.ru/forum/memberinfo.aspx?mid=228810')
+COMMIT
+INSERT INTO OFFERS VALUES(3707,'\u0422\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044f \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a (\u0438\u043d\u0442\u0435\u0433\u0440\u0430\u0446\u0438\u044f, java, IBM)','http://www.sql.ru/forum/1197809/trebuetsya-razrabotchik-integraciya-java-ibm','2016-02-04 09:50:00.000000',6188)
+COMMIT
+INSERT INTO AUTHORS VALUES(6189,'SvetlanaSin','http://www.sql.ru/forum/memberinfo.aspx?mid=189328')
+COMMIT
+INSERT INTO AUTHORS VALUES(6190,'Checkit','http://www.sql.ru/forum/memberinfo.aspx?mid=145274')
+COMMIT
+INSERT INTO AUTHORS VALUES(6191,'rus_sun','http://www.sql.ru/forum/memberinfo.aspx?mid=167532')
+COMMIT
+INSERT INTO AUTHORS VALUES(6192,'rus_sun','http://www.sql.ru/forum/memberinfo.aspx?mid=167532')
+COMMIT
+INSERT INTO AUTHORS VALUES(6193,'Nesterova Daria','http://www.sql.ru/forum/memberinfo.aspx?mid=221454')
+COMMIT
+INSERT INTO OFFERS VALUES(3708,'\u041f\u0440\u0435\u043f\u043e\u0434\u0430\u0432\u0430\u0442\u0435\u043b\u044c \u043a\u0443\u0440\u0441\u043e\u0432 \u043f\u043e \u0442\u0435\u043c\u0430\u0442\u0438\u043a\u0435 Java Standard Edition, Java Enterprise Edition','http://www.sql.ru/forum/1197861/prepodavatel-kursov-po-tematike-java-standard-edition-java-enterprise-edition','2016-02-02 14:41:00.000000',6193)
+COMMIT
+INSERT INTO AUTHORS VALUES(6194,'Nina Glebova','http://www.sql.ru/forum/memberinfo.aspx?mid=222102')
+COMMIT
+INSERT INTO AUTHORS VALUES(6195,'\u042e\u0421\u0425','http://www.sql.ru/forum/memberinfo.aspx?mid=227050')
+COMMIT
+INSERT INTO AUTHORS VALUES(6196,'Infusion','http://www.sql.ru/forum/memberinfo.aspx?mid=228822')
+COMMIT
+INSERT INTO OFFERS VALUES(3709,'\u0412\u0430\u043a\u0430\u043d\u0441\u0438\u044f Java developer \u0412\u0440\u043e\u0446\u043b\u0430\u0432 (Infusion)','http://www.sql.ru/forum/1197878/vakansiya-java-developer-vroclav-infusion','2016-01-29 11:23:00.000000',6196)
+COMMIT
+INSERT INTO AUTHORS VALUES(6197,'\u042e\u0421\u0425','http://www.sql.ru/forum/memberinfo.aspx?mid=227050')
+COMMIT
+INSERT INTO AUTHORS VALUES(6198,'renata_INP','http://www.sql.ru/forum/memberinfo.aspx?mid=225192')
+COMMIT
+INSERT INTO AUTHORS VALUES(6199,'6201','http://www.sql.ru/forum/memberinfo.aspx?mid=228680')
+COMMIT
+INSERT INTO OFFERS VALUES(3710,'\u0418\u0449\u0435\u043c \u0441\u043f\u0435\u0446\u0438\u0430\u043b\u0438\u0441\u0442\u0430 \u043f\u043e Java','http://www.sql.ru/forum/1196920/ishhem-specialista-po-java','2016-01-25 10:55:00.000000',6199)
+COMMIT
+INSERT INTO AUTHORS VALUES(6200,'\u042e\u0421\u0425','http://www.sql.ru/forum/memberinfo.aspx?mid=227050')
+COMMIT
+INSERT INTO AUTHORS VALUES(6201,'ksenia001','http://www.sql.ru/forum/memberinfo.aspx?mid=226286')
+COMMIT
+INSERT INTO OFFERS VALUES(3711,'(KA) \u041f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442 Java, \u041c\u043e\u0441\u043a\u0432\u0430, 110-140 \u0442\u044b\u0441. \u0440\u0443\u0431','http://www.sql.ru/forum/1196306/ka-programmist-java-moskva-110-140-tys-rub','2016-01-21 14:04:00.000000',6201)
+COMMIT
+INSERT INTO AUTHORS VALUES(6202,'HR_SBERBANK','http://www.sql.ru/forum/memberinfo.aspx?mid=227930')
+COMMIT
+INSERT INTO AUTHORS VALUES(6203,'zelentsov-HR IT','http://www.sql.ru/forum/memberinfo.aspx?mid=211084')
+COMMIT
+INSERT INTO OFFERS VALUES(3712,'(\u041a\u0410) JAVA \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442, \u042f\u0440\u043e\u0441\u043b\u0430\u0432\u043b\u044c. \u043e\u0442 60 000.','http://www.sql.ru/forum/1091940/ka-java-programmist-yaroslavl-ot-60-000','2016-01-17 14:06:00.000000',6203)
+COMMIT
+INSERT INTO AUTHORS VALUES(6204,'Kharakoz','http://www.sql.ru/forum/memberinfo.aspx?mid=225740')
+COMMIT
+INSERT INTO OFFERS VALUES(3713,'Java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a (\u0423\u0444\u0430)','http://www.sql.ru/forum/1194943/java-razrabotchik-ufa','2016-01-14 19:13:00.000000',6204)
+COMMIT
+INSERT INTO AUTHORS VALUES(6205,'renata_INP','http://www.sql.ru/forum/memberinfo.aspx?mid=225192')
+COMMIT
+INSERT INTO AUTHORS VALUES(6206,'renata_INP','http://www.sql.ru/forum/memberinfo.aspx?mid=225192')
+COMMIT
+INSERT INTO AUTHORS VALUES(6207,'Styusha08','http://www.sql.ru/forum/memberinfo.aspx?mid=228386')
+COMMIT
+INSERT INTO AUTHORS VALUES(6208,'Nina Glebova','http://www.sql.ru/forum/memberinfo.aspx?mid=222102')
+COMMIT
+INSERT INTO AUTHORS VALUES(6209,'\u042e\u0421\u0425','http://www.sql.ru/forum/memberinfo.aspx?mid=227050')
+COMMIT
+INSERT INTO AUTHORS VALUES(6210,'rus_sun','http://www.sql.ru/forum/memberinfo.aspx?mid=167532')
+COMMIT
+INSERT INTO AUTHORS VALUES(6211,'Aleksandrina','http://www.sql.ru/forum/memberinfo.aspx?mid=184602')
+COMMIT
+INSERT INTO OFFERS VALUES(3714,'(\u041a\u0410) Senior Scala/Java Developer \u0433. \u041c\u043e\u0441\u043a\u0432\u0430','http://www.sql.ru/forum/1190723/ka-senior-scala-java-developer-g-moskva','2015-12-15 16:29:00.000000',6211)
+COMMIT
+INSERT INTO AUTHORS VALUES(6212,'Aleksandrina','http://www.sql.ru/forum/memberinfo.aspx?mid=184602')
+COMMIT
+INSERT INTO AUTHORS VALUES(6213,'Aleksandrina','http://www.sql.ru/forum/memberinfo.aspx?mid=184602')
+COMMIT
+INSERT INTO AUTHORS VALUES(6214,'rus_sun','http://www.sql.ru/forum/memberinfo.aspx?mid=167532')
+COMMIT
+INSERT INTO AUTHORS VALUES(6215,'Alexander Gavrilenko','http://www.sql.ru/forum/memberinfo.aspx?mid=227059')
+COMMIT
+INSERT INTO OFFERS VALUES(3715,'Middle Java developer (\u041c\u043e\u0441\u043a\u0432\u0430, 120 \u0442. \u0440. net)','http://www.sql.ru/forum/1186144/middle-java-developer-moskva-120-t-r-net','2015-12-11 11:19:00.000000',6215)
+COMMIT
+INSERT INTO AUTHORS VALUES(6216,'DokNat','http://www.sql.ru/forum/memberinfo.aspx?mid=213400')
+COMMIT
+INSERT INTO AUTHORS VALUES(6217,'SvechnikovaEA','http://www.sql.ru/forum/memberinfo.aspx?mid=214683')
+COMMIT
+INSERT INTO OFFERS VALUES(3716,'(Bell Integrator) Java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0438 - \u041f\u0435\u043d\u0437\u0430, \u0421\u0430\u0440\u0430\u0442\u043e\u0432','http://www.sql.ru/forum/1189852/bell-integrator-java-razrabotchiki-penza-saratov','2015-12-10 18:21:00.000000',6217)
+COMMIT
+INSERT INTO AUTHORS VALUES(6218,'Olga_M777','http://www.sql.ru/forum/memberinfo.aspx?mid=227406')
+COMMIT
+INSERT INTO OFFERS VALUES(3717,'\u0422\u0440\u0435\u0431\u0443\u044e\u0442\u0441\u044f \u0432\u0435\u0434\u0443\u0449\u0438\u0435 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0438 Java, C++, C#.NET \u043d\u0430 \u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043a\u0443','http://www.sql.ru/forum/1189829/trebuutsya-vedushhie-razrabotchiki-java-c-c-net-na-postoyanku','2015-12-10 16:56:00.000000',6218)
+COMMIT
+INSERT INTO AUTHORS VALUES(6219,'milaoksana','http://www.sql.ru/forum/memberinfo.aspx?mid=143868')
+COMMIT
+INSERT INTO AUTHORS VALUES(6220,'RinaSpice','http://www.sql.ru/forum/memberinfo.aspx?mid=188362')
+COMMIT
+INSERT INTO AUTHORS VALUES(6221,'voyakin','http://www.sql.ru/forum/memberinfo.aspx?mid=164423')
+COMMIT
+INSERT INTO OFFERS VALUES(3718,'Devops, Senior Java Developer, QA Automation (\u0440\u0435\u043b\u043e\u043a\u0430\u0446\u0438\u044f \u0432 \u0433\u0435\u0440\u043c\u0430\u043d\u0438\u044e)','http://www.sql.ru/forum/1189366/devops-senior-java-developer-qa-automation-relokaciya-v-germaniu','2015-12-08 19:27:00.000000',6221)
+COMMIT
+INSERT INTO AUTHORS VALUES(6222,'\u0415\u043b\u0435\u043d\u0430 N','http://www.sql.ru/forum/memberinfo.aspx?mid=223462')
+COMMIT
+INSERT INTO AUTHORS VALUES(6223,'dOBerMANa','http://www.sql.ru/forum/memberinfo.aspx?mid=212634')
+COMMIT
+INSERT INTO OFFERS VALUES(3719,'Java EMC Documentum Dev [\u0423\u0434\u0430\u043b\u0435\u043d\u043d\u043e/\u041a\u0430\u0437\u0430\u043d\u044c/\u041c\u043e\u0441\u043a\u0432\u0430] 70-100 000+ \u0440\u0443\u0431.','http://www.sql.ru/forum/1184421/java-emc-documentum-dev-udalenno-kazan-moskva-70-100-000-rub','2015-12-03 03:02:00.000000',6223)
+COMMIT
+INSERT INTO AUTHORS VALUES(6224,'RinaSpice','http://www.sql.ru/forum/memberinfo.aspx?mid=188362')
+COMMIT
+INSERT INTO AUTHORS VALUES(6225,'\u0415\u043b\u0435\u043d\u0430 N','http://www.sql.ru/forum/memberinfo.aspx?mid=223462')
+COMMIT
+INSERT INTO AUTHORS VALUES(6226,'multicarta spb','http://www.sql.ru/forum/memberinfo.aspx?mid=227056')
+COMMIT
+INSERT INTO OFFERS VALUES(3720,'\u0442\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044f Java \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a, \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a Web','http://www.sql.ru/forum/1186126/trebuetsya-java-razrabotchik-razrabotchik-web','2015-11-20 09:28:00.000000',6226)
+COMMIT
+INSERT INTO AUTHORS VALUES(6227,'kate_unity','http://www.sql.ru/forum/memberinfo.aspx?mid=226907')
+COMMIT
+INSERT INTO OFFERS VALUES(3721,'\u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0438 Java','http://www.sql.ru/forum/1185044/rukovoditel-razrabotki-java','2015-11-19 15:38:00.000000',6227)
+COMMIT
+INSERT INTO AUTHORS VALUES(6228,'Zhanna Makarova','http://www.sql.ru/forum/memberinfo.aspx?mid=223680')
+COMMIT
+INSERT INTO AUTHORS VALUES(6229,'OksanaPr13','http://www.sql.ru/forum/memberinfo.aspx?mid=200447')
+COMMIT
+INSERT INTO OFFERS VALUES(3722,'\u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a Java (\u041c\u043e\u0441\u043a\u0432\u0430, \u0434\u043e 150 \u0442.\u0440.)','http://www.sql.ru/forum/1184356/razrabotchik-java-moskva-do-150-t-r','2015-11-16 10:25:00.000000',6229)
+COMMIT
+INSERT INTO AUTHORS VALUES(6230,'asap','http://www.sql.ru/forum/memberinfo.aspx?mid=223930')
+COMMIT
+INSERT INTO AUTHORS VALUES(6231,'Yana_Orlova','http://www.sql.ru/forum/memberinfo.aspx?mid=215401')
+COMMIT
+INSERT INTO OFFERS VALUES(3723,'Scala/Java \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a','http://www.sql.ru/forum/1185085/scala-java-razrabotchik','2015-11-15 22:51:00.000000',6231)
+COMMIT
+INSERT INTO AUTHORS VALUES(6232,'\u0415\u043b\u0435\u043d\u0430 N','http://www.sql.ru/forum/memberinfo.aspx?mid=223462')
+COMMIT
+INSERT INTO AUTHORS VALUES(6233,'Elizaveta92','http://www.sql.ru/forum/memberinfo.aspx?mid=224220')
+COMMIT
+INSERT INTO OFFERS VALUES(3724,'\u0412\u0430\u043a\u0430\u043d\u0441\u0438\u044f: Java Team Lead (\u041c\u043e\u0441\u043a\u0432\u0430)','http://www.sql.ru/forum/1166940/vakansiya-java-team-lead-moskva','2015-11-12 09:47:00.000000',6233)
+COMMIT
+INSERT INTO AUTHORS VALUES(6234,'BC Consult','http://www.sql.ru/forum/memberinfo.aspx?mid=142938')
+COMMIT
+INSERT INTO OFFERS VALUES(3725,'(\u041a\u0410) Junior Java Developer, \u0421\u041f\u0431, 35-40\u041a','http://www.sql.ru/forum/1184477/ka-junior-java-developer-spb-35-40k','2015-11-12 09:39:00.000000',6234)
+COMMIT
+INSERT INTO AUTHORS VALUES(6235,'HR_digital','http://www.sql.ru/forum/memberinfo.aspx?mid=222485')
+COMMIT
+INSERT INTO OFFERS VALUES(3726,'\u041c\u043e\u0441\u043a\u0432\u0430. JAVA \u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c \u043a\u043e\u043c\u0430\u043d\u0434\u043e\u0439 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0438 1 2 \u0432\u0441\u0435','http://www.sql.ru/forum/1155687/moskva-java-rukovoditel-komandoy-razrabotki','2015-11-11 20:31:00.000000',6235)
+COMMIT
+INSERT INTO AUTHORS VALUES(6236,'OksanaPr13','http://www.sql.ru/forum/memberinfo.aspx?mid=200447')
+COMMIT
+INSERT INTO AUTHORS VALUES(6237,'\u041f\u0430\u0432\u043b\u043e\u0432\u0430 \u0422\u0430\u0442\u044c\u044f\u043d\u0430','http://www.sql.ru/forum/memberinfo.aspx?mid=226786')
+COMMIT
+INSERT INTO OFFERS VALUES(3727,'java \u0442\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0449\u0438\u043a \u041c\u043e\u0441\u043a\u0432\u0430 (\u041a\u0410)','http://www.sql.ru/forum/1184163/java-testirovshhik-moskva-ka','2015-11-09 15:19:00.000000',6237)
+COMMIT
+INSERT INTO AUTHORS VALUES(6238,'\u0414\u043c\u0438\u0442\u0440\u0438\u0439 \u041f\u0430\u043b\u0430\u0433\u0438\u043d','http://www.sql.ru/forum/memberinfo.aspx?mid=224124')
+COMMIT
+INSERT INTO OFFERS VALUES(3728,'\u0422\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044f \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a Java','http://www.sql.ru/forum/1183766/trebuetsya-razrabotchik-java','2015-11-08 17:35:00.000000',6238)
+COMMIT
+INSERT INTO AUTHORS VALUES(6239,'dOBerMANa','http://www.sql.ru/forum/memberinfo.aspx?mid=212634')
+COMMIT
+INSERT INTO AUTHORS VALUES(6240,'sergey8530','http://www.sql.ru/forum/memberinfo.aspx?mid=192184')
+COMMIT
+INSERT INTO OFFERS VALUES(3729,'\u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a Java (\u0433.\u041f\u0435\u043d\u0437\u0430, 80\u041a)','http://www.sql.ru/forum/1176040/razrabotchik-java-g-penza-80k','2015-11-05 09:39:00.000000',6240)
+COMMIT
+INSERT INTO AUTHORS VALUES(6241,'Knanaika','http://www.sql.ru/forum/memberinfo.aspx?mid=226647')
+COMMIT
+INSERT INTO OFFERS VALUES(3730,'\u0418\u0449\u0443 Java Senior (\u041c\u043e\u0441\u043a\u0432\u0430)','http://www.sql.ru/forum/1183315/ishhu-java-senior-moskva','2015-11-04 15:16:00.000000',6241)
+COMMIT
+INSERT INTO AUTHORS VALUES(6242,'Svetlana-Solomon','http://www.sql.ru/forum/memberinfo.aspx?mid=155310')
+COMMIT
+INSERT INTO OFFERS VALUES(3731,'(\u041a\u0410) Java \u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a, \u0443\u0434\u0430\u043b\u0435\u043d\u043d\u0430\u044f \u0440\u0430\u0431\u043e\u0442\u0430','http://www.sql.ru/forum/1179813/ka-java-razrabotchik-udalennaya-rabota','2015-11-03 12:31:00.000000',6242)
+COMMIT
+INSERT INTO AUTHORS VALUES(6243,'Nesterova Daria','http://www.sql.ru/forum/memberinfo.aspx?mid=221454')
+COMMIT
+INSERT INTO AUTHORS VALUES(6244,'techhunt','http://www.sql.ru/forum/memberinfo.aspx?mid=226471')
+COMMIT
+INSERT INTO OFFERS VALUES(3732,'Senior Java developer, Dubai','http://www.sql.ru/forum/1181990/senior-java-developer-dubai','2015-10-29 11:19:00.000000',6244)
+COMMIT
+INSERT INTO AUTHORS VALUES(6245,'Nchaika','http://www.sql.ru/forum/memberinfo.aspx?mid=224893')
+COMMIT
+INSERT INTO AUTHORS VALUES(6246,'job74','http://www.sql.ru/forum/memberinfo.aspx?mid=226342')
+COMMIT
+INSERT INTO OFFERS VALUES(3733,'\u0432\u0430\u043a\u0430\u043d\u0441\u0438\u044f \u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a JAVA','http://www.sql.ru/forum/1181890/vakansiya-razrabotchik-java','2015-10-27 08:48:00.000000',6246)
+COMMIT
+INSERT INTO AUTHORS VALUES(6247,'Snowindy','http://www.sql.ru/forum/memberinfo.aspx?mid=104789')
+COMMIT
+INSERT INTO OFFERS VALUES(3734,'\u0418\u0449\u0435\u043c \u043e\u043f\u044b\u0442\u043d\u043e\u0433\u043e Java \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0430, \u0437\u0430\u0440\u043f\u043b\u0430\u0442\u0430 \u043e\u0442 80000 \u0440. (\u0443\u0434\u0430\u043b\u0435\u043d\u043d\u0430\u044f \u0440\u0430\u0431\u043e\u0442\u0430)','http://www.sql.ru/forum/1181194/ishhem-opytnogo-java-razrabotchika-zarplata-ot-80000-r-udalennaya-rabota','2015-10-26 12:04:00.000000',6247)
+COMMIT
+INSERT INTO AUTHORS VALUES(6248,'ksenia001','http://www.sql.ru/forum/memberinfo.aspx?mid=226286')
+COMMIT
+INSERT INTO AUTHORS VALUES(6249,'\u0415\u043b\u0435\u043d\u0430 \u041b\u0443\u043d\u044c\u043a\u043e\u0432\u0430','http://www.sql.ru/forum/memberinfo.aspx?mid=225826')
+COMMIT
+INSERT INTO OFFERS VALUES(3735,'(\u041a\u0410) \u0412\u0435\u0434\u0443\u0449\u0438\u0439 \u0438\u043d\u0436\u0435\u043d\u0435\u0440, \u0413\u043b\u0430\u0432\u043d\u044b\u0439 \u0438\u043d\u0436\u0435\u043d\u0435\u0440 (Java)','http://www.sql.ru/forum/1178476/ka-vedushhiy-inzhener-glavnyy-inzhener-java','2015-10-23 10:26:00.000000',6249)
+COMMIT
+INSERT INTO AUTHORS VALUES(6250,'\u0415\u043b\u0435\u043d\u0430 \u041b\u0443\u043d\u044c\u043a\u043e\u0432\u0430','http://www.sql.ru/forum/memberinfo.aspx?mid=225826')
+COMMIT
+INSERT INTO AUTHORS VALUES(6251,'krysko','http://www.sql.ru/forum/memberinfo.aspx?mid=181013')
+COMMIT
+INSERT INTO OFFERS VALUES(3736,'(\u0412\u0430\u043a\u0430\u043d\u0441\u0438\u044f) Java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a','http://www.sql.ru/forum/1180331/vakansiya-java-razrabotchik','2015-10-22 16:51:00.000000',6251)
+COMMIT
+INSERT INTO AUTHORS VALUES(6252,'job74','http://www.sql.ru/forum/memberinfo.aspx?mid=226342')
+COMMIT
+INSERT INTO AUTHORS VALUES(6253,'Xsenia','http://www.sql.ru/forum/memberinfo.aspx?mid=226289')
+COMMIT
+INSERT INTO OFFERS VALUES(3737,'\u0412\u0430\u043a\u0430\u043d\u0441\u0438\u044f \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a Java','http://www.sql.ru/forum/1180826/vakansiya-razrabotchik-java','2015-10-21 17:45:00.000000',6253)
+COMMIT
+INSERT INTO AUTHORS VALUES(6254,'milaoksana','http://www.sql.ru/forum/memberinfo.aspx?mid=143868')
+COMMIT
+INSERT INTO AUTHORS VALUES(6255,'Ant0n','http://www.sql.ru/forum/memberinfo.aspx?mid=226285')
+COMMIT
+INSERT INTO OFFERS VALUES(3738,'Java Team-Lead, \u0421\u0430\u0440\u0430\u0442\u043e\u0432','http://www.sql.ru/forum/1180802/java-team-lead-saratov','2015-10-20 15:08:00.000000',6255)
+COMMIT
+INSERT INTO AUTHORS VALUES(6256,'Igol76','http://www.sql.ru/forum/memberinfo.aspx?mid=226247')
+COMMIT
+INSERT INTO OFFERS VALUES(3739,'\u0421\u041f\u0431. \u041f\u0440\u0438\u0433\u043b\u0430\u0448\u0430\u0435\u043c \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442\u043e\u0432 Java, C++. \u041e\u0442 150.000 \u0440\u0443\u0431. + \u0441\u043e\u0446. \u043f\u0430\u043a\u0435\u0442','http://www.sql.ru/forum/1180514/spb-priglashaem-programmistov-java-c-ot-150-000-rub-soc-paket','2015-10-19 01:49:00.000000',6256)
+COMMIT
+INSERT INTO AUTHORS VALUES(6257,'dics','http://www.sql.ru/forum/memberinfo.aspx?mid=226186')
+COMMIT
+INSERT INTO OFFERS VALUES(3740,'\u0420\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0430 Java \u0434\u043b\u044f Oracle Primavera P6 \u0432 \u0421\u041f\u0431, \u043e\u0442 100 000 \u0440\u0443\u0431','http://www.sql.ru/forum/1180245/razrabotchika-java-dlya-oracle-primavera-p6-v-spb-ot-100-000-rub','2015-10-16 11:26:00.000000',6257)
+COMMIT
+INSERT INTO AUTHORS VALUES(6258,'Nina4Richter','http://www.sql.ru/forum/memberinfo.aspx?mid=226150')
+COMMIT
+INSERT INTO OFFERS VALUES(3741,'Java Developer (15 vacancies) / Relocation to Amsterdam','http://www.sql.ru/forum/1179987/java-developer-15-vacancies-relocation-to-amsterdam','2015-10-15 17:49:00.000000',6258)
+COMMIT
+INSERT INTO AUTHORS VALUES(6259,'Exigenservices','http://www.sql.ru/forum/memberinfo.aspx?mid=111774')
+COMMIT
+INSERT INTO AUTHORS VALUES(6260,'\u0420\u0443\u0441\u0430\u043d\u043e\u0432\u0430 \u0410\u043b\u0435\u043a\u0441\u0430\u043d\u0434\u0440\u0430 \u0421\u0435\u0440\u0433\u0435\u0435\u0432\u043d\u0430','http://www.sql.ru/forum/memberinfo.aspx?mid=104653')
+COMMIT
+INSERT INTO AUTHORS VALUES(6261,'Polina_Di','http://www.sql.ru/forum/memberinfo.aspx?mid=225741')
+COMMIT
+INSERT INTO OFFERS VALUES(3742,'\u0418\u0449\u0435\u043c Java-\u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442\u0430!!! \u0421\u0420\u041e\u0427\u041d\u041e!!','http://www.sql.ru/forum/1177485/ishhem-java-programmista-srochno','2015-09-30 17:06:00.000000',6261)
+COMMIT
+INSERT INTO AUTHORS VALUES(6262,'Kristina_Z','http://www.sql.ru/forum/memberinfo.aspx?mid=225609')
+COMMIT
+INSERT INTO OFFERS VALUES(3743,'(\u041a\u0410) Java developer (Middle, Senior), \u0421\u041f\u0411, 150\u041a-280\u041a','http://www.sql.ru/forum/1177055/ka-java-developer-middle-senior-spb-150k-280k','2015-09-29 17:07:00.000000',6262)
+COMMIT
+INSERT INTO AUTHORS VALUES(6263,'alina ganchurina','http://www.sql.ru/forum/memberinfo.aspx?mid=194725')
+COMMIT
+INSERT INTO OFFERS VALUES(3744,'\u0418\u0449\u0443 Java Developer, \u0421\u041f\u0431, \u0444\u0443\u043b \u0442\u0430\u0439\u043c.','http://www.sql.ru/forum/1147397/ishhu-java-developer-spb-ful-taym','2015-09-29 12:59:00.000000',6263)
+COMMIT
+INSERT INTO AUTHORS VALUES(6264,'Nchaika','http://www.sql.ru/forum/memberinfo.aspx?mid=224893')
+COMMIT
+INSERT INTO AUTHORS VALUES(6265,'sergey8530','http://www.sql.ru/forum/memberinfo.aspx?mid=192184')
+COMMIT
+INSERT INTO AUTHORS VALUES(6266,'\u042e\u043b\u0438\u044f_IBS','http://www.sql.ru/forum/memberinfo.aspx?mid=225164')
+COMMIT
+INSERT INTO AUTHORS VALUES(6267,'miss_in_red','http://www.sql.ru/forum/memberinfo.aspx?mid=225581')
+COMMIT
+INSERT INTO OFFERS VALUES(3745,'Sr.Java + Sr.Frontend \u043d\u0430 \u0440\u0435\u043b\u043e\u043a\u0435\u0439\u0442 \u0432 \u041c\u044e\u043d\u0445\u0435\u043d','http://www.sql.ru/forum/1176374/sr-java-sr-frontend-na-relokeyt-v-munhen','2015-09-25 14:59:00.000000',6267)
+COMMIT
+INSERT INTO AUTHORS VALUES(6268,'Gene Sigalov','http://www.sql.ru/forum/memberinfo.aspx?mid=224894')
+COMMIT
+INSERT INTO OFFERS VALUES(3746,'\u0421\u0442\u0430\u0440\u0448\u0438\u0438&#774; Java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a (\u0443\u0434\u0430\u043b\u0435\u043d\u043d\u043e) \u043e\u0442 3000 USD','http://www.sql.ru/forum/1176976/starshii-774-java-razrabotchik-udalenno-ot-3000-usd','2015-09-24 20:56:00.000000',6268)
+COMMIT
+INSERT INTO AUTHORS VALUES(6269,'open service','http://www.sql.ru/forum/memberinfo.aspx?mid=225625')
+COMMIT
+INSERT INTO OFFERS VALUES(3747,'\u0412\u0430\u043a\u0430\u043d\u0441\u0438\u044f Senior Java Engineer','http://www.sql.ru/forum/1176710/vakansiya-senior-java-engineer','2015-09-23 12:02:00.000000',6269)
+COMMIT
+INSERT INTO AUTHORS VALUES(6270,'Zhanna Makarova','http://www.sql.ru/forum/memberinfo.aspx?mid=223680')
+COMMIT
+INSERT INTO AUTHORS VALUES(6271,'SmartTec','http://www.sql.ru/forum/memberinfo.aspx?mid=225583')
+COMMIT
+INSERT INTO OFFERS VALUES(3748,'\u0412\u0430\u043a\u0430\u043d\u0441\u0438\u044f: \u041f\u0440\u0435\u043f\u043e\u0434\u0430\u0432\u0430\u0442\u0435\u043b\u044c Java','http://www.sql.ru/forum/1176390/vakansiya-prepodavatel-java','2015-09-21 17:24:00.000000',6271)
+COMMIT
+INSERT INTO AUTHORS VALUES(6272,'MTF','http://www.sql.ru/forum/memberinfo.aspx?mid=221750')
+COMMIT
+INSERT INTO OFFERS VALUES(3749,'Java-\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a','http://www.sql.ru/forum/1176007/java-razrabotchik','2015-09-18 16:58:00.000000',6272)
+COMMIT
+INSERT INTO AUTHORS VALUES(6273,'\u0415\u043b\u0435\u043d\u0430 N','http://www.sql.ru/forum/memberinfo.aspx?mid=223462')
+COMMIT
+INSERT INTO AUTHORS VALUES(6274,'eias','http://www.sql.ru/forum/memberinfo.aspx?mid=177287')
+COMMIT
+INSERT INTO OFFERS VALUES(3750,'\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a Java EE','http://www.sql.ru/forum/1175093/razrabotchik-java-ee','2015-09-12 19:57:00.000000',6274)
+COMMIT
+INSERT INTO AUTHORS VALUES(6275,'bahtinakv','http://www.sql.ru/forum/memberinfo.aspx?mid=224683')
+COMMIT
+INSERT INTO OFFERS VALUES(3751,'\u0422\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044f \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a Java, \u041c\u043e\u0441\u043a\u0432\u0430, 80-130 \u0442.\u0440.','http://www.sql.ru/forum/1174884/trebuetsya-razrabotchik-java-moskva-80-130-t-r','2015-09-11 09:57:00.000000',6275)
+COMMIT
+INSERT INTO AUTHORS VALUES(6276,'test','test')
+COMMIT
+INSERT INTO OFFERS VALUES(3752,'test','test','1970-01-01 03:00:00.000000',6276)
+COMMIT
+INSERT INTO AUTHORS VALUES(6277,'test','test')
+COMMIT
+INSERT INTO AUTHORS VALUES(6278,'test','test')
+COMMIT
+INSERT INTO AUTHORS VALUES(6279,'test','test')
+COMMIT
+DELETE FROM PROPERTIES WHERE ID=22
+COMMIT
+DELETE FROM OFFERS WHERE ID=3588
+DELETE FROM OFFERS WHERE ID=3589
+DELETE FROM OFFERS WHERE ID=3590
+DELETE FROM OFFERS WHERE ID=3591
+DELETE FROM OFFERS WHERE ID=3592
+DELETE FROM OFFERS WHERE ID=3593
+DELETE FROM OFFERS WHERE ID=3594
+DELETE FROM OFFERS WHERE ID=3595
+DELETE FROM OFFERS WHERE ID=3596
+DELETE FROM OFFERS WHERE ID=3597
+DELETE FROM OFFERS WHERE ID=3598
+DELETE FROM OFFERS WHERE ID=3599
+DELETE FROM OFFERS WHERE ID=3600
+DELETE FROM OFFERS WHERE ID=3601
+DELETE FROM OFFERS WHERE ID=3602
+DELETE FROM OFFERS WHERE ID=3603
+DELETE FROM OFFERS WHERE ID=3604
+DELETE FROM OFFERS WHERE ID=3605
+DELETE FROM OFFERS WHERE ID=3606
+DELETE FROM OFFERS WHERE ID=3607
+DELETE FROM OFFERS WHERE ID=3608
+DELETE FROM OFFERS WHERE ID=3609
+DELETE FROM OFFERS WHERE ID=3610
+DELETE FROM OFFERS WHERE ID=3611
+DELETE FROM OFFERS WHERE ID=3612
+DELETE FROM OFFERS WHERE ID=3613
+DELETE FROM OFFERS WHERE ID=3614
+DELETE FROM OFFERS WHERE ID=3615
+DELETE FROM OFFERS WHERE ID=3616
+DELETE FROM OFFERS WHERE ID=3617
+DELETE FROM OFFERS WHERE ID=3618
+DELETE FROM OFFERS WHERE ID=3619
+DELETE FROM OFFERS WHERE ID=3620
+DELETE FROM OFFERS WHERE ID=3621
+DELETE FROM OFFERS WHERE ID=3622
+DELETE FROM OFFERS WHERE ID=3623
+DELETE FROM OFFERS WHERE ID=3624
+DELETE FROM OFFERS WHERE ID=3625
+DELETE FROM OFFERS WHERE ID=3626
+DELETE FROM OFFERS WHERE ID=3627
+DELETE FROM OFFERS WHERE ID=3628
+DELETE FROM OFFERS WHERE ID=3629
+DELETE FROM OFFERS WHERE ID=3630
+DELETE FROM OFFERS WHERE ID=3631
+DELETE FROM OFFERS WHERE ID=3632
+DELETE FROM OFFERS WHERE ID=3633
+DELETE FROM OFFERS WHERE ID=3634
+DELETE FROM OFFERS WHERE ID=3635
+DELETE FROM OFFERS WHERE ID=3636
+DELETE FROM OFFERS WHERE ID=3637
+DELETE FROM OFFERS WHERE ID=3638
+DELETE FROM OFFERS WHERE ID=3639
+DELETE FROM OFFERS WHERE ID=3640
+DELETE FROM OFFERS WHERE ID=3641
+DELETE FROM OFFERS WHERE ID=3642
+DELETE FROM OFFERS WHERE ID=3643
+DELETE FROM OFFERS WHERE ID=3644
+DELETE FROM OFFERS WHERE ID=3645
+DELETE FROM OFFERS WHERE ID=3646
+DELETE FROM OFFERS WHERE ID=3647
+DELETE FROM OFFERS WHERE ID=3648
+DELETE FROM OFFERS WHERE ID=3649
+DELETE FROM OFFERS WHERE ID=3650
+DELETE FROM OFFERS WHERE ID=3651
+DELETE FROM OFFERS WHERE ID=3652
+DELETE FROM OFFERS WHERE ID=3653
+DELETE FROM OFFERS WHERE ID=3654
+DELETE FROM OFFERS WHERE ID=3655
+DELETE FROM OFFERS WHERE ID=3656
+DELETE FROM OFFERS WHERE ID=3657
+DELETE FROM OFFERS WHERE ID=3658
+DELETE FROM OFFERS WHERE ID=3659
+DELETE FROM OFFERS WHERE ID=3660
+DELETE FROM OFFERS WHERE ID=3661
+DELETE FROM OFFERS WHERE ID=3662
+DELETE FROM OFFERS WHERE ID=3663
+DELETE FROM OFFERS WHERE ID=3664
+DELETE FROM OFFERS WHERE ID=3665
+DELETE FROM OFFERS WHERE ID=3666
+DELETE FROM OFFERS WHERE ID=3667
+DELETE FROM OFFERS WHERE ID=3668
+DELETE FROM OFFERS WHERE ID=3669
+DELETE FROM OFFERS WHERE ID=3670
+DELETE FROM OFFERS WHERE ID=3671
+DELETE FROM OFFERS WHERE ID=3672
+DELETE FROM OFFERS WHERE ID=3673
+DELETE FROM OFFERS WHERE ID=3674
+DELETE FROM OFFERS WHERE ID=3675
+DELETE FROM OFFERS WHERE ID=3676
+DELETE FROM OFFERS WHERE ID=3677
+DELETE FROM OFFERS WHERE ID=3678
+DELETE FROM OFFERS WHERE ID=3679
+DELETE FROM OFFERS WHERE ID=3680
+DELETE FROM OFFERS WHERE ID=3681
+DELETE FROM OFFERS WHERE ID=3682
+DELETE FROM OFFERS WHERE ID=3683
+DELETE FROM OFFERS WHERE ID=3684
+DELETE FROM OFFERS WHERE ID=3685
+DELETE FROM OFFERS WHERE ID=3686
+DELETE FROM OFFERS WHERE ID=3687
+DELETE FROM OFFERS WHERE ID=3688
+DELETE FROM OFFERS WHERE ID=3689
+DELETE FROM OFFERS WHERE ID=3690
+DELETE FROM OFFERS WHERE ID=3691
+DELETE FROM OFFERS WHERE ID=3692
+DELETE FROM OFFERS WHERE ID=3693
+DELETE FROM OFFERS WHERE ID=3694
+DELETE FROM OFFERS WHERE ID=3695
+DELETE FROM OFFERS WHERE ID=3696
+DELETE FROM OFFERS WHERE ID=3697
+DELETE FROM OFFERS WHERE ID=3698
+DELETE FROM OFFERS WHERE ID=3699
+DELETE FROM OFFERS WHERE ID=3700
+DELETE FROM OFFERS WHERE ID=3701
+DELETE FROM OFFERS WHERE ID=3702
+DELETE FROM OFFERS WHERE ID=3703
+DELETE FROM OFFERS WHERE ID=3704
+DELETE FROM OFFERS WHERE ID=3705
+DELETE FROM OFFERS WHERE ID=3706
+DELETE FROM OFFERS WHERE ID=3707
+DELETE FROM OFFERS WHERE ID=3708
+DELETE FROM OFFERS WHERE ID=3709
+DELETE FROM OFFERS WHERE ID=3710
+DELETE FROM OFFERS WHERE ID=3711
+DELETE FROM OFFERS WHERE ID=3712
+DELETE FROM OFFERS WHERE ID=3713
+DELETE FROM OFFERS WHERE ID=3714
+DELETE FROM OFFERS WHERE ID=3715
+DELETE FROM OFFERS WHERE ID=3716
+DELETE FROM OFFERS WHERE ID=3717
+DELETE FROM OFFERS WHERE ID=3718
+DELETE FROM OFFERS WHERE ID=3719
+DELETE FROM OFFERS WHERE ID=3720
+DELETE FROM OFFERS WHERE ID=3721
+DELETE FROM OFFERS WHERE ID=3722
+DELETE FROM OFFERS WHERE ID=3723
+DELETE FROM OFFERS WHERE ID=3724
+DELETE FROM OFFERS WHERE ID=3725
+DELETE FROM OFFERS WHERE ID=3726
+DELETE FROM OFFERS WHERE ID=3727
+DELETE FROM OFFERS WHERE ID=3728
+DELETE FROM OFFERS WHERE ID=3729
+DELETE FROM OFFERS WHERE ID=3730
+DELETE FROM OFFERS WHERE ID=3731
+DELETE FROM OFFERS WHERE ID=3732
+DELETE FROM OFFERS WHERE ID=3733
+DELETE FROM OFFERS WHERE ID=3734
+DELETE FROM OFFERS WHERE ID=3735
+DELETE FROM OFFERS WHERE ID=3736
+DELETE FROM OFFERS WHERE ID=3737
+DELETE FROM OFFERS WHERE ID=3738
+DELETE FROM OFFERS WHERE ID=3739
+DELETE FROM OFFERS WHERE ID=3740
+DELETE FROM OFFERS WHERE ID=3741
+DELETE FROM OFFERS WHERE ID=3742
+DELETE FROM OFFERS WHERE ID=3743
+DELETE FROM OFFERS WHERE ID=3744
+DELETE FROM OFFERS WHERE ID=3745
+DELETE FROM OFFERS WHERE ID=3746
+DELETE FROM OFFERS WHERE ID=3747
+DELETE FROM OFFERS WHERE ID=3748
+DELETE FROM OFFERS WHERE ID=3749
+DELETE FROM OFFERS WHERE ID=3750
+DELETE FROM OFFERS WHERE ID=3751
+DELETE FROM OFFERS WHERE ID=3752
+COMMIT
+DELETE FROM AUTHORS WHERE ID=6002
+DELETE FROM AUTHORS WHERE ID=6003
+DELETE FROM AUTHORS WHERE ID=6004
+DELETE FROM AUTHORS WHERE ID=6005
+DELETE FROM AUTHORS WHERE ID=6006
+DELETE FROM AUTHORS WHERE ID=6007
+DELETE FROM AUTHORS WHERE ID=6008
+DELETE FROM AUTHORS WHERE ID=6009
+DELETE FROM AUTHORS WHERE ID=6010
+DELETE FROM AUTHORS WHERE ID=6011
+DELETE FROM AUTHORS WHERE ID=6012
+DELETE FROM AUTHORS WHERE ID=6013
+DELETE FROM AUTHORS WHERE ID=6014
+DELETE FROM AUTHORS WHERE ID=6015
+DELETE FROM AUTHORS WHERE ID=6016
+DELETE FROM AUTHORS WHERE ID=6017
+DELETE FROM AUTHORS WHERE ID=6018
+DELETE FROM AUTHORS WHERE ID=6019
+DELETE FROM AUTHORS WHERE ID=6020
+DELETE FROM AUTHORS WHERE ID=6021
+DELETE FROM AUTHORS WHERE ID=6022
+DELETE FROM AUTHORS WHERE ID=6023
+DELETE FROM AUTHORS WHERE ID=6024
+DELETE FROM AUTHORS WHERE ID=6025
+DELETE FROM AUTHORS WHERE ID=6026
+DELETE FROM AUTHORS WHERE ID=6027
+DELETE FROM AUTHORS WHERE ID=6028
+DELETE FROM AUTHORS WHERE ID=6029
+DELETE FROM AUTHORS WHERE ID=6030
+DELETE FROM AUTHORS WHERE ID=6031
+DELETE FROM AUTHORS WHERE ID=6032
+DELETE FROM AUTHORS WHERE ID=6033
+DELETE FROM AUTHORS WHERE ID=6034
+DELETE FROM AUTHORS WHERE ID=6035
+DELETE FROM AUTHORS WHERE ID=6036
+DELETE FROM AUTHORS WHERE ID=6037
+DELETE FROM AUTHORS WHERE ID=6038
+DELETE FROM AUTHORS WHERE ID=6039
+DELETE FROM AUTHORS WHERE ID=6040
+DELETE FROM AUTHORS WHERE ID=6041
+DELETE FROM AUTHORS WHERE ID=6042
+DELETE FROM AUTHORS WHERE ID=6043
+DELETE FROM AUTHORS WHERE ID=6044
+DELETE FROM AUTHORS WHERE ID=6045
+DELETE FROM AUTHORS WHERE ID=6046
+DELETE FROM AUTHORS WHERE ID=6047
+DELETE FROM AUTHORS WHERE ID=6048
+DELETE FROM AUTHORS WHERE ID=6049
+DELETE FROM AUTHORS WHERE ID=6050
+DELETE FROM AUTHORS WHERE ID=6051
+DELETE FROM AUTHORS WHERE ID=6052
+DELETE FROM AUTHORS WHERE ID=6053
+DELETE FROM AUTHORS WHERE ID=6054
+DELETE FROM AUTHORS WHERE ID=6055
+DELETE FROM AUTHORS WHERE ID=6056
+DELETE FROM AUTHORS WHERE ID=6057
+DELETE FROM AUTHORS WHERE ID=6058
+DELETE FROM AUTHORS WHERE ID=6059
+DELETE FROM AUTHORS WHERE ID=6060
+DELETE FROM AUTHORS WHERE ID=6061
+DELETE FROM AUTHORS WHERE ID=6062
+DELETE FROM AUTHORS WHERE ID=6063
+DELETE FROM AUTHORS WHERE ID=6064
+DELETE FROM AUTHORS WHERE ID=6065
+DELETE FROM AUTHORS WHERE ID=6066
+DELETE FROM AUTHORS WHERE ID=6067
+DELETE FROM AUTHORS WHERE ID=6068
+DELETE FROM AUTHORS WHERE ID=6069
+DELETE FROM AUTHORS WHERE ID=6070
+DELETE FROM AUTHORS WHERE ID=6071
+DELETE FROM AUTHORS WHERE ID=6072
+DELETE FROM AUTHORS WHERE ID=6073
+DELETE FROM AUTHORS WHERE ID=6074
+DELETE FROM AUTHORS WHERE ID=6075
+DELETE FROM AUTHORS WHERE ID=6076
+DELETE FROM AUTHORS WHERE ID=6077
+DELETE FROM AUTHORS WHERE ID=6078
+DELETE FROM AUTHORS WHERE ID=6079
+DELETE FROM AUTHORS WHERE ID=6080
+DELETE FROM AUTHORS WHERE ID=6081
+DELETE FROM AUTHORS WHERE ID=6082
+DELETE FROM AUTHORS WHERE ID=6083
+DELETE FROM AUTHORS WHERE ID=6084
+DELETE FROM AUTHORS WHERE ID=6085
+DELETE FROM AUTHORS WHERE ID=6086
+DELETE FROM AUTHORS WHERE ID=6087
+DELETE FROM AUTHORS WHERE ID=6088
+DELETE FROM AUTHORS WHERE ID=6089
+DELETE FROM AUTHORS WHERE ID=6090
+DELETE FROM AUTHORS WHERE ID=6091
+DELETE FROM AUTHORS WHERE ID=6092
+DELETE FROM AUTHORS WHERE ID=6093
+DELETE FROM AUTHORS WHERE ID=6094
+DELETE FROM AUTHORS WHERE ID=6095
+DELETE FROM AUTHORS WHERE ID=6096
+DELETE FROM AUTHORS WHERE ID=6097
+DELETE FROM AUTHORS WHERE ID=6098
+DELETE FROM AUTHORS WHERE ID=6099
+DELETE FROM AUTHORS WHERE ID=6100
+DELETE FROM AUTHORS WHERE ID=6101
+DELETE FROM AUTHORS WHERE ID=6102
+DELETE FROM AUTHORS WHERE ID=6103
+DELETE FROM AUTHORS WHERE ID=6104
+DELETE FROM AUTHORS WHERE ID=6105
+DELETE FROM AUTHORS WHERE ID=6106
+DELETE FROM AUTHORS WHERE ID=6107
+DELETE FROM AUTHORS WHERE ID=6108
+DELETE FROM AUTHORS WHERE ID=6109
+DELETE FROM AUTHORS WHERE ID=6110
+DELETE FROM AUTHORS WHERE ID=6111
+DELETE FROM AUTHORS WHERE ID=6112
+DELETE FROM AUTHORS WHERE ID=6113
+DELETE FROM AUTHORS WHERE ID=6114
+DELETE FROM AUTHORS WHERE ID=6115
+DELETE FROM AUTHORS WHERE ID=6116
+DELETE FROM AUTHORS WHERE ID=6117
+DELETE FROM AUTHORS WHERE ID=6118
+DELETE FROM AUTHORS WHERE ID=6119
+DELETE FROM AUTHORS WHERE ID=6120
+DELETE FROM AUTHORS WHERE ID=6121
+DELETE FROM AUTHORS WHERE ID=6122
+DELETE FROM AUTHORS WHERE ID=6123
+DELETE FROM AUTHORS WHERE ID=6124
+DELETE FROM AUTHORS WHERE ID=6125
+DELETE FROM AUTHORS WHERE ID=6126
+DELETE FROM AUTHORS WHERE ID=6127
+DELETE FROM AUTHORS WHERE ID=6128
+DELETE FROM AUTHORS WHERE ID=6129
+DELETE FROM AUTHORS WHERE ID=6130
+DELETE FROM AUTHORS WHERE ID=6131
+DELETE FROM AUTHORS WHERE ID=6132
+DELETE FROM AUTHORS WHERE ID=6133
+DELETE FROM AUTHORS WHERE ID=6134
+DELETE FROM AUTHORS WHERE ID=6135
+DELETE FROM AUTHORS WHERE ID=6136
+DELETE FROM AUTHORS WHERE ID=6137
+DELETE FROM AUTHORS WHERE ID=6138
+DELETE FROM AUTHORS WHERE ID=6139
+DELETE FROM AUTHORS WHERE ID=6140
+DELETE FROM AUTHORS WHERE ID=6141
+DELETE FROM AUTHORS WHERE ID=6142
+DELETE FROM AUTHORS WHERE ID=6143
+DELETE FROM AUTHORS WHERE ID=6144
+DELETE FROM AUTHORS WHERE ID=6145
+DELETE FROM AUTHORS WHERE ID=6146
+DELETE FROM AUTHORS WHERE ID=6147
+DELETE FROM AUTHORS WHERE ID=6148
+DELETE FROM AUTHORS WHERE ID=6149
+DELETE FROM AUTHORS WHERE ID=6150
+DELETE FROM AUTHORS WHERE ID=6151
+DELETE FROM AUTHORS WHERE ID=6152
+DELETE FROM AUTHORS WHERE ID=6153
+DELETE FROM AUTHORS WHERE ID=6154
+DELETE FROM AUTHORS WHERE ID=6155
+DELETE FROM AUTHORS WHERE ID=6156
+DELETE FROM AUTHORS WHERE ID=6157
+DELETE FROM AUTHORS WHERE ID=6158
+DELETE FROM AUTHORS WHERE ID=6159
+DELETE FROM AUTHORS WHERE ID=6160
+DELETE FROM AUTHORS WHERE ID=6161
+DELETE FROM AUTHORS WHERE ID=6162
+DELETE FROM AUTHORS WHERE ID=6163
+DELETE FROM AUTHORS WHERE ID=6164
+DELETE FROM AUTHORS WHERE ID=6165
+DELETE FROM AUTHORS WHERE ID=6166
+DELETE FROM AUTHORS WHERE ID=6167
+DELETE FROM AUTHORS WHERE ID=6168
+DELETE FROM AUTHORS WHERE ID=6169
+DELETE FROM AUTHORS WHERE ID=6170
+DELETE FROM AUTHORS WHERE ID=6171
+DELETE FROM AUTHORS WHERE ID=6172
+DELETE FROM AUTHORS WHERE ID=6173
+DELETE FROM AUTHORS WHERE ID=6174
+DELETE FROM AUTHORS WHERE ID=6175
+DELETE FROM AUTHORS WHERE ID=6176
+DELETE FROM AUTHORS WHERE ID=6177
+DELETE FROM AUTHORS WHERE ID=6178
+DELETE FROM AUTHORS WHERE ID=6179
+DELETE FROM AUTHORS WHERE ID=6180
+DELETE FROM AUTHORS WHERE ID=6181
+DELETE FROM AUTHORS WHERE ID=6182
+DELETE FROM AUTHORS WHERE ID=6183
+DELETE FROM AUTHORS WHERE ID=6184
+DELETE FROM AUTHORS WHERE ID=6185
+DELETE FROM AUTHORS WHERE ID=6186
+DELETE FROM AUTHORS WHERE ID=6187
+DELETE FROM AUTHORS WHERE ID=6188
+DELETE FROM AUTHORS WHERE ID=6189
+DELETE FROM AUTHORS WHERE ID=6190
+DELETE FROM AUTHORS WHERE ID=6191
+DELETE FROM AUTHORS WHERE ID=6192
+DELETE FROM AUTHORS WHERE ID=6193
+DELETE FROM AUTHORS WHERE ID=6194
+DELETE FROM AUTHORS WHERE ID=6195
+DELETE FROM AUTHORS WHERE ID=6196
+DELETE FROM AUTHORS WHERE ID=6197
+DELETE FROM AUTHORS WHERE ID=6198
+DELETE FROM AUTHORS WHERE ID=6199
+DELETE FROM AUTHORS WHERE ID=6200
+DELETE FROM AUTHORS WHERE ID=6201
+DELETE FROM AUTHORS WHERE ID=6202
+DELETE FROM AUTHORS WHERE ID=6203
+DELETE FROM AUTHORS WHERE ID=6204
+DELETE FROM AUTHORS WHERE ID=6205
+DELETE FROM AUTHORS WHERE ID=6206
+DELETE FROM AUTHORS WHERE ID=6207
+DELETE FROM AUTHORS WHERE ID=6208
+DELETE FROM AUTHORS WHERE ID=6209
+DELETE FROM AUTHORS WHERE ID=6210
+DELETE FROM AUTHORS WHERE ID=6211
+DELETE FROM AUTHORS WHERE ID=6212
+DELETE FROM AUTHORS WHERE ID=6213
+DELETE FROM AUTHORS WHERE ID=6214
+DELETE FROM AUTHORS WHERE ID=6215
+DELETE FROM AUTHORS WHERE ID=6216
+DELETE FROM AUTHORS WHERE ID=6217
+DELETE FROM AUTHORS WHERE ID=6218
+DELETE FROM AUTHORS WHERE ID=6219
+DELETE FROM AUTHORS WHERE ID=6220
+DELETE FROM AUTHORS WHERE ID=6221
+DELETE FROM AUTHORS WHERE ID=6222
+DELETE FROM AUTHORS WHERE ID=6223
+DELETE FROM AUTHORS WHERE ID=6224
+DELETE FROM AUTHORS WHERE ID=6225
+DELETE FROM AUTHORS WHERE ID=6226
+DELETE FROM AUTHORS WHERE ID=6227
+DELETE FROM AUTHORS WHERE ID=6228
+DELETE FROM AUTHORS WHERE ID=6229
+DELETE FROM AUTHORS WHERE ID=6230
+DELETE FROM AUTHORS WHERE ID=6231
+DELETE FROM AUTHORS WHERE ID=6232
+DELETE FROM AUTHORS WHERE ID=6233
+DELETE FROM AUTHORS WHERE ID=6234
+DELETE FROM AUTHORS WHERE ID=6235
+DELETE FROM AUTHORS WHERE ID=6236
+DELETE FROM AUTHORS WHERE ID=6237
+DELETE FROM AUTHORS WHERE ID=6238
+DELETE FROM AUTHORS WHERE ID=6239
+DELETE FROM AUTHORS WHERE ID=6240
+DELETE FROM AUTHORS WHERE ID=6241
+DELETE FROM AUTHORS WHERE ID=6242
+DELETE FROM AUTHORS WHERE ID=6243
+DELETE FROM AUTHORS WHERE ID=6244
+DELETE FROM AUTHORS WHERE ID=6245
+DELETE FROM AUTHORS WHERE ID=6246
+DELETE FROM AUTHORS WHERE ID=6247
+DELETE FROM AUTHORS WHERE ID=6248
+DELETE FROM AUTHORS WHERE ID=6249
+DELETE FROM AUTHORS WHERE ID=6250
+DELETE FROM AUTHORS WHERE ID=6251
+DELETE FROM AUTHORS WHERE ID=6252
+DELETE FROM AUTHORS WHERE ID=6253
+DELETE FROM AUTHORS WHERE ID=6254
+DELETE FROM AUTHORS WHERE ID=6255
+DELETE FROM AUTHORS WHERE ID=6256
+DELETE FROM AUTHORS WHERE ID=6257
+DELETE FROM AUTHORS WHERE ID=6258
+DELETE FROM AUTHORS WHERE ID=6259
+DELETE FROM AUTHORS WHERE ID=6260
+DELETE FROM AUTHORS WHERE ID=6261
+DELETE FROM AUTHORS WHERE ID=6262
+DELETE FROM AUTHORS WHERE ID=6263
+DELETE FROM AUTHORS WHERE ID=6264
+DELETE FROM AUTHORS WHERE ID=6265
+DELETE FROM AUTHORS WHERE ID=6266
+DELETE FROM AUTHORS WHERE ID=6267
+DELETE FROM AUTHORS WHERE ID=6268
+DELETE FROM AUTHORS WHERE ID=6269
+DELETE FROM AUTHORS WHERE ID=6270
+DELETE FROM AUTHORS WHERE ID=6271
+DELETE FROM AUTHORS WHERE ID=6272
+DELETE FROM AUTHORS WHERE ID=6273
+DELETE FROM AUTHORS WHERE ID=6274
+DELETE FROM AUTHORS WHERE ID=6275
+DELETE FROM AUTHORS WHERE ID=6276
+DELETE FROM AUTHORS WHERE ID=6277
+DELETE FROM AUTHORS WHERE ID=6278
+DELETE FROM AUTHORS WHERE ID=6279
+COMMIT
+DISCONNECT

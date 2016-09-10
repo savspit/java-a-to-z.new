@@ -53,7 +53,7 @@ public class CronScheduledTrigger {
     public void setJobProperties(JobDetail job) {
         Properties prop = new Properties();
         try (
-                FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/part01/chapter08/lesson01.08.05/JobOffers/jobOffers.cfg");
+                FileInputStream fis = new FileInputStream(this.getClass().getClassLoader().getResource("joboffers.properties").getPath());
         ) {
             prop.load(fis);
         } catch (IOException e) {
