@@ -26,14 +26,14 @@ public class JobOffersStorageTest {
     @BeforeClass
     public static void init() throws Exception
     {
+        storage = new JobOffersStorage();
         databaseTester = new JdbcDatabaseTester(DRIVER, URL, USER, PASSWORD);
         createTablesSinceDbUnitDoesNot(databaseTester.getConnection().getConnection());
-        IDataSet dataSet = new XmlDataSet(new JobOffersStorageTest().getClass().getClassLoader().getResourceAsStream("hsqldb_schema.xml"));
+        IDataSet dataSet = new XmlDataSet(storage.getClass().getClassLoader().getResourceAsStream("hsqldb_schema.xml"));
         databaseTester.setDataSet(dataSet);
         databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
         databaseTester.setTearDownOperation(DatabaseOperation.DELETE_ALL);
         databaseTester.onSetup();
-        storage = new JobOffersStorage();
         storage.setConnection(databaseTester.getConnection().getConnection());
     }
 
