@@ -11,7 +11,7 @@
     <packaging>war</packaging>
 
     <groupId>lesson01.09.01</groupId>
-    <artifactId>MyWebProject</artifactId>
+    <artifactId>EchoServletWebProject</artifactId>
 
 
 </project>
