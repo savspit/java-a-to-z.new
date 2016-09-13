@@ -13,6 +13,9 @@ import java.util.Calendar;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * The type Job offers storage test.
+ */
 public class JobOffersStorageTest {
     private static final String DRIVER = org.hsqldb.jdbcDriver.class.getName();
     private static final String URL = "jdbc:hsqldb:file:dbpath/dbname";
@@ -23,6 +26,11 @@ public class JobOffersStorageTest {
     private static IDatabaseTester databaseTester;
     private static JobOffersStorage storage;
 
+    /**
+     * Init.
+     *
+     * @throws Exception the exception
+     */
     @BeforeClass
     public static void init() throws Exception
     {
@@ -51,6 +59,11 @@ public class JobOffersStorageTest {
         st3.close();
     }
 
+    /**
+     * Clean up.
+     *
+     * @throws Exception the exception
+     */
     @AfterClass
     public static void cleanUp() throws Exception {
         storage.clearTables();
@@ -59,6 +72,11 @@ public class JobOffersStorageTest {
         databaseTester = null;
     }
 
+    /**
+     * When first run should add data by last year.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void whenFirstRunShouldAddDataByLastYear() throws Exception {
         storage.setLastRunTime();
@@ -71,6 +89,11 @@ public class JobOffersStorageTest {
         assertThat(delta, is(12));
     }
 
+    /**
+     * When add data should be do it correct.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void whenAddDataShouldBeDoItCorrect() throws Exception {
         storage.addDataInDB("test", "test", "test", "test", 0L);
@@ -79,6 +102,11 @@ public class JobOffersStorageTest {
         assertThat(count, is(1));
     }
 
+    /**
+     * When add duplicates data should ignore duplicates.
+     *
+     * @throws Exception the exception
+     */
     @Test
     public void whenAddDuplicatesDataShouldIgnoreDuplicates() throws Exception {
         for (int i=0; i<2; i++) {
@@ -89,6 +117,13 @@ public class JobOffersStorageTest {
         assertThat(count, is(1));
     }
 
+    /**
+     * Months between int.
+     *
+     * @param minDate the min date
+     * @param maxDate the max date
+     * @return the int
+     */
     public int monthsBetween(Date minDate, Date maxDate)
     {
         Calendar cal = Calendar.getInstance();
