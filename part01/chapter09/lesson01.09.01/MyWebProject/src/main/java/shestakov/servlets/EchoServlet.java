@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * The type Echo servlet.
+ */
 public class EchoServlet extends HttpServlet {
     private static final Logger Log = LoggerFactory.getLogger(EchoServlet.class);
 
