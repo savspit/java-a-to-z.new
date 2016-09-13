@@ -35,6 +35,8 @@ public class JobOffersStorageTest {
         databaseTester.setTearDownOperation(DatabaseOperation.DELETE_ALL);
         databaseTester.onSetup();
         storage.setConnection(databaseTester.getConnection().getConnection());
+        storage.setOffersUrl(OFFERS_URL);
+        storage.openConnection();
     }
 
     private static void createTablesSinceDbUnitDoesNot(Connection connection) throws SQLException {
@@ -59,9 +61,6 @@ public class JobOffersStorageTest {
 
     @Test
     public void whenFirstRunShouldAddDataByLastYear() throws Exception {
-        storage.setOffersUrl(OFFERS_URL);
-        storage.openConnection();
-        Thread.sleep(2000);
         storage.setLastRunTime();
         storage.setCurrentRunTime();
         storage.getJobOffersFromOffersUrl();
@@ -74,8 +73,6 @@ public class JobOffersStorageTest {
 
     @Test
     public void whenAddDataShouldBeDoItCorrect() throws Exception {
-        storage.setOffersUrl(OFFERS_URL);
-        storage.openConnection();
         storage.addDataInDB("test", "test", "test", "test", 0L);
         Thread.sleep(1000);
         int count = storage.getCountOfFilterByOfferTextFromDB("test");
@@ -84,11 +81,9 @@ public class JobOffersStorageTest {
 
     @Test
     public void whenAddDuplicatesDataShouldIgnoreDuplicates() throws Exception {
-        storage.setOffersUrl(OFFERS_URL);
-        storage.openConnection();
-        storage.addDataInDB("test", "test", "test", "test", 0L);
-        storage.addDataInDB("test", "test", "test", "test", 0L);
-        storage.addDataInDB("test", "test", "test", "test", 0L);
+        for (int i=0; i<2; i++) {
+            storage.addDataInDB("test", "test", "test", "test", 0L);
+        }
         Thread.sleep(1000);
         int count = storage.getCountOfFilterByOfferTextFromDB("test");
         assertThat(count, is(1));
