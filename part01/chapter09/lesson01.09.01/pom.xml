@@ -13,7 +13,6 @@
     <artifactId>lesson01.09.01</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>MyWebProject</module>
         <module>EchoServletWebProject</module>
     </modules>
 
