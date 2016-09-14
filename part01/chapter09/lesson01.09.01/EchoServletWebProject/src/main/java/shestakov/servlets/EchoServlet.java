@@ -24,7 +24,7 @@ public class EchoServlet extends HttpServlet {
         resp.setContentType("text/html");
         String login = req.getParameter("login");
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
-        writer.append("hello world, " + this.users);
+        writer.append(String.format("%s, %s", "hello world", this.users));
         writer.flush();
     }
 
@@ -34,4 +34,6 @@ public class EchoServlet extends HttpServlet {
         this.users.add(req.getParameter("login"));
         doGet(req, resp);
     }
+
+
 }
