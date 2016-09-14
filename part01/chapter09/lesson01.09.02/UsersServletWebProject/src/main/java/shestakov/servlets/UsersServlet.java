@@ -24,6 +24,11 @@ public class UsersServlet extends HttpServlet {
         this.dbutils.openConnection();
     }
 
+    @Override
+    public void destroy() {
+        this.dbutils.closeConnection();
+    }
+
     // get
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
