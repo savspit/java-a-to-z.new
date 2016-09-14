@@ -6,6 +6,10 @@ public class User {
     private String email;
     private long createDate;
 
+    public User(String login) {
+        this.login = login;
+    }
+
     public User(String name, String login, String email, long createDate) {
         this.name = name;
         this.login = login;
@@ -43,5 +47,10 @@ public class User {
 
     public void setCreateDate(long createDate) {
         this.createDate = createDate;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s, %s, %s, %s", this.name, this.login, this.email, this.createDate);
     }
 }

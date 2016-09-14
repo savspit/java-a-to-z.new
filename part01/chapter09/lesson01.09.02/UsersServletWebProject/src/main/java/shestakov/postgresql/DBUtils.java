@@ -43,14 +43,22 @@ public class DBUtils {
         }
     }
 
-    public void addUser(String name, String login, String email, Timestamp createDate) {
+    public void closeConnection() {
+        try {
+            this.conn.close();
+        } catch (SQLException e) {
+            Log.error(e.getMessage(), e);
+        }
+    }
+
+    public void addUser(User user) {
         try (
                 PreparedStatement st = this.conn.prepareStatement("INSERT INTO users(name, login, email, createDate) VALUES (?, ?, ?, ?)");
         ) {
-            st.setString(1, name);
-            st.setString(2, login);
-            st.setString(3, email);
-            st.setTimestamp(4, createDate);
+            st.setString(1, user.getName());
+            st.setString(2, user.getLogin());
+            st.setString(3, user.getEmail());
+            st.setTimestamp(4, new Timestamp(user.getCreateDate()));
             st.executeUpdate();
             st.close();
         } catch (SQLException e) {
@@ -58,31 +66,32 @@ public class DBUtils {
         }
     }
 
-    public String getUserByLogin(String login) {
-        String userInfo = null;
+    public User getUserByLogin(String login) {
+        User user = null;
         try (
                 PreparedStatement st = this.conn.prepareStatement("SELECT u.name, u.login, u.email, u.createDate FROM users AS u WHERE u.login = ? ORDER BY u.id LIMIT 1");
         ) {
             st.setString(1, login);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                userInfo = String.format("%s, %s, %s, %s", rs.getString("name"), rs.getString("login"), rs.getString("email"), rs.getTimestamp("createDate").getTime());
+                user = new User(rs.getString("name"), rs.getString("login"), rs.getString("email"), rs.getTimestamp("createDate").getTime());
             }
+            rs.close();
             st.close();
         } catch (SQLException e) {
             Log.error(e.getMessage(), e);
         }
-        return userInfo;
+        return user;
     }
 
-    public void updateUserByLogin(String name, String login, String email, Timestamp createDate) {
+    public void updateUserByLogin(User user) {
         try (
                 PreparedStatement st = this.conn.prepareStatement("UPDATE users SET name=?, email=?, createDate=? WHERE login=?");
         ) {
-            st.setString(1, name);
-            st.setString(2, email);
-            st.setTimestamp(3, createDate);
-            st.setString(4, login);
+            st.setString(1, user.getName());
+            st.setString(2, user.getEmail());
+            st.setTimestamp(3, new Timestamp(user.getCreateDate()));
+            st.setString(4, user.getLogin());
             st.executeUpdate();
             st.close();
         } catch (SQLException e) {
@@ -90,11 +99,11 @@ public class DBUtils {
         }
     }
 
-    public void deleteUserByLogin(String login) {
+    public void deleteUserByLogin(User user) {
         try (
                 PreparedStatement st = this.conn.prepareStatement("DELETE FROM users WHERE login=?");
         ) {
-            st.setString(1, login);
+            st.setString(1, user.getLogin());
             st.executeUpdate();
             st.close();
         } catch (SQLException e) {
