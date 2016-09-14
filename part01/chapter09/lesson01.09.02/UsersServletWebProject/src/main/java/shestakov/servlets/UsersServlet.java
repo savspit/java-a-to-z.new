@@ -17,7 +17,8 @@ public class UsersServlet extends HttpServlet {
     private static final Logger Log = LoggerFactory.getLogger(UsersServlet.class);
     private DBUtils dbutils;
 
-    public UsersServlet() {
+    @Override
+    public void init() throws ServletException {
         this.dbutils = new DBUtils();
         this.dbutils.setProperties();
         this.dbutils.openConnection();
