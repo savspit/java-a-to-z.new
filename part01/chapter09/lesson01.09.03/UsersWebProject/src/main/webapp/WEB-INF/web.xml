@@ -1,0 +1,35 @@
+<web-app>
+    <servlet>
+        <servlet-name>CreateServlet</servlet-name>
+        <servlet-class>shestakov.servlets.CreateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetServlet</servlet-name>
+        <servlet-class>shestakov.servlets.GetServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateServlet</servlet-name>
+        <servlet-class>shestakov.servlets.UpdateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteServlet</servlet-name>
+        <servlet-class>shestakov.servlets.DeleteServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CreateServlet</servlet-name>
+        <url-pattern>/echo/create</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetServlet</servlet-name>
+        <url-pattern>/echo/get</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateServlet</servlet-name>
+        <url-pattern>/echo/update</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteServlet</servlet-name>
+        <url-pattern>/echo/delete</url-pattern>
+    </servlet-mapping>
+</web-app>

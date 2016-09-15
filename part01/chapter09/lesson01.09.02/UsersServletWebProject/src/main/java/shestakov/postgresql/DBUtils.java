@@ -4,110 +4,150 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import shestakov.models.User;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 import java.sql.*;
-import java.util.Properties;
 
+/**
+ * The type Db utils.
+ */
 public class DBUtils {
     private static final Logger Log = LoggerFactory.getLogger(DBUtils.class);
-    private Connection conn;
-    private String url;
-    private String username;
-    private String password;
+    private DataSource datasource;
 
-    public void setProperties() {
-        Properties prop = new Properties();
-        try (
-                FileInputStream fis = new FileInputStream(this.getClass().getClassLoader().getResource("usersservletwebproject.properties").getPath());
-        ) {
-            prop.load(fis);
-            this.url = prop.getProperty("url").toString();
-            this.username = prop.getProperty("username").toString();
-            this.password = prop.getProperty("password").toString();
-        } catch (IOException e) {
-            Log.error(e.getMessage(), e);
-        }
-    }
-
-    public void openConnection() {
+    /**
+     * Init.
+     *
+     * @throws Exception the exception
+     */
+    public void init() throws Exception {
         try {
-            try {
-                Class.forName("org.postgresql.Driver");
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+            InitialContext initialContext = new InitialContext();
+            if ( initialContext == null ) {
+                Log.error("There was no InitialContext in UsersServlet. Error occured.");
             }
-            this.conn = DriverManager.getConnection(this.url, this.username, this.password);
-        } catch (SQLException e) {
+            this.datasource = (DataSource) initialContext.lookup( "java:/comp/env/jdbc/postgres" );
+            if ( this.datasource == null ) {
+                Log.error("Could not find DataSource in UsersServlet. Error occured.");
+            }
+        }
+        catch (Exception e) {
             Log.error(e.getMessage(), e);
         }
     }
 
-    public void closeConnection() {
+    /**
+     * Gets connection.
+     *
+     * @return the connection
+     */
+    public synchronized Connection getConnection() {
+        Connection conn = null;
         try {
-            this.conn.close();
+            conn = this.datasource.getConnection();
+        } catch (SQLException e) {
+            Log.error(e.getMessage(), e);
+        }
+        return conn;
+    }
+
+    /**
+     * Close connection.
+     *
+     * @param conn the conn
+     */
+    public synchronized void closeConnection(Connection conn) {
+        try {
+            conn.close();
         } catch (SQLException e) {
             Log.error(e.getMessage(), e);
         }
     }
 
+    /**
+     * Add user.
+     *
+     * @param user the user
+     */
     public void addUser(User user) {
+        Connection conn = getConnection();
         try (
-                PreparedStatement st = this.conn.prepareStatement("INSERT INTO users(name, login, email, createDate) VALUES (?, ?, ?, ?)");
+                PreparedStatement st = conn.prepareStatement("INSERT INTO users(name, login, email, createDate) VALUES (?, ?, ?, ?)");
         ) {
             st.setString(1, user.getName());
             st.setString(2, user.getLogin());
             st.setString(3, user.getEmail());
             st.setTimestamp(4, new Timestamp(user.getCreateDate()));
             st.executeUpdate();
-            st.close();
         } catch (SQLException e) {
             Log.error(e.getMessage(), e);
         }
+        closeConnection(conn);
     }
 
+    /**
+     * Gets user by login.
+     *
+     * @param login the login
+     * @return the user by login
+     */
     public User getUserByLogin(String login) {
+        Connection conn = getConnection();
         User user = null;
         try (
-                PreparedStatement st = this.conn.prepareStatement("SELECT u.name, u.login, u.email, u.createDate FROM users AS u WHERE u.login = ? ORDER BY u.id LIMIT 1");
+                PreparedStatement st = conn.prepareStatement("SELECT u.name, u.login, u.email, u.createDate FROM users AS u WHERE u.login = ?");
         ) {
             st.setString(1, login);
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                user = new User(rs.getString("name"), rs.getString("login"), rs.getString("email"), rs.getTimestamp("createDate").getTime());
+            try (
+                    ResultSet rs = st.executeQuery();
+            ) {
+                if (rs.next()) {
+                    user = new User(rs.getString("name"), rs.getString("login"), rs.getString("email"), rs.getTimestamp("createDate").getTime());
+                }
             }
-            rs.close();
-            st.close();
         } catch (SQLException e) {
             Log.error(e.getMessage(), e);
         }
+        closeConnection(conn);
         return user;
     }
 
+    /**
+     * Update user by login.
+     *
+     * @param user the user
+     */
     public void updateUserByLogin(User user) {
+        Connection conn = getConnection();
         try (
-                PreparedStatement st = this.conn.prepareStatement("UPDATE users SET name=?, email=?, createDate=? WHERE login=?");
+                PreparedStatement st = conn.prepareStatement("UPDATE users SET name=?, email=?, createDate=? WHERE login=?");
         ) {
             st.setString(1, user.getName());
             st.setString(2, user.getEmail());
             st.setTimestamp(3, new Timestamp(user.getCreateDate()));
             st.setString(4, user.getLogin());
             st.executeUpdate();
-            st.close();
         } catch (SQLException e) {
             Log.error(e.getMessage(), e);
         }
+        closeConnection(conn);
     }
 
+    /**
+     * Delete user by login.
+     *
+     * @param user the user
+     */
     public void deleteUserByLogin(User user) {
+        Connection conn = getConnection();
         try (
-                PreparedStatement st = this.conn.prepareStatement("DELETE FROM users WHERE login=?");
+                PreparedStatement st = conn.prepareStatement("DELETE FROM users WHERE login=?");
         ) {
             st.setString(1, user.getLogin());
             st.executeUpdate();
-            st.close();
         } catch (SQLException e) {
             Log.error(e.getMessage(), e);
         }
+        closeConnection(conn);
     }
 }
