@@ -10,30 +10,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Timestamp;
 
 public class CreateServlet extends HttpServlet {
     private static final Logger Log = LoggerFactory.getLogger(CreateServlet.class);
-    private DBUtils dbutils;
+    private DBUtils dbUtils;
 
     @Override
-    public void init() throws ServletException {
-        this.dbutils = new DBUtils();
-        this.dbutils.setProperties();
-        this.dbutils.openConnection();
-    }
-
-    @Override
-    public void destroy() {
-        this.dbutils.closeConnection();
+    public void init() {
+        try {
+            this.dbUtils = new DBUtils();
+            this.dbUtils.init();
+        } catch (Exception e) {
+            Log.error(e.getMessage(), e);
+        }
     }
 
     // create
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        this.dbutils.addUser(new User(req.getParameter("name"), req.getParameter("login"), req.getParameter("email"), Timestamp.valueOf(req.getParameter("createDate")).getTime()));
+        User newUser = new User(req.getParameter("name"), req.getParameter("login"), req.getParameter("email"), Timestamp.valueOf(req.getParameter("createDate")).getTime());
+        this.dbUtils.addUser(newUser);
         doGet(req, resp);
     }
 }

@@ -13,20 +13,21 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
 
+/**
+ * The type Users servlet.
+ */
 public class UsersServlet extends HttpServlet {
     private static final Logger Log = LoggerFactory.getLogger(UsersServlet.class);
-    private DBUtils dbutils;
+    private DBUtils dbUtils;
 
     @Override
-    public void init() throws ServletException {
-        this.dbutils = new DBUtils();
-        this.dbutils.setProperties();
-        this.dbutils.openConnection();
-    }
-
-    @Override
-    public void destroy() {
-        this.dbutils.closeConnection();
+    public void init() {
+        try {
+            this.dbUtils = new DBUtils();
+            this.dbUtils.init();
+        } catch (Exception e) {
+            Log.error(e.getMessage(), e);
+        }
     }
 
     // get
@@ -34,7 +35,7 @@ public class UsersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
-        writer.append(this.dbutils.getUserByLogin(req.getParameter("login")).toString());
+        writer.append(this.dbUtils.getUserByLogin(req.getParameter("login")).toString());
         writer.flush();
     }
 
@@ -42,7 +43,8 @@ public class UsersServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        this.dbutils.addUser(new User(req.getParameter("name"), req.getParameter("login"), req.getParameter("email"), Timestamp.valueOf(req.getParameter("createDate")).getTime()));
+        User newUser = new User(req.getParameter("name"), req.getParameter("login"), req.getParameter("email"), Timestamp.valueOf(req.getParameter("createDate")).getTime());
+        this.dbUtils.addUser(newUser);
         doGet(req, resp);
     }
 
@@ -50,13 +52,15 @@ public class UsersServlet extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        this.dbutils.updateUserByLogin(new User(req.getParameter("name"), req.getParameter("login"), req.getParameter("email"), Timestamp.valueOf(req.getParameter("createDate")).getTime()));
+        User newUser = new User(req.getParameter("name"), req.getParameter("login"), req.getParameter("email"), Timestamp.valueOf(req.getParameter("createDate")).getTime());
+        this.dbUtils.updateUserByLogin(newUser);
     }
 
     // delete
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        this.dbutils.deleteUserByLogin(new User(req.getParameter("login")));
+        User newUser = new User(req.getParameter("login"));
+        this.dbUtils.deleteUserByLogin(newUser);
     }
 }

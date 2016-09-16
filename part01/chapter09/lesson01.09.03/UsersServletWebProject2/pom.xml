@@ -9,6 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>war</packaging>
+
+    <groupId>lesson01.09.03</groupId>
+    <artifactId>UsersServletWebProject2</artifactId>
     <build>
         <plugins>
             <plugin>
@@ -21,9 +24,6 @@
             </plugin>
         </plugins>
     </build>
-
-    <groupId>lesson01.09.03</groupId>
-    <artifactId>UsersWebProject</artifactId>
 
 
 </project>

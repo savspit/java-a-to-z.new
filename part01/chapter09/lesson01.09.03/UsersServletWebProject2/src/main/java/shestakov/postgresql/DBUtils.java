@@ -7,19 +7,13 @@ import shestakov.models.User;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-/**
- * The type Db utils.
- */
 public class DBUtils {
     private static final Logger Log = LoggerFactory.getLogger(DBUtils.class);
     private DataSource datasource;
 
-    /**
-     * Init.
-     *
-     * @throws Exception the exception
-     */
     public void init() throws Exception {
         try {
             InitialContext initialContext = new InitialContext();
@@ -36,12 +30,7 @@ public class DBUtils {
         }
     }
 
-    /**
-     * Gets connection.
-     *
-     * @return the connection
-     */
-    public Connection getConnection() {
+    public synchronized Connection getConnection() {
         Connection conn = null;
         try {
             conn = this.datasource.getConnection();
@@ -51,12 +40,7 @@ public class DBUtils {
         return conn;
     }
 
-    /**
-     * Close connection.
-     *
-     * @param conn the conn
-     */
-    public void closeConnection(Connection conn) {
+    public synchronized void closeConnection(Connection conn) {
         try {
             conn.close();
         } catch (SQLException e) {
@@ -64,11 +48,6 @@ public class DBUtils {
         }
     }
 
-    /**
-     * Add user.
-     *
-     * @param user the user
-     */
     public void addUser(User user) {
         Connection conn = getConnection();
         try (
@@ -85,12 +64,6 @@ public class DBUtils {
         closeConnection(conn);
     }
 
-    /**
-     * Gets user by login.
-     *
-     * @param login the login
-     * @return the user by login
-     */
     public User getUserByLogin(String login) {
         Connection conn = getConnection();
         User user = null;
@@ -112,11 +85,6 @@ public class DBUtils {
         return user;
     }
 
-    /**
-     * Update user by login.
-     *
-     * @param user the user
-     */
     public void updateUserByLogin(User user) {
         Connection conn = getConnection();
         try (
@@ -133,11 +101,6 @@ public class DBUtils {
         closeConnection(conn);
     }
 
-    /**
-     * Delete user by login.
-     *
-     * @param user the user
-     */
     public void deleteUserByLogin(User user) {
         Connection conn = getConnection();
         try (
@@ -149,5 +112,25 @@ public class DBUtils {
             Log.error(e.getMessage(), e);
         }
         closeConnection(conn);
+    }
+
+    public List<User> getAllUsers() {
+        Connection conn = getConnection();
+        List<User> users = new CopyOnWriteArrayList<User>();
+        try (
+                PreparedStatement st = conn.prepareStatement("SELECT u.name, u.login, u.email, u.createDate FROM users AS u");
+        ) {
+            try (
+                    ResultSet rs = st.executeQuery();
+            ) {
+                while (rs.next()) {
+                    users.add(new User(rs.getString("name"), rs.getString("login"), rs.getString("email"), rs.getTimestamp("createDate").getTime()));
+                }
+            }
+        } catch (SQLException e) {
+            Log.error(e.getMessage(), e);
+        }
+        closeConnection(conn);
+        return users;
     }
 }

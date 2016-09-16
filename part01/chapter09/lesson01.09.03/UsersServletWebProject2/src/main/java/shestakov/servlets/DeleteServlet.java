@@ -10,29 +10,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Timestamp;
 
 public class DeleteServlet extends HttpServlet {
     private static final Logger Log = LoggerFactory.getLogger(DeleteServlet.class);
-    private DBUtils dbutils;
+    private DBUtils dbUtils;
 
     @Override
-    public void init() throws ServletException {
-        this.dbutils = new DBUtils();
-        this.dbutils.setProperties();
-        this.dbutils.openConnection();
+    public void init() {
+        try {
+            this.dbUtils = new DBUtils();
+            this.dbUtils.init();
+        } catch (Exception e) {
+            Log.error(e.getMessage(), e);
+        }
     }
 
-    @Override
-    public void destroy() {
-        this.dbutils.closeConnection();
-    }
-
-    // delete
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        this.dbutils.deleteUserByLogin(new User(req.getParameter("login")));
+        User newUser = new User(req.getParameter("login"));
+        this.dbUtils.deleteUserByLogin(newUser);
     }
 }

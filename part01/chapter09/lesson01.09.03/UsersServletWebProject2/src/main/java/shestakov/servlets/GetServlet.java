@@ -11,22 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
 
 public class GetServlet extends HttpServlet {
     private static final Logger Log = LoggerFactory.getLogger(GetServlet.class);
-    private DBUtils dbutils;
+    private DBUtils dbUtils;
 
     @Override
-    public void init() throws ServletException {
-        this.dbutils = new DBUtils();
-        this.dbutils.setProperties();
-        this.dbutils.openConnection();
-    }
-
-    @Override
-    public void destroy() {
-        this.dbutils.closeConnection();
+    public void init() {
+        try {
+            this.dbUtils = new DBUtils();
+            this.dbUtils.init();
+        } catch (Exception e) {
+            Log.error(e.getMessage(), e);
+        }
     }
 
     // get
@@ -38,12 +35,14 @@ public class GetServlet extends HttpServlet {
         writer.flush();*/
 
         StringBuilder sb = new StringBuilder("<table>");
-        for (User currentUser : this.dbutils.getAllUsers()) {
+        for (User currentUser : this.dbUtils.getAllUsers()) {
             sb.append("<tr>");
             sb.append("<td>" + currentUser.getLogin() + "</td>");
             sb.append("<td>" + currentUser.getName() + "</td>");
             sb.append("<td>" + currentUser.getEmail() + "</td>");
             sb.append("<td>" + currentUser.getCreateDate() + "</td>");
+            sb.append("<td>" + "<form action='"+req.getContextPath()+"/echo' method='post'>" + "</td>");
+            sb.append("<td><p>Add new user <a href='" + req.getContextPath() + "'>here</a></p></td>");
             sb.append("</tr>");
         }
         sb.append("</table>");
