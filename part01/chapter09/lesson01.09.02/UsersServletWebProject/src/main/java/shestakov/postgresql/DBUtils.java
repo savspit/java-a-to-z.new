@@ -51,6 +51,10 @@ public class DBUtils {
         return conn;
     }
 
+    public void setDatasource(DataSource datasource) {
+        this.datasource = datasource;
+    }
+
     /**
      * Close connection.
      *

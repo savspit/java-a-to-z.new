@@ -27,9 +27,9 @@ public class UpdateServlet extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        User newUser = new User(req.getParameter("login"));
-        this.dbUtils.deleteUserByLogin(newUser);
+        User newUser = new User(req.getParameter("name"), req.getParameter("login"), req.getParameter("email"), Timestamp.valueOf(req.getParameter("createDate")).getTime());
+        this.dbUtils.updateUserByLogin(newUser);
     }
 }

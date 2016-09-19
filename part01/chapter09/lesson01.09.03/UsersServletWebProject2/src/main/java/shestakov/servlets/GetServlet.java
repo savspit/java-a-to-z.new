@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 
 public class GetServlet extends HttpServlet {
     private static final Logger Log = LoggerFactory.getLogger(GetServlet.class);
@@ -34,35 +35,38 @@ public class GetServlet extends HttpServlet {
         /*writer.append(this.dbutils.getUserByLogin(req.getParameter("login")).toString());
         writer.flush();*/
 
-        StringBuilder sb = new StringBuilder("<table>");
+        StringBuilder sb = new StringBuilder("<table style='border : lpx solid black'>");
         for (User currentUser : this.dbUtils.getAllUsers()) {
             sb.append("<tr>");
-            sb.append("<td>" + currentUser.getLogin() + "</td>");
-            sb.append("<td>" + currentUser.getName() + "</td>");
-            sb.append("<td>" + currentUser.getEmail() + "</td>");
-            sb.append("<td>" + currentUser.getCreateDate() + "</td>");
-            sb.append("<td>" + "<form action='"+req.getContextPath()+"/echo' method='post'>" + "</td>");
-            sb.append("<td><p>Add new user <a href='" + req.getContextPath() + "'>here</a></p></td>");
+            sb.append("<td style='border : lpx solid black'>" + currentUser.getLogin() + "</td>");
+            sb.append("<td style='border : lpx solid black'>" + currentUser.getName() + "</td>");
+            sb.append("<td style='border : lpx solid black'>" + currentUser.getEmail() + "</td>");
+            sb.append("<td style='border : lpx solid black'>" + currentUser.getCreateDate() + "</td>");
+            sb.append("<form action='"+req.getContextPath()+"/echo/update' method='put'>");
+            sb.append("<td style='border : lpx solid black'>" + "<input type='submit' value='edit'></form>" + "</td>");
+            sb.append("<form action='"+req.getContextPath()+"/echo/delete' method='delete'>");
+            sb.append("<td style='border : lpx solid black'>" + "<input type='submit' value='delete'></form>" + "</td>");
             sb.append("</tr>");
         }
         sb.append("</table>");
+        sb.append("<td><p><a href='" + req.getContextPath() + "/echo/create '>Add new user</a></p></td>");
 
         writer.append("<!DOCTYPE html>" +
                 "<html lang=\"en\">" +
                 "<head>" +
                 "    <meta charset=\"UTF-8\">" +
-                "    <title>Title</title>" +
+                "    <title>GET</title>" +
                 "</head>" +
                 "<body>" +
-                "<form action='"+req.getContextPath()+"/echo' method='post'>" +
+                /*"<form action='"+req.getContextPath()+"/echo' method='post'>" +
                 "Name : <input type='text' name='login'/>" +
                 "<input type='submit'>" +
-                "</form>" +
-                "<br/>" +
+                "</form>" +*/
+                //"<br/>" +
                 sb.toString() +
                 "</body>" +
                 "</html>");
         writer.flush();
-
     }
+
 }
