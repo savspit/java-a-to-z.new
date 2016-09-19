@@ -13,8 +13,6 @@
     <artifactId>lesson01.09.03</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>UsersWebProject</module>
-        <module>UsersServletWebProject2</module>
     </modules>
 
 

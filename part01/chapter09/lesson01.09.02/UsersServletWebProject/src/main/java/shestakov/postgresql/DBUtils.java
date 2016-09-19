@@ -7,6 +7,8 @@ import shestakov.models.User;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * The type Db utils.
@@ -153,5 +155,25 @@ public class DBUtils {
             Log.error(e.getMessage(), e);
         }
         closeConnection(conn);
+    }
+
+    public List<User> getAllUsers() {
+        Connection conn = getConnection();
+        List<User> users = new CopyOnWriteArrayList<User>();
+        try (
+                PreparedStatement st = conn.prepareStatement("SELECT u.name, u.login, u.email, u.createDate FROM users AS u");
+        ) {
+            try (
+                    ResultSet rs = st.executeQuery();
+            ) {
+                while (rs.next()) {
+                    users.add(new User(rs.getString("name"), rs.getString("login"), rs.getString("email"), rs.getTimestamp("createDate").getTime()));
+                }
+            }
+        } catch (SQLException e) {
+            Log.error(e.getMessage(), e);
+        }
+        closeConnection(conn);
+        return users;
     }
 }
