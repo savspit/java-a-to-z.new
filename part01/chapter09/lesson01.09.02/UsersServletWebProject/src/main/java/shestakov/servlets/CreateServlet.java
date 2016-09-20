@@ -27,7 +27,6 @@ public class CreateServlet extends HttpServlet {
         }
     }
 
-    // create
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
@@ -45,7 +44,6 @@ public class CreateServlet extends HttpServlet {
                 "Login : <input type='text' name='login'/><br/>" +
                 "Name : <input type='text' name='name'/><br/>" +
                 "Email : <input type='email' name='email'/><br/>" +
-                "Create date : <input type='text' name='createDate'/><br/>" +
                 //"<input type='submit'>" +
                 "<br/>" +
 
@@ -75,7 +73,7 @@ public class CreateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        User newUser = new User(req.getParameter("name"), req.getParameter("login"), req.getParameter("email"), Timestamp.valueOf(req.getParameter("createDate")).getTime());
+        User newUser = new User(req.getParameter("name"), req.getParameter("login"), req.getParameter("email"), System.currentTimeMillis());
         this.dbUtils.addUser(newUser);
         doGet(req, resp);
     }

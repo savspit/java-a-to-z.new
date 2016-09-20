@@ -26,9 +26,7 @@ public class DeleteServlet extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        User newUser = new User(req.getParameter("login"));
-        this.dbUtils.deleteUserByLogin(newUser);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doGet(req, resp);
     }
 }
