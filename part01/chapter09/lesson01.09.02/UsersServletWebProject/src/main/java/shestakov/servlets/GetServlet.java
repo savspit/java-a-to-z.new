@@ -52,12 +52,12 @@ public class GetServlet extends HttpServlet {
             sb.append("</td>");
 
             sb.append("<td>");
-            sb.append("<form action='"+req.getContextPath()+"/echo/update' method='post' >");
+            sb.append("<form action='"+req.getContextPath()+"/echo/get' method='post' >");
             sb.append("<input type='submit' value='edit' name='edit' />");
             sb.append("</form>");
             sb.append("</td>");
             sb.append("<td>");
-            sb.append("<form action='"+req.getContextPath()+"/echo/delete' method='post' >");
+            sb.append("<form action='"+req.getContextPath()+"/echo/get' method='post' >");
             sb.append("<input type='submit' value='delete' name='delete' />");
             sb.append("</form>");
             sb.append("</td>");
