@@ -52,28 +52,12 @@ public class UpdateServlet extends HttpServlet {
                 "<action='"+req.getContextPath()+"/echo/create' method='post'>" +
                 "<td style='border : lpx solid black'>" + "<input type='submit' value='update'>" + "</td>" +
 
-                //"<input type='button' value='Register' onclick='location.href='"+req.getContextPath()+"/echo/create' action=Register' method='post'" +
-
                 "</form>" +
-
-                //sb.toString() +
-
-                //"<form action='"+req.getContextPath()+"/echo/create' method='post'>" +
-                //"<td style='border : lpx solid black'>" + "<input type='submit' value='add'></form>" + "</td>" +
 
                 "</body>" +
                 "</html>");
         writer.flush();
 
-
-
-        /*User user = this.dbUtils.ge
-        req.setAttribute("name", );*/
-
-
-        //User newUser = new User(req.getParameter("name"), req.getParameter("login"), req.getParameter("email"), Timestamp.valueOf(req.getParameter("createDate")).getTime());
-        //this.dbUtils.addUser(newUser);
-        //doGet(req, resp);
     }
 
     @Override

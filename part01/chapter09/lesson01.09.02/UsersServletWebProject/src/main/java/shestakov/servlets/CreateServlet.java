@@ -44,29 +44,17 @@ public class CreateServlet extends HttpServlet {
                 "Login : <input type='text' name='login'/><br/>" +
                 "Name : <input type='text' name='name'/><br/>" +
                 "Email : <input type='email' name='email'/><br/>" +
-                //"<input type='submit'>" +
                 "<br/>" +
 
                 "<action='"+req.getContextPath()+"/echo/create' method='post'>" +
                 "<td style='border : lpx solid black'>" + "<input type='submit' value='add'>" + "</td>" +
 
-                //"<input type='button' value='Register' onclick='location.href='"+req.getContextPath()+"/echo/create' action=Register' method='post'" +
-
                 "</form>" +
-
-                //sb.toString() +
-
-                //"<form action='"+req.getContextPath()+"/echo/create' method='post'>" +
-                //"<td style='border : lpx solid black'>" + "<input type='submit' value='add'></form>" + "</td>" +
 
                 "</body>" +
                 "</html>");
         writer.flush();
 
-
-        //User newUser = new User(req.getParameter("name"), req.getParameter("login"), req.getParameter("email"), Timestamp.valueOf(req.getParameter("createDate")).getTime());
-        //this.dbUtils.addUser(newUser);
-        //doGet(req, resp);
     }
 
     // create

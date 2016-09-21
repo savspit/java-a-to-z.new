@@ -32,23 +32,11 @@ public class GetServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
-        /*writer.append(this.dbutils.getUserByLogin(req.getParameter("login")).toString());
-        writer.flush();*/
 
         StringBuilder sb = new StringBuilder("<table style='width:100%'>");
-        /*sb.append("<tr>");
-        sb.append("<th>user</th>");
-        sb.append("<th>actions</th>");
-        sb.append("</tr>");*/
+
         for (User currentUser : this.dbUtils.getAllUsers()) {
             sb.append("<tr>");
-
-            /*sb.append("<td>");
-            sb.append("<form action='"+req.getContextPath()+"/echo/update' method='post'>");
-            //sb.append("<action='"+req.getContextPath()+"/echo/update' method='post'>");
-            sb.append("<input type='submit' value='edit' />");
-            sb.append("</form>");
-            sb.append("</td>");*/
 
             sb.append("<td>");
             sb.append("Login : <input type='text' name='login' value='" + currentUser.getLogin() + "' />");
@@ -76,18 +64,6 @@ public class GetServlet extends HttpServlet {
 
             sb.append("</tr>");
 
-            /*sb.append("<tr>");
-            sb.append("<td style='border : lpx solid black'>" + currentUser.getLogin() + "</td>");
-            sb.append("<td style='border : lpx solid black'>" + currentUser.getName() + "</td>");
-            sb.append("<td style='border : lpx solid black'>" + currentUser.getEmail() + "</td>");
-            sb.append("<td style='border : lpx solid black'>" + currentUser.getCreateDate() + "</td>");
-            sb.append("<form action='"+req.getContextPath()+"/echo/update' method='put'>");
-            sb.append("<td style='border : lpx solid black'>" + "<input type='submit' value='edit'></form>" + "</td>");
-            sb.append("<form action='"+req.getContextPath()+"/echo/delete' method='delete'>");
-            sb.append("<td style='border : lpx solid black'>" + "<input type='submit' value='delete'></form>" + "</td>");
-            sb.append("</tr>");*/
-
-
         }
         sb.append("</table>");
         sb.append("<td><p><a href='" + req.getContextPath() + "/echo/create'>Add new user</a></p></td>");
@@ -97,24 +73,14 @@ public class GetServlet extends HttpServlet {
                 "<head>" +
                 "    <meta charset=\"UTF-8\">" +
                 "    <title>GET</title>" +
-                /*"<style>" +
-                "table, th, td { border: 1px solid black; border-collapse: collapse;}" +
-                "</style>" +*/
                 "</head>" +
                 "<body>" +
-                /*"<form action='"+req.getContextPath()+"/echo' method='post'>" +
-                "Name : <input type='text' name='login'/>" +
-                "<input type='submit'>" +
-                "</form>" +*/
-                //"<br/>" +
                 sb.toString() +
                 "</table>" +
                 "</body>" +
                 "</html>");
         writer.flush();
 
-        /*req.setAttribute("product", req);
-        req.getRequestDispatcher("/WEB-INF/product.jsp").forward(req, resp);*/
     }
 
     @Override

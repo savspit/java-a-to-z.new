@@ -22,9 +22,7 @@ public class EchoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        //String login = req.getParameter("login");
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
-        //writer.append(String.format("%s, %s", "hello world", this.users));
 
         StringBuilder sb = new StringBuilder("<table>");
         for (String login : this.users) {
