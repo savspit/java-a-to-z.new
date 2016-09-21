@@ -26,11 +26,11 @@ public class DBUtils {
         try {
             InitialContext initialContext = new InitialContext();
             if ( initialContext == null ) {
-                Log.error("There was no InitialContext in UsersServlet. Error occured.");
+                Log.error("There was no InitialContext in GetServlet. Error occured.");
             }
             this.datasource = (DataSource) initialContext.lookup( "java:/comp/env/jdbc/postgres" );
             if ( this.datasource == null ) {
-                Log.error("Could not find DataSource in UsersServlet. Error occured.");
+                Log.error("Could not find DataSource in GetServlet. Error occured.");
             }
         }
         catch (Exception e) {
@@ -103,7 +103,7 @@ public class DBUtils {
         try (
                 PreparedStatement st = conn.prepareStatement("SELECT u.name, u.login, u.email, u.createDate FROM users AS u WHERE u.login = ?");
         ) {
-            st.setString(1, login);
+            st.setString(1, login.trim());
             try (
                     ResultSet rs = st.executeQuery();
             ) {
@@ -126,12 +126,11 @@ public class DBUtils {
     public void updateUserByLogin(User user) {
         Connection conn = getConnection();
         try (
-                PreparedStatement st = conn.prepareStatement("UPDATE users SET name=?, email=?, createDate=? WHERE login=?");
+                PreparedStatement st = conn.prepareStatement("UPDATE users SET name=?, email=? WHERE login=?");
         ) {
             st.setString(1, user.getName());
             st.setString(2, user.getEmail());
-            st.setTimestamp(3, new Timestamp(user.getCreateDate()));
-            st.setString(4, user.getLogin());
+            st.setString(3, user.getLogin().trim());
             st.executeUpdate();
         } catch (SQLException e) {
             Log.error(e.getMessage(), e);

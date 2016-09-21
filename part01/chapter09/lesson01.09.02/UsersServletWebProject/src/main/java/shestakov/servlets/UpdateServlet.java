@@ -33,23 +33,24 @@ public class UpdateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
 
+        User selectedUser = this.dbUtils.getUserByLogin(req.getParameter("user"));
+
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
 
         writer.append("<!DOCTYPE html>" +
                 "<html lang=\"en\">" +
                 "<head>" +
                 "    <meta charset=\"UTF-8\">" +
-                "    <title>CREATE</title>" +
+                "    <title>UPDATE</title>" +
                 "</head>" +
                 "<body>" +
-                "<form action='"+req.getContextPath()+"/echo/create' method='post'>" +
-                "Login : <input type='text' name='login'/><br/>" +
-                "Name : <input type='text' name='name'/><br/>" +
-                "Email : <input type='email' name='email'/><br/>" +
-                //"<input type='submit'>" +
+                "<form action='"+req.getContextPath()+"/echo/update' method='post'>" +
+                "Login : <input type='text' name='login' value='"+selectedUser.getLogin()+"'/><br/>" +
+                "Name : <input type='text' name='name' value='"+selectedUser.getName()+"'/><br/>" +
+                "Email : <input type='email' name='email' value='"+selectedUser.getEmail()+"'/><br/>" +
                 "<br/>" +
 
-                "<action='"+req.getContextPath()+"/echo/create' method='post'>" +
+                "<action='"+req.getContextPath()+"/echo/update' method='post'>" +
                 "<td style='border : lpx solid black'>" + "<input type='submit' value='update'>" + "</td>" +
 
                 "</form>" +
@@ -62,7 +63,10 @@ public class UpdateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
-        req.getRequestDispatcher(req.getContextPath()+"/echo/get").forward(req, resp);
+        if (req.getParameter("name") != null) {
+            User newUser = new User(req.getParameter("name"), req.getParameter("login"), req.getParameter("email"));
+            this.dbUtils.updateUserByLogin(newUser);
+        }
+        doGet(req,resp);
     }
 }

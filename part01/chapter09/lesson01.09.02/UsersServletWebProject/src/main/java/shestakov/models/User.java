@@ -12,6 +12,12 @@ public class User {
         this.login = login;
     }
 
+    public User(String name, String login, String email) {
+        this.name = name;
+        this.login = login;
+        this.email = email;
+    }
+
     public User(String name, String login, String email, long createDate) {
         this.name = name;
         this.login = login;
@@ -33,22 +39,6 @@ public class User {
 
     public long getCreateDate() {
         return createDate;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setCreateDate(long createDate) {
-        this.createDate = createDate;
     }
 
     @Override

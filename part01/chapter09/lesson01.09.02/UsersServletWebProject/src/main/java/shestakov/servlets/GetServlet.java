@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import shestakov.models.User;
 import shestakov.postgresql.DBUtils;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,39 +34,18 @@ public class GetServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
 
-        StringBuilder sb = new StringBuilder("<table style='width:100%'>");
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("<form action='"+req.getContextPath()+"/echo/get' method='post' >");
 
         for (User currentUser : this.dbUtils.getAllUsers()) {
-            sb.append("<tr>");
-
-            sb.append("<td>");
-            sb.append("Login : <input type='text' name='login' value='" + currentUser.getLogin() + "' />");
-            sb.append("</td>");
-            sb.append("<td>");
-            sb.append("Name : <input type='text' name='name' value='" + currentUser.getName() + "' />");
-            sb.append("</td>");
-            sb.append("<td>");
-            sb.append("Email : <input type='text' name='email' value='" + currentUser.getEmail() + "' />");
-            sb.append("</td>");
-            sb.append("<td>");
-            sb.append("Create date : <input type='text' name='create date' value='" + currentUser.getCreateDate() + "' />");
-            sb.append("</td>");
-
-            sb.append("<td>");
-            sb.append("<form action='"+req.getContextPath()+"/echo/get' method='post' >");
-            sb.append("<input type='submit' value='edit' name='edit' />");
-            sb.append("</form>");
-            sb.append("</td>");
-            sb.append("<td>");
-            sb.append("<form action='"+req.getContextPath()+"/echo/get' method='post' >");
-            sb.append("<input type='submit' value='delete' name='delete' />");
-            sb.append("</form>");
-            sb.append("</td>");
-
-            sb.append("</tr>");
-
+            sb.append("<input type='radio' name='user' value=' "+currentUser.getLogin()+"' > "+currentUser.toString()+"<br>");
         }
-        sb.append("</table>");
+
+        sb.append("<input type='submit' value='edit' name='edit' />");
+        sb.append("<input type='submit' value='delete' name='delete' />");
+        sb.append("</form>");
+
         sb.append("<td><p><a href='" + req.getContextPath() + "/echo/create'>Add new user</a></p></td>");
 
         writer.append("<!DOCTYPE html>" +
@@ -87,10 +67,14 @@ public class GetServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         if (req.getParameter("edit") != null) {
-
+            req.setAttribute("user",req.getParameter("user"));
+            RequestDispatcher rd = req.getRequestDispatcher("/echo/update");
+            rd.forward(req,resp);
         } else if (req.getParameter("delete") != null) {
-
+            User newUser = new User(req.getParameter("user"));
+            this.dbUtils.deleteUserByLogin(newUser);
         }
+        doGet(req, resp);
     }
 
 }
