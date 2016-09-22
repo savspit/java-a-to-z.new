@@ -148,7 +148,7 @@ public class DBUtils {
         try (
                 PreparedStatement st = conn.prepareStatement("DELETE FROM users WHERE login=?");
         ) {
-            st.setString(1, user.getLogin());
+            st.setString(1, user.getLogin().trim());
             st.executeUpdate();
         } catch (SQLException e) {
             Log.error(e.getMessage(), e);
