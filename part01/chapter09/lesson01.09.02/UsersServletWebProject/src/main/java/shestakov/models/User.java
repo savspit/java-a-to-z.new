@@ -8,6 +8,10 @@ public class User {
     private String email;
     private long createDate;
 
+    public User() {
+
+    }
+
     public User(String login) {
         this.login = login;
     }

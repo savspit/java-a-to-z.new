@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
 
 public class CreateServlet extends HttpServlet {
     private static final Logger Log = LoggerFactory.getLogger(CreateServlet.class);
@@ -30,9 +29,7 @@ public class CreateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
-
         writer.append("<!DOCTYPE html>" +
                 "<html lang=\"en\">" +
                 "<head>" +
@@ -45,19 +42,14 @@ public class CreateServlet extends HttpServlet {
                 "Name : <input type='text' name='name'/><br/>" +
                 "Email : <input type='email' name='email'/><br/>" +
                 "<br/>" +
-
                 "<action='"+req.getContextPath()+"/echo/create' method='post'>" +
                 "<td style='border : lpx solid black'>" + "<input type='submit' value='add'>" + "</td>" +
-
                 "</form>" +
-
                 "</body>" +
                 "</html>");
         writer.flush();
-
     }
 
-    // create
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
