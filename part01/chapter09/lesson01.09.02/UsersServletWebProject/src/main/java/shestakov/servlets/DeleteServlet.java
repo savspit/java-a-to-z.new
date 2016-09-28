@@ -13,21 +13,10 @@ import java.io.IOException;
 
 public class DeleteServlet extends HttpServlet {
     private static final Logger Log = LoggerFactory.getLogger(DeleteServlet.class);
-    private DBUtils dbUtils;
-
-    @Override
-    public void init() {
-        try {
-            this.dbUtils = new DBUtils();
-            this.dbUtils.init();
-        } catch (Exception e) {
-            Log.error(e.getMessage(), e);
-        }
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.dbUtils.deleteUserByLogin(new User(req.getParameter("user")));
+        DBUtils.getInstance().deleteUserByLogin(new User(req.getParameter("user")));
     }
 
 }

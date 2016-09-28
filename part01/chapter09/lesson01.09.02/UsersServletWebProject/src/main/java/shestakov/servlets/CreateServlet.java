@@ -14,17 +14,6 @@ import java.io.PrintWriter;
 
 public class CreateServlet extends HttpServlet {
     private static final Logger Log = LoggerFactory.getLogger(CreateServlet.class);
-    private DBUtils dbUtils;
-
-    @Override
-    public void init() {
-        try {
-            this.dbUtils = new DBUtils();
-            this.dbUtils.init();
-        } catch (Exception e) {
-            Log.error(e.getMessage(), e);
-        }
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -54,7 +43,7 @@ public class CreateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         User newUser = new User(req.getParameter("name"), req.getParameter("login"), req.getParameter("email"), System.currentTimeMillis());
-        this.dbUtils.addUser(newUser);
+        DBUtils.getInstance().addUser(newUser);
         doGet(req, resp);
     }
 }

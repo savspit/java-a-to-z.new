@@ -14,17 +14,6 @@ import java.io.PrintWriter;
 
 public class UpdateServlet extends HttpServlet {
     private static final Logger Log = LoggerFactory.getLogger(UpdateServlet.class);
-    private DBUtils dbUtils;
-
-    @Override
-    public void init() {
-        try {
-            this.dbUtils = new DBUtils();
-            this.dbUtils.init();
-        } catch (Exception e) {
-            Log.error(e.getMessage(), e);
-        }
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,7 +21,7 @@ public class UpdateServlet extends HttpServlet {
         resp.setContentType("text/html");
         User selectedUser = new User();
         if (req.getParameter("user") != null) {
-            selectedUser = this.dbUtils.getUserByLogin(req.getParameter("user"));
+            selectedUser = DBUtils.getInstance().getUserByLogin(req.getParameter("user"));
         }
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
         writer.append("<!DOCTYPE html>" +
@@ -56,7 +45,7 @@ public class UpdateServlet extends HttpServlet {
                 "</html>");
         if (req.getParameter("login") != null) {
             if (req.getParameter("update") != null) {
-                this.dbUtils.updateUserByLogin(new User(req.getParameter("name"), req.getParameter("login"),req.getParameter("email")));
+                DBUtils.getInstance().updateUserByLogin(new User(req.getParameter("name"), req.getParameter("login"),req.getParameter("email")));
             }
         }
         writer.flush();

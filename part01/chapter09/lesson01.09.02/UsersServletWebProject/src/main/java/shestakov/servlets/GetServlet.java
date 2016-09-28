@@ -15,17 +15,6 @@ import java.io.PrintWriter;
 
 public class GetServlet extends HttpServlet {
     private static final Logger Log = LoggerFactory.getLogger(GetServlet.class);
-    private DBUtils dbUtils;
-
-    @Override
-    public void init() {
-        try {
-            this.dbUtils = new DBUtils();
-            this.dbUtils.init();
-        } catch (Exception e) {
-            Log.error(e.getMessage(), e);
-        }
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,7 +22,7 @@ public class GetServlet extends HttpServlet {
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
         StringBuilder sb = new StringBuilder();
         sb.append("<form action='"+req.getContextPath()+"/echo/get' method='GET' >");
-        for (User currentUser : this.dbUtils.getAllUsers()) {
+        for (User currentUser : DBUtils.getInstance().getAllUsers()) {
             sb.append("<input type='radio' name='user' value=' "+currentUser.getLogin()+"' > "+currentUser.toString()+"<br>");
         }
         sb.append("<br/>");
