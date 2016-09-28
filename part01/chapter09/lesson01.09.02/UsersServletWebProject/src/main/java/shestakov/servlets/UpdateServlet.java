@@ -19,39 +19,11 @@ public class UpdateServlet extends HttpServlet {
     private static final Logger Log = LoggerFactory.getLogger(UpdateServlet.class);
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        resp.setContentType("text/html");
-        User selectedUser = new User();
-        if (req.getParameter("user") != null) {
-            selectedUser = DBUtils.getInstance().getUserByLogin(req.getParameter("user"));
-        }
-        PrintWriter writer = new PrintWriter(resp.getOutputStream());
-        writer.append("<!DOCTYPE html>" +
-                "<html lang=\"en\">" +
-                "<head>" +
-                "    <meta charset=\"UTF-8\">" +
-                "    <title>UPDATE</title>" +
-                "</head>" +
-                "<body>" +
-                "<form action='"+req.getContextPath()+"/echo/update' method='GET'>" +
-                "Login : <input type='text' name='login' value='"+selectedUser.getLogin()+"'/><br/>" +
-                "Name : <input type='text' name='name' value='"+selectedUser.getName()+"'/><br/>" +
-                "Email : <input type='email' name='email' value='"+selectedUser.getEmail()+"'/><br/>" +
-                "<br/>" +
-
-                "<input type='submit' value='update' name='update' >" +
-
-                "</form>" +
-
-                "</body>" +
-                "</html>");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getParameter("login") != null) {
             if (req.getParameter("update") != null) {
                 DBUtils.getInstance().updateUserByLogin(new User(req.getParameter("name"), req.getParameter("login"),req.getParameter("email")));
             }
         }
-        writer.flush();
     }
-
 }
