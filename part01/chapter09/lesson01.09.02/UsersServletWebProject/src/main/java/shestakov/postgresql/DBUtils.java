@@ -10,6 +10,9 @@ import java.sql.*;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * The type Db utils.
+ */
 public class DBUtils {
     private static final Logger Log = LoggerFactory.getLogger(DBUtils.class);
     private static final DBUtils instance = new DBUtils();
@@ -23,10 +26,20 @@ public class DBUtils {
         }
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static DBUtils getInstance() {
         return instance;
     }
 
+    /**
+     * Init.
+     *
+     * @throws Exception the exception
+     */
     public void init() throws Exception {
         try {
             InitialContext initialContext = new InitialContext();
@@ -43,6 +56,11 @@ public class DBUtils {
         }
     }
 
+    /**
+     * Gets connection.
+     *
+     * @return the connection
+     */
     public Connection getConnection() {
         Connection conn = null;
         try {
@@ -53,10 +71,20 @@ public class DBUtils {
         return conn;
     }
 
+    /**
+     * Sets datasource.
+     *
+     * @param datasource the datasource
+     */
     public void setDatasource(DataSource datasource) {
         this.datasource = datasource;
     }
 
+    /**
+     * Close connection.
+     *
+     * @param conn the conn
+     */
     public void closeConnection(Connection conn) {
         try {
             conn.close();
@@ -65,6 +93,11 @@ public class DBUtils {
         }
     }
 
+    /**
+     * Add user.
+     *
+     * @param user the user
+     */
     public void addUser(User user) {
         Connection conn = getConnection();
         try (
@@ -81,6 +114,12 @@ public class DBUtils {
         closeConnection(conn);
     }
 
+    /**
+     * Gets user by login.
+     *
+     * @param login the login
+     * @return the user by login
+     */
     public User getUserByLogin(String login) {
         Connection conn = getConnection();
         User user = null;
@@ -102,6 +141,11 @@ public class DBUtils {
         return user;
     }
 
+    /**
+     * Update user by login.
+     *
+     * @param user the user
+     */
     public void updateUserByLogin(User user) {
         Connection conn = getConnection();
         try (
@@ -117,6 +161,11 @@ public class DBUtils {
         closeConnection(conn);
     }
 
+    /**
+     * Delete user by login.
+     *
+     * @param user the user
+     */
     public void deleteUserByLogin(User user) {
         Connection conn = getConnection();
         try (
@@ -130,6 +179,11 @@ public class DBUtils {
         closeConnection(conn);
     }
 
+    /**
+     * Gets all users.
+     *
+     * @return the all users
+     */
     public List<User> getAllUsers() {
         Connection conn = getConnection();
         List<User> users = new CopyOnWriteArrayList<User>();

@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * The type Get servlet.
+ */
 public class GetServlet extends HttpServlet {
     private static final Logger Log = LoggerFactory.getLogger(GetServlet.class);
 

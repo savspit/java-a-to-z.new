@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * The type Delete servlet.
+ */
 public class DeleteServlet extends HttpServlet {
     private static final Logger Log = LoggerFactory.getLogger(DeleteServlet.class);
 

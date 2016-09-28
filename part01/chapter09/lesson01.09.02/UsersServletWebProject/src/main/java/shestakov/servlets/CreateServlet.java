@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * The type Create servlet.
+ */
 public class CreateServlet extends HttpServlet {
     private static final Logger Log = LoggerFactory.getLogger(CreateServlet.class);
 
