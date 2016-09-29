@@ -27,19 +27,19 @@
 
     <servlet-mapping>
         <servlet-name>CreateServlet</servlet-name>
-        <url-pattern>/echo/create</url-pattern>
+        <url-pattern>/create</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GetServlet</servlet-name>
-        <url-pattern>/echo/get</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateServlet</servlet-name>
-        <url-pattern>/echo/update</url-pattern>
+        <url-pattern>/update</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteServlet</servlet-name>
-        <url-pattern>/echo/delete</url-pattern>
+        <url-pattern>/delete</url-pattern>
     </servlet-mapping>
 
 </web-app>

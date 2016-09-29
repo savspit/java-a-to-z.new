@@ -1,13 +1,15 @@
 <%@ page import="shestakov.servlets.UserStorage" %>
 <%@ page import="shestakov.servlets.User" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title></title>
 </head>
 <body>
 
-<form action="<%=request.getContextPath()%>/echo" method="POST">
+<form action="${pageContext.servletContext.contextPath}/" method="POST">
     Login : <input type="text" name="login"><br/>
     Email : <input type="text" name="email"><br/>
     <input type="submit">
@@ -18,12 +20,12 @@
         <th>Login</th>
         <th>login</th>
     </tr>
-    <% for (User user : UserStorage.getInstance().getUsers()) { %>
+    <c:forEach items="${users}" var="user">
     <tr>
-        <td><%=user.getLogin()%></td>
-        <td><%=user.getEmail()%></td>
+        <td><c:out value="${user.login}"></c:out></td>
+        <td><c:out value="${user.email}"></c:out></td>
     </tr>
-    <% } %>
+    </c:forEach>
 </table>
 
 </body>

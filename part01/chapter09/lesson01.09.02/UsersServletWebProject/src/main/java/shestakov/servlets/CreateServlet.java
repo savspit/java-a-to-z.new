@@ -19,10 +19,13 @@ public class CreateServlet extends HttpServlet {
     private static final Logger Log = LoggerFactory.getLogger(CreateServlet.class);
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/WEB-INF/views/create.jsp").forward(req, resp);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //resp.setContentType("text/html");
         User newUser = new User(req.getParameter("name"), req.getParameter("login"), req.getParameter("email"), System.currentTimeMillis());
         DBUtils.getInstance().addUser(newUser);
-        //doGet(req, resp);
     }
 }
