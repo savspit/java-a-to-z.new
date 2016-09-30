@@ -3,10 +3,12 @@ package shestakov.servlets;
 public class User {
     String login;
     String email;
+    private String password;
 
-    public User(String login, String email) {
+    public User(String login, String email, String password) {
         this.login = login;
         this.email = email;
+        this.password = password;
     }
 
     public String getLogin() {
@@ -15,5 +17,9 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

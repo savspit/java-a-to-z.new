@@ -13,7 +13,7 @@ public class UserStorage {
     private List<User> users = new CopyOnWriteArrayList<User>();
 
     private UserStorage() {
-
+        this.users.add(new User("root", "root@root", "root"));
     }
 
     public static UserStorage getInstance() {
@@ -26,5 +26,16 @@ public class UserStorage {
 
     public List<User> getUsers() {
         return this.users;
+    }
+
+    public boolean isCredentional(String login, String password) {
+        boolean exist = false;
+        for (User user : this.users) {
+            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
+                exist = true;
+                break;
+            }
+        }
+        return exist;
     }
 }

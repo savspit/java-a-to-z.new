@@ -10,6 +10,7 @@ public class User {
     private String login;
     private String email;
     private long createDate;
+    private Role role;
 
     /**
      * Instantiates a new User.
@@ -53,6 +54,24 @@ public class User {
         this.login = login;
         this.email = email;
         this.createDate = createDate;
+        this.role = new Role();
+    }
+
+    /**
+     * Instantiates a new User.
+     *
+     * @param name       the name
+     * @param login      the login
+     * @param email      the email
+     * @param createDate the create date
+     * @param role       the role
+     */
+    public User(String name, String login, String email, long createDate, Role role) {
+        this.name = name;
+        this.login = login;
+        this.email = email;
+        this.createDate = createDate;
+        this.role = role;
     }
 
     /**
@@ -91,8 +110,17 @@ public class User {
         return createDate;
     }
 
+    /**
+     * Gets role.
+     *
+     * @return the role
+     */
+    public Role getRole() {
+        return role;
+    }
+
     @Override
     public String toString() {
-        return String.format("%s, %s, %s, %s", this.login, this.name, this.email, new Timestamp(this.createDate).toString());
+        return String.format("Login: %s, Name: %s, Email: %s, Create date: %s, Role: %s", this.login, this.name, this.email, new Timestamp(this.createDate).toString(), this.role.getName());
     }
 }

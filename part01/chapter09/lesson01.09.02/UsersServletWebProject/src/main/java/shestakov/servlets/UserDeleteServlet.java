@@ -9,14 +9,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * The type Delete servlet.
+ * The type User delete servlet.
  */
-public class DeleteServlet extends HttpServlet {
-    private static final Logger Log = LoggerFactory.getLogger(DeleteServlet.class);
+public class UserDeleteServlet extends HttpServlet {
+    private static final Logger Log = LoggerFactory.getLogger(UserDeleteServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

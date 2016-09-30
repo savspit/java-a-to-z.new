@@ -11,13 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
- * The type Update servlet.
+ * The type User update servlet.
  */
-public class UpdateServlet extends HttpServlet {
-    private static final Logger Log = LoggerFactory.getLogger(UpdateServlet.class);
+public class UserUpdateServlet extends HttpServlet {
+    private static final Logger Log = LoggerFactory.getLogger(UserUpdateServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,7 +27,7 @@ public class UpdateServlet extends HttpServlet {
             session.removeAttribute("login");
         }
         req.setAttribute("user", selectedUser);
-        req.getRequestDispatcher("/WEB-INF/views/update.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/userUpdate.jsp").forward(req, resp);
     }
 
     @Override

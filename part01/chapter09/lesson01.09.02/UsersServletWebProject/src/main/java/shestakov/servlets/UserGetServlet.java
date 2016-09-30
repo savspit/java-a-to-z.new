@@ -2,6 +2,7 @@ package shestakov.servlets;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import shestakov.models.Role;
 import shestakov.models.User;
 import shestakov.postgresql.DBUtils;
 
@@ -15,15 +16,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * The type Get servlet.
+ * The type User get servlet.
  */
-public class GetServlet extends HttpServlet {
-    private static final Logger Log = LoggerFactory.getLogger(GetServlet.class);
+public class UserGetServlet extends HttpServlet {
+    private static final Logger Log = LoggerFactory.getLogger(UserGetServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        req.setAttribute("login", (String) session.getAttribute("login"));
+        req.setAttribute("role", (Role) session.getAttribute("role"));
         req.setAttribute("users", DBUtils.getInstance().getAllUsers());
-        req.getRequestDispatcher("/WEB-INF/views/get.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/userGet.jsp").forward(req, resp);
     }
 
     @Override
@@ -37,6 +41,10 @@ public class GetServlet extends HttpServlet {
                 req.setAttribute("login", req.getParameter("user"));
                 RequestDispatcher dispatcher = req.getRequestDispatcher("/delete");
                 dispatcher.include(req, resp);
+            } else if (req.getParameter("editRole") != null) {
+                HttpSession session = req.getSession(false);
+                session.setAttribute("login", req.getParameter("user"));
+                resp.sendRedirect(String.format("%s/roleGet", req.getContextPath()));
             }
         }
     }

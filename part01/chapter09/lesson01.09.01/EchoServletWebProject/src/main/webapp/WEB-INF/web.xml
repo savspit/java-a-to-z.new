@@ -1,4 +1,13 @@
 <web-app>
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>shestakov.servlets.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>Users Controller Servlet</servlet-name>
         <servlet-class>shestakov.servlets.UsersController</servlet-class>
@@ -6,5 +15,14 @@
     <servlet-mapping>
         <servlet-name>Users Controller Servlet</servlet-name>
         <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Singin</servlet-name>
+        <servlet-class>shestakov.servlets.SinginController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Singin</servlet-name>
+        <url-pattern>/singin</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -10,17 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
- * The type Create servlet.
+ * The type User create servlet.
  */
-public class CreateServlet extends HttpServlet {
-    private static final Logger Log = LoggerFactory.getLogger(CreateServlet.class);
+public class UserCreateServlet extends HttpServlet {
+    private static final Logger Log = LoggerFactory.getLogger(UserCreateServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/create.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/userCreate.jsp").forward(req, resp);
     }
 
     @Override
