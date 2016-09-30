@@ -27,11 +27,9 @@ public class SinginController extends HttpServlet{
         String login = req.getParameter("login");
         if (DBUtils.getInstance().isCredentional(login)) {
             HttpSession session = req.getSession();
-            synchronized (session) {
-                session.setAttribute("login", login);
-                session.setAttribute("role", DBUtils.getInstance().getRoleByUserLogin(login));
-                resp.sendRedirect(String.format("%s/", req.getContextPath()));
-            }
+            session.setAttribute("login", login);
+            session.setAttribute("role", DBUtils.getInstance().getRoleByUserLogin(login));
+            resp.sendRedirect(String.format("%s/", req.getContextPath()));
         } else {
             req.setAttribute("error", "Credentional invalid");
             doGet(req, resp);
