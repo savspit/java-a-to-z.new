@@ -26,7 +26,6 @@ public class RoleCreateServletTest {
      */
     @BeforeClass
     public static void createTables() {
-        DBUtils.getInstance().createTables();
         DBUtils.getInstance().deleteAllUsersAndRoles();
     }
 

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.io.IOException;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -24,8 +26,7 @@ public class RoleUpdateServletTest {
      * Create tables.
      */
     @BeforeClass
-    public static void createTables() {
-        DBUtils.getInstance().createTables();
+    public static void createTables() throws IOException {
         DBUtils.getInstance().deleteAllUsersAndRoles();
     }
 

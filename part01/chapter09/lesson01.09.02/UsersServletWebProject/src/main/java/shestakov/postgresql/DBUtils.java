@@ -28,6 +28,7 @@ public class DBUtils {
     private DBUtils() {
         try {
             init();
+            createTables();
             deleteAllUsersAndRoles();
             createRoot();
         } catch (Exception e) {
@@ -55,6 +56,25 @@ public class DBUtils {
         if(in == null)
         {
             Log.error("there is no db.properties found using defaults");
+            return null;
+        }
+        Properties props = new Properties();
+        props.load(in);
+        in.close();
+        return props;
+    }
+
+    /**
+     * Gets db queries.
+     *
+     * @return the db queries
+     * @throws IOException the io exception
+     */
+    public Properties getDBQueries() throws IOException {
+        InputStream in = getClass().getClassLoader().getResourceAsStream("dbqueries.properties");
+        if(in == null)
+        {
+            Log.error("there is no dbqueries.properties found using defaults");
             return null;
         }
         Properties props = new Properties();
@@ -434,12 +454,17 @@ public class DBUtils {
 
     /**
      * Create tables.
+     *
+     * @throws IOException the io exception
      */
-    public void createTables() {
+    public void createTables() throws IOException {
         Connection conn = getConnection();
+        Properties props = getDBQueries();
         try (
-                PreparedStatement st1 = conn.prepareStatement("CREATE TABLE IF NOT EXISTS roles (id serial PRIMARY KEY,name VARCHAR(255) NOT NULL UNIQUE)");
-                PreparedStatement st2 = conn.prepareStatement("CREATE TABLE IF NOT EXISTS users (id serial PRIMARY KEY, login VARCHAR(255) NOT NULL UNIQUE, name VARCHAR(255), email VARCHAR(255), createDate TIMESTAMP, roleId INTEGER REFERENCES roles(id))");
+                //PreparedStatement st1 = conn.prepareStatement("CREATE TABLE IF NOT EXISTS roles (id serial PRIMARY KEY,name VARCHAR(255) NOT NULL UNIQUE)");
+                //PreparedStatement st2 = conn.prepareStatement("CREATE TABLE IF NOT EXISTS users (id serial PRIMARY KEY, login VARCHAR(255) NOT NULL UNIQUE, name VARCHAR(255), email VARCHAR(255), createDate TIMESTAMP, roleId INTEGER REFERENCES roles(id))");
+                PreparedStatement st1 = conn.prepareStatement(props.getProperty("tableRoles"));
+                PreparedStatement st2 = conn.prepareStatement(props.getProperty("tableUsers"));
         ) {
             st1.executeUpdate();
             st1.close();

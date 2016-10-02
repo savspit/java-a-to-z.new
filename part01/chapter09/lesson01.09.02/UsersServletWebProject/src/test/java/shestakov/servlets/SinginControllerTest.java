@@ -31,7 +31,6 @@ public class SinginControllerTest {
      */
     @BeforeClass
     public static void createTables() throws Exception {
-        DBUtils.getInstance().createTables();
         DBUtils.getInstance().deleteAllUsersAndRoles();
     }
 

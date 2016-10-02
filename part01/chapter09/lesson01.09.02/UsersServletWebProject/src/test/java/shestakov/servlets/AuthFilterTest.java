@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**

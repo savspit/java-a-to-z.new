@@ -25,8 +25,7 @@ public class RoleSelectServletTest {
      * Create tables.
      */
     @BeforeClass
-    public static void createTables() {
-        DBUtils.getInstance().createTables();
+    public static void createTables() throws IOException {
         DBUtils.getInstance().deleteAllUsersAndRoles();
     }
 
