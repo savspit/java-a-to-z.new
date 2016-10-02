@@ -1,14 +1,19 @@
 package shestakov.postgresql;
 
+import org.apache.tomcat.jdbc.pool.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import shestakov.models.Role;
 import shestakov.models.User;
 
+import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.sql.DataSource;
+import javax.naming.NamingException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -18,6 +23,7 @@ public class DBUtils {
     private static final Logger Log = LoggerFactory.getLogger(DBUtils.class);
     private static final DBUtils instance = new DBUtils();
     private DataSource datasource;
+    private Connection conn;
 
     private DBUtils() {
         try {
@@ -39,22 +45,59 @@ public class DBUtils {
     }
 
     /**
+     * Gets db properties.
+     *
+     * @return the db properties
+     * @throws IOException the io exception
+     */
+    public Properties getDBProperties() throws IOException {
+        InputStream in = getClass().getClassLoader().getResourceAsStream("db.properties");
+        if(in == null)
+        {
+            Log.error("there is no db.properties found using defaults");
+            return null;
+        }
+        Properties props = new Properties();
+        props.load(in);
+        in.close();
+        return props;
+    }
+
+    /**
      * Init.
      *
      * @throws Exception the exception
      */
     public void init() throws Exception {
         try {
-            InitialContext initialContext = new InitialContext();
-            if ( initialContext == null ) {
-                Log.error("There was no InitialContext in GetServlet. Error occured.");
-            }
-            this.datasource = (DataSource) initialContext.lookup( "java:/comp/env/jdbc/postgres" );
-            if ( this.datasource == null ) {
-                Log.error("Could not find DataSource in GetServlet. Error occured.");
-            }
-        }
-        catch (Exception e) {
+            Properties prop = getDBProperties();
+
+            Class.forName(prop.getProperty("driver"));
+
+            System.setProperty(Context.INITIAL_CONTEXT_FACTORY,
+                    "org.apache.naming.java.javaURLContextFactory");
+            System.setProperty(Context.URL_PKG_PREFIXES,
+                    "org.apache.naming");
+            InitialContext ic = new InitialContext();
+
+            ic.createSubcontext("java:");
+            ic.createSubcontext("java:/comp");
+            ic.createSubcontext("java:/comp/env");
+            ic.createSubcontext("java:/comp/env/jdbc");
+
+            DataSource ds = new DataSource();
+            ds.setUrl(prop.getProperty("url"));
+            ds.setUsername(prop.getProperty("username"));
+            ds.setPassword(prop.getProperty("password"));
+
+            ic.bind("java:/comp/env/jdbc/postgres", ds);
+
+            Context initContext = new InitialContext();
+            Context webContext = (Context)initContext.lookup("java:/comp/env");
+
+            this.datasource = (DataSource) webContext.lookup("jdbc/postgres");
+
+        } catch (NamingException e) {
             Log.error(e.getMessage(), e);
         }
     }
@@ -72,15 +115,6 @@ public class DBUtils {
             Log.error(e.getMessage(), e);
         }
         return conn;
-    }
-
-    /**
-     * Sets datasource.
-     *
-     * @param datasource the datasource
-     */
-    public void setDatasource(DataSource datasource) {
-        this.datasource = datasource;
     }
 
     /**
@@ -119,7 +153,7 @@ public class DBUtils {
             st.setString(2, user.getLogin());
             st.setString(3, user.getEmail());
             st.setTimestamp(4, new Timestamp(user.getCreateDate()));
-            st.setString(5, user.getRole().getName());
+            st.setString(5, user.getRole().getName().trim());
             st.executeUpdate();
         } catch (SQLException e) {
             Log.error(e.getMessage(), e);
@@ -219,7 +253,6 @@ public class DBUtils {
     public void changeUsersRole(User user, Role role) {
         Connection conn = getConnection();
         try (
-                //PreparedStatement st = conn.prepareStatement("UPDATE users SET roleId = roles.id FROM users AS u JOIN roles ON roles.name=? WHERE u.login=?");
                 PreparedStatement st = conn.prepareStatement("UPDATE users SET roleId = (SELECT r.id FROM roles AS r WHERE r.name=?) WHERE login=?");
         ) {
             st.setString(1, role.getName());
@@ -397,5 +430,23 @@ public class DBUtils {
      */
     public boolean isCredentional(String login) {
         return getUserByLogin(login) != null;
+    }
+
+    /**
+     * Create tables.
+     */
+    public void createTables() {
+        Connection conn = getConnection();
+        try (
+                PreparedStatement st1 = conn.prepareStatement("CREATE TABLE IF NOT EXISTS roles (id serial PRIMARY KEY,name VARCHAR(255) NOT NULL UNIQUE)");
+                PreparedStatement st2 = conn.prepareStatement("CREATE TABLE IF NOT EXISTS users (id serial PRIMARY KEY, login VARCHAR(255) NOT NULL UNIQUE, name VARCHAR(255), email VARCHAR(255), createDate TIMESTAMP, roleId INTEGER REFERENCES roles(id))");
+        ) {
+            st1.executeUpdate();
+            st1.close();
+            st2.executeUpdate();
+            st2.close();
+        } catch (SQLException e) {
+            Log.error(e.getMessage(), e);
+        }
     }
 }

@@ -25,7 +25,11 @@ public class User {
      * @param login the login
      */
     public User(String login) {
+        this.name = "";
         this.login = login;
+        this.email = "";
+        this.createDate = System.currentTimeMillis();
+        this.role = new Role("");
     }
 
     /**
@@ -39,6 +43,8 @@ public class User {
         this.name = name;
         this.login = login;
         this.email = email;
+        this.createDate = System.currentTimeMillis();
+        this.role = new Role("");
     }
 
     /**
@@ -54,7 +60,7 @@ public class User {
         this.login = login;
         this.email = email;
         this.createDate = createDate;
-        this.role = new Role();
+        this.role = new Role("");
     }
 
     /**

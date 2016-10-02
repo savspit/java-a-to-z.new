@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class AuthFilter implements Filter {
-    private static final Logger Log = LoggerFactory.getLogger(UsersController.class);
+    private static final Logger Log = LoggerFactory.getLogger(AuthFilter.class);
 
 
     public void init(FilterConfig filterConfig) throws ServletException {

@@ -30,8 +30,8 @@ public class AuthFilter implements Filter {
                 ((HttpServletResponse) resp).sendRedirect(String.format("%s/singin", request.getContextPath()));
                 return;
             }
+            chain.doFilter(req, resp);
         }
-        chain.doFilter(req, resp);
     }
 
     public void destroy() {

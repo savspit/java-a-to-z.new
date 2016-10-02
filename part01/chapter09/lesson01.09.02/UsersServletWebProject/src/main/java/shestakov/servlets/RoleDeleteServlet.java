@@ -3,7 +3,6 @@ package shestakov.servlets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import shestakov.models.Role;
-import shestakov.models.User;
 import shestakov.postgresql.DBUtils;
 
 import javax.servlet.ServletException;

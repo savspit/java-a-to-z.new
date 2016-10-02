@@ -35,7 +35,7 @@ public class RoleGetServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getParameter("role") != null) {
             if (req.getParameter("select") != null) {
-                HttpSession session = req.getSession(false);
+                HttpSession session = req.getSession();
                 if (session.getAttribute("login") != null) {
                     req.setAttribute("login", session.getAttribute("login"));
                     req.setAttribute("role", req.getParameter("role"));
@@ -43,7 +43,7 @@ public class RoleGetServlet extends HttpServlet {
                     dispatcher.include(req, resp);
                 }
             } else if (req.getParameter("edit") != null) {
-                HttpSession session = req.getSession(false);
+                HttpSession session = req.getSession();
                 session.setAttribute("role", req.getParameter("role"));
                 resp.sendRedirect(String.format("%s/roleUpdate", req.getContextPath()));
             } else if (req.getParameter("delete") != null) {
