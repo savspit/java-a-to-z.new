@@ -3,8 +3,6 @@ package shestakov.servlets;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.Mockito;
-import shestakov.models.Role;
 import shestakov.models.User;
 import shestakov.postgresql.DBUtils;
 

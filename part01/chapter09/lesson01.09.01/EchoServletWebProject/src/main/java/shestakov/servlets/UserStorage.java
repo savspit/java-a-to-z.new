@@ -13,7 +13,7 @@ public class UserStorage {
     private List<User> users = new CopyOnWriteArrayList<User>();
 
     private UserStorage() {
-        this.users.add(new User("root", "root@root", "root"));
+        this.users.add(new User("", "root", "root@root", "root"));
     }
 
     public static UserStorage getInstance() {

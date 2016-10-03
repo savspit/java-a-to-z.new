@@ -1,7 +1,5 @@
 package shestakov.servlets;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import shestakov.models.Role;
 import shestakov.postgresql.DBUtils;
 
@@ -17,7 +15,6 @@ import java.io.IOException;
  * The type User get servlet.
  */
 public class UserGetServlet extends HttpServlet {
-    private static final Logger Log = LoggerFactory.getLogger(UserGetServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

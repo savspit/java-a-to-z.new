@@ -1,7 +1,5 @@
 package shestakov.servlets;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import shestakov.postgresql.DBUtils;
 
 import javax.servlet.ServletException;
@@ -15,7 +13,6 @@ import java.io.IOException;
  * The type Singin controller.
  */
 public class SinginController extends HttpServlet{
-    private static final Logger Log = LoggerFactory.getLogger(SinginController.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

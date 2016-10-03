@@ -1,8 +1,5 @@
 package shestakov.servlets;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,8 +10,6 @@ import java.io.IOException;
  * The type Auth filter.
  */
 public class AuthFilter implements Filter {
-    private static final Logger Log = LoggerFactory.getLogger(AuthFilter.class);
-
 
     public void init(FilterConfig filterConfig) throws ServletException {
 

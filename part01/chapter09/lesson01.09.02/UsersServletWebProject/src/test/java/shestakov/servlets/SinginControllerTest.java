@@ -6,7 +6,6 @@ import org.junit.Test;
 import shestakov.models.User;
 import shestakov.postgresql.DBUtils;
 
-import javax.servlet.FilterChain;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

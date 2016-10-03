@@ -4,7 +4,6 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import shestakov.models.Role;
 import shestakov.models.User;
 import shestakov.postgresql.DBUtils;
 

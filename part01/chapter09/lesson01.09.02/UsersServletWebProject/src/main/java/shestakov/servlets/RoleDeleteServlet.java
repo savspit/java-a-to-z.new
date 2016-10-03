@@ -1,7 +1,5 @@
 package shestakov.servlets;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import shestakov.models.Role;
 import shestakov.postgresql.DBUtils;
 
@@ -15,7 +13,6 @@ import java.io.IOException;
  * The type Role delete servlet.
  */
 public class RoleDeleteServlet extends HttpServlet {
-    private static final Logger Log = LoggerFactory.getLogger(RoleDeleteServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

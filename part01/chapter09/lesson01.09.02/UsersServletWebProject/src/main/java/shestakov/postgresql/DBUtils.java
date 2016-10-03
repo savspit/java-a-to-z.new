@@ -23,7 +23,6 @@ public class DBUtils {
     private static final Logger Log = LoggerFactory.getLogger(DBUtils.class);
     private static final DBUtils instance = new DBUtils();
     private DataSource datasource;
-    private Connection conn;
 
     private DBUtils() {
         try {
@@ -461,8 +460,6 @@ public class DBUtils {
         Connection conn = getConnection();
         Properties props = getDBQueries();
         try (
-                //PreparedStatement st1 = conn.prepareStatement("CREATE TABLE IF NOT EXISTS roles (id serial PRIMARY KEY,name VARCHAR(255) NOT NULL UNIQUE)");
-                //PreparedStatement st2 = conn.prepareStatement("CREATE TABLE IF NOT EXISTS users (id serial PRIMARY KEY, login VARCHAR(255) NOT NULL UNIQUE, name VARCHAR(255), email VARCHAR(255), createDate TIMESTAMP, roleId INTEGER REFERENCES roles(id))");
                 PreparedStatement st1 = conn.prepareStatement(props.getProperty("tableRoles"));
                 PreparedStatement st2 = conn.prepareStatement(props.getProperty("tableUsers"));
         ) {

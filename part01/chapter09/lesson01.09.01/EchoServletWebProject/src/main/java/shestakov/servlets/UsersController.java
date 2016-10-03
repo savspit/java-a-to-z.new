@@ -29,7 +29,7 @@ public class UsersController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        UserStorage.getInstance().add(new User(req.getParameter("login"),req.getParameter("email"), null));
+        UserStorage.getInstance().add(new User("", req.getParameter("login"),req.getParameter("email"), null));
         this.users.add(req.getParameter("login"));
         resp.sendRedirect(String.format("%s/", req.getContextPath()));
     }

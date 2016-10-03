@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function loadUsers() {
+            $.ajax('./json', {
+                method : 'get',
+                complete: function(data) {
+                    var result = "<tr>"+
+                            "<td>Login</td>"+
+                            "<td>Email</td>"+
+                            "</tr>";
+                    var users = JSON.parse(data.responseText);
+                    for (var i=0; i!=users.length; ++i) {
+                        result += "<tr>"+
+                                "<td>" + users[i].login + "</td>"+
+                                "<td>" + users[i].email + "</td>"+
+                                "</tr>";
+                    }
+                    var table = document.getElementById("header-users");
+                    table.innerHTML = result;
+                }
+            });
+        }
+
+        $(loadUsers());
+
+        function createUser() {
+            $.ajax('./json', {
+                method : 'post',
+                data : {login : document.getElementsByName("name")[0].value},
+                complete: loadUsers()
+            })
+            return false;
+        }
+
+        function validate() {
+            var result = true;
+            var name = document.getElementsByName("name")[0].value;
+            if (name == '') {
+                result = false;
+            }
+            if (!result) {
+                alert("Please correct input date");
+            }
+            return result;
+        }
+    </script>
+</head>
+<body>
+<div class="center">
+    <form action="/items" method="POST" onsubmit="return validate();">
+        <input type="hidden" name="user_id">
+        Name : <input type="text" name="name"><br/>
+        Password : <input type="password" name="password"><br/>
+        Sex :
+        <input type="radio" name="sex"> Male
+        <input type="radio" name="sex"> Female<br/>
+        Address : <select name="address">
+            <option value="msk">Moscow</option>
+            <option value="spb">Spb</option>
+        </select>
+        Resume : <input type="file" name="resume">
+        Description : <br/><textarea name="description"></textarea><br/>
+        Agreements : <input type="checkbox" name="agreements"><br/><br/>
+        <input type="submit" value="Submit">
+        <input type="button" value="Ajax" onclick="return createUser();">
+    </form>
+</div>
+<br/>
+<div class="center">
+    <table id="users" style="border: 1px solid #000000" border="1" cellpadding="1" cellspacing="0">
+        <tr>
+            <td>Login</td>
+            <td>Email</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
