@@ -1,7 +1,5 @@
 package shestakov.servlets;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import shestakov.models.Role;
 import shestakov.postgresql.DBUtils;
@@ -10,8 +8,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import java.io.IOException;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -23,22 +19,6 @@ import static org.mockito.Mockito.verify;
  * The type Role get servlet test.
  */
 public class RoleGetServletTest {
-
-    /**
-     * Create tables.
-     */
-    @BeforeClass
-    public static void createTables() throws IOException {
-        DBUtils.getInstance().deleteAllUsersAndRoles();
-    }
-
-    /**
-     * Delete data in tables.
-     */
-    @AfterClass
-    public static void deleteDataInTables() {
-        DBUtils.getInstance().deleteAllUsersAndRoles();
-    }
 
     /**
      * When going select role should do it correct.

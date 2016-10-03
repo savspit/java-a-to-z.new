@@ -32,9 +32,12 @@ public class RoleUpdateServlet extends HttpServlet {
             if (req.getParameter("update") != null) {
                 HttpSession session = req.getSession();
                 if (session.getAttribute("role") != null) {
-                    Role selectedRole = DBUtils.getInstance().getRoleByName((String) session.getAttribute("role"));
-                    selectedRole.setName(req.getParameter("name"));
-                    DBUtils.getInstance().updateRoleById(selectedRole);
+                    Role role = (Role) session.getAttribute("role");
+                    Role selectedRole = DBUtils.getInstance().getRoleByName(role.getName());
+                    if (selectedRole != null) {
+                        selectedRole.setName(req.getParameter("name"));
+                        DBUtils.getInstance().updateRoleById(selectedRole);
+                    }
                 }
             }
         }
