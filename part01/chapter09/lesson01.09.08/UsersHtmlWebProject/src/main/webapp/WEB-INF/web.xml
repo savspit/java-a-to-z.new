@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+
+    <resource-ref>
+        <description>DB Connection Pooling</description>
+        <res-ref-name>jdbc/postgres</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+
+    <!--<filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>shestakov.servlets.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>-->
+
+    <servlet>
+        <servlet-name>JsonController</servlet-name>
+        <servlet-class>shestakov.servlets.JsonController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JsonController</servlet-name>
+        <url-pattern>/json</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserCreateServlet</servlet-name>
+        <servlet-class>shestakov.servlets.UserCreateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserCreateServlet</servlet-name>
+        <url-pattern>/create</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserGetServlet</servlet-name>
+        <servlet-class>shestakov.servlets.UserGetServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserGetServlet</servlet-name>
+        <url-pattern>/get</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserUpdateServlet</servlet-name>
+        <servlet-class>shestakov.servlets.UserUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserUpdateServlet</servlet-name>
+        <url-pattern>/update</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UserDeleteServlet</servlet-name>
+        <servlet-class>shestakov.servlets.UserDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserDeleteServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RoleGetServlet</servlet-name>
+        <servlet-class>shestakov.servlets.RoleGetServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RoleGetServlet</servlet-name>
+        <url-pattern>/roleGet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RoleCreateServlet</servlet-name>
+        <servlet-class>shestakov.servlets.RoleCreateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RoleCreateServlet</servlet-name>
+        <url-pattern>/roleCreate</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RoleSelectServlet</servlet-name>
+        <servlet-class>shestakov.servlets.RoleSelectServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RoleSelectServlet</servlet-name>
+        <url-pattern>/roleSelect</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RoleUpdateServlet</servlet-name>
+        <servlet-class>shestakov.servlets.RoleUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RoleUpdateServlet</servlet-name>
+        <url-pattern>/roleUpdate</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RoleDeleteServlet</servlet-name>
+        <servlet-class>shestakov.servlets.RoleDeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RoleDeleteServlet</servlet-name>
+        <url-pattern>/roleDelete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Singin</servlet-name>
+        <servlet-class>shestakov.servlets.SinginController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Singin</servlet-name>
+        <url-pattern>/singin</url-pattern>
+    </servlet-mapping>
+
+</web-app>
+
