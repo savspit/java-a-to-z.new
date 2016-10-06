@@ -11,6 +11,10 @@
 
     <groupId>chapter09</groupId>
     <artifactId>lesson01.09.08</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>UsersHtmlWebProject</module>
+    </modules>
 
 
 </project>

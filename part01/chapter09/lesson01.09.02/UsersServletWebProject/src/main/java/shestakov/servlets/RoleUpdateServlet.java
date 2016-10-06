@@ -23,7 +23,7 @@ public class RoleUpdateServlet extends HttpServlet {
             selectedRole = DBUtils.getInstance().getRoleByName((String) session.getAttribute("role"));
         }
         req.setAttribute("role", selectedRole);
-        req.getRequestDispatcher("/WEB-INF/views/roleUpdate.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/RoleUpdate.jsp").forward(req, resp);
     }
 
     @Override

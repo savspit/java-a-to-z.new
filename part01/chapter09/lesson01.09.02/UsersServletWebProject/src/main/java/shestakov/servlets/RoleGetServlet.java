@@ -25,7 +25,7 @@ public class RoleGetServlet extends HttpServlet {
         }
         req.setAttribute("user", selectedUser);
         req.setAttribute("roles", DBUtils.getInstance().getAllRoles());
-        req.getRequestDispatcher("/WEB-INF/views/roleGet.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/RoleGet.jsp").forward(req, resp);
     }
 
     @Override

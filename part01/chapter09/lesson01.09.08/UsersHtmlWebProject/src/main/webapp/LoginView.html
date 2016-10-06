@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function validate() {
+            /*var login = $('#login').val();
+            if (login == "") {
+                <div class="alert alert-danger">
+                    <strong>Error!</strong> Login is required.
+                </div>
+            }*/
+            $.ajax('./json', {
+                method : 'post',
+                data : {login : $('#login').val()},
+                complete : function(data){
+                    var result = JSON.parse(data.responseText);
+                    if (result == true) {
+                        location.href = "/items/UserGet.html";
+                    } else {
+                        alert("Please input correct login");
+                    }
+                }
+            })
+            return false;
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h2>My first page</h2>
+    <form action="/items" method="post">
+        <div class="form-group">
+            <label for="login">Login:</label>
+            <input type="login" class="form-control" id="login" placeholder="Enter login" name="login">
+        </div>
+        <button type="submit" class="btn btn-default" onclick="return validate();">Submit</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function editUser() {
+            $.ajax('./update', {
+                method : 'get',
+                data : {login : $('#login').val()},
+                complete : location.href = "/items/UserEdit.html",
+            })
+            return false;
+        }
+        $(document).ready(function getUsers() {
+            $.ajax('./get', {
+                method : 'get',
+                complete: function(data) {
+                    var users = JSON.parse(data.responseText);
+                    var result = "";
+                    for (var i=0; i!=users.length; ++i) {
+                        result += "<label>"+"<input type=\"radio\" name=\"optradio\">" +
+                                "login: " + users[i].login + ", name: " + users[i].name + ", email: " + users[i].email + ", date: " + users[i].date + ", role: " + users[i].role +
+                        "</label>";
+                    }
+                    var radioButtons = document.getElementById("radioId");
+                    radioButtons.innerHTML = result;
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+<div class="container">
+    <h2>Users list</h2>
+    <form action="/items/get" method="post" onsubmit="return getUsers();">
+        <div class="radio" id="radioId">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-default" onclick="return editUser();">Edit</button>
+        <button type="submit" class="btn btn-default" onclick="return deleteUser();">Delete</button>
+        <button type="submit" class="btn btn-default" onclick="return validateUser();">Edit role</button>
+        <br>
+        <br>
+        <a href="/items/UserCreate.html">Add new user <span class="badge"></span></a><br>
+    </form>
+</div>
+</body>
+</html>

@@ -24,7 +24,7 @@ public class UserUpdateServlet extends HttpServlet {
             session.removeAttribute("login");
         }
         req.setAttribute("user", selectedUser);
-        req.getRequestDispatcher("/WEB-INF/views/userUpdate.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/UserUpdate.jsp").forward(req, resp);
     }
 
     @Override

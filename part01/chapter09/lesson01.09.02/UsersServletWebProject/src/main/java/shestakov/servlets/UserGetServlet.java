@@ -22,7 +22,7 @@ public class UserGetServlet extends HttpServlet {
         req.setAttribute("login", (String) session.getAttribute("login"));
         req.setAttribute("role", (Role) session.getAttribute("role"));
         req.setAttribute("users", DBUtils.getInstance().getAllUsers());
-        req.getRequestDispatcher("/WEB-INF/views/userGet.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/UserGet.jsp").forward(req, resp);
     }
 
     @Override
