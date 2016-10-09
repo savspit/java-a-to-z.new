@@ -7,16 +7,36 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function getName() {
+            $.ajax('./roleUpdate', {
+                method: 'get',
+                data: {role: $('#role').val()},
+                complete: function (data) {
+                    var result = JSON.parse(data.responseText)[0];
+                    var field = document.getElementById("role");
+                    field.value = result.name;
+                }
+            });
+        })
+        function applyChanges() {
+            $.ajax('./roleUpdate', {
+                method: 'post',
+                data: {role: $('#role').val()},
+            });
+            return false;
+        }
+    </script>
 </head>
 <body>
 <div class="container">
     <h2>Role edit</h2>
     <form>
         <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="name" class="form-control" id="name" placeholder="Enter name">
+            <label for="role">Name:</label>
+            <input type="role" class="form-control" id="role" placeholder="Enter name" name="role">
         </div>
-        <button type="submit" class="btn btn-default">Update</button>
+        <button type="submit" class="btn btn-default" onclick="return applyChanges();">Update</button>
     </form>
 </div>
 </body>

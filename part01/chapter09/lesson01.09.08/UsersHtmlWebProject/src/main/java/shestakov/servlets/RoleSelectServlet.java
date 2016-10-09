@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -17,6 +18,11 @@ public class RoleSelectServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        DBUtils.getInstance().changeUsersRole(new User(req.getAttribute("login").toString()), new Role(req.getAttribute("role").toString()));
+        HttpSession session = req.getSession();
+        if (session.getAttribute("login") != null) {
+            User user = new User();
+            user.setLogin(session.getAttribute("login").toString());
+            DBUtils.getInstance().changeUsersRole(user, new Role(req.getParameter("role")));
+        }
     }
 }

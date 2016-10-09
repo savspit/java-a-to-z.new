@@ -16,6 +16,8 @@ public class UserDeleteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        DBUtils.getInstance().deleteUserByLogin(new User(req.getParameter("user")));
+        User user = new User();
+        user.setLogin(req.getParameter("login"));
+        DBUtils.getInstance().deleteUserByLogin(user);
     }
 }

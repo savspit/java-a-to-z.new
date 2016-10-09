@@ -8,13 +8,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
-        function editUser() {
-            $.ajax('./update', {
-                method : 'get',
-                data : {login : $('#login').val()},
-                complete : location.href = "/items/UserEdit.html",
-            })
-            return false;
+        function isRoot() {
+            var defer = $.Deferred();
+            $.ajax('./service', {
+                method : 'get'
+            }).done(function (data) {
+                defer.resolve(data);
+            });
+            return defer.promise();
         }
         $(document).ready(function getUsers() {
             $.ajax('./get', {
@@ -23,30 +24,62 @@
                     var users = JSON.parse(data.responseText);
                     var result = "";
                     for (var i=0; i!=users.length; ++i) {
-                        result += "<label>"+"<input type=\"radio\" name=\"optradio\">" +
+                        result += "<div class=\"radio\" name=\"radio\">" +
+                                "<label>"+"<input type=\"radio\" name=\"optradio\" value=\"" + users[i].login + "\">" +
                                 "login: " + users[i].login + ", name: " + users[i].name + ", email: " + users[i].email + ", date: " + users[i].date + ", role: " + users[i].role +
-                        "</label>";
+                                "</label>"+
+                                "</div>";
                     }
                     var radioButtons = document.getElementById("radioId");
                     radioButtons.innerHTML = result;
+                    isRoot().then(function (data) {
+                        if (data != "true") {
+                            $("#deleteUserId").removeClass("btn btn-default").addClass('btn btn-primary disabled');
+                            $("#editRoleId").removeClass("btn btn-default").addClass('btn btn-primary disabled');
+                            $("#addUserId").removeAttr("href");
+                        }
+                    });
                 }
             });
         })
+        function editUser() {
+            $.ajax('./get', {
+                method : 'post',
+                data : {login : $("input[name='optradio']:checked").val()},
+                complete : location.href = "/items/UserEdit.html",
+            })
+            return false;
+        }
+        function deleteUser() {
+            $.ajax('./delete', {
+                method : 'post',
+                data : {login : $("input[name='optradio']:checked").val()},
+            })
+            return false;
+        }
+        function editRole() {
+            $.ajax('./roleGet', {
+                method : 'post',
+                data : {login : $("input[name='optradio']:checked").val()},
+                complete : location.href = "/items/RoleGet.html",
+            })
+            return false;
+        }
     </script>
 </head>
 <body>
 <div class="container">
     <h2>Users list</h2>
-    <form action="/items/get" method="post" onsubmit="return getUsers();">
-        <div class="radio" id="radioId">
+    <form>
+        <div class="radioHere" id="radioId">
         </div>
         <br>
         <button type="submit" class="btn btn-default" onclick="return editUser();">Edit</button>
-        <button type="submit" class="btn btn-default" onclick="return deleteUser();">Delete</button>
-        <button type="submit" class="btn btn-default" onclick="return validateUser();">Edit role</button>
+        <button type="submit" class="btn btn-default" id="deleteUserId" onclick="return deleteUser();">Delete</button>
+        <button type="submit" class="btn btn-default" id="editRoleId" onclick="return editRole();">Edit role</button>
         <br>
         <br>
-        <a href="/items/UserCreate.html">Add new user <span class="badge"></span></a><br>
+        <a href="/items/UserCreate.html" id="addUserId" >Add new user <span class="badge"></span></a><br>
     </form>
 </div>
 </body>

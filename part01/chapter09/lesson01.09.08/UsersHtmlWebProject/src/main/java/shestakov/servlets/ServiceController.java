@@ -11,15 +11,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * The type Json controller.
+ * The type Service controller.
  */
-public class JsonController extends HttpServlet {
+public class ServiceController extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        session.setAttribute("login", req.getParameter("login"));
-        boolean result = DBUtils.getInstance().isCredentional(req.getParameter("login"));
+        boolean result = DBUtils.getInstance().isRoot(session.getAttribute("login").toString());
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
         writer.append(String.valueOf(result));
         writer.flush();

@@ -16,7 +16,7 @@
                     var countries = JSON.parse(data.responseText);
                     var result = "";
                     for (var i = 0; i != countries.length; ++i) {
-                        result += "<li><a href=\"#\">" + countries[i].name + "</a></li>";
+                        result += "<option>" + countries[i].name + "</option>";
                     }
                     var dropdownMenu = document.getElementById("countriesId");
                     dropdownMenu.innerHTML = result;
@@ -31,14 +31,39 @@
                     var cities = JSON.parse(data.responseText);
                     var result = "";
                     for (var i = 0; i != cities.length; ++i) {
-                        result += "<li><a href=\"#\">" + cities[i].name + "</a></li>";
+                        result += "<option>" + cities[i].name + "</option>";
                     }
                     var dropdownMenu = document.getElementById("citiesId");
                     dropdownMenu.innerHTML = result;
                 }
             });
         })
-
+        $(document).ready(function getLogin() {
+            $.ajax('./update', {
+                method: 'get',
+                data: {type: "login"},
+                complete: function (data) {
+                    var result = JSON.parse(data.responseText)[0];
+                    var field = document.getElementById("login");
+                    field.value = result.login;
+                    var field = document.getElementById("name");
+                    field.value = result.name;
+                    var field = document.getElementById("email");
+                    field.value = result.email;
+                    var field = document.getElementById("countriesId");
+                    field.option = result.country;
+                    var field = document.getElementById("citiesId");
+                    field.option = result.city;
+                }
+            });
+        })
+        function applyChanges() {
+            $.ajax('./update', {
+                method: 'post',
+                data: {login: $('#login').val(), name: $('#name').val(), email: $('#email').val(), country: $('#countriesId').val(), city: $('#citiesId').val()},
+            });
+            return false;
+        }
     </script>
 </head>
 <body>
@@ -47,7 +72,7 @@
     <form>
         <div class="form-group">
             <label for="login">Login:</label>
-            <input type="login" class="form-control" id="login" placeholder="Enter login">
+            <input type="login" class="form-control" id="login" placeholder="Enter login" disabled>
         </div>
         <div class="form-group">
             <label for="name">Name:</label>
@@ -57,21 +82,20 @@
             <label for="email">Email:</label>
             <input type="email" class="form-control" id="email" placeholder="Enter email">
         </div>
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Country
-                <span class="caret"></span></button>
-            <ul class="dropdown-menu" id="countriesId">
-            </ul>
+        <div class="form-group">
+            <label for="countriesId">Country:</label>
+            <select class="form-control" id="countriesId">
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="citiesId">City:</label>
+            <select class="form-control" id="citiesId">
+
+            </select>
         </div>
         <br>
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">City
-                <span class="caret"></span></button>
-            <ul class="dropdown-menu" id="citiesId">
-            </ul>
-        </div>
-        <br>
-        <button type="submit" class="btn btn-default">Edit</button>
+        <button type="submit" class="btn btn-default" onclick="return applyChanges();">Edit</button>
     </form>
 </div>
 </body>

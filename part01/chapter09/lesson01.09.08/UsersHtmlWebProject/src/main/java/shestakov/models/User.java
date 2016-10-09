@@ -2,6 +2,9 @@ package shestakov.models;
 
 import java.sql.Timestamp;
 
+/**
+ * The type User.
+ */
 public class User {
     private String name;
     private String login;
@@ -11,60 +14,137 @@ public class User {
     private String city;
     private Role role;
 
+    /**
+     * Instantiates a new User.
+     */
     public User() {
-
-    }
-
-    public User(String login) {
-        this.name = "";
-        this.login = login;
-        this.email = "";
         this.createDate = System.currentTimeMillis();
-        this.role = new Role("");
     }
 
-    public User(String name, String login, String email) {
-        this.name = name;
-        this.login = login;
-        this.email = email;
-        this.createDate = System.currentTimeMillis();
-        this.role = new Role("");
-    }
-
-    public User(String name, String login, String email, long createDate) {
-        this.name = name;
-        this.login = login;
-        this.email = email;
-        this.createDate = createDate;
-        this.role = new Role("");
-    }
-
-    public User(String name, String login, String email, long createDate, Role role) {
-        this.name = name;
-        this.login = login;
-        this.email = email;
-        this.createDate = createDate;
-        this.role = role;
-    }
-
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets login.
+     *
+     * @return the login
+     */
     public String getLogin() {
         return login;
     }
 
+    /**
+     * Gets email.
+     *
+     * @return the email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Gets country.
+     *
+     * @return the country
+     */
+    public String getCountry() {
+        return country;
+    }
+
+    /**
+     * Gets city.
+     *
+     * @return the city
+     */
+    public String getCity() {
+        return city;
+    }
+
+    /**
+     * Gets create date.
+     *
+     * @return the create date
+     */
     public long getCreateDate() {
         return createDate;
     }
 
+    /**
+     * Gets role.
+     *
+     * @return the role
+     */
     public Role getRole() {
         return role;
+    }
+
+    /**
+     * Sets name.
+     *
+     * @param name the name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Sets login.
+     *
+     * @param login the login
+     */
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    /**
+     * Sets email.
+     *
+     * @param email the email
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * Sets country.
+     *
+     * @param country the country
+     */
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    /**
+     * Sets city.
+     *
+     * @param city the city
+     */
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    /**
+     * Sets create date.
+     *
+     * @param createDate the create date
+     */
+    public void setCreateDate(long createDate) {
+        this.createDate = createDate;
+    }
+
+    /**
+     * Sets role.
+     *
+     * @param role the role
+     */
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override

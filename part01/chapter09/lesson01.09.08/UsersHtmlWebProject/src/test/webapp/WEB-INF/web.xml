@@ -7,15 +7,6 @@
         <res-auth>Container</res-auth>
     </resource-ref>
 
-    <filter>
-        <filter-name>AuthFilter</filter-name>
-        <filter-class>shestakov.servlets.AuthFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>AuthFilter</filter-name>
-        <url-pattern>*</url-pattern>
-    </filter-mapping>
-
     <servlet>
         <servlet-name>UserCreateServlet</servlet-name>
         <servlet-class>shestakov.servlets.UserCreateServlet</servlet-class>

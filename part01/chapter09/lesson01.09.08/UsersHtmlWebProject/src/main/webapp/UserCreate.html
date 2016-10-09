@@ -7,6 +7,45 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function getCountries() {
+            $.ajax('./update', {
+                method: 'get',
+                data: {type: "countries"},
+                complete: function (data) {
+                    var countries = JSON.parse(data.responseText);
+                    var result = "";
+                    for (var i = 0; i != countries.length; ++i) {
+                        result += "<option>" + countries[i].name + "</option>";
+                    }
+                    var dropdownMenu = document.getElementById("countriesId");
+                    dropdownMenu.innerHTML = result;
+                }
+            });
+        })
+        $(document).ready(function getCities() {
+            $.ajax('./update', {
+                method: 'get',
+                data: {type: "cities"},
+                complete: function (data) {
+                    var cities = JSON.parse(data.responseText);
+                    var result = "";
+                    for (var i = 0; i != cities.length; ++i) {
+                        result += "<option>" + cities[i].name + "</option>";
+                    }
+                    var dropdownMenu = document.getElementById("citiesId");
+                    dropdownMenu.innerHTML = result;
+                }
+            });
+        })
+        function addNewUser() {
+            $.ajax('./create', {
+                method: 'post',
+                data: {login: $('#login').val(), name: $('#name').val(), email: $('#email').val(), country: $('#countriesId').val(), city: $('#citiesId').val()},
+            });
+            return false;
+        }
+    </script>
 </head>
 <body>
 <div class="container">
@@ -24,30 +63,20 @@
             <label for="email">Email:</label>
             <input type="email" class="form-control" id="email" placeholder="Enter email">
         </div>
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Country
-                <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li><a href="#">Russia</a></li>
-                <li><a href="#">United states</a></li>
-                <li><a href="#">Germany</a></li>
-                <li><a href="#">France</a></li>
-            </ul>
+        <div class="form-group">
+            <label for="countriesId">Country:</label>
+            <select class="form-control" id="countriesId">
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="citiesId">City:</label>
+            <select class="form-control" id="citiesId">
+
+            </select>
         </div>
         <br>
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">City
-                <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li><a href="#">Moscow</a></li>
-                <li><a href="#">Piter</a></li>
-                <li><a href="#">New York</a></li>
-                <li><a href="#">Washington</a></li>
-                <li><a href="#">Paris</a></li>
-            </ul>
-        </div>
-        <br>
-        <button type="submit" class="btn btn-default">Add</button>
+        <button type="submit" class="btn btn-default" onclick="return addNewUser();">Add</button>
     </form>
 </div>
 </body>

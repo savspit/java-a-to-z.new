@@ -16,6 +16,9 @@ import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * The type Db utils.
+ */
 public class DBUtils {
     private static final Logger Log = LoggerFactory.getLogger(DBUtils.class);
     private static final DBUtils instance = new DBUtils();
@@ -34,10 +37,21 @@ public class DBUtils {
         }
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static DBUtils getInstance() {
         return instance;
     }
 
+    /**
+     * Gets db properties.
+     *
+     * @return the db properties
+     * @throws IOException the io exception
+     */
     public Properties getDBProperties() throws IOException {
         InputStream in = getClass().getClassLoader().getResourceAsStream("db.properties");
         if(in == null)
@@ -51,6 +65,12 @@ public class DBUtils {
         return props;
     }
 
+    /**
+     * Gets db queries.
+     *
+     * @return the db queries
+     * @throws IOException the io exception
+     */
     public Properties getDBQueries() throws IOException {
         InputStream in = getClass().getClassLoader().getResourceAsStream("dbqueries.properties");
         if(in == null)
@@ -64,6 +84,11 @@ public class DBUtils {
         return props;
     }
 
+    /**
+     * Init.
+     *
+     * @throws Exception the exception
+     */
     public void init() throws Exception {
         try {
             Properties prop = getDBProperties();
@@ -98,6 +123,11 @@ public class DBUtils {
         }
     }
 
+    /**
+     * Gets connection.
+     *
+     * @return the connection
+     */
     public Connection getConnection() {
         Connection conn = null;
         try {
@@ -108,6 +138,11 @@ public class DBUtils {
         return conn;
     }
 
+    /**
+     * Close connection.
+     *
+     * @param conn the conn
+     */
     public void closeConnection(Connection conn) {
         try {
             conn.close();
@@ -116,22 +151,37 @@ public class DBUtils {
         }
     }
 
+    /**
+     * Create root.
+     */
     public void createRoot() {
         Role role = new Role("root");
         addRole(role);
-        addUser(new User("root", "root", "root@root", System.currentTimeMillis(), role));
+        User user = new User();
+        user.setName("root");
+        user.setLogin("root");
+        user.setEmail("root@root");
+        user.setRole(role);
+        addUser(user);
     }
 
+    /**
+     * Add user.
+     *
+     * @param user the user
+     */
     public void addUser(User user) {
         Connection conn = getConnection();
         try (
-                PreparedStatement st = conn.prepareStatement("INSERT INTO users(name, login, email, createDate, roleId) VALUES (?, ?, ?, ?, (SELECT r.id FROM roles AS r WHERE r.name = ?))");
+                PreparedStatement st = conn.prepareStatement("INSERT INTO users(name, login, email, createDate, countryId, cityId, roleId) VALUES (?, ?, ?, ?, (SELECT cn.id FROM countries AS cn WHERE cn.name = ?), (SELECT ct.id FROM cities AS ct WHERE ct.name = ?), (SELECT r.id FROM roles AS r WHERE r.name = ?))");
         ) {
             st.setString(1, user.getName());
             st.setString(2, user.getLogin());
             st.setString(3, user.getEmail());
             st.setTimestamp(4, new Timestamp(user.getCreateDate()));
-            st.setString(5, user.getRole().getName().trim());
+            st.setString(5, user.getCountry());
+            st.setString(6, user.getCity());
+            st.setString(7, user.getRole().getName().trim());
             st.executeUpdate();
         } catch (SQLException e) {
             Log.error(e.getMessage(), e);
@@ -139,6 +189,11 @@ public class DBUtils {
         closeConnection(conn);
     }
 
+    /**
+     * Add role.
+     *
+     * @param role the role
+     */
     public void addRole(Role role) {
         Connection conn = getConnection();
         try (
@@ -152,18 +207,31 @@ public class DBUtils {
         closeConnection(conn);
     }
 
+    /**
+     * Gets user by login.
+     *
+     * @param login the login
+     * @return the user by login
+     */
     public User getUserByLogin(String login) {
         Connection conn = getConnection();
         User user = null;
         try (
-                PreparedStatement st = conn.prepareStatement("SELECT u.name, u.login, u.email, u.createDate FROM users AS u WHERE u.login = ?");
+                PreparedStatement st = conn.prepareStatement("SELECT u.name, u.login, u.email, u.createDate, coalesce(cn.name,'') as country, coalesce(ct.name,'') as city, coalesce(r.name,'') as role FROM users AS u LEFT JOIN countries AS cn ON u.countryId = cn.id LEFT JOIN cities AS ct ON u.cityId = ct.id LEFT JOIN roles AS r ON u.roleId = r.id WHERE u.login = ?");
         ) {
             st.setString(1, login.trim());
             try (
                     ResultSet rs = st.executeQuery();
             ) {
                 if (rs.next()) {
-                    user = new User(rs.getString("name"), rs.getString("login"), rs.getString("email"), rs.getTimestamp("createDate").getTime());
+                    user = new User();
+                    user.setLogin(rs.getString("login"));
+                    user.setName(rs.getString("name"));
+                    user.setEmail(rs.getString("email"));
+                    user.setCountry(rs.getString("country"));
+                    user.setCity(rs.getString("city"));
+                    user.setRole(new Role(rs.getString("role")));
+                    //user = new User(rs.getString("name"), rs.getString("login"), rs.getString("email"), rs.getTimestamp("createDate").getTime());
                 }
             }
         } catch (SQLException e) {
@@ -173,14 +241,21 @@ public class DBUtils {
         return user;
     }
 
+    /**
+     * Update user by login.
+     *
+     * @param user the user
+     */
     public void updateUserByLogin(User user) {
         Connection conn = getConnection();
         try (
-                PreparedStatement st = conn.prepareStatement("UPDATE users SET name=?, email=? WHERE login=?");
+                PreparedStatement st = conn.prepareStatement("UPDATE users SET name=?, email=?, countryId=(SELECT cn.id FROM countries AS cn WHERE cn.name=?), cityId=(SELECT ct.id FROM cities AS ct WHERE ct.name=?) WHERE login=?");
         ) {
             st.setString(1, user.getName());
             st.setString(2, user.getEmail());
-            st.setString(3, user.getLogin().trim());
+            st.setString(3, user.getCountry());
+            st.setString(4, user.getCity());
+            st.setString(5, user.getLogin().trim());
             st.executeUpdate();
         } catch (SQLException e) {
             Log.error(e.getMessage(), e);
@@ -188,6 +263,11 @@ public class DBUtils {
         closeConnection(conn);
     }
 
+    /**
+     * Delete user by login.
+     *
+     * @param user the user
+     */
     public void deleteUserByLogin(User user) {
         Connection conn = getConnection();
         try (
@@ -201,6 +281,12 @@ public class DBUtils {
         closeConnection(conn);
     }
 
+    /**
+     * Change users role.
+     *
+     * @param user the user
+     * @param role the role
+     */
     public void changeUsersRole(User user, Role role) {
         Connection conn = getConnection();
         try (
@@ -215,6 +301,12 @@ public class DBUtils {
         closeConnection(conn);
     }
 
+    /**
+     * Gets role by name.
+     *
+     * @param name the name
+     * @return the role by name
+     */
     public Role getRoleByName(String name) {
         Connection conn = getConnection();
         Role role = null;
@@ -236,6 +328,12 @@ public class DBUtils {
         return role;
     }
 
+    /**
+     * Gets role by user login.
+     *
+     * @param login the login
+     * @return the role by user login
+     */
     public Role getRoleByUserLogin(String login) {
         Connection conn = getConnection();
         Role role = null;
@@ -257,6 +355,11 @@ public class DBUtils {
         return role;
     }
 
+    /**
+     * Update role by id.
+     *
+     * @param role the role
+     */
     public void updateRoleById(Role role) {
         Connection conn = getConnection();
         try (
@@ -271,6 +374,11 @@ public class DBUtils {
         closeConnection(conn);
     }
 
+    /**
+     * Delete role by name.
+     *
+     * @param role the role
+     */
     public void deleteRoleByName(Role role) {
         Connection conn = getConnection();
         try (
@@ -284,6 +392,11 @@ public class DBUtils {
         closeConnection(conn);
     }
 
+    /**
+     * Gets all users.
+     *
+     * @return the all users
+     */
     public List<User> getAllUsers() {
         Connection conn = getConnection();
         List<User> users = new CopyOnWriteArrayList<User>();
@@ -294,7 +407,13 @@ public class DBUtils {
                     ResultSet rs = st.executeQuery();
             ) {
                 while (rs.next()) {
-                    users.add(new User(rs.getString("name"), rs.getString("login"), rs.getString("email"), rs.getTimestamp("createDate").getTime(), new Role(rs.getString("role"))));
+                    User user = new User();
+                    user.setName(rs.getString("name"));
+                    user.setLogin(rs.getString("login"));
+                    user.setEmail(rs.getString("email"));
+                    user.setCreateDate(rs.getTimestamp("createDate").getTime());
+                    user.setRole(new Role(rs.getString("role")));
+                    users.add(user);
                 }
             }
         } catch (SQLException e) {
@@ -304,6 +423,11 @@ public class DBUtils {
         return users;
     }
 
+    /**
+     * Gets all roles.
+     *
+     * @return the all roles
+     */
     public List<Role> getAllRoles() {
         Connection conn = getConnection();
         List<Role> roles = new CopyOnWriteArrayList<Role>();
@@ -324,6 +448,11 @@ public class DBUtils {
         return roles;
     }
 
+    /**
+     * Gets all countries.
+     *
+     * @return the all countries
+     */
     public List<String> getAllCountries() {
         Connection conn = getConnection();
         List<String> countries = new CopyOnWriteArrayList<String>();
@@ -344,6 +473,11 @@ public class DBUtils {
         return countries;
     }
 
+    /**
+     * Gets all cities.
+     *
+     * @return the all cities
+     */
     public List<String> getAllCities() {
         Connection conn = getConnection();
         List<String> cities = new CopyOnWriteArrayList<String>();
@@ -364,6 +498,9 @@ public class DBUtils {
         return cities;
     }
 
+    /**
+     * Delete all users and roles.
+     */
     public void deleteAllUsersAndRoles() {
         Connection conn = getConnection();
         try (
@@ -378,10 +515,31 @@ public class DBUtils {
         closeConnection(conn);
     }
 
+    /**
+     * Is credentional boolean.
+     *
+     * @param login the login
+     * @return the boolean
+     */
     public boolean isCredentional(String login) {
         return getUserByLogin(login) != null;
     }
 
+    /**
+     * Is root boolean.
+     *
+     * @param login the login
+     * @return the boolean
+     */
+    public boolean isRoot(String login) {
+        return "root".equals(getRoleByUserLogin(login).getName());
+    }
+
+    /**
+     * Create tables.
+     *
+     * @throws IOException the io exception
+     */
     public void createTables() throws IOException {
         Connection conn = getConnection();
         Properties props = getDBQueries();
@@ -404,6 +562,9 @@ public class DBUtils {
         }
     }
 
+    /**
+     * Fill countries.
+     */
     public void fillCountries() {
         Connection conn = getConnection();
         try (
@@ -416,6 +577,9 @@ public class DBUtils {
         }
     }
 
+    /**
+     * Fill cities.
+     */
     public void fillCities() {
         Connection conn = getConnection();
         try (
@@ -428,11 +592,17 @@ public class DBUtils {
         }
     }
 
+    /**
+     * Fill countries and cities.
+     */
     public void fillCountriesAndCities() {
         fillCountries();
         fillCities();
     }
 
+    /**
+     * Delete all countries and cities.
+     */
     public void deleteAllCountriesAndCities() {
         Connection conn = getConnection();
         try (
