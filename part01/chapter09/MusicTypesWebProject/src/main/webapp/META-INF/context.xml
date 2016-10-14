@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/musictypes" docBase="musictypes" crossContext="true" reloadable="true" debug="1">
+    <Resource name="jdbc/postgres" auth="Container"
+              type="javax.sql.DataSource"
+              maxActive="100"
+              maxIdle="30"
+              maxWait="10000"
+              username="postgres"
+              password="1"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://localhost:5432/musictypes"
+              removeAbandoned="true"
+              removeAbandonedTimeout="30"
+              logAbandoned="true"/>
+</Context>

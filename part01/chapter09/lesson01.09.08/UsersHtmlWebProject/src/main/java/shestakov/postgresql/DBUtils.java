@@ -231,7 +231,6 @@ public class DBUtils {
                     user.setCountry(rs.getString("country"));
                     user.setCity(rs.getString("city"));
                     user.setRole(new Role(rs.getString("role")));
-                    //user = new User(rs.getString("name"), rs.getString("login"), rs.getString("email"), rs.getTimestamp("createDate").getTime());
                 }
             }
         } catch (SQLException e) {
