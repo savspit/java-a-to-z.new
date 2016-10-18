@@ -1,7 +1,6 @@
 package shestakov.models;
 
-import shestakov.services.CellEnum;
-import shestakov.services.DirectionEnum;
+import shestakov.db.CellEnum;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;

@@ -1,6 +1,6 @@
 package shestakov.start;
 
-import shestakov.services.KeysValidator;
+import shestakov.db.KeysValidator;
 
 import java.util.concurrent.ExecutionException;
 

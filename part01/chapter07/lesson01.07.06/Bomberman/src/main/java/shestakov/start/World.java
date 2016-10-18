@@ -1,10 +1,8 @@
 package shestakov.start;
 
-import shestakov.models.BomberMan;
 import shestakov.models.Cell;
 import shestakov.models.Monster;
-import shestakov.services.CellEnum;
-import shestakov.services.DirectionEnum;
+import shestakov.db.DirectionEnum;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

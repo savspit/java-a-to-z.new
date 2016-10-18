@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="2016-10-15-initial-schema-import-1" author="shestakov">
+        <comment>
+            Создание таблицы roles
+        </comment>
+        <sql>
+            CREATE TABLE IF NOT EXISTS roles
+            (
+            id serial PRIMARY KEY,
+            name VARCHAR(255) NOT NULL UNIQUE
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-15-initial-schema-import-2" author="shestakov">
+        <comment>
+            Создание таблицы addresses
+        </comment>
+        <sql>
+            CREATE TABLE IF NOT EXISTS addresses
+            (
+            id serial PRIMARY KEY,
+            text VARCHAR(2000)
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-15-initial-schema-import-3" author="shestakov">
+        <comment>
+            Создание таблицы musicTypes
+        </comment>
+        <sql>
+            CREATE TABLE IF NOT EXISTS musicTypes
+            (
+            id serial PRIMARY KEY,
+            name VARCHAR(255)
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-15-initial-schema-import-4" author="shestakov">
+        <comment>
+            Создание таблицы users
+        </comment>
+        <sql>
+            CREATE TABLE IF NOT EXISTS users
+            (
+            id serial PRIMARY KEY,
+            login VARCHAR(255) NOT NULL UNIQUE,
+            name VARCHAR(255),
+            addressId INTEGER REFERENCES addresses(id) UNIQUE,
+            roleId INTEGER REFERENCES roles(id)
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-15-initial-schema-import-5" author="shestakov">
+        <comment>
+            Создание таблицы usersAndMusicTypes
+        </comment>
+        <sql>
+            CREATE TABLE IF NOT EXISTS usersAndMusicTypes
+            (
+            id serial PRIMARY KEY,
+            usersId INTEGER REFERENCES users(id),
+            musicTypeId INTEGER REFERENCES musicTypes(id)
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-15-initial-schema-import-6" author="shestakov">
+        <comment>
+            Удаление данных из таблицы roles
+        </comment>
+        <sql>
+            DELETE FROM roles
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-15-initial-schema-import-7" author="shestakov">
+        <comment>
+            Удаление данных из таблицы addresses
+        </comment>
+        <sql>
+            DELETE FROM addresses
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-15-initial-schema-import-8" author="shestakov">
+        <comment>
+            Удаление данных из таблицы musicTypes
+        </comment>
+        <sql>
+            DELETE FROM musicTypes
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-15-initial-schema-import-9" author="shestakov">
+        <comment>
+            Удаление данных из таблицы users
+        </comment>
+        <sql>
+            DELETE FROM users
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-15-initial-schema-import-10" author="shestakov">
+        <comment>
+            Удаление данных из таблицы usersAndMusicTypes
+        </comment>
+        <sql>
+            DELETE FROM usersAndMusicTypes
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-15-initial-schema-import-12" author="shestakov">
+        <comment>
+            Создание roles по-умолчанию
+        </comment>
+        <sql>
+            INSERT INTO roles(name) VALUES ('admin'),('user'),('mandator')
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-15-initial-schema-import-13" author="shestakov">
+        <comment>
+            Создание musicTypes по-умолчанию
+        </comment>
+        <sql>
+            INSERT INTO musicTypes(name) VALUES ('rap'),('rock'),('punk'),('blues'),('classic'),('industrial'),('jazz'),('nu metal')
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-15-initial-schema-import-14" author="shestakov">
+        <comment>
+            Создание пользователя admin по-умолчанию
+        </comment>
+        <sql>
+            INSERT INTO users(login,roleId) VALUES ('admin', (SELECT id FROM roles WHERE name='admin'))
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

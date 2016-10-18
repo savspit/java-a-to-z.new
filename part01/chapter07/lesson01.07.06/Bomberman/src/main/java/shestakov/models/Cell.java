@@ -1,6 +1,6 @@
 package shestakov.models;
 
-import shestakov.services.CellEnum;
+import shestakov.db.CellEnum;
 
 /**
  * The type Cell.

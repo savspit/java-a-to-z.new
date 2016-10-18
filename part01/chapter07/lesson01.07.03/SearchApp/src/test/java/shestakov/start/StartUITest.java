@@ -3,7 +3,7 @@ package shestakov.start;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-import shestakov.services.KeysValidator;
+import shestakov.db.KeysValidator;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;

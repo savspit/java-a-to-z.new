@@ -1,7 +1,7 @@
 package shestakov.models;
 
-import shestakov.services.CellEnum;
-import shestakov.services.DirectionEnum;
+import shestakov.db.CellEnum;
+import shestakov.db.DirectionEnum;
 import shestakov.start.World;
 
 /**

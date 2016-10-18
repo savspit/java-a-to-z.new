@@ -1,6 +1,6 @@
 package shestakov.models;
 
-import shestakov.services.Console;
+import shestakov.db.Console;
 
 import java.util.Map;
 import java.util.Random;

@@ -1,8 +1,8 @@
 package shestakov.start;
 
 import shestakov.models.CacheManager;
-import shestakov.services.ConsoleInput;
-import shestakov.services.Input;
+import shestakov.db.ConsoleInput;
+import shestakov.db.Input;
 
 import java.io.IOException;
 

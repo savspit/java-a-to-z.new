@@ -1,7 +1,7 @@
 package shestakov.start;
 
 import org.apache.log4j.Logger;
-import shestakov.services.KeysValidator;
+import shestakov.db.KeysValidator;
 import shestakov.threads.Worker;
 
 import java.io.File;

@@ -1,6 +1,6 @@
 package shestakov.servlets;
 
-import shestakov.dao.impl.DBUser;
+import shestakov.dao.impl.UserImpl;
 import shestakov.models.User;
 
 import javax.servlet.ServletException;
@@ -22,7 +22,7 @@ public class UserGetServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         List<User> result = new ArrayList<>();
-        DBUser dbUser = new DBUser();
+        UserImpl dbUser = new UserImpl();
         if (dbUser.isRoot(session.getAttribute("login").toString())) {
             result = dbUser.getAll();
         } else {

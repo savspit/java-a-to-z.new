@@ -1,6 +1,6 @@
 package shestakov.models;
 
-import shestakov.services.ReadTXTFile;
+import shestakov.db.ReadTXTFile;
 
 import java.io.IOException;
 import java.lang.ref.SoftReference;
