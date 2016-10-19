@@ -11,10 +11,10 @@ public interface IUserService {
     Role getRole(User user);
     Address getAddress(User user);
     List<MusicType> getMusicTypes(User user);
-    User addUser(User user);
-    User addUsersAddress(User user, Address address);
-    User addUsersMusicType(User user, MusicType musicType);
-    User addUsersRole(User user, Role role);
+    void addUser(User user);
+    void addUsersAddress(User user, Address address);
+    void addUsersMusicType(User user, MusicType musicType);
+    void addUsersRole(User user, Role role);
     User getByLogin(String login);
     User getById(int id);
     List<User> getByName(String name);

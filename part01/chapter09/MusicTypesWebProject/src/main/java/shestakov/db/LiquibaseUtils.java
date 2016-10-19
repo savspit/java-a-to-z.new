@@ -35,14 +35,19 @@ public class LiquibaseUtils {
         return props;
     }
 
-    public void migrate() throws Exception {
+    public void migrate() {
         if (instance.isFirstStart()) {
             createTables();
         }
     }
 
-    public void createTables() throws Exception {
-        Properties prop = getLiquibaseProperties();
+    public void createTables() {
+        Properties prop = null;
+        try {
+            prop = getLiquibaseProperties();
+        } catch (IOException e) {
+            Log.error(e.getMessage(), e);
+        }
         Connection conn = null;
         try {
             conn = instance.getConnection();

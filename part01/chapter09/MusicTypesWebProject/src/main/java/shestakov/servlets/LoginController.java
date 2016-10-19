@@ -19,11 +19,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LiquibaseUtils lq = new LiquibaseUtils();
-        try {
-            lq.migrate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        lq.migrate();
         HttpSession session = req.getSession();
         session.setAttribute("login", req.getParameter("login"));
         UserImpl dbUser = new UserImpl();

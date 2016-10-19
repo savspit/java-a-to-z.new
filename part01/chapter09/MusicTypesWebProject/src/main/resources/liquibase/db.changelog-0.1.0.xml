@@ -65,7 +65,7 @@
             CREATE TABLE IF NOT EXISTS usersAndMusicTypes
             (
             id serial PRIMARY KEY,
-            usersId INTEGER REFERENCES users(id),
+            userId INTEGER REFERENCES users(id),
             musicTypeId INTEGER REFERENCES musicTypes(id)
             )
         </sql>
