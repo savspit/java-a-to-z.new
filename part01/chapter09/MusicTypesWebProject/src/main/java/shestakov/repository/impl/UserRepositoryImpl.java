@@ -1,24 +1,17 @@
 package shestakov.repository.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import shestakov.dao.impl.UserImpl;
 import shestakov.db.DataSource;
-import shestakov.models.Address;
-import shestakov.models.MusicType;
-import shestakov.models.Role;
-import shestakov.models.User;
+import shestakov.templates.*;
+import shestakov.models.*;
 import shestakov.repository.IUserRepository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * The type User repository.
+ */
 public class UserRepositoryImpl implements IUserRepository{
-    private static final Logger Log = LoggerFactory.getLogger(UserRepositoryImpl.class);
     private static final String SQL_GET_ROLE = "SELECT r.id, r.name FROM roles AS r JOIN users AS u ON r.id = u.roleId AND u.login = ?";
     private static final String SQL_GET_ADDRESS = "SELECT a.id, a.text FROM addresses AS a JOIN users AS u ON a.id = u.addressId AND u.login = ?";
     private static final String SQL_GET_MUSICTYPES = "SELECT mt.id, mt.name FROM musicTypes AS mt JOIN usersAndMusicTypes AS umt ON mt.id = umt.musicTypeId AND umt.userId = (SELECT id FROM users WHERE login = ?)";
@@ -30,207 +23,134 @@ public class UserRepositoryImpl implements IUserRepository{
     private static final String SQL_GET_BY_MUSICTYPE = "SELECT u.id, u.name, u.login, coalesce(r.name,'') as role FROM users AS u LEFT JOIN roles AS r ON u.roleId = r.id JOIN usersAndMusicTypes AS umt ON u.id = umt.usersId JOIN musicTypes AS mt ON mt.id = umt.musicTypeId AND mt.name = ?";
     private static final DataSource instance = DataSource.getInstance();
 
-    public Role getRole(User user) {
-        Connection conn = instance.getConnection();
-        Role role = null;
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_GET_ROLE);
-        ) {
-            st.setString(1, user.getLogin().trim());
-            try (
-                    ResultSet rs = st.executeQuery();
-            ) {
-                if (rs.next()) {
-                    role = new Role();
-                    role.setId(rs.getInt("id"));
-                    role.setName(rs.getString("name"));
-                }
-            }
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
-        return role;
+    /**
+     * Gets role.
+     *
+     * @param user the user
+     * @return the role
+     */
+    public List<Entity> getRole(User user) {
+        Template roleTemplate = new RoleTemplate();
+        return roleTemplate.executeAndReturn(instance, SQL_GET_ROLE, user.getLogin().trim());
     }
 
-    public Address getAddress(User user) {
-        Connection conn = instance.getConnection();
-        Address address = null;
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_GET_ADDRESS);
-        ) {
-            st.setString(1, user.getLogin().trim());
-            try (
-                    ResultSet rs = st.executeQuery();
-            ) {
-                if (rs.next()) {
-                    address = new Address();
-                    address.setId(rs.getInt("id"));
-                    address.setText(rs.getString("text"));
-                }
-            }
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
-        return address;
+    /**
+     * Gets address.
+     *
+     * @param user the user
+     * @return the address
+     */
+    public List<Entity> getAddress(User user) {
+        Template addressTemplate = new AddressTemplate();
+        return addressTemplate.executeAndReturn(instance, SQL_GET_ADDRESS, user.getLogin().trim());
     }
 
-    public List<MusicType> getMusicTypes(User user) {
-        Connection conn = instance.getConnection();
-        List<MusicType> musicTypes = new CopyOnWriteArrayList<MusicType>();
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_GET_MUSICTYPES);
-        ) {
-            try (
-                    ResultSet rs = st.executeQuery();
-            ) {
-                while (rs.next()) {
-                    MusicType musicType = new MusicType();
-                    musicType.setId(rs.getInt("id"));
-                    musicType.setName(rs.getString("name"));
-                    musicTypes.add(musicType);
-                }
-            }
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
-        return musicTypes;
+    /**
+     * Gets music types.
+     *
+     * @param user the user
+     * @return the music types
+     */
+    public List<Entity> getMusicTypes(User user) {
+        Template musicTypeTemplate = new MusicTypeTemplate();
+        return musicTypeTemplate.executeAndReturn(instance, SQL_GET_MUSICTYPES, user.getLogin().trim());
     }
 
+    /**
+     * Add user.
+     *
+     * @param user the user
+     */
     public void addUser(User user) {
         UserImpl userImpl = new UserImpl();
         userImpl.create(user);
     }
 
+    /**
+     * Add users address.
+     *
+     * @param user    the user
+     * @param address the address
+     */
     public void addUsersAddress(User user, Address address) {
-        Connection conn = instance.getConnection();
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_ADD_ADDRESS_TO_USER);
-        ) {
-            st.setString(1, address.getText());
-            st.setString(2, user.getLogin().trim());
-            st.executeUpdate();
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
+        Template userTemplate = new UserTemplate();
+        userTemplate.execute(instance, SQL_ADD_ADDRESS_TO_USER, address.getText(), user.getLogin().trim());
     }
 
+    /**
+     * Add users music type.
+     *
+     * @param user      the user
+     * @param musicType the music type
+     */
     public void addUsersMusicType(User user, MusicType musicType) {
-        Connection conn = instance.getConnection();
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_ADD_MUSICTYPE_TO_USER);
-        ) {
-            st.setString(1, user.getLogin().trim());
-            st.setString(2, musicType.getName());
-            st.executeUpdate();
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
+        Template userTemplate = new UserTemplate();
+        userTemplate.execute(instance, SQL_ADD_MUSICTYPE_TO_USER, user.getLogin().trim(), musicType.getName());
     }
 
+    /**
+     * Add users role.
+     *
+     * @param user the user
+     * @param role the role
+     */
     public void addUsersRole(User user, Role role) {
-        Connection conn = instance.getConnection();
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_ADD_ROLE_TO_USER);
-        ) {
-            st.setString(1, role.getName());
-            st.setString(2, user.getLogin().trim());
-            st.executeUpdate();
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
+        Template userTemplate = new UserTemplate();
+        userTemplate.execute(instance, SQL_ADD_ROLE_TO_USER, role.getName(), user.getLogin().trim());
     }
 
-    public User getByLogin(String login) {
+    /**
+     * Gets by login.
+     *
+     * @param login the login
+     * @return the by login
+     */
+    public List<Entity> getByLogin(String login) {
         UserImpl userImpl = new UserImpl();
         return userImpl.getByLogin(login);
     }
 
-    public User getById(int id) {
+    /**
+     * Gets by id.
+     *
+     * @param id the id
+     * @return the by id
+     */
+    public List<Entity> getById(int id) {
         UserImpl userImpl = new UserImpl();
         return userImpl.getById(id);
     }
 
-    public List<User> getByName(String name) {
-        Connection conn = instance.getConnection();
-        List<User> users = new CopyOnWriteArrayList<User>();
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_GET_BY_NAME);
-        ) {
-            st.setString(1, name.trim());
-            try (
-                    ResultSet rs = st.executeQuery();
-            ) {
-                while (rs.next()) {
-                    User user = new User();
-                    user.setId(rs.getInt("id"));
-                    user.setName(rs.getString("name"));
-                    user.setLogin(rs.getString("login"));
-                    user.setRole(new Role(rs.getString("role")));
-                    users.add(user);
-                }
-            }
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
-        return users;
+    /**
+     * Gets by name.
+     *
+     * @param name the name
+     * @return the by name
+     */
+    public List<Entity> getByName(String name) {
+        Template userTemplate = new UserTemplate();
+        return userTemplate.executeAndReturn(instance, SQL_GET_BY_NAME, name.trim());
     }
 
-    public List<User> getByRole(Role role) {
-        Connection conn = instance.getConnection();
-        List<User> users = new CopyOnWriteArrayList<User>();
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_GET_BY_ROLE);
-        ) {
-            st.setString(1, role.getName().trim());
-            try (
-                    ResultSet rs = st.executeQuery();
-            ) {
-                while (rs.next()) {
-                    User user = new User();
-                    user.setId(rs.getInt("id"));
-                    user.setName(rs.getString("name"));
-                    user.setLogin(rs.getString("login"));
-                    user.setRole(new Role(rs.getString("role")));
-                    users.add(user);
-                }
-            }
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
-        return users;
+    /**
+     * Gets by role.
+     *
+     * @param role the role
+     * @return the by role
+     */
+    public List<Entity> getByRole(Role role) {
+        Template userTemplate = new UserTemplate();
+        return userTemplate.executeAndReturn(instance, SQL_GET_BY_ROLE, role.getName().trim());
     }
 
-    public List<User> getByMusicType(MusicType musicType) {
-        Connection conn = instance.getConnection();
-        List<User> users = new CopyOnWriteArrayList<User>();
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_GET_BY_MUSICTYPE);
-        ) {
-            st.setString(1, musicType.getName().trim());
-            try (
-                    ResultSet rs = st.executeQuery();
-            ) {
-                while (rs.next()) {
-                    User user = new User();
-                    user.setId(rs.getInt("id"));
-                    user.setName(rs.getString("name"));
-                    user.setLogin(rs.getString("login"));
-                    user.setRole(new Role(rs.getString("role")));
-                    users.add(user);
-                }
-            }
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
-        return users;
+    /**
+     * Gets by music type.
+     *
+     * @param musicType the music type
+     * @return the by music type
+     */
+    public List<Entity> getByMusicType(MusicType musicType) {
+        Template musicTypeTemplate = new MusicTypeTemplate();
+        return musicTypeTemplate.executeAndReturn(instance, SQL_GET_BY_MUSICTYPE, musicType.getName().trim());
     }
 }

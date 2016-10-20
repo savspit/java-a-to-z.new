@@ -4,7 +4,10 @@ package shestakov.models;
  * The type Entity.
  */
 public abstract class Entity {
-    private int id;
+    /**
+     * The Id.
+     */
+    public int id;
 
     /**
      * Instantiates a new Entity.

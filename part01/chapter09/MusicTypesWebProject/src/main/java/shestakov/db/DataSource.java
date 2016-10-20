@@ -10,6 +10,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * The type Data source.
+ */
 public class DataSource {
     private static final Logger Log = LoggerFactory.getLogger(DataSource.class);
     private static final String DB_DRIVER_BY_DEFAULT = "org.hsqldb.jdbcDriver";
@@ -28,20 +31,40 @@ public class DataSource {
         }
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static DataSource getInstance() {
         return instance;
     }
 
+    /**
+     * Init.
+     *
+     * @throws Exception the exception
+     */
     public void init() throws Exception {
         createPool();
     }
 
+    /**
+     * Is first start boolean.
+     *
+     * @return the boolean
+     */
     public boolean isFirstStart() {
         boolean result = firstStart;
         if (result == true) { firstStart = false; }
         return result;
     }
 
+    /**
+     * Gets connection.
+     *
+     * @return the connection
+     */
     public Connection getConnection() {
         Connection conn = null;
         try {
@@ -52,6 +75,11 @@ public class DataSource {
         return conn;
     }
 
+    /**
+     * Close connection.
+     *
+     * @param conn the conn
+     */
     public void closeConnection(Connection conn) {
         try {
             conn.close();
@@ -60,6 +88,12 @@ public class DataSource {
         }
     }
 
+    /**
+     * Gets db properties.
+     *
+     * @return the db properties
+     * @throws IOException the io exception
+     */
     public Properties getDBProperties() throws IOException {
         Properties props = new Properties();
         InputStream in = getClass().getClassLoader().getResourceAsStream("db.properties");
@@ -76,6 +110,11 @@ public class DataSource {
         return props;
     }
 
+    /**
+     * Create pool.
+     *
+     * @throws Exception the exception
+     */
     public void createPool() throws Exception {
         Properties prop = getDBProperties();
         cpds = new ComboPooledDataSource();

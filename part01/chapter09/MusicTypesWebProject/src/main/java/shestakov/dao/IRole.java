@@ -1,6 +1,9 @@
 package shestakov.dao;
 
+import shestakov.models.Entity;
 import shestakov.models.Role;
+
+import java.util.List;
 
 /**
  * The interface Role.
@@ -12,7 +15,7 @@ public interface IRole extends IEntity<Role> {
      * @param name the name
      * @return the by name
      */
-    Role getByName(String name);
+    List<Entity> getByName(String name);
 
     /**
      * Gets by user login.
@@ -20,5 +23,5 @@ public interface IRole extends IEntity<Role> {
      * @param login the login
      * @return the by user login
      */
-    Role getByUserLogin(String login);
+    List<Entity> getByUserLogin(String login);
 }

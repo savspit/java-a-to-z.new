@@ -49,4 +49,20 @@ public class Address extends Entity{
     public void setText(String text) {
         this.text = text;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Address)) return false;
+        Address address = (Address) o;
+        return id == address.id;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + id;
+        return result;
+    }
 }

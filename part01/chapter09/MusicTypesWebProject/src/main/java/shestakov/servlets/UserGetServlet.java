@@ -1,6 +1,7 @@
 package shestakov.servlets;
 
 import shestakov.dao.impl.UserImpl;
+import shestakov.models.Entity;
 import shestakov.models.User;
 
 import javax.servlet.ServletException;
@@ -21,18 +22,18 @@ public class UserGetServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        List<User> result = new ArrayList<>();
+        List<Entity> result = new ArrayList<>();
         UserImpl dbUser = new UserImpl();
         if (dbUser.isRoot(session.getAttribute("login").toString())) {
             result = dbUser.getAll();
         } else {
-            User user = dbUser.getByLogin(session.getAttribute("login").toString());
-            result.add(user);
+            result = dbUser.getByLogin(session.getAttribute("login").toString());
         }
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
         writer.append("[");
         for (int i=0; i<result.size(); i++) {
-            writer.append("{\"login\":\""+result.get(i).getLogin()+"\", \"name\":\""+result.get(i).getName()+"\", \"role\":\""+result.get(i).getRole().getName()+"\"}");
+            User user = (User) result.get(i);
+            writer.append("{\"login\":\""+user.getLogin()+"\", \"name\":\""+user.getName()+"\", \"role\":\""+user.getRole().getName()+"\"}");
             if (i+1 != result.size()) { writer.append(","); }
         }
         writer.append("]");

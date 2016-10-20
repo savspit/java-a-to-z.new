@@ -1,21 +1,18 @@
 package shestakov.dao.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import shestakov.dao.IUser;
-import shestakov.models.Role;
+import shestakov.templates.Template;
+import shestakov.templates.UserTemplate;
+import shestakov.models.Entity;
 import shestakov.models.User;
 import shestakov.db.DataSource;
 
-import java.sql.*;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * The type Db user.
+ * The type User.
  */
 public class UserImpl implements IUser {
-    private static final Logger Log = LoggerFactory.getLogger(UserImpl.class);
     private static final String SQL_CREATE = "INSERT INTO users(login, name, roleId) VALUES (?, ?, (SELECT r.id FROM roles AS r WHERE r.name = ?))";
     private static final String SQL_UPDATE = "UPDATE users SET name=?, WHERE login=?";
     private static final String SQL_DELETE = "DELETE FROM users WHERE login=?";
@@ -26,130 +23,50 @@ public class UserImpl implements IUser {
 
     @Override
     public void create(User user) {
-        Connection conn = instance.getConnection();
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_CREATE);
-        ) {
-            st.setString(1, user.getName());
-            st.setString(2, user.getLogin().trim());
-            st.setString(3, user.getRole().getName().trim());
-            st.executeUpdate();
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
+        Template userTemplate = new UserTemplate();
+        userTemplate.execute(instance, SQL_CREATE, user.getName(), user.getLogin().trim(), user.getRole().getName().trim());
     }
 
     @Override
-    public User getById(int id) {
-        Connection conn = instance.getConnection();
-        User user = null;
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_GET_BY_ID);
-        ) {
-            st.setInt(1, id);
-            try (
-                    ResultSet rs = st.executeQuery();
-            ) {
-                if (rs.next()) {
-                    user = new User();
-                    user.setId(rs.getInt("id"));
-                    user.setLogin(rs.getString("login"));
-                    user.setName(rs.getString("name"));
-                    user.setRole(new Role(rs.getString("role")));
-                }
-            }
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
-        return user;
+    public List<Entity> getById(int id) {
+        Template userTemplate = new UserTemplate();
+        return userTemplate.executeAndReturn(instance, SQL_GET_BY_ID, id);
+
     }
 
     @Override
     public void update(User user) {
-        Connection conn = instance.getConnection();
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_UPDATE);
-        ) {
-            st.setString(1, user.getName());
-            st.setString(2, user.getLogin().trim());
-            st.executeUpdate();
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
+        Template userTemplate = new UserTemplate();
+        userTemplate.execute(instance, SQL_UPDATE, user.getName(), user.getLogin().trim());
     }
 
     @Override
     public void delete(User user) {
-        Connection conn = instance.getConnection();
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_DELETE);
-        ) {
-            st.setString(1, user.getLogin().trim());
-            st.executeUpdate();
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
+        Template userTemplate = new UserTemplate();
+        userTemplate.execute(instance, SQL_DELETE, user.getLogin().trim());
     }
 
     @Override
-    public List<User> getAll() {
-        Connection conn = instance.getConnection();
-        List<User> users = new CopyOnWriteArrayList<User>();
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_GET_ALL);
-        ) {
-            try (
-                    ResultSet rs = st.executeQuery();
-            ) {
-                while (rs.next()) {
-                    User user = new User();
-                    user.setId(rs.getInt("id"));
-                    user.setName(rs.getString("name"));
-                    user.setLogin(rs.getString("login"));
-                    user.setRole(new Role(rs.getString("role")));
-                    users.add(user);
-                }
-            }
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
-        return users;
+    public List<Entity> getAll() {
+        Template userTemplate = new UserTemplate();
+        return userTemplate.executeAndReturn(instance, SQL_GET_ALL);
     }
 
     @Override
-    public User getByLogin(String login) {
-        Connection conn = instance.getConnection();
-        User user = null;
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_GET_BY_LOGIN);
-        ) {
-            st.setString(1, login.trim());
-            try (
-                    ResultSet rs = st.executeQuery();
-            ) {
-                if (rs.next()) {
-                    user = new User();
-                    user.setId(rs.getInt("id"));
-                    user.setLogin(rs.getString("login"));
-                    user.setName(rs.getString("name"));
-                    user.setRole(new Role(rs.getString("role")));
-                }
-            }
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
-        return user;
+    public List<Entity> getByLogin(String login) {
+        Template userTemplate = new UserTemplate();
+        return userTemplate.executeAndReturn(instance, SQL_GET_BY_LOGIN, login.trim());
     }
 
     @Override
     public boolean isRoot(String login) {
         RoleImpl dbRole = new RoleImpl();
-        return "root".equals(dbRole.getByUserLogin(login).getName());
+        List<Entity> users = dbRole.getByUserLogin(login);
+        boolean result = false;
+        if (users.size() != 0) {
+            User user = (User) users.get(0);
+            result = "root".equals(user.getName());
+        }
+        return result;
     }
 }

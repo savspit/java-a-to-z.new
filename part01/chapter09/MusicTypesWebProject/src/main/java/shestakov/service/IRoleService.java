@@ -1,10 +1,19 @@
 package shestakov.service;
 
+import shestakov.models.Entity;
 import shestakov.models.Role;
-import shestakov.models.User;
 
 import java.util.List;
 
+/**
+ * The interface Role service.
+ */
 public interface IRoleService {
-    List<User> getUsers(Role role);
+    /**
+     * Gets users.
+     *
+     * @param role the role
+     * @return the users
+     */
+    List<Entity> getUsers(Role role);
 }

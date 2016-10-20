@@ -1,29 +1,29 @@
 package shestakov.service.impl;
 
-import shestakov.models.Address;
-import shestakov.models.MusicType;
-import shestakov.models.Role;
-import shestakov.models.User;
+import shestakov.models.*;
 import shestakov.repository.impl.UserRepositoryImpl;
 import shestakov.service.IUserService;
 
 import java.util.List;
 
+/**
+ * The type User service.
+ */
 public class UserServiceImpl implements IUserService {
     private UserRepositoryImpl userRepository = new UserRepositoryImpl();
 
     @Override
-    public Role getRole(User user) {
+    public List<Entity> getRole(User user) {
         return this.userRepository.getRole(user);
     }
 
     @Override
-    public Address getAddress(User user) {
+    public List<Entity> getAddress(User user) {
         return this.userRepository.getAddress(user);
     }
 
     @Override
-    public List<MusicType> getMusicTypes(User user) {
+    public List<Entity> getMusicTypes(User user) {
         return this.userRepository.getMusicTypes(user);
     }
 
@@ -48,27 +48,27 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public User getByLogin(String login) {
+    public List<Entity> getByLogin(String login) {
         return this.userRepository.getByLogin(login);
     }
 
     @Override
-    public User getById(int id) {
+    public List<Entity> getById(int id) {
         return this.userRepository.getById(id);
     }
 
     @Override
-    public List<User> getByName(String name) {
+    public List<Entity> getByName(String name) {
         return this.userRepository.getByName(name);
     }
 
     @Override
-    public List<User> getByRole(Role role) {
+    public List<Entity> getByRole(Role role) {
         return this.userRepository.getByRole(role);
     }
 
     @Override
-    public List<User> getByMusicType(MusicType musicType) {
+    public List<Entity> getByMusicType(MusicType musicType) {
         return this.userRepository.getByMusicType(musicType);
     }
 }

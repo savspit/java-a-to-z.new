@@ -1,6 +1,9 @@
 package shestakov.dao;
 
+import shestakov.models.Entity;
 import shestakov.models.User;
+
+import java.util.List;
 
 /**
  * The interface User.
@@ -12,7 +15,7 @@ public interface IUser extends IEntity<User> {
      * @param login the login
      * @return the by login
      */
-    User getByLogin(String login);
+    List<Entity> getByLogin(String login);
 
     /**
      * Is root boolean.

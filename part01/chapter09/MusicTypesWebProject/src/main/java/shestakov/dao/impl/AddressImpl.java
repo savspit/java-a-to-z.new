@@ -1,23 +1,18 @@
 package shestakov.dao.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import shestakov.dao.IAddress;
+import shestakov.templates.AddressTemplate;
+import shestakov.templates.Template;
 import shestakov.models.Address;
 import shestakov.db.DataSource;
+import shestakov.models.Entity;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * The type Db address.
+ * The type Address.
  */
 public class AddressImpl implements IAddress {
-    private static final Logger Log = LoggerFactory.getLogger(AddressImpl.class);
     private static final String SQL_CREATE = "INSERT INTO addresses(name) VALUES (?)";
     private static final String SQL_UPDATE = "UPDATE addresses SET text=?, WHERE id=?";
     private static final String SQL_DELETE = "DELETE FROM addresses WHERE id=?";
@@ -27,92 +22,31 @@ public class AddressImpl implements IAddress {
 
     @Override
     public void create(Address address) {
-        Connection conn = instance.getConnection();
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_CREATE);
-        ) {
-            st.setString(1, address.getText());
-            st.executeUpdate();
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
+        Template addressTemplate = new AddressTemplate();
+        addressTemplate.execute(instance, SQL_CREATE, address.getText());
     }
 
     @Override
-    public Address getById(int id) {
-        Connection conn = instance.getConnection();
-        Address address = null;
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_GET_BY_ID);
-        ) {
-            st.setInt(1, id);
-            try (
-                    ResultSet rs = st.executeQuery();
-            ) {
-                if (rs.next()) {
-                    address = new Address();
-                    address.setId(rs.getInt("id"));
-                    address.setText(rs.getString("text"));
-                }
-            }
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
-        return address;
+    public List<Entity> getById(int id) {
+        Template addressTemplate = new AddressTemplate();
+        return addressTemplate.executeAndReturn(instance, SQL_GET_BY_ID, id);
     }
 
     @Override
     public void update(Address address) {
-        Connection conn = instance.getConnection();
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_UPDATE);
-        ) {
-            st.setString(1, address.getText());
-            st.setInt(2, address.getId());
-            st.executeUpdate();
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
+        Template addressTemplate = new AddressTemplate();
+        addressTemplate.execute(instance, SQL_UPDATE, address.getText(), address.getId());
     }
 
     @Override
     public void delete(Address address) {
-        Connection conn = instance.getConnection();
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_DELETE);
-        ) {
-            st.setInt(1, address.getId());
-            st.executeUpdate();
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
+        Template addressTemplate = new AddressTemplate();
+        addressTemplate.execute(instance, SQL_DELETE, address.getId());
     }
 
     @Override
-    public List<Address> getAll() {
-        Connection conn = instance.getConnection();
-        List<Address> addresses = new CopyOnWriteArrayList<Address>();
-        try (
-                PreparedStatement st = conn.prepareStatement(SQL_GET_ALL);
-        ) {
-            try (
-                    ResultSet rs = st.executeQuery();
-            ) {
-                while (rs.next()) {
-                    Address address = new Address();
-                    address.setId(rs.getInt("id"));
-                    address.setText(rs.getString("text"));
-                    addresses.add(address);
-                }
-            }
-        } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
-        }
-        instance.closeConnection(conn);
-        return addresses;
+    public List<Entity> getAll() {
+        Template addressTemplate = new AddressTemplate();
+        return addressTemplate.executeAndReturn(instance, SQL_GET_ALL);
     }
 }

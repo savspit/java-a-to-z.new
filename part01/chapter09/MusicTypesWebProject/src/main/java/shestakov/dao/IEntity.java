@@ -24,7 +24,7 @@ public interface IEntity<E extends Entity> {
      * @param id the id
      * @return the by id
      */
-    E getById(int id);
+    List<Entity> getById(int id);
 
     /**
      * Update.
@@ -45,5 +45,5 @@ public interface IEntity<E extends Entity> {
      *
      * @return the all
      */
-    List<E> getAll();
+    List<Entity> getAll();
 }
