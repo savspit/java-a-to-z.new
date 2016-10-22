@@ -1,7 +1,7 @@
 package shestakov.service.impl;
 
+import shestakov.dao.impl.UserImpl;
 import shestakov.models.*;
-import shestakov.repository.impl.UserRepositoryImpl;
 import shestakov.service.IUserService;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
  * The type User service.
  */
 public class UserServiceImpl implements IUserService {
-    private UserRepositoryImpl userRepository = new UserRepositoryImpl();
+    private UserImpl userRepository = new UserImpl();
 
     @Override
     public List<Entity> getRole(User user) {
