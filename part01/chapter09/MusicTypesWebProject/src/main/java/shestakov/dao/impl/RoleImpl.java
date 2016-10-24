@@ -20,7 +20,7 @@ public class RoleImpl implements IRole, IRoleRepository {
     private static final String SQL_DELETE = "DELETE FROM roles WHERE id=?";
     private static final String SQL_GET_BY_ID = "SELECT r.id, r.name FROM roles AS r WHERE r.id = ?";
     private static final String SQL_GET_BY_NAME = "SELECT r.id, r.name FROM roles AS r WHERE r.name = ?";
-    private static final String SQL_GET_BY_USER_LOGIN = "SELECT r.name FROM roles AS r JOIN users AS u ON u.roleId = r.id AND u.login = ?";
+    private static final String SQL_GET_BY_USER_LOGIN = "SELECT r.id, r.name FROM roles AS r JOIN users AS u ON u.roleId = r.id AND u.login = ?";
     private static final String SQL_GET_ALL = "SELECT r.id, r.name FROM roles AS r";
     private static final String SQL_GET_USERS = "SELECT u.id, u.login, u.name FROM users AS u JOIN roles AS r ON u.roleId = r.id AND r.name = ?";
     private static final DataSource instance = DataSource.getInstance();

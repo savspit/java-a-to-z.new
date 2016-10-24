@@ -14,6 +14,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>HibernateApp</module>
+        <module>ItemsApp</module>
     </modules>
 
 

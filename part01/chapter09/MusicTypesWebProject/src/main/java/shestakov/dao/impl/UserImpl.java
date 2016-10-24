@@ -67,13 +67,13 @@ public class UserImpl implements IUser, IUserRepository {
     }
 
     @Override
-    public boolean isRoot(String login) {
+    public boolean isAdmin(String login) {
         RoleImpl dbRole = new RoleImpl();
-        List<Entity> users = dbRole.getByUserLogin(login);
+        List<Entity> roles = dbRole.getByUserLogin(login);
         boolean result = false;
-        if (users.size() != 0) {
-            User user = (User) users.get(0);
-            result = "root".equals(user.getName());
+        if (roles.size() != 0) {
+            Role role = (Role) roles.get(0);
+            result = "ADMIN".equals(role.getName().toUpperCase());
         }
         return result;
     }

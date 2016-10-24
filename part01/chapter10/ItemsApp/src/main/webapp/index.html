@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function getItems() {
+            $.ajax('./getItems', {
+                method: 'get',
+                data: {showAll: $('#showAllCheckbox').val() == "on"},
+                complete: function (data) {
+                    var items = JSON.parse(data.responseText);
+                    var result = "<thead>" +
+                            "<tr>" +
+                            "<th>id</th>" +
+                            "<th>desc</th>" +
+                            "<th>created</th>" +
+                            "<th>done</th>" +
+                            "</tr>" +
+                            "</thead>" +
+                            "<tbody>";
+                    for (var i = 0; i != items.length; ++i) {
+                        result += "<td>" + items[i].id + "</td>" +
+                                "<td>" + items[i].description + "</td>" +
+                                "<td>" + items[i].created_date + "</td>" +
+                                "<td>" + items[i].done + "</td>" +
+                                "</tr>";
+                    }
+                    result += "</tbody>";
+                    var tableSructure = document.getElementById("tableId");
+                    tableSructure.innerHTML = result;
+                }
+            });
+        });
+        function addNewItem() {
+            $.ajax('./getItems', {
+                method: 'post',
+                data: {itemDesc: $('#itemDesc').val()}
+            })
+            return false;
+        }
+        function refreshPage() {
+            localStorage.input = $('#showAllCheckbox').val() == "on";
+            document.location.reload();
+            var test = localStorage.input === 'true' ? true : false;
+            $('#itemsCheckbox').prop('checked', test);
+            return false;
+        }
+
+
+    </script>
+</head>
+<body>
+<div class="container">
+    <h2>List of items</h2>
+    <form>
+        <div class="form-group">
+            <input type="text" class="form-control" id="itemDesc">
+            <button type="submit" class="btn btn-default" id="editListOfUsersId" onclick="return addNewItem();">Add new
+                item
+            </button>
+        </div>
+        <br>
+        <div class="checkbox">
+            <label><input type="checkbox" id="showAllCheckbox" checked="checked" onchange="return refreshPage();">Show
+                all </label>
+        </div>
+        <br>
+        <table class="table table-striped" id="tableId">
+        </table>
+        <br>
+    </form>
+</div>
+</body>
+</html>

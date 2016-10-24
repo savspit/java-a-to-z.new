@@ -5,7 +5,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import ru.shestakov.models.User;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 public class UserStorage {

@@ -23,5 +23,5 @@ public interface IUser extends IEntity<User> {
      * @param login the login
      * @return the boolean
      */
-    boolean isRoot(String login);
+    boolean isAdmin(String login);
 }

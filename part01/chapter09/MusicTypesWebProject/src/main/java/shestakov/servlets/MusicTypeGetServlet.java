@@ -1,7 +1,9 @@
 package shestakov.servlets;
 
+import shestakov.dao.impl.MusicTypeImpl;
 import shestakov.dao.impl.UserImpl;
 import shestakov.models.Entity;
+import shestakov.models.MusicType;
 import shestakov.models.User;
 
 import javax.servlet.ServletException;
@@ -14,26 +16,18 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * The type User get servlet.
- */
-public class UserGetServlet extends HttpServlet {
+public class MusicTypeGetServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        List<Entity> result;
-        UserImpl dbUser = new UserImpl();
-        if (dbUser.isAdmin(session.getAttribute("login").toString())) {
-            result = dbUser.getAll();
-        } else {
-            result = dbUser.getByLogin(session.getAttribute("login").toString());
-        }
+        MusicTypeImpl dbMusicType = new MusicTypeImpl();
+        List<Entity> result = dbMusicType.getByUserLogin(session.getAttribute("login").toString());
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
         writer.append("[");
         for (int i=0; i<result.size(); i++) {
-            User user = (User) result.get(i);
-            writer.append("{\"login\":\""+user.getLogin()+"\", \"name\":\""+user.getName()+"\", \"role\":\""+user.getRole().getName()+"\"}");
+            MusicType musicType = (MusicType) result.get(i);
+            writer.append("{\"id\":\""+musicType.getId()+"\", \"name\":\""+musicType.getName()+"\"}");
             if (i+1 != result.size()) { writer.append(","); }
         }
         writer.append("]");
@@ -42,7 +36,7 @@ public class UserGetServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        session.setAttribute("login", req.getParameter("login"));
+        /*HttpSession session = req.getSession();
+        session.setAttribute("login", req.getParameter("login"));*/
     }
 }

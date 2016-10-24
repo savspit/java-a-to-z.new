@@ -18,12 +18,21 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>MusicTypeGetServlet</servlet-name>
+        <servlet-class>shestakov.servlets.MusicTypeGetServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MusicTypeGetServlet</servlet-name>
+        <url-pattern>/getMusicType</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>UserGetServlet</servlet-name>
         <servlet-class>shestakov.servlets.UserGetServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UserGetServlet</servlet-name>
-        <url-pattern>/get</url-pattern>
+        <url-pattern>/getUser</url-pattern>
     </servlet-mapping>
 
 </web-app>

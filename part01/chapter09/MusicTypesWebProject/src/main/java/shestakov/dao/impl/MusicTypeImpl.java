@@ -17,6 +17,7 @@ public class MusicTypeImpl implements IMusicType {
     private static final String SQL_UPDATE = "UPDATE musicTypes SET name=?, WHERE id=?";
     private static final String SQL_DELETE = "DELETE FROM musicTypes WHERE id=?";
     private static final String SQL_GET_BY_ID = "SELECT m.id, m.name FROM musicTypes AS m WHERE m.id = ?";
+    private static final String SQL_GET_BY_USER_LOGIN = "SELECT m.id, m.name FROM musicTypes AS m JOIN usersAndMusicTypes AS umt ON m.id = umt.musicTypeId JOIN users AS u ON u.id = umt.userId AND u.login = ?";
     private static final String SQL_GET_ALL = "SELECT m.id, m.name FROM musicTypes AS m";
     private static final DataSource instance = DataSource.getInstance();
 
@@ -30,6 +31,12 @@ public class MusicTypeImpl implements IMusicType {
     public List<Entity> getById(int id) {
         Template musicTypeTemplate = new MusicTypeTemplate();
         return musicTypeTemplate.executeAndReturn(instance, SQL_GET_BY_ID, id);
+    }
+
+    @Override
+    public List<Entity> getByUserLogin(String login) {
+        Template musicTypeTemplate = new MusicTypeTemplate();
+        return musicTypeTemplate.executeAndReturn(instance, SQL_GET_BY_USER_LOGIN, login);
     }
 
     @Override
