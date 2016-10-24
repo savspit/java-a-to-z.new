@@ -15,6 +15,7 @@
     <modules>
         <module>HibernateApp</module>
         <module>ItemsApp</module>
+        <module>CarsPlatform</module>
     </modules>
 
 

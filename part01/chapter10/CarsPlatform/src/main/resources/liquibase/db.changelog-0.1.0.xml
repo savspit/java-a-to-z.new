@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="2016-10-24-initial-schema-import-1" author="shestakov">
+        <comment>
+            Создание таблицы transmission
+        </comment>
+        <sql>
+            CREATE TABLE transmission (
+            id serial PRIMARY KEY,
+            name character varying (255) NOT NULL
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-24-initial-schema-import-2" author="shestakov">
+        <comment>
+            Создание таблицы engine
+        </comment>
+        <sql>
+            CREATE TABLE engine (
+            id serial PRIMARY KEY,
+            name character varying (255) NOT NULL
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-24-initial-schema-import-3" author="shestakov">
+        <comment>
+            Создание таблицы gearbox
+        </comment>
+        <sql>
+            CREATE TABLE gearbox (
+            id serial PRIMARY KEY,
+            name character varying (255) NOT NULL
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-24-initial-schema-import-4" author="shestakov">
+        <comment>
+            Создание таблицы carBody
+        </comment>
+        <sql>
+            CREATE TABLE carBody (
+            id serial PRIMARY KEY,
+            name character varying (255) NOT NULL,
+            transmissionId integer references transmission,
+            engineId integer references engine,
+            gearboxId integer references gearbox
+            )
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

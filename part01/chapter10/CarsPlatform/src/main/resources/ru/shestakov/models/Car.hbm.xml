@@ -1,0 +1,18 @@
+<hibernate-mapping>
+    <class name="ru.shestakov.models.Car" table="cars">
+        <id name="id" column="id">
+            <generator class="identity"/>
+        </id>
+        <property name="name" column="name"/>
+
+        <many-to-one name="engine"
+                     column="engine_id"
+                     class="ru.shestakov.models.Engine"/>
+        <many-to-one name="gearbox"
+                     column="gearbox_id"
+                     class="ru.shestakov.models.Gearbox"/>
+        <many-to-one name="transmission"
+                     column="transmission_id"
+                     class="ru.shestakov.models.Transmission"/>
+    </class>
+</hibernate-mapping>

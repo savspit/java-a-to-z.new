@@ -11,7 +11,7 @@
     <packaging>war</packaging>
 
     <groupId>chapter10</groupId>
-    <artifactId>HibernateApp</artifactId>
+    <artifactId>CarsPlatform</artifactId>
     <build>
         <plugins>
             <plugin>
@@ -22,10 +22,34 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>3.5.3</version>
+                <configuration>
+                    <propertyFile>${project.basedir}/src/main/resources/liquibase/liquibase.properties</propertyFile>
+                    <changeLogFile>${project.basedir}/src/main/resources/liquibase/db.changelog-master.xml</changeLogFile>
+                    <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+                    <clearCheckSums>true</clearCheckSums>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>update</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>3.5.3</version>
+        </dependency>
         <!-- http://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -39,6 +63,5 @@
             <version>5.1.0.Final</version>
         </dependency>
     </dependencies>
-
 
 </project>

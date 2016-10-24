@@ -11,7 +11,7 @@ public class UserStorage {
 
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
-                .configure() // configures settings from hibernate.cfg.xml
+                .configure()
                 .buildSessionFactory();
         Session session = factory.openSession();
         session.beginTransaction();

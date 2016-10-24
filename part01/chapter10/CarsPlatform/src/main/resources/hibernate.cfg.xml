@@ -4,12 +4,15 @@
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/java_a_from_z</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/carsplatform</property>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">1</property>
         <property name="dialect">org.hibernate.dialect.PostgreSQL94Dialect</property>
 
-        <mapping resource="ru/shestakov/models/User.hbm.xml"/>
+        <mapping resource="ru/shestakov/models/Transmission.hbm.xml"/>
+        <mapping resource="ru/shestakov/models/Engine.hbm.xml"/>
+        <mapping resource="ru/shestakov/models/Gearbox.hbm.xml"/>
+        <mapping resource="ru/shestakov/models/Car.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
