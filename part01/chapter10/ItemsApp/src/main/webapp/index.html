@@ -50,8 +50,6 @@
             $('#itemsCheckbox').prop('checked', test);
             return false;
         }
-
-
     </script>
 </head>
 <body>
@@ -60,14 +58,11 @@
     <form>
         <div class="form-group">
             <input type="text" class="form-control" id="itemDesc">
-            <button type="submit" class="btn btn-default" id="editListOfUsersId" onclick="return addNewItem();">Add new
-                item
-            </button>
+            <button type="submit" class="btn btn-default" id="editListOfUsersId" onclick="return addNewItem();">Add new item </button>
         </div>
         <br>
         <div class="checkbox">
-            <label><input type="checkbox" id="showAllCheckbox" checked="checked" onchange="return refreshPage();">Show
-                all </label>
+            <label><input type="checkbox" id="showAllCheckbox" checked="checked" onchange="return refreshPage();">Show all </label>
         </div>
         <br>
         <table class="table table-striped" id="tableId">

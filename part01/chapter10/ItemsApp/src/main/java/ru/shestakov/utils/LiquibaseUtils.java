@@ -17,11 +17,20 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * The type Liquibase utils.
+ */
 public class LiquibaseUtils {
     private static final Logger Log = LoggerFactory.getLogger(LiquibaseUtils.class);
     private static final String LB_CHANGELOG_BY_DEFAULT = "liquibase/db.changelog-master.xml";
     private static final DataSource instance = DataSource.getInstance();
 
+    /**
+     * Gets liquibase properties.
+     *
+     * @return the liquibase properties
+     * @throws IOException the io exception
+     */
     public Properties getLiquibaseProperties() throws IOException {
         Properties props = new Properties();
         InputStream in = getClass().getClassLoader().getResourceAsStream("/liquibase/liquibase.properties");
@@ -35,12 +44,18 @@ public class LiquibaseUtils {
         return props;
     }
 
+    /**
+     * Migrate.
+     */
     public void migrate() {
         if (instance.isFirstStart()) {
             createTables();
         }
     }
 
+    /**
+     * Create tables.
+     */
     public void createTables() {
         Properties prop = null;
         try {

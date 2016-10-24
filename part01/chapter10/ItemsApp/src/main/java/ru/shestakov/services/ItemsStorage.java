@@ -8,8 +8,17 @@ import ru.shestakov.models.Item;
 import java.sql.Timestamp;
 import java.util.List;
 
+/**
+ * The type Items storage.
+ */
 public class ItemsStorage {
 
+    /**
+     * Gets items by filter.
+     *
+     * @param showAll the show all
+     * @return the items by filter
+     */
     public List<Item> getItemsByFilter(String showAll) {
         SessionFactory factory = new Configuration()
                 .configure()
@@ -27,6 +36,11 @@ public class ItemsStorage {
         return items;
     }
 
+    /**
+     * Sets new item.
+     *
+     * @param itemDesc the item desc
+     */
     public void setNewItem(String itemDesc) {
         SessionFactory factory = new Configuration()
                 .configure()
