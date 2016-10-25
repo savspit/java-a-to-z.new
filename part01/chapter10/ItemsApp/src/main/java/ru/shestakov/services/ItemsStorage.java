@@ -1,11 +1,13 @@
 package ru.shestakov.services;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.Transaction;
 import ru.shestakov.models.Item;
+import ru.shestakov.utils.HibernateUtils;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,20 +22,24 @@ public class ItemsStorage {
      * @return the items by filter
      */
     public List<Item> getItemsByFilter(String showAll) {
-        SessionFactory factory = new Configuration()
-                .configure()
-                .buildSessionFactory();
-        Session session = factory.openSession();
-        session.beginTransaction();
-
-        List<Item> items;
-        if ("true".equals(showAll)) {
-            items = session.createQuery("from Item").list();
-        } else {
-            items = session.createQuery("from Item i where i.done = false").list();
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Transaction transaction = null;
+        List<Item> items = new ArrayList<>();
+        try {
+            transaction = session.beginTransaction();
+            if ("true".equals(showAll)) {
+                items = session.createQuery("from Item").list();
+            } else {
+                items = session.createQuery("from Item i where i.done = false").list();
+            }
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+            return items;
         }
-        session.getTransaction().commit();
-        return items;
     }
 
     /**
@@ -42,15 +48,20 @@ public class ItemsStorage {
      * @param itemDesc the item desc
      */
     public void setNewItem(String itemDesc) {
-        SessionFactory factory = new Configuration()
-                .configure()
-                .buildSessionFactory();
-        Session session = factory.openSession();
-        session.beginTransaction();
-        Item item = new Item();
-        item.setDescription(itemDesc);
-        item.setCreated_date(new Timestamp(System.currentTimeMillis()));
-        session.saveOrUpdate(item);
-        session.getTransaction().commit();
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Item item = new Item();
+            item.setDescription(itemDesc);
+            item.setCreated_date(new Timestamp(System.currentTimeMillis()));
+            session.saveOrUpdate(item);
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 }

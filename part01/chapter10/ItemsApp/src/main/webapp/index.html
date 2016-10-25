@@ -8,46 +8,32 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function getItems() {
+        function getItems() {
             $.ajax('./getItems', {
                 method: 'get',
-                data: {showAll: $('#showAllCheckbox').val() == "on"},
+                data: {showAll: $("#showAllCheckbox").is(":checked")},
                 complete: function (data) {
                     var items = JSON.parse(data.responseText);
-                    var result = "<thead>" +
-                            "<tr>" +
-                            "<th>id</th>" +
-                            "<th>desc</th>" +
-                            "<th>created</th>" +
-                            "<th>done</th>" +
-                            "</tr>" +
-                            "</thead>" +
-                            "<tbody>";
+                    var result = "";
                     for (var i = 0; i != items.length; ++i) {
-                        result += "<td>" + items[i].id + "</td>" +
-                                "<td>" + items[i].description + "</td>" +
-                                "<td>" + items[i].created_date + "</td>" +
-                                "<td>" + items[i].done + "</td>" +
-                                "</tr>";
+                        result += "<tr>"+
+                                  "<td>" + items[i].id + "</td>" +
+                                  "<td>" + items[i].description + "</td>" +
+                                  "<td>" + items[i].created_date + "</td>" +
+                                  "<td>" + items[i].done + "</td>" +
+                                  "</tr>";
                     }
-                    result += "</tbody>";
-                    var tableSructure = document.getElementById("tableId");
+                    var tableSructure = document.getElementById("tableContentId");
                     tableSructure.innerHTML = result;
                 }
             });
-        });
+        };
+        $(document).ready(getItems());
         function addNewItem() {
             $.ajax('./getItems', {
                 method: 'post',
                 data: {itemDesc: $('#itemDesc').val()}
             })
-            return false;
-        }
-        function refreshPage() {
-            localStorage.input = $('#showAllCheckbox').val() == "on";
-            document.location.reload();
-            var test = localStorage.input === 'true' ? true : false;
-            $('#itemsCheckbox').prop('checked', test);
             return false;
         }
     </script>
@@ -62,10 +48,20 @@
         </div>
         <br>
         <div class="checkbox">
-            <label><input type="checkbox" id="showAllCheckbox" checked="checked" onchange="return refreshPage();">Show all </label>
+            <label><input type="checkbox" id="showAllCheckbox" onchange="return getItems();">Show all </label>
         </div>
         <br>
-        <table class="table table-striped" id="tableId">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>desc</th>
+                    <th>created</th>
+                    <th>done</th>
+                </tr>
+            </thead>
+            <tbody id="tableContentId">
+            </tbody>
         </table>
         <br>
     </form>
