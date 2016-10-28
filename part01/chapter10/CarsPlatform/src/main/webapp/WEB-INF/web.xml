@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>ru.shestakov.servlets.LoginController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/auth</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdvertsController</servlet-name>
+        <servlet-class>ru.shestakov.servlets.AdvertsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdvertsController</servlet-name>
+        <url-pattern>/getAdverts</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdvertServlet</servlet-name>
+        <servlet-class>ru.shestakov.servlets.AdvertServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdvertServlet</servlet-name>
+        <url-pattern>/advertnew</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UploadController</servlet-name>
+        <servlet-class>ru.shestakov.servlets.UploadController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadController</servlet-name>
+        <url-pattern>/fileUpload</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TransmissionsController</servlet-name>
+        <servlet-class>ru.shestakov.servlets.TransmissionsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TransmissionsController</servlet-name>
+        <url-pattern>/getTransmissions</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EnginesController</servlet-name>
+        <servlet-class>ru.shestakov.servlets.EnginesController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EnginesController</servlet-name>
+        <url-pattern>/getEngines</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GearboxesController</servlet-name>
+        <servlet-class>ru.shestakov.servlets.GearboxesController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GearboxesController</servlet-name>
+        <url-pattern>/getGearboxes</url-pattern>
+    </servlet-mapping>
+
+</web-app>
+

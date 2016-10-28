@@ -1,0 +1,16 @@
+<hibernate-mapping>
+    <class name="ru.shestakov.models.Advert" table="adverts">
+        <id name="id" column="id">
+            <generator class="identity"/>
+        </id>
+        <property name="description" column="description"/>
+        <property name="status" column="status"/>
+
+        <many-to-one name="user"
+                     column="userId"
+                     class="ru.shestakov.models.User"/>
+        <many-to-one name="car"
+                     column="carId"
+                     class="ru.shestakov.models.Car"/>
+    </class>
+</hibernate-mapping>

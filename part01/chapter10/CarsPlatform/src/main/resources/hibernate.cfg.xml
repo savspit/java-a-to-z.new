@@ -14,5 +14,8 @@
         <mapping resource="ru/shestakov/models/Engine.hbm.xml"/>
         <mapping resource="ru/shestakov/models/Gearbox.hbm.xml"/>
         <mapping resource="ru/shestakov/models/Car.hbm.xml"/>
+        <mapping resource="ru/shestakov/models/User.hbm.xml"/>
+        <mapping resource="ru/shestakov/models/Image.hbm.xml"/>
+        <mapping resource="ru/shestakov/models/Advert.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

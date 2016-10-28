@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="2016-10-25-initial-schema-import-1" author="shestakov">
+        <comment>
+            Создание таблицы users
+        </comment>
+        <sql>
+            CREATE TABLE users (
+            id serial PRIMARY KEY,
+            login character varying (255) NOT NULL,
+            name character varying (255)
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-25-initial-schema-import-2" author="shestakov">
+        <comment>
+            Создание таблицы adverts
+        </comment>
+        <sql>
+            CREATE TABLE adverts (
+            id serial PRIMARY KEY,
+            description character varying (255) NOT NULL,
+            status boolean,
+            userId integer references users,
+            carId integer references cars
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-25-initial-schema-import-3" author="shestakov">
+        <comment>
+            Создание таблицы images
+        </comment>
+        <sql>
+            CREATE TABLE images (
+            id serial PRIMARY KEY,
+            path character varying (2000) NOT NULL,
+            advertId integer references adverts
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-25-initial-schema-import-5" author="shestakov">
+        <comment>
+            Удаление данных из таблицы users
+        </comment>
+        <sql>
+            DELETE FROM users
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-25-initial-schema-import-6" author="shestakov">
+        <comment>
+            Создание пользователя admin по-умолчанию
+        </comment>
+        <sql>
+            INSERT INTO users(login) VALUES ('admin')
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-25-initial-schema-import-7" author="shestakov">
+        <comment>
+            Заполнение transmissions по-умолчанию
+        </comment>
+        <sql>
+            INSERT INTO transmissions(name) VALUES ('mechanical'),('hydromechanical'),('hydraulic'),('hydrostatic'),('electromechanical')
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-25-initial-schema-import-8" author="shestakov">
+        <comment>
+            Заполнение engines по-умолчанию
+        </comment>
+        <sql>
+            INSERT INTO engines(name) VALUES ('gasoline'),('diesel'),('gas')
+        </sql>
+    </changeSet>
+    <changeSet id="2016-10-25-initial-schema-import-9" author="shestakov">
+        <comment>
+            Заполнение gearboxes по-умолчанию
+        </comment>
+        <sql>
+            INSERT INTO gearboxes(name) VALUES ('mechanical'),('auto'),('variable')
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

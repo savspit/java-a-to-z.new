@@ -1,0 +1,12 @@
+<hibernate-mapping>
+    <class name="ru.shestakov.models.Image" table="image">
+        <id name="id" column="id">
+            <generator class="identity"/>
+        </id>
+        <property name="path" column="path"/>
+
+        <many-to-one name="advert"
+                     column="advertId"
+                     class="ru.shestakov.models.Advert"/>
+    </class>
+</hibernate-mapping>

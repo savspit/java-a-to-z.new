@@ -8,10 +8,10 @@
 
     <changeSet id="2016-10-24-initial-schema-import-1" author="shestakov">
         <comment>
-            Создание таблицы transmission
+            Создание таблицы transmissions
         </comment>
         <sql>
-            CREATE TABLE transmission (
+            CREATE TABLE transmissions (
             id serial PRIMARY KEY,
             name character varying (255) NOT NULL
             )
@@ -19,10 +19,10 @@
     </changeSet>
     <changeSet id="2016-10-24-initial-schema-import-2" author="shestakov">
         <comment>
-            Создание таблицы engine
+            Создание таблицы engines
         </comment>
         <sql>
-            CREATE TABLE engine (
+            CREATE TABLE engines (
             id serial PRIMARY KEY,
             name character varying (255) NOT NULL
             )
@@ -30,10 +30,10 @@
     </changeSet>
     <changeSet id="2016-10-24-initial-schema-import-3" author="shestakov">
         <comment>
-            Создание таблицы gearbox
+            Создание таблицы gearboxes
         </comment>
         <sql>
-            CREATE TABLE gearbox (
+            CREATE TABLE gearboxes (
             id serial PRIMARY KEY,
             name character varying (255) NOT NULL
             )
@@ -41,15 +41,15 @@
     </changeSet>
     <changeSet id="2016-10-24-initial-schema-import-4" author="shestakov">
         <comment>
-            Создание таблицы carBody
+            Создание таблицы cars
         </comment>
         <sql>
-            CREATE TABLE carBody (
+            CREATE TABLE cars (
             id serial PRIMARY KEY,
             name character varying (255) NOT NULL,
-            transmissionId integer references transmission,
-            engineId integer references engine,
-            gearboxId integer references gearbox
+            transmissionId integer references transmissions,
+            engineId integer references engines,
+            gearboxId integer references gearboxes
             )
         </sql>
     </changeSet>
