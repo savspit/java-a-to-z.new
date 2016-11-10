@@ -1,7 +1,6 @@
 package ru.shestakov.servlets;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import ru.shestakov.models.Engine;
 import ru.shestakov.models.Gearbox;
 import ru.shestakov.services.AdvertsStorage;
 
@@ -13,6 +12,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+/**
+ * The type Gearboxes controller.
+ */
 public class GearboxesController extends HttpServlet {
 
     @Override

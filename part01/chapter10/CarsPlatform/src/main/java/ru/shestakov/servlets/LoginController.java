@@ -1,7 +1,5 @@
 package ru.shestakov.servlets;
 
-import org.codehaus.jackson.map.ObjectMapper;
-import ru.shestakov.models.Advert;
 import ru.shestakov.services.AdvertsStorage;
 import ru.shestakov.utils.LiquibaseUtils;
 
@@ -12,8 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
+/**
+ * The type Login controller.
+ */
 public class LoginController extends HttpServlet {
 
     @Override

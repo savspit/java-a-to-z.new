@@ -71,6 +71,50 @@
         $(document).ready(getEngines());
         $(document).ready(getGearboxes());
         $(document).ready(getImages());
+        function getAdvertsDescription() {
+            $.ajax('./getAdvertsDescription', {
+                method: 'get',
+                complete: function (data) {
+                    var description = JSON.parse(data.responseText);
+                    $('#descId').val(description);
+                }
+            });
+        }
+        ;
+        function getAdvertsTransmission() {
+            $.ajax('./getAdvertsTransmission', {
+                method: 'get',
+                complete: function (data) {
+                    var transmission = JSON.parse(data.responseText);
+                    $('#transId').val(transmission.name);
+                }
+            });
+        }
+        ;
+        function getAdvertsEngine() {
+            $.ajax('./getAdvertsEngine', {
+                method: 'get',
+                complete: function (data) {
+                    var engine = JSON.parse(data.responseText);
+                    $(document.getElementById(engine.name)).removeClass('list-group-item').addClass('list-group-item active');
+                }
+            });
+        }
+        ;
+        function getAdvertsGearbox() {
+            $.ajax('./getAdvertsGearbox', {
+                method: 'get',
+                complete: function (data) {
+                    var gearbox = JSON.parse(data.responseText);
+                    document.querySelector("input[value='" + gearbox.name +"']").checked = true;
+                }
+            });
+        }
+        ;
+        $(document).ready(getAdvertsDescription());
+        $(document).ready(getAdvertsTransmission());
+        $(document).ready(getAdvertsEngine());
+        $(document).ready(getAdvertsGearbox());
         $(function(){
             $('.list-group a').click(function(e) {
                 e.preventDefault()
@@ -94,9 +138,9 @@
 </head>
 <body>
 <div class="container">
-    <h2>New advert</h2>
+    <h2>Edit advert</h2>
     <br/>
-    <button type="submit" class="btn btn-default" onclick="return applyChanges();">Add </button>
+    <button type="submit" class="btn btn-default" onclick="return applyChanges();">Apply</button>
     <br/>
     <br/>
     <div class="form-group">

@@ -8,6 +8,13 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
+        function setAdvertParams(advertId) {
+            $.ajax('./advertedit', {
+                method: 'post',
+                data: {advertId: advertId}
+            })
+            return false;
+        }
         function getAdverts() {
             $.ajax('./getAdverts', {
                 method: 'get',
@@ -15,19 +22,30 @@
                     var adverts = JSON.parse(data.responseText);
                     var result = "";
                     for (var i = 0; i != adverts.length; ++i) {
-                        result += "<tr>"+
-                                  "<td>" + adverts[i].id + "</td>" +
-                                  "<td>" + adverts[i].description + "</td>" +
-                                  "<td>" + adverts[i].car + "</td>" +
-                                  "<td>" + adverts[i].status + "</td>" +
-                                  "<td>" + adverts[i].user + "</td>" +
-                                  "</tr>";
+                        result += "<tr>" +
+                                "<td>" + adverts[i].id + "</td>" +
+                                "<td>" + adverts[i].description + "</td>" +
+                                "<td>" + adverts[i].car + "</td>" +
+                                "<td>" + adverts[i].status + "</td>" +
+                                "<td>" + adverts[i].user + "</td>";
+                        if (adverts[i].ismyadvert) {
+                            result += "<td>" +
+                                    "<a href='/items/advertedit.html' " +
+                                    "return onclick='setAdvertParams("+adverts[i].id+")'; >" +
+                                    "<span class='glyphicon glyphicon-pencil'></span>" +
+                                    "</>" +
+                                    "</td>";
+                        } else {
+                            result += "<td>" + "</td>";
+                        }
+                        result += "</tr>";
                     }
                     var tableSructure = document.getElementById("tableContentId");
                     tableSructure.innerHTML = result;
                 }
             });
-        };
+        }
+        ;
         $(document).ready(getAdverts());
         function addNewAdvert() {
             $.ajax('./getAdverts', {
@@ -48,13 +66,13 @@
         <br>
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th>id</th>
-                    <th>description</th>
-                    <th>car</th>
-                    <th>sold</th>
-                    <th>user</th>
-                </tr>
+            <tr>
+                <th>id</th>
+                <th>description</th>
+                <th>car</th>
+                <th>sold</th>
+                <th>user</th>
+            </tr>
             </thead>
             <tbody id="tableContentId">
             </tbody>

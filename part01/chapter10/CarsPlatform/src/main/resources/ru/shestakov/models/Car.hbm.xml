@@ -6,13 +6,13 @@
         <property name="name" column="name"/>
 
         <many-to-one name="engine"
-                     column="engine_id"
+                     column="engineId"
                      class="ru.shestakov.models.Engine"/>
         <many-to-one name="gearbox"
-                     column="gearbox_id"
+                     column="gearboxId"
                      class="ru.shestakov.models.Gearbox"/>
         <many-to-one name="transmission"
-                     column="transmission_id"
+                     column="transmissionId"
                      class="ru.shestakov.models.Transmission"/>
     </class>
 </hibernate-mapping>

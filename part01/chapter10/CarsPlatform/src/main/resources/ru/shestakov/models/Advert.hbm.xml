@@ -12,5 +12,11 @@
         <many-to-one name="car"
                      column="carId"
                      class="ru.shestakov.models.Car"/>
+        <bag name="images" table="images" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id" not-null="true"/>
+            </key>
+            <one-to-many class="ru.shestakov.models.Image"/>
+        </bag>
     </class>
 </hibernate-mapping>

@@ -1,10 +1,8 @@
 package ru.shestakov.servlets;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import ru.shestakov.models.Advert;
 import ru.shestakov.models.Transmission;
 import ru.shestakov.services.AdvertsStorage;
-import ru.shestakov.utils.LiquibaseUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +12,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+/**
+ * The type Transmissions controller.
+ */
 public class TransmissionsController extends HttpServlet {
 
     @Override

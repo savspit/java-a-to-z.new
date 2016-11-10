@@ -8,19 +8,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 /**
- * The type Engines controller.
+ * The type Advert engine servlet.
  */
-public class EnginesController extends HttpServlet {
+public class AdvertEngineServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        int advertId = Integer.parseInt((String) session.getAttribute("advertId"));
         AdvertsStorage storage = new AdvertsStorage();
-        List<Engine> result = storage.getEngines();
+        Engine result = storage.getEngineByAdvertId(advertId);
         final ObjectMapper mapper = new ObjectMapper();
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
         writer.append(mapper.writeValueAsString(result));

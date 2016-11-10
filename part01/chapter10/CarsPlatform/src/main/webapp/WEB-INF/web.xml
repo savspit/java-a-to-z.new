@@ -29,6 +29,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>AdvertEditServlet</servlet-name>
+        <servlet-class>ru.shestakov.servlets.AdvertEditServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdvertEditServlet</servlet-name>
+        <url-pattern>/advertedit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>UploadController</servlet-name>
         <servlet-class>ru.shestakov.servlets.UploadController</servlet-class>
     </servlet>
@@ -62,6 +71,60 @@
     <servlet-mapping>
         <servlet-name>GearboxesController</servlet-name>
         <url-pattern>/getGearboxes</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdvertDescriptionServlet</servlet-name>
+        <servlet-class>ru.shestakov.servlets.AdvertDescriptionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdvertDescriptionServlet</servlet-name>
+        <url-pattern>/getAdvertsDescription</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdvertTransmissionServlet</servlet-name>
+        <servlet-class>ru.shestakov.servlets.AdvertTransmissionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdvertTransmissionServlet</servlet-name>
+        <url-pattern>/getAdvertsTransmission</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdvertEngineServlet</servlet-name>
+        <servlet-class>ru.shestakov.servlets.AdvertEngineServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdvertEngineServlet</servlet-name>
+        <url-pattern>/getAdvertsEngine</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdvertGearboxServlet</servlet-name>
+        <servlet-class>ru.shestakov.servlets.AdvertGearboxServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdvertGearboxServlet</servlet-name>
+        <url-pattern>/getAdvertsGearbox</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ImagesController</servlet-name>
+        <servlet-class>ru.shestakov.servlets.ImagesController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ImagesController</servlet-name>
+        <url-pattern>/getImages</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdvertSaveServlet</servlet-name>
+        <servlet-class>ru.shestakov.servlets.AdvertSaveServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdvertSaveServlet</servlet-name>
+        <url-pattern>/advertsave</url-pattern>
     </servlet-mapping>
 
 </web-app>
