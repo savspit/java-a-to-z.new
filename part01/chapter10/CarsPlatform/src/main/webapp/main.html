@@ -5,6 +5,7 @@
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
@@ -31,7 +32,7 @@
                         if (adverts[i].ismyadvert) {
                             result += "<td>" +
                                     "<a href='/items/advertedit.html' " +
-                                    "return onclick='setAdvertParams("+adverts[i].id+")'; >" +
+                                    "return onclick='setAdvertParams(" + adverts[i].id + ")'; >" +
                                     "<span class='glyphicon glyphicon-pencil'></span>" +
                                     "</>" +
                                     "</td>";
@@ -54,31 +55,158 @@
             })
             return false;
         }
+        function getTransmissions() {
+            $.ajax('./getTransmissions', {
+                method: 'get',
+                complete: function (data) {
+                    var transmissions = JSON.parse(data.responseText);
+                    var result = "";
+                    for (var i = 0; i != transmissions.length; ++i) {
+                        result += "<li class='list-group-item'><div class='checkbox'><label><input type='checkbox' value=''>" + transmissions[i].name + "</label></div></li>";
+                    }
+                    var filterStructure = document.getElementById("filterTrans");
+                    filterStructure.innerHTML = result;
+                }
+            });
+        }
+        ;
+        function getEngines() {
+            $.ajax('./getEngines', {
+                method: 'get',
+                complete: function (data) {
+                    var engines = JSON.parse(data.responseText);
+                    var result = "";
+                    for (var i = 0; i != engines.length; ++i) {
+                        result += "<li class='list-group-item'><div class='checkbox'><label><input type='checkbox' value=''>" + engines[i].name + "</label></div></li>";
+                    }
+                    var filterStructure = document.getElementById("filterEngine");
+                    filterStructure.innerHTML = result;
+                }
+            });
+        }
+        ;
+        function getGearboxes() {
+            $.ajax('./getGearboxes', {
+                method: 'get',
+                complete: function (data) {
+                    var gearboxes = JSON.parse(data.responseText);
+                    var result = "";
+                    for (var i = 0; i != gearboxes.length; ++i) {
+                        result += "<li class='list-group-item'><div class='checkbox'><label><input type='checkbox' value=''>" + gearboxes[i].name + "</label></div></li>";
+                    }
+                    var filterStructure = document.getElementById("filterGearbox");
+                    filterStructure.innerHTML = result;
+                }
+            });
+        }
+        $(document).ready(getTransmissions());
+        $(document).ready(getEngines());
+        $(document).ready(getGearboxes());
     </script>
 </head>
 <body>
 <div class="container">
     <h2>Car sales</h2>
-    <form>
-        <div class="form-group">
-            <a href="/items/advertnew.html" class="btn btn-default">Add new advert </a>
+    <div class="form-group">
+        <a href="/items/advertnew.html" class="btn btn-default">Add new advert </a>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="top-bg">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>description</th>
+                        <th>car</th>
+                        <th>sold</th>
+                        <th>user</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableContentId">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-6 col-sm-3">
+                    <div id="accordion" class="panel panel-primary behclick-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Search Filter Car</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="panel-heading ">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse0">
+                                        <i class="indicator fa fa-caret-down" aria-hidden="true"></i> Sold
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse0" class="panel-collapse collapse in">
+                                <ul class="list-group" id="filterSold">
+                                    <li class="list-group-item">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="">
+                                                yes
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="">
+                                                no
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="panel-heading ">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse1">
+                                        <i class="indicator fa fa-caret-down" aria-hidden="true"></i> Transmission
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse in">
+                                <ul class="list-group" id="filterTrans">
+                                </ul>
+                            </div>
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse2">
+                                        <i class="indicator fa fa-caret-down" aria-hidden="true"></i> Engine
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse2" class="panel-collapse collapse in">
+                                <ul class="list-group" id="filterEngine">
+                                </ul>
+                            </div>
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse3">
+                                        <i class="indicator fa fa-caret-down" aria-hidden="true"></i> Gearbox
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse3" class="panel-collapse collapse in">
+                                <ul class="list-group" id="filterGearbox">
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <br>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>description</th>
-                <th>car</th>
-                <th>sold</th>
-                <th>user</th>
-            </tr>
-            </thead>
-            <tbody id="tableContentId">
-            </tbody>
-        </table>
-        <br>
-    </form>
+    </div>
 </div>
 </body>
 </html>

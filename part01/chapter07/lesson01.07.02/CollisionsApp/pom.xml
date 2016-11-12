@@ -13,4 +13,14 @@
     <groupId>lesson01.07.02</groupId>
     <artifactId>CollisionsApp</artifactId>
 
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
