@@ -9,6 +9,7 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
+        var map = {};
         function setAdvertParams(advertId) {
             $.ajax('./advertedit', {
                 method: 'post',
@@ -19,20 +20,21 @@
         function getAdverts() {
             $.ajax('./getAdverts', {
                 method: 'get',
+                data: {filters: JSON.stringify(map)},
                 complete: function (data) {
                     var adverts = JSON.parse(data.responseText);
                     var result = "";
                     for (var i = 0; i != adverts.length; ++i) {
                         result += "<tr>" +
-                                "<td>" + adverts[i].id + "</td>" +
-                                "<td>" + adverts[i].description + "</td>" +
-                                "<td>" + adverts[i].car + "</td>" +
-                                "<td>" + adverts[i].status + "</td>" +
-                                "<td>" + adverts[i].user + "</td>";
-                        if (adverts[i].ismyadvert) {
+                                "<td>" + adverts[i][0] + "</td>" +
+                                "<td>" + adverts[i][1] + "</td>" +
+                                "<td>" + adverts[i][2] + "</td>" +
+                                "<td>" + adverts[i][3] + "</td>" +
+                                "<td>" + adverts[i][4] + "</td>";
+                        if (adverts[i][5]) {
                             result += "<td>" +
                                     "<a href='/items/advertedit.html' " +
-                                    "return onclick='setAdvertParams(" + adverts[i].id + ")'; >" +
+                                    "return onclick='setAdvertParams(" + adverts[i][0] + ")' >" +
                                     "<span class='glyphicon glyphicon-pencil'></span>" +
                                     "</>" +
                                     "</td>";
@@ -41,8 +43,8 @@
                         }
                         result += "</tr>";
                     }
-                    var tableSructure = document.getElementById("tableContentId");
-                    tableSructure.innerHTML = result;
+                    var tableStructure = document.getElementById("tableContentId");
+                    tableStructure.innerHTML = result;
                 }
             });
         }
@@ -62,7 +64,7 @@
                     var transmissions = JSON.parse(data.responseText);
                     var result = "";
                     for (var i = 0; i != transmissions.length; ++i) {
-                        result += "<li class='list-group-item'><div class='checkbox'><label><input type='checkbox' value=''>" + transmissions[i].name + "</label></div></li>";
+                        result += "<li class='list-group-item'><div class='checkbox'><label><input type='checkbox' group='transmission' value='" + transmissions[i].name + "'>" + transmissions[i].name + "</label></div></li>";
                     }
                     var filterStructure = document.getElementById("filterTrans");
                     filterStructure.innerHTML = result;
@@ -77,7 +79,7 @@
                     var engines = JSON.parse(data.responseText);
                     var result = "";
                     for (var i = 0; i != engines.length; ++i) {
-                        result += "<li class='list-group-item'><div class='checkbox'><label><input type='checkbox' value=''>" + engines[i].name + "</label></div></li>";
+                        result += "<li class='list-group-item'><div class='checkbox'><label><input type='checkbox' group='engine' value='" + engines[i].name + "'>" + engines[i].name + "</label></div></li>";
                     }
                     var filterStructure = document.getElementById("filterEngine");
                     filterStructure.innerHTML = result;
@@ -92,7 +94,7 @@
                     var gearboxes = JSON.parse(data.responseText);
                     var result = "";
                     for (var i = 0; i != gearboxes.length; ++i) {
-                        result += "<li class='list-group-item'><div class='checkbox'><label><input type='checkbox' value=''>" + gearboxes[i].name + "</label></div></li>";
+                        result += "<li class='list-group-item'><div class='checkbox'><label><input type='checkbox' group='gearbox' value='" + gearboxes[i].name + "'>" + gearboxes[i].name + "</label></div></li>";
                     }
                     var filterStructure = document.getElementById("filterGearbox");
                     filterStructure.innerHTML = result;
@@ -102,6 +104,47 @@
         $(document).ready(getTransmissions());
         $(document).ready(getEngines());
         $(document).ready(getGearboxes());
+        function applyFilter() {
+            var elems = $('.list-group input');
+            [].forEach.call(elems, function (elem) {
+                var key = elem.getAttribute('group');
+                if (elem.checked) {
+                    if (key in map) {
+                        var value = map[key];
+                        if (value.indexOf(elem.value) == -1) {
+                            value.push(elem.value);
+                        }
+                    } else {
+                        var value = [];
+                        value.push(elem.value);
+                        map[key] = value;
+                    }
+                } else {
+                    if (key in map) {
+                        var value = map[key];
+                        var result = value.indexOf(elem.value);
+                        if (result != -1) {
+                            value.splice(result, 1);
+                            if (value.length == 0) {
+                                delete map[key];
+                            }
+                        }
+                    }
+                }
+            });
+            getAdverts();
+        }
+        function resetFilter() {
+            var elems = $('.list-group input');
+            [].forEach.call(elems, function (elem) {
+                elem.checked = false;
+            });
+        }
+        $(function () {
+            $('.list-group input').click(function (e) {
+                applyFilter();
+            });
+        })
     </script>
 </head>
 <body>
@@ -150,7 +193,7 @@
                                     <li class="list-group-item">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" value="">
+                                                <input type="checkbox" group='sold' value="true">
                                                 yes
                                             </label>
                                         </div>
@@ -158,7 +201,7 @@
                                     <li class="list-group-item">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" value="">
+                                                <input type="checkbox" group='sold' value="false">
                                                 no
                                             </label>
                                         </div>
@@ -199,7 +242,10 @@
                                 <ul class="list-group" id="filterGearbox">
                                 </ul>
                             </div>
-
+                            <button type="submit" class="btn btn-default" onclick="return applyFilter();">Submit
+                            </button>
+                            <button type="submit" class="btn btn-default" onclick="return resetFilter();">Reset all
+                            </button>
                         </div>
                     </div>
                 </div>

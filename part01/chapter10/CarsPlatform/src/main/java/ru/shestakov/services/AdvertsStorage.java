@@ -4,6 +4,7 @@ import org.hibernate.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.shestakov.models.*;
+import ru.shestakov.models.Filter;
 import ru.shestakov.utils.HibernateUtils;
 import ru.shestakov.utils.LiquibaseUtils;
 
@@ -19,19 +20,19 @@ public class AdvertsStorage {
     /**
      * Gets adverts.
      *
-     * @param login the login
+     * @param login  the login
+     * @param filter the filter
      * @return the adverts
      */
-    public List<Advert> getAdverts(String login) {
+    public List<Advert> getAdverts(String login, Filter filter) {
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = null;
         List<Advert> adverts = new ArrayList<>();
         try {
             transaction = session.beginTransaction();
-            String sql = "select a.id as id, a.description as description, a.status as status, u.name as user, c.name as car, (u.login = :login) as isMyAdvert from adverts as a left join users as u on a.userId = u.id left join cars as c on a.carId = c.id";
-            SQLQuery query = session.createSQLQuery(sql);
+            String sql = getPreparedQuery(filter);
+            Query query = session.createQuery(sql);
             query.setParameter("login", login);
-            query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
             adverts = query.list();
             transaction.commit();
         } catch (HibernateException e) {
@@ -524,5 +525,68 @@ public class AdvertsStorage {
      */
     public boolean isAdmin(String login) {
         return "admin".equals(login);
+    }
+
+    /**
+     * Str join string.
+     *
+     * @param aArr the a arr
+     * @param sSep the s sep
+     * @return the string
+     */
+    public static String strJoin(String[] aArr, String sSep) {
+        StringBuilder sbStr = new StringBuilder();
+        for (int i = 0, il = aArr.length; i < il; i++) {
+            if (i > 0) { sbStr.append(sSep); }
+            if (("true".equals(aArr[i])) || ("false".equals(aArr[i]))) {
+                sbStr.append(aArr[i]);
+            } else {
+                sbStr.append(String.format("'%s'", aArr[i]));
+            }
+        }
+        return sbStr.toString();
+    }
+
+    /**
+     * Gets prepared query.
+     *
+     * @param filter the filter
+     * @return the prepared query
+     */
+    public String getPreparedQuery(Filter filter) {
+        String sql = "select a.id as id, a.description as description, c.name as car, a.status as status, a.user.name as user, (u.login = :login) as isMyAdvert from Advert as a left join a.car as c left join a.user as u";
+        if (filter.getSold() != null || filter.getTransmission() != null || filter.getEngine() != null || filter.getGearbox() != null) {
+            sql = String.format("%s where %s %s %s %s",
+                    sql,
+                    getPreparedQueryOfParameter(filter.getSold(), "sold", false),
+                    getPreparedQueryOfParameter(filter.getTransmission(), "transmission", filter.getSold() != null),
+                    getPreparedQueryOfParameter(filter.getEngine(), "engine", filter.getSold() != null || filter.getTransmission() != null),
+                    getPreparedQueryOfParameter(filter.getGearbox(), "gearbox", filter.getSold() != null || filter.getTransmission() != null || filter.getEngine() != null)
+            );
+        }
+        return sql;
+    }
+
+    /**
+     * Gets prepared query of parameter.
+     *
+     * @param parameter the parameter
+     * @param name      the name
+     * @param join      the join
+     * @return the prepared query of parameter
+     */
+    public String getPreparedQueryOfParameter(String[] parameter, String name, boolean join) {
+        if (parameter == null) { return ""; }
+        String result = join ? " and " : "";
+        if ("sold".equals(name)) {
+            result += " a.status IN(" + strJoin(parameter, ",") + ")";
+        } else if ("transmission".equals(name)) {
+            result += " c.transmission.name IN(" + strJoin(parameter, ",") + ")";
+        } else if ("engine".equals(name)) {
+            result += " c.engine.name IN(" + strJoin(parameter, ",") + ")";
+        } else if ("gearbox".equals(name)) {
+            result += " c.gearbox.name IN(" + strJoin(parameter, ",") + ")";
+        }
+        return result;
     }
 }

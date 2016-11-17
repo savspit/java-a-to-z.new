@@ -1,7 +1,9 @@
 package ru.shestakov.servlets;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.SerializationConfig;
 import ru.shestakov.models.Advert;
+import ru.shestakov.models.Filter;
 import ru.shestakov.services.AdvertsStorage;
 
 import javax.servlet.ServletException;
@@ -20,11 +22,13 @@ public class AdvertsController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        final ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS, false);
+        Filter filters = mapper.readValue(req.getParameter("filters"), Filter.class);
         HttpSession session = req.getSession();
         String login = (String) session.getAttribute("login");
         AdvertsStorage storage = new AdvertsStorage();
-        List<Advert> result = storage.getAdverts(login);
-        final ObjectMapper mapper = new ObjectMapper();
+        List<Advert> result = storage.getAdverts(login, filters);
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
         writer.append(mapper.writeValueAsString(result));
         writer.flush();
