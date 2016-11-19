@@ -11,7 +11,7 @@ public class Advert {
     private User user;
     private Car car;
     private List<Image> images;
-    private boolean status;
+    private boolean sold;
 
     /**
      * Instantiates a new Advert.
@@ -119,21 +119,21 @@ public class Advert {
     }
 
     /**
-     * Is status boolean.
+     * Is sold boolean.
      *
      * @return the boolean
      */
-    public boolean isStatus() {
-        return status;
+    public boolean isSold() {
+        return sold;
     }
 
     /**
-     * Sets status.
+     * Sets sold.
      *
-     * @param status the status
+     * @param sold the sold
      */
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setSold(boolean sold) {
+        this.sold = sold;
     }
 
     @Override
@@ -143,7 +143,7 @@ public class Advert {
                 ", description='" + description + '\'' +
                 ", user=" + user +
                 ", car=" + car +
-                ", status=" + status +
+                ", sold=" + sold +
                 ']';
     }
 }

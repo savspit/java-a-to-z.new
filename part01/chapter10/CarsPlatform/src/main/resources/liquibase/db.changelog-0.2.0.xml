@@ -26,7 +26,7 @@
             CREATE TABLE adverts (
             id serial PRIMARY KEY,
             description character varying (255) NOT NULL,
-            status boolean,
+            sold boolean,
             userId integer references users,
             carId integer references cars
             )

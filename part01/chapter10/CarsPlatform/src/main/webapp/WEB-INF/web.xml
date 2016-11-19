@@ -127,5 +127,23 @@
         <url-pattern>/advertsave</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>FilterSaveServlet</servlet-name>
+        <servlet-class>ru.shestakov.servlets.FilterSaveServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FilterSaveServlet</servlet-name>
+        <url-pattern>/filterSave</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FilterRemoveServlet</servlet-name>
+        <servlet-class>ru.shestakov.servlets.FilterRemoveServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FilterRemoveServlet</servlet-name>
+        <url-pattern>/filterRemove</url-pattern>
+    </servlet-mapping>
+
 </web-app>
 

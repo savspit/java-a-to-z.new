@@ -9,18 +9,16 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
-        var map = {};
         function setAdvertParams(advertId) {
             $.ajax('./advertedit', {
                 method: 'post',
                 data: {advertId: advertId}
-            })
+            });
             return false;
         }
         function getAdverts() {
             $.ajax('./getAdverts', {
                 method: 'get',
-                data: {filters: JSON.stringify(map)},
                 complete: function (data) {
                     var adverts = JSON.parse(data.responseText);
                     var result = "";
@@ -54,7 +52,7 @@
             $.ajax('./getAdverts', {
                 method: 'post',
                 data: {advertDesc: $('#advertDesc').val()}
-            })
+            });
             return false;
         }
         function getTransmissions() {
@@ -104,35 +102,11 @@
         $(document).ready(getTransmissions());
         $(document).ready(getEngines());
         $(document).ready(getGearboxes());
-        function applyFilter() {
-            var elems = $('.list-group input');
-            [].forEach.call(elems, function (elem) {
-                var key = elem.getAttribute('group');
-                if (elem.checked) {
-                    if (key in map) {
-                        var value = map[key];
-                        if (value.indexOf(elem.value) == -1) {
-                            value.push(elem.value);
-                        }
-                    } else {
-                        var value = [];
-                        value.push(elem.value);
-                        map[key] = value;
-                    }
-                } else {
-                    if (key in map) {
-                        var value = map[key];
-                        var result = value.indexOf(elem.value);
-                        if (result != -1) {
-                            value.splice(result, 1);
-                            if (value.length == 0) {
-                                delete map[key];
-                            }
-                        }
-                    }
-                }
+        function saveFilter() {
+            $.ajax('./filtersController', {
+                method: 'post',
+                data: {filters: JSON.stringify(map)},
             });
-            getAdverts();
         }
         function resetFilter() {
             var elems = $('.list-group input');
@@ -140,11 +114,41 @@
                 elem.checked = false;
             });
         }
+        function getCurrentFilter(elem) {
+            return map = [{
+                field: elem.getAttribute('group'),
+                operation: "=",
+                value: elem.value
+            }];
+        }
+        function addFilter(elem) {
+            var map = getCurrentFilter(elem);
+            $.ajax('./filterSave', {
+                method: 'post',
+                data: {filter: JSON.stringify(map)},
+                complete: getAdverts()
+            })
+        }
+        function removeFilter(elem) {
+            var map = getCurrentFilter(elem);
+            $.ajax('./filterRemove', {
+                method: 'post',
+                data: {filter: JSON.stringify(map)},
+                complete: getAdverts()
+            })
+        }
         $(function () {
-            $('.list-group input').click(function (e) {
-                applyFilter();
-            });
-        })
+                    $('.list-group input').click(function (elem) {
+                                $that = $(this)[0];
+                                if ($that.checked) {
+                                    addFilter($that);
+                                } else {
+                                    removeFilter($that);
+                                }
+                            }
+                    )
+                }
+        )
     </script>
 </head>
 <body>

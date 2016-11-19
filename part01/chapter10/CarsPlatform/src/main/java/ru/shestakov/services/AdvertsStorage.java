@@ -20,17 +20,16 @@ public class AdvertsStorage {
     /**
      * Gets adverts.
      *
-     * @param login  the login
-     * @param filter the filter
+     * @param login the login
      * @return the adverts
      */
-    public List<Advert> getAdverts(String login, Filter filter) {
+    public List<Advert> getAdverts(String login) {
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = null;
         List<Advert> adverts = new ArrayList<>();
         try {
             transaction = session.beginTransaction();
-            String sql = getPreparedQuery(filter);
+            String sql = prepareAdvertsQuery(login);
             Query query = session.createQuery(sql);
             query.setParameter("login", login);
             adverts = query.list();
@@ -42,6 +41,41 @@ public class AdvertsStorage {
             session.close();
             return adverts;
         }
+    }
+
+    /**
+     * Prepare adverts query string.
+     *
+     * @param login the login
+     * @return the string
+     */
+    public String prepareAdvertsQuery(String login) {
+        String sql = "select a.id as id, a.description as description, c.name as car, a.sold as sold, a.user.name as user, (u.login = :login) as isMyAdvert from Advert as a left join a.car as c left join a.user as u";
+        List<Filter> filters = getFiltersByLogin(login);
+        int filtersSize = filters.size();
+        if (filtersSize == 0) { return sql; }
+        sql = String.format("%s %s ", sql, "where");
+        for (int i=0; i<filtersSize; i++) {
+            Filter filter = filters.get(i);
+            sql = String.format("%s %s %s %s %s ", sql, getFieldName(filter.getField()), filter.getOperation(), filter.getValue(), i+1==filtersSize || filtersSize==1 ? "" : "or");
+        }
+        return sql;
+    }
+
+    /**
+     * Gets field name.
+     *
+     * @param fieldName the field name
+     * @return the field name
+     */
+    public String getFieldName(String fieldName) {
+        String result = "";
+        if ("sold".equals(fieldName)) {
+            result = String.format("a.%s", fieldName);
+        } else if ("transmission".equals(fieldName) || "engine".equals(fieldName) || "gearbox".equals(fieldName)) {
+            result = String.format("c.%s", fieldName);
+        }
+        return result;
     }
 
     /**
@@ -528,65 +562,96 @@ public class AdvertsStorage {
     }
 
     /**
-     * Str join string.
+     * Save filter.
      *
-     * @param aArr the a arr
-     * @param sSep the s sep
-     * @return the string
+     * @param login  the login
+     * @param filter the filter
      */
-    public static String strJoin(String[] aArr, String sSep) {
-        StringBuilder sbStr = new StringBuilder();
-        for (int i = 0, il = aArr.length; i < il; i++) {
-            if (i > 0) { sbStr.append(sSep); }
-            if (("true".equals(aArr[i])) || ("false".equals(aArr[i]))) {
-                sbStr.append(aArr[i]);
-            } else {
-                sbStr.append(String.format("'%s'", aArr[i]));
-            }
+    public void saveFilter(String login, Filter filter) {
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(filter);
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            Log.error(e.getMessage(), e);
+        } finally {
+            session.close();
         }
-        return sbStr.toString();
     }
 
     /**
-     * Gets prepared query.
+     * Remove filter.
      *
      * @param filter the filter
-     * @return the prepared query
      */
-    public String getPreparedQuery(Filter filter) {
-        String sql = "select a.id as id, a.description as description, c.name as car, a.status as status, a.user.name as user, (u.login = :login) as isMyAdvert from Advert as a left join a.car as c left join a.user as u";
-        if (filter.getSold() != null || filter.getTransmission() != null || filter.getEngine() != null || filter.getGearbox() != null) {
-            sql = String.format("%s where %s %s %s %s",
-                    sql,
-                    getPreparedQueryOfParameter(filter.getSold(), "sold", false),
-                    getPreparedQueryOfParameter(filter.getTransmission(), "transmission", filter.getSold() != null),
-                    getPreparedQueryOfParameter(filter.getEngine(), "engine", filter.getSold() != null || filter.getTransmission() != null),
-                    getPreparedQueryOfParameter(filter.getGearbox(), "gearbox", filter.getSold() != null || filter.getTransmission() != null || filter.getEngine() != null)
-            );
+    public void removeFilter(Filter filter) {
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.delete(filter);
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            Log.error(e.getMessage(), e);
+        } finally {
+            session.close();
         }
-        return sql;
     }
 
     /**
-     * Gets prepared query of parameter.
+     * Gets filters.
      *
-     * @param parameter the parameter
-     * @param name      the name
-     * @param join      the join
-     * @return the prepared query of parameter
+     * @param filter the filter
+     * @return the filters
      */
-    public String getPreparedQueryOfParameter(String[] parameter, String name, boolean join) {
-        if (parameter == null) { return ""; }
-        String result = join ? " and " : "";
-        if ("sold".equals(name)) {
-            result += " a.status IN(" + strJoin(parameter, ",") + ")";
-        } else if ("transmission".equals(name)) {
-            result += " c.transmission.name IN(" + strJoin(parameter, ",") + ")";
-        } else if ("engine".equals(name)) {
-            result += " c.engine.name IN(" + strJoin(parameter, ",") + ")";
-        } else if ("gearbox".equals(name)) {
-            result += " c.gearbox.name IN(" + strJoin(parameter, ",") + ")";
+    public List<Filter> getFilters(Filter filter) {
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Transaction transaction = null;
+        List<Filter> filters = new ArrayList();
+        try {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("from Filter as f where f.field = :field and f.operation = :operation and f.value = :value and f.user.id = :userId");
+            query.setParameter("field", filter.getField());
+            query.setParameter("operation", filter.getOperation());
+            query.setParameter("value", filter.getValue());
+            query.setParameter("userId", filter.getUser().getId());
+            filters = query.list();
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            Log.error(e.getMessage(), e);
+        } finally {
+            session.close();
+            return filters;
         }
-        return result;
+    }
+
+    /**
+     * Gets filters by login.
+     *
+     * @param login the login
+     * @return the filters by login
+     */
+    public List<Filter> getFiltersByLogin(String login) {
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Transaction transaction = null;
+        List<Filter> filters = new ArrayList();
+        try {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("from Filter as f where f.user.login = :login");
+            query.setParameter("login", login);
+            filters = query.list();
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            Log.error(e.getMessage(), e);
+        } finally {
+            session.close();
+            return filters;
+        }
     }
 }

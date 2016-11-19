@@ -4,10 +4,12 @@ package ru.shestakov.models;
  * The type Filter.
  */
 public class Filter {
-    private String[] sold;
-    private String[] transmission;
-    private String[] engine;
-    private String[] gearbox;
+    private int id;
+    private String field;
+    private String operation;
+    private String value;
+    private String condition;
+    private User user;
 
     /**
      * Instantiates a new Filter.
@@ -16,74 +18,110 @@ public class Filter {
     }
 
     /**
-     * Get sold string [ ].
+     * Gets id.
      *
-     * @return the string [ ]
+     * @return the id
      */
-    public String[] getSold() {
-        return sold;
+    public int getId() {
+        return id;
     }
 
     /**
-     * Sets sold.
+     * Sets id.
      *
-     * @param sold the sold
+     * @param id the id
      */
-    public void setSold(String[] sold) {
-        this.sold = sold;
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
-     * Get transmission string [ ].
+     * Gets field.
      *
-     * @return the string [ ]
+     * @return the field
      */
-    public String[] getTransmission() {
-        return transmission;
+    public String getField() {
+        return field;
     }
 
     /**
-     * Sets transmission.
+     * Sets field.
      *
-     * @param transmission the transmission
+     * @param field the field
      */
-    public void setTransmission(String[] transmission) {
-        this.transmission = transmission;
+    public void setField(String field) {
+        this.field = field;
     }
 
     /**
-     * Get engine string [ ].
+     * Gets operation.
      *
-     * @return the string [ ]
+     * @return the operation
      */
-    public String[] getEngine() {
-        return engine;
+    public String getOperation() {
+        return operation;
     }
 
     /**
-     * Sets engine.
+     * Sets operation.
      *
-     * @param engine the engine
+     * @param operation the operation
      */
-    public void setEngine(String[] engine) {
-        this.engine = engine;
+    public void setOperation(String operation) {
+        this.operation = operation;
     }
 
     /**
-     * Get gearbox string [ ].
+     * Gets value.
      *
-     * @return the string [ ]
+     * @return the value
      */
-    public String[] getGearbox() {
-        return gearbox;
+    public String getValue() {
+        return value;
     }
 
     /**
-     * Sets gearbox.
+     * Sets value.
      *
-     * @param gearbox the gearbox
+     * @param value the value
      */
-    public void setGearbox(String[] gearbox) {
-        this.gearbox = gearbox;
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    /**
+     * Gets condition.
+     *
+     * @return the condition
+     */
+    public String getCondition() {
+        return condition;
+    }
+
+    /**
+     * Sets condition.
+     *
+     * @param condition the condition
+     */
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    /**
+     * Gets user.
+     *
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * Sets user.
+     *
+     * @param user the user
+     */
+    public void setUser(User user) {
+        this.user = user;
     }
 }

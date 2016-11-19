@@ -19,5 +19,6 @@
         <mapping resource="ru/shestakov/models/User.hbm.xml"/>
         <mapping resource="ru/shestakov/models/Image.hbm.xml"/>
         <mapping resource="ru/shestakov/models/Advert.hbm.xml"/>
+        <mapping resource="ru/shestakov/models/Filter.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

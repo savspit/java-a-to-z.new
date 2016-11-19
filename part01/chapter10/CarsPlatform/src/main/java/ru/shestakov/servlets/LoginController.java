@@ -26,6 +26,7 @@ public class LoginController extends HttpServlet {
         boolean result = storage.getUserByLogin(req.getParameter("login")).size() != 0;
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
         writer.append(String.valueOf(result));
+        //writer.append(String.valueOf(true));
         writer.flush();
     }
 }

@@ -73,7 +73,7 @@
         $(document).ready(getImages());
         $(function(){
             $('.list-group a').click(function(e) {
-                e.preventDefault()
+                e.preventDefault();
                 $that = $(this);
                 $that.parent().find('a').removeClass('active');
                 $that.addClass('active');
