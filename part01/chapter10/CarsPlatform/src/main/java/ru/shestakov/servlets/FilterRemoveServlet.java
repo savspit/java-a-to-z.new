@@ -30,8 +30,8 @@ public class FilterRemoveServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String login = (String) session.getAttribute("login");
         AdvertsStorage storage = new AdvertsStorage();
-        List<User> user = storage.getUserByLogin((String) session.getAttribute("login"));
-        filter.setUser(user.get(0));
+        User user = storage.getUserByLogin((String) session.getAttribute("login"));
+        filter.setUser(user);
         Filter currFilter = storage.getFilters(filter).get(0);
         storage.removeFilter(currFilter);
     }

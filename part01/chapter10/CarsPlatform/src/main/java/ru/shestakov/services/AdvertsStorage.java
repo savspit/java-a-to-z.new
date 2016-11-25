@@ -106,22 +106,24 @@ public class AdvertsStorage {
      * @param login the login
      * @return the user by login
      */
-    public List<User> getUserByLogin(String login) {
+    public User getUserByLogin(String login) {
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = null;
-        List<User> users = new ArrayList<>();
+        User user = new User();
         try {
             transaction = session.beginTransaction();
             Query query = session.createQuery("from User where login =:login");
             query.setParameter("login", login);
-            users = query.list();
+            query.setFirstResult(0);
+            query.setMaxResults(1);
+            user = (User) query.uniqueResult();
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
             Log.error(e.getMessage(), e);
         } finally {
             session.close();
-            return users;
+            return user;
         }
     }
 

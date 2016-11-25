@@ -11,6 +11,13 @@
 
     <groupId>part01</groupId>
     <artifactId>chapter11</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>LessonExcercise</module>
+        <module>annotation</module>
+        <module>xml</module>
+        <module>JdbcTemplate</module>
+    </modules>
 
 
 </project>

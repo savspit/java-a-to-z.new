@@ -23,10 +23,9 @@ public class LoginController extends HttpServlet {
         HttpSession session = req.getSession();
         session.setAttribute("login", req.getParameter("login"));
         AdvertsStorage storage = new AdvertsStorage();
-        boolean result = storage.getUserByLogin(req.getParameter("login")).size() != 0;
+        boolean result = storage.getUserByLogin(req.getParameter("login")) != null;
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
         writer.append(String.valueOf(result));
-        //writer.append(String.valueOf(true));
         writer.flush();
     }
 }

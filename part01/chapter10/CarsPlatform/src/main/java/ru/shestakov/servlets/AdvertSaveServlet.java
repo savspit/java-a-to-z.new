@@ -52,7 +52,7 @@ public class AdvertSaveServlet extends HttpServlet {
 
         storage.updateCar(car);
 
-        User user = (User) storage.getUserByLogin(session.getAttribute("login").toString()).get(0);
+        User user = storage.getUserByLogin(session.getAttribute("login").toString());
 
         advert.setDescription(description);
         advert.setCar(car);
