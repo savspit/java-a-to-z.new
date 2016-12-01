@@ -4,11 +4,29 @@ package ru.shestakov.models;
  * The type Filter.
  */
 public class Filter {
+    /**
+     * id field.
+     */
     private int id;
+    /**
+     * field field.
+     */
     private String field;
+    /**
+     * operation field.
+     */
     private String operation;
+    /**
+     * value field.
+     */
     private String value;
+    /**
+     * condition field.
+     */
     private String condition;
+    /**
+     * user field.
+     */
     private User user;
 
     /**

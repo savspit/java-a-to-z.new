@@ -21,9 +21,18 @@ import java.util.Properties;
  * The type Liquibase utils.
  */
 public class LiquibaseUtils {
-    private static final Logger Log = LoggerFactory.getLogger(LiquibaseUtils.class);
+    /**
+     * logger field.
+     */
+    private static final Logger LOG = LoggerFactory.getLogger(LiquibaseUtils.class);
+    /**
+     * LB_CHANGELOG_BY_DEFAULT field.
+     */
     private static final String LB_CHANGELOG_BY_DEFAULT = "liquibase/db.changelog-master.xml";
-    private static final DataSource instance = DataSource.getInstance();
+    /**
+     * datasource instance field.
+     */
+    private static final DataSource INSTANCE = DataSource.getInstance();
 
     /**
      * Gets liquibase properties.
@@ -34,8 +43,7 @@ public class LiquibaseUtils {
     public Properties getLiquibaseProperties() throws IOException {
         Properties props = new Properties();
         InputStream in = getClass().getClassLoader().getResourceAsStream("/liquibase/liquibase.properties");
-        if (in == null)
-        {
+        if (in == null) {
             props.setProperty("changeLogFile", LB_CHANGELOG_BY_DEFAULT);
         } else {
             props.load(in);
@@ -48,7 +56,7 @@ public class LiquibaseUtils {
      * Migrate.
      */
     public void migrate() {
-        if (instance.isFirstStart()) {
+        if (INSTANCE.isFirstStart()) {
             createTables();
         }
     }
@@ -61,23 +69,23 @@ public class LiquibaseUtils {
         try {
             prop = getLiquibaseProperties();
         } catch (IOException e) {
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         }
         Connection conn = null;
         try {
-            conn = instance.getConnection();
+            conn = INSTANCE.getConnection();
             Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(conn));
             Liquibase liquibase = new Liquibase(prop.getProperty("outputChangeLogFile"), new ClassLoaderResourceAccessor(), database);
             liquibase.update(new Contexts(), new LabelExpression());
         } catch (LiquibaseException e) {
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             if (conn != null) {
                 try {
                     conn.rollback();
                     conn.close();
                 } catch (SQLException e) {
-                    Log.error(e.getMessage(), e);
+                    LOG.error(e.getMessage(), e);
                 }
             }
         }

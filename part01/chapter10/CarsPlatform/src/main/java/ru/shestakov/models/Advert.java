@@ -6,11 +6,29 @@ import java.util.List;
  * The type Advert.
  */
 public class Advert {
+    /**
+     * id field.
+     */
     private int id;
+    /**
+     * description field.
+     */
     private String description;
+    /**
+     * user field.
+     */
     private User user;
+    /**
+     * car field.
+     */
     private Car car;
+    /**
+     * images field.
+     */
     private List<Image> images;
+    /**
+     * sold field.
+     */
     private boolean sold;
 
     /**
@@ -138,12 +156,12 @@ public class Advert {
 
     @Override
     public String toString() {
-        return "Advert [" +
-                "id=" + id +
-                ", description='" + description + '\'' +
-                ", user=" + user +
-                ", car=" + car +
-                ", sold=" + sold +
-                ']';
+        return "Advert ["
+                + "id=" + id
+                + ", description='" + description + '\''
+                + ", user=" + user
+                + ", car=" + car
+                + ", sold=" + sold
+                + ']';
     }
 }

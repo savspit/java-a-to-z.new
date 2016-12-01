@@ -4,7 +4,13 @@ package ru.shestakov.models;
  * The type Transmission.
  */
 public class Transmission {
+    /**
+     * id field.
+     */
     private int id;
+    /**
+     * name field.
+     */
     private String name;
 
     /**
@@ -45,9 +51,9 @@ public class Transmission {
 
     @Override
     public String toString() {
-        return "Transmission [" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ']';
+        return "Transmission ["
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ']';
     }
 }

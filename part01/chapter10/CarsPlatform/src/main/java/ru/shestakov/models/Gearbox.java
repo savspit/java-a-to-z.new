@@ -4,7 +4,13 @@ package ru.shestakov.models;
  * The type Gearbox.
  */
 public class Gearbox {
+    /**
+     * id field.
+     */
     private int id;
+    /**
+     * name field.
+     */
     private String name;
 
     /**
@@ -60,9 +66,9 @@ public class Gearbox {
 
     @Override
     public String toString() {
-        return "Gearbox [" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ']';
+        return "Gearbox ["
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ']';
     }
 }

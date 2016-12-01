@@ -4,7 +4,13 @@ package ru.shestakov.models;
  * The type Engine.
  */
 public class Engine {
+    /**
+     * id field.
+     */
     private int id;
+    /**
+     * name field.
+     */
     private String name;
 
     /**
@@ -60,9 +66,9 @@ public class Engine {
 
     @Override
     public String toString() {
-        return "Engine [" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ']';
+        return "Engine ["
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ']';
     }
 }

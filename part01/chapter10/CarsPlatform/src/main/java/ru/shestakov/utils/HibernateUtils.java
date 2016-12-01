@@ -7,7 +7,10 @@ import org.hibernate.cfg.Configuration;
  * The type Hibernate utils.
  */
 public class HibernateUtils {
-    private static final SessionFactory instance = new Configuration().configure().buildSessionFactory();
+    /**
+     * Instance field.
+     */
+    private static final SessionFactory INSTANCE = new Configuration().configure().buildSessionFactory();
 
     /**
      * Gets session factory.
@@ -15,13 +18,13 @@ public class HibernateUtils {
      * @return the session factory
      */
     public static SessionFactory getSessionFactory() {
-        return instance;
+        return INSTANCE;
     }
 
     /**
      * Close session factory.
      */
     public void closeSessionFactory() {
-        instance.close();
+        INSTANCE.close();
     }
 }

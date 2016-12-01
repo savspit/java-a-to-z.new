@@ -1,8 +1,6 @@
 package ru.shestakov.servlets;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.SerializationConfig;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
 import ru.shestakov.models.Filter;
 import ru.shestakov.models.User;
 import ru.shestakov.services.AdvertsStorage;
@@ -13,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
+/**
+ * The type Filter save servlet.
+ */
 public class FilterSaveServlet extends HttpServlet {
 
     @Override
@@ -34,7 +34,9 @@ public class FilterSaveServlet extends HttpServlet {
         User user = storage.getUserByLogin((String) session.getAttribute("login"));
         filter.setUser(user);
         boolean isFirstFilter = storage.getFilters(filter).size() == 0;
-        if (!isFirstFilter) { filter.setCondition("or"); };
+        if (!isFirstFilter) {
+            filter.setCondition("or");
+        }
         storage.saveFilter(login, filter);
     }
 }

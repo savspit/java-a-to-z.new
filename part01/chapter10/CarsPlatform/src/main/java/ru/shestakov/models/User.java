@@ -4,8 +4,17 @@ package ru.shestakov.models;
  * The type User.
  */
 public class User {
+    /**
+     * id field.
+     */
     private int id;
+    /**
+     * login field.
+     */
     private String login;
+    /**
+     * name field.
+     */
     private String name;
 
     /**
@@ -79,10 +88,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", name='" + name + '\'' +
-                ']';
+        return "User ["
+                + "id=" + id
+                + ", login='" + login + '\''
+                + ", name='" + name + '\''
+                + ']';
     }
 }

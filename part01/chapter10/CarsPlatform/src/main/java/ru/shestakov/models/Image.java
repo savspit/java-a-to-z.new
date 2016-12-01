@@ -4,8 +4,17 @@ package ru.shestakov.models;
  * The type Image.
  */
 public class Image {
+    /**
+     * id field.
+     */
     private int id;
+    /**
+     * path field.
+     */
     private String path;
+    /**
+     * advert field.
+     */
     private Advert advert;
 
     /**
@@ -79,10 +88,10 @@ public class Image {
 
     @Override
     public String toString() {
-        return "Image [" +
-                "id=" + id +
-                ", path='" + path + '\'' +
-                ", advert=" + advert +
-                ']';
+        return "Image ["
+                + "id=" + id
+                + ", path='" + path + '\''
+                + ", advert=" + advert
+                + ']';
     }
 }

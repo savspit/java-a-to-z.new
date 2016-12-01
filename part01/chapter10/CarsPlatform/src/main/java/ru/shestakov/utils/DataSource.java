@@ -14,20 +14,63 @@ import java.util.Properties;
  * The type Data source.
  */
 public class DataSource {
-    private static final Logger Log = LoggerFactory.getLogger(DataSource.class);
+    /**
+     * logger field.
+     */
+    private static final Logger LOG = LoggerFactory.getLogger(DataSource.class);
+    /**
+     * DB_DRIVER_BY_DEFAULT field.
+     */
     private static final String DB_DRIVER_BY_DEFAULT = "org.hsqldb.jdbcDriver";
+    /**
+     * DB_URL_BY_DEFAULT field.
+     */
     private static final String DB_URL_BY_DEFAULT = "jdbc:hsqldb:file:dbpath/dbname";
+    /**
+     * DB_USERNAME_BY_DEFAULT field.
+     */
     private static final String DB_USERNAME_BY_DEFAULT = "sa";
+    /**
+     * DB_PASSWORD_BY_DEFAULT field.
+     */
     private static final String DB_PASSWORD_BY_DEFAULT = "";
+    /**
+     * pool datasource field.
+     */
     private ComboPooledDataSource cpds;
-    private static final DataSource instance = new DataSource();
+    /**
+     * instance datasource field.
+     */
+    private static final DataSource INSTANCE = new DataSource();
+    /**
+     * MinPoolSize pool parameter.
+     */
+    private static final int MIN_POOL_SIZE = 5;
+    /**
+     * MaxPoolSize pool parameter.
+     */
+    private static final int MAX_POOL_SIZE = 5;
+    /**
+     * AcquireIncrement pool parameter.
+     */
+    private static final int ACQUIRE_INCREMENT = 5;
+    /**
+     * MaxStatements pool parameter.
+     */
+    private static final int MAX_STATEMENTS = 5;
+    /**
+     * firstStart field.
+     */
     private boolean firstStart = true;
 
+    /**
+     * Constructor of datasource.
+     */
     private DataSource() {
         try {
             init();
         } catch (Exception e) {
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         }
     }
 
@@ -37,7 +80,7 @@ public class DataSource {
      * @return the instance
      */
     public static DataSource getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     /**
@@ -55,8 +98,10 @@ public class DataSource {
      * @return the boolean
      */
     public boolean isFirstStart() {
-        boolean result = firstStart;
-        if (result == true) { firstStart = false; }
+        boolean result = this.firstStart;
+        if (result) {
+            this.firstStart = false;
+        }
         return result;
     }
 
@@ -70,7 +115,7 @@ public class DataSource {
         try {
             conn = this.cpds.getConnection();
         } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         }
         return conn;
     }
@@ -84,7 +129,7 @@ public class DataSource {
         try {
             conn.close();
         } catch (SQLException e) {
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         }
     }
 
@@ -97,8 +142,7 @@ public class DataSource {
     public Properties getDBProperties() throws IOException {
         Properties props = new Properties();
         InputStream in = getClass().getClassLoader().getResourceAsStream("db.properties");
-        if (in == null)
-        {
+        if (in == null) {
             props.setProperty("driver", DB_DRIVER_BY_DEFAULT);
             props.setProperty("url", DB_URL_BY_DEFAULT);
             props.setProperty("username", DB_USERNAME_BY_DEFAULT);
@@ -122,10 +166,10 @@ public class DataSource {
         cpds.setJdbcUrl(prop.getProperty("url"));
         cpds.setUser(prop.getProperty("username"));
         cpds.setPassword(prop.getProperty("password"));
-        cpds.setMinPoolSize(5);
-        cpds.setAcquireIncrement(5);
-        cpds.setMaxPoolSize(20);
-        cpds.setMaxStatements(180);
+        cpds.setMinPoolSize(MIN_POOL_SIZE);
+        cpds.setMaxPoolSize(MAX_POOL_SIZE);
+        cpds.setAcquireIncrement(ACQUIRE_INCREMENT);
+        cpds.setMaxStatements(MAX_STATEMENTS);
     }
 
 }

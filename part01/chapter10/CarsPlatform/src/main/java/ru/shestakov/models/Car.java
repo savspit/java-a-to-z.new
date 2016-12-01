@@ -4,10 +4,25 @@ package ru.shestakov.models;
  * The type Car.
  */
 public class Car {
+    /**
+     * id field.
+     */
     private int id;
+    /**
+     * name field.
+     */
     private String name;
+    /**
+     * engine field.
+     */
     private Engine engine;
+    /**
+     * gearbox field.
+     */
     private Gearbox gearbox;
+    /**
+     * transmission field.
+     */
     private Transmission transmission;
 
     /**
@@ -117,12 +132,12 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car [" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", engine=" + engine +
-                ", gearbox=" + gearbox +
-                ", transmission=" + transmission +
-                ']';
+        return "Car ["
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", engine=" + engine
+                + ", gearbox=" + gearbox
+                + ", transmission=" + transmission
+                + ']';
     }
 }

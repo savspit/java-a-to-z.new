@@ -1,6 +1,8 @@
 package ru.shestakov.servlets;
 
-import org.apache.commons.fileupload.*;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import ru.shestakov.models.Advert;
@@ -35,7 +37,7 @@ public class UploadController extends HttpServlet {
                     FileItem item = (FileItem) iterator.next();
                     if (!item.isFormField()) {
                         String fileName = item.getName();
-                        String root = getServletContext().getRealPath("/").replace("\\target\\CarsPlatform-1.0-SNAPSHOT\\","\\src\\main\\webapp");
+                        String root = getServletContext().getRealPath("/").replace("\\target\\CarsPlatform-1.0-SNAPSHOT\\", "\\src\\main\\webapp");
                         File path = new File(root + "/img");
                         if (!path.exists()) {
                             boolean status = path.mkdirs();

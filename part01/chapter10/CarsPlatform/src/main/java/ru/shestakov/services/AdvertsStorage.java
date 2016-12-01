@@ -1,9 +1,18 @@
 package ru.shestakov.services;
 
-import org.hibernate.*;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.Query;
+import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.shestakov.models.*;
+import ru.shestakov.models.Advert;
+import ru.shestakov.models.User;
+import ru.shestakov.models.Transmission;
+import ru.shestakov.models.Engine;
+import ru.shestakov.models.Gearbox;
+import ru.shestakov.models.Image;
+import ru.shestakov.models.Car;
 import ru.shestakov.models.Filter;
 import ru.shestakov.utils.HibernateUtils;
 import ru.shestakov.utils.LiquibaseUtils;
@@ -15,7 +24,10 @@ import java.util.List;
  * The type Adverts storage.
  */
 public class AdvertsStorage {
-    private static final Logger Log = LoggerFactory.getLogger(LiquibaseUtils.class);
+    /**
+     * logger field.
+     */
+    private static final Logger LOG = LoggerFactory.getLogger(LiquibaseUtils.class);
 
     /**
      * Gets adverts.
@@ -36,7 +48,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return adverts;
@@ -53,11 +65,13 @@ public class AdvertsStorage {
         String sql = "select a.id as id, a.description as description, c.name as car, a.sold as sold, a.user.name as user, (u.login = :login) as isMyAdvert from Advert as a left join a.car as c left join a.user as u";
         List<Filter> filters = getFiltersByLogin(login);
         int filtersSize = filters.size();
-        if (filtersSize == 0) { return sql; }
+        if (filtersSize == 0) {
+            return sql;
+        }
         sql = String.format("%s %s ", sql, "where");
-        for (int i=0; i<filtersSize; i++) {
+        for (int i = 0; i < filtersSize; i++) {
             Filter filter = filters.get(i);
-            sql = String.format("%s %s %s %s %s ", sql, getFieldName(filter.getField()), filter.getOperation(), filter.getValue(), i+1==filtersSize || filtersSize==1 ? "" : "or");
+            sql = String.format("%s %s %s %s %s ", sql, getFieldName(filter.getField()), filter.getOperation(), filter.getValue(), i + 1 == filtersSize || filtersSize == 1 ? "" : "or");
         }
         return sql;
     }
@@ -94,7 +108,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
         }
@@ -120,7 +134,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return user;
@@ -142,7 +156,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return transmissions;
@@ -164,7 +178,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return engines;
@@ -186,7 +200,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return gearboxes;
@@ -211,7 +225,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return images;
@@ -232,7 +246,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
         }
@@ -252,7 +266,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
         }
@@ -272,7 +286,87 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
+        } finally {
+            session.close();
+        }
+    }
+
+    /**
+     * Update engine.
+     *
+     * @param engine the engine
+     */
+    public void updateEngine(Engine engine) {
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(engine);
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            LOG.error(e.getMessage(), e);
+        } finally {
+            session.close();
+        }
+    }
+
+    /**
+     * Update gearbox.
+     *
+     * @param gearbox the gearbox
+     */
+    public void updateGearbox(Gearbox gearbox) {
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(gearbox);
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            LOG.error(e.getMessage(), e);
+        } finally {
+            session.close();
+        }
+    }
+
+    /**
+     * Update transmission.
+     *
+     * @param transmission the transmission
+     */
+    public void updateTransmission(Transmission transmission) {
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(transmission);
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            LOG.error(e.getMessage(), e);
+        } finally {
+            session.close();
+        }
+    }
+
+    /**
+     * Update user.
+     *
+     * @param user the user
+     */
+    public void updateUser(User user) {
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(user);
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
         }
@@ -296,7 +390,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return transmission;
@@ -321,7 +415,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return transmission;
@@ -346,7 +440,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return description;
@@ -371,7 +465,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return engine;
@@ -396,7 +490,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return engine;
@@ -421,7 +515,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return gearbox;
@@ -446,7 +540,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return gearbox;
@@ -471,7 +565,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return car;
@@ -496,7 +590,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return advert;
@@ -521,7 +615,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return advert;
@@ -546,7 +640,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return car;
@@ -578,7 +672,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
         }
@@ -598,7 +692,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
         }
@@ -625,7 +719,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return filters;
@@ -650,7 +744,7 @@ public class AdvertsStorage {
             transaction.commit();
         } catch (HibernateException e) {
             transaction.rollback();
-            Log.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
             session.close();
             return filters;
