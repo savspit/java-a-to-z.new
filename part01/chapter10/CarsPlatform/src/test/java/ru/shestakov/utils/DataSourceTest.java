@@ -1,14 +1,9 @@
 package ru.shestakov.utils;
 
-import org.apache.commons.fileupload.FileItemFactory;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import ru.shestakov.models.*;
 import ru.shestakov.services.AdvertsStorage;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
