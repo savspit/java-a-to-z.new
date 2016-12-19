@@ -11,6 +11,10 @@
 
     <groupId>part01</groupId>
     <artifactId>chapter14</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>Sorts</module>
+    </modules>
 
 
 </project>
