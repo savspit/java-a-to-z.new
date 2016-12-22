@@ -19,4 +19,16 @@ public class BinarySearch<T extends Comparable<T>> {
         return -1;
     }
 
+    public boolean isSorted(T[] array) {
+        if (array.length < 2) { return true; }
+        int sortingDirection = array[0].compareTo(array[1]);
+        for (int i = 0; i < array.length - 1; i++) {
+            if ( (sortingDirection > 0 && array[i].compareTo(array[i+1]) < 0) ||
+                    (sortingDirection < 0 && array[i].compareTo(array[i+1]) > 0) ) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
