@@ -16,14 +16,14 @@ public class HeapSort {
         makeHeap(array, array.length);
         int end = array.length - 1;
         while (end >= 0) {
-            swap(array, end, 0);
+            doSwap(array, end, 0);
             end--;
             doSift(array, 0, end);
         }
         return array;
     }
 
-    private static <T extends Comparable<T>> T[] swap(T[] array, int index1, int index2) {
+    private <T extends Comparable<T>> T[] doSwap(T[] array, int index1, int index2) {
         T temp = array[index1];
         array[index1] = array[index2];
         array[index2] = temp;
@@ -53,7 +53,7 @@ public class HeapSort {
             if (swap==root) {
                 return array;
             } else {
-                swap(array, root, swap);
+                doSwap(array, root, swap);
                 root = swap;
             }
         }
