@@ -6,7 +6,7 @@ package ru.shestakov;
 public class QuickSort {
 
     /**
-     * Sort t [ ].
+     * Sort.
      *
      * @param <T>   the type parameter
      * @param array the array

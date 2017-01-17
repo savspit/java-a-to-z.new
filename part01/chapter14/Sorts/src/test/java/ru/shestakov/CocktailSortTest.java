@@ -8,10 +8,16 @@ import java.util.ArrayList;
 
 import static org.hamcrest.core.Is.is;
 
+/**
+ * The type Cocktail sort test.
+ */
 public class CocktailSortTest {
     private ArrayList<String> sortedList = new ArrayList<>();
     private ArrayList<String> unsortedList = new ArrayList<>();
 
+    /**
+     * Prepare collections.
+     */
     @Before
     public void prepareCollections() {
         this.sortedList.add("Анаконда");
@@ -31,6 +37,9 @@ public class CocktailSortTest {
         this.unsortedList.add("Обезьяна");
     }
 
+    /**
+     * When sort should do it correct.
+     */
     @Test
     public void whenSortShouldDoItCorrect() {
         CocktailSort<String> cs = new CocktailSort<>();

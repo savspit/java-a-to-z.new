@@ -6,7 +6,7 @@ package ru.shestakov;
 public class HeapSort {
 
     /**
-     * Sort t [ ].
+     * Sort.
      *
      * @param <T>   the type parameter
      * @param array the array

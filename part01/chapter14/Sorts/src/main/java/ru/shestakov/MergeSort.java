@@ -6,7 +6,7 @@ package ru.shestakov;
 public class MergeSort {
 
     /**
-     * Sort t [ ].
+     * Sort.
      *
      * @param <T>   the type parameter
      * @param array the array

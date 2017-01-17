@@ -2,8 +2,18 @@ package ru.shestakov;
 
 import java.util.ArrayList;
 
+/**
+ * The type Cocktail sort.
+ *
+ * @param <T> the type parameter
+ */
 public class CocktailSort<T extends Comparable<T>> {
 
+    /**
+     * Sort.
+     *
+     * @param list the list
+     */
     public void sort(ArrayList<T> list) {
         boolean swapped = true;
         int start = 0;

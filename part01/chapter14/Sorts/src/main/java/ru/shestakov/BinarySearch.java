@@ -1,7 +1,19 @@
 package ru.shestakov;
 
+/**
+ * The type Binary search.
+ *
+ * @param <T> the type parameter
+ */
 public class BinarySearch<T extends Comparable<T>> {
 
+    /**
+     * Search int.
+     *
+     * @param array the array
+     * @param value the value
+     * @return the int
+     */
     public int search(T[] array, T value) {
         int start = 0;
         int end = array.length - 1;
@@ -19,6 +31,12 @@ public class BinarySearch<T extends Comparable<T>> {
         return -1;
     }
 
+    /**
+     * Is sorted boolean.
+     *
+     * @param array the array
+     * @return the boolean
+     */
     public boolean isSorted(T[] array) {
         if (array.length < 2) { return true; }
         int firstDirection = array[0].compareTo(array[1]);
